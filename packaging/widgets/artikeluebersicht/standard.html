@@ -1,0 +1,42 @@
+<$
+// get all articles in same area as this article itself.
+var articles = page.articlesInArea(article.area);
+var currentArticleId = article.id;
+var currentArticleFound = false;
+ $>
+
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<ul class="zpSO-Toc">
+		<$ 
+		for ( var i=0; i < articles.count; ++i ) {
+				var a = articles.item(i);
+		 $>
+		
+				<$ if ( currentArticleFound && displayStyle(a.widgetName) && a.headline !== "" ) { $>
+					<li><a href="<$= a.url $>"><$= a.headline $></a></li>
+				<$ } $>
+		
+		<$
+			if ( a.id === currentArticleId ) {
+				// Alle anzeigen, die NACH dem aktuelle gerenderten Artikel kommen.
+				currentArticleFound = true;
+			}
+		}
+		 $>
+	</ul>
+<$= system.partial("article-end.html") $>
+
+<$
+function displayStyle(styleName) {
+	switch ( styleName.toLowerCase() ) {
+		case "button":
+			return false;
+		case "\"nach oben\"-verweis":
+			return false;
+		default:
+			return true;
+	}
+}
+ $>

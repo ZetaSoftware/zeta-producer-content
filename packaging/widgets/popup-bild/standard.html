@@ -1,0 +1,49 @@
+<$= system.partial("article-begin.html", "popupimage") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<$
+	var imageId = article.value("Bild");
+	var image = project.getImage(imageId);
+	
+	if ( isNull(image) ) {
+		system.warn("PopUp-Bild ({0}) auf Seite '{1}' wurde nicht gefunden. Falls das Bild gelöscht wurde, löschen Sie bitte auch den entsprechenden Artikel.".format(imageId, page.name));
+	}
+	else {
+		var imageWidth = image.contentCopyWidth;
+		var imageHeight = image.contentCopyHeight;
+		var thumbnailWidth = parseInt( article.value("Breite des Vorschaubilds") );
+		var thumbnailHeight = parseInt( thumbnailWidth * (imageHeight / imageWidth) );
+		var description = system.removeHtmlTags(image.description);
+		var encodedDescription = system.htmlEncode(image.description);
+		
+		if ( image.createThumb(thumbnailWidth) ) {
+			system.log("Erstelle Vorschaubild " + image.name);
+		}
+		system.pump();
+
+		 $>
+			<div id="igal<$= article.id $>" class="zpImageGallery" 
+				data-kind="<$= article.value('position') $>"
+				data-titleShow="<$= article.value('titleShow') $>"
+				data-htmltitle="<$= encodedDescription $>"
+				data-width="<$= thumbnailWidth $>"
+				data-height="<$= thumbnailHeight $>"
+				data-maxheight="<$= thumbnailHeight $>" 
+				data-bordercolor="<$= article.value('bordercolor') $>"
+				data-borderwidth="<$= article.value('borderwidth') $>"
+				data-margin="0"
+				data-titleposition="<$= article.value('titleposition') $>"
+				data-transition="<$= article.value('transition') $>"
+				data-slideshow="0">
+				<a class="fancybox" title="<$= description $>" href="<$= image.workingCopyPath $>" rel="g<$= article.id $>">
+					<img src="<$= image.thumbPath(thumbnailWidth) $>" width="<$= thumbnailWidth $>" height="<$= thumbnailHeight $>" <$= description == '' ? '' : 'alt="' + description + '"' $> />
+				</a>
+				<$ if ( article.value("Titel") !== "" ) { $>
+					<span style="width: <$= thumbnailWidth $>px; display: block; clear: both; padding-top: 5px;"><$= article.value('Titel') $></span>
+				<$ } $>
+			</div>
+			<$= article.value('Text') $>
+	<$
+	}
+	 $>
+<$= system.partial("article-end.html") $>

@@ -1,0 +1,21 @@
+<$
+var alignment = article.value("Ausrichtung");
+switch ( alignment ) {
+	case "links":
+		alignment = "left";
+		break;
+	case "rechts":
+		alignment = "right";
+		break;
+	case "zentriert":
+		alignment = "center";
+		break;
+	default:
+		alignment = "left";
+}
+ $>
+<$= system.partial("article-begin.html") $>
+	<p><a href="#top" class="zpSO-Uplink" style="display:block;text-align:<$= alignment $>">
+		<$= article.value("text") $>
+	</a></p>
+<$= system.partial("article-end.html") $>

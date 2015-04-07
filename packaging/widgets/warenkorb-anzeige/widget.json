@@ -1,0 +1,52 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "shop",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "services",
+        "uiName": "Warenkorb-Anzeige",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 170,
+        "useDialogHeight": true,
+        "defaults": {},
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": false,
+        "removeLineAfter": false,
+        "orderPosition": 4,
+        "requiredFeature": "HasOnlineshop"
+    },
+    "fields": [
+        {
+            "name": "(Anmerkung)",
+            "type": "infotext",
+            "position": 0,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "height": 40,
+            "label": "(Anmerkung)",
+            "text": "Fügt einen Text ein, der die aktuelle Anzahl,\r\nsowie den Gesamtpreis aller Artikel im Warenkorb anzeigt."
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.php"
+        }
+    ]
+}

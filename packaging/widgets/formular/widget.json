@@ -1,0 +1,89 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "more",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "editorType": "htmlForm",
+        "mainCategory": "text",
+        "uiName": "Formular",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 190,
+        "useDialogHeight": true,
+        "defaults": {
+            "success_page_url": "oid://page/de$nachricht-erfolgreich-gesendet",
+            "error_page_url": "oid://page/de$nachricht-konnte-nicht-versendet-werden",
+            "action_url": "assets/php/formmailer/SendEmail.php?sc",
+            "_action_url_values": [
+                {
+                    "Via PHP": "assets/php/formmailer/SendEmail.php?sc"
+                },
+                {
+                    "Via PHP mit Sicherheitsprüfung": "assets/php/formmailer/SendEmail.php"
+                }
+            ],
+            "_nameAlign": "left",
+            "_nameLevel": "h2",
+            "_element-inputtype": "text",
+            "_element-inputtype_values": [
+                {
+                    "Text": "text"
+                },
+                {
+                    "Zahl": "number"
+                },
+                {
+                    "E-Mail": "email"
+                },
+                {
+                    "Telefon": "tel"
+                },
+                {
+                    "Url": "url"
+                },
+                {
+                    "Datum": "date"
+                },
+                {
+                    "Zeit": "time"
+                },
+                {
+                    "Farbe": "color"
+                },
+                {
+                    "Suche": "search"
+                }
+            ]
+        },
+        "userCanResizeDialog": false,
+        "showHeadlineLabel": false,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 1,
+        "requiredFeature": "None"
+    },
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "mcrypt", "mbstring" ],
+		"writePermissions": []
+	},
+	"assets": [
+        { "fileName": "form.css",					"mode": "bundle", "order": 40 },
+        { "fileName": "zp-validate-form.js",		"mode": "bundle", "order": 110 },
+        { "fileName": "php/*",						"mode": "copy" }
+    ],
+    
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

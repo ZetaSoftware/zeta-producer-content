@@ -1,0 +1,73 @@
+{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "nav",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "structure",
+        "uiName": "Artikelliste",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 210,
+        "useDialogHeight": true,
+        "defaults": {
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "userCanResizeDialog": false,
+        "showHeadlineLabel": false,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 2,
+        "requiredFeature": "None",
+        "dontCachePageItem": false,
+        "editorType": null
+    },
+    "fields": [
+        {
+            "type": "line",
+            "name": "(Trennlinie)",
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 5,
+            "showLine": false,
+            "label": "(Trennlinie)"
+        },
+        {
+            "type": "infotext",
+            "name": "(Annotation)",
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "height": 40,
+            "label": "(Annotation)",
+            "text": "Der Artikel listet die Überschriften der nachfolgenden Inhalte\r\nauf dieser Seite auf."
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html",
+            "uiName": "Standard"
+        }
+    ]
+}

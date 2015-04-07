@@ -1,0 +1,47 @@
+{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "more",
+        "defaults": {
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "dialogwidthvalue": 510,
+        "maincategory": "text",
+        "orderposition": 2,
+        "removelineafter": false,
+        "showcssinputfields": false,
+        "showheadlinelabel": false,
+        "uiname": "Tabellarische Daten",
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "name": "zptabledata",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "tabular-data",
+            "defaultValue": {
+                "showHead": "true"
+            }
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "zptabledata.css",
+            "mode": "Bundle",
+            "order": 40
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

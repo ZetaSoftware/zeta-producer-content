@@ -1,0 +1,13 @@
+<$= system.partial("article-begin.html") $>
+	<div class="g-plusone" data-size="<$= article.value('buttonsize') $>" data-annotation="<$= article.value('showcount') $>"></div>
+	
+	<script type="text/javascript">
+		window.___gcfg = {lang: 'de'};
+
+		(function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		})();
+	</script>
+<$= system.partial("article-end.html") $>

@@ -1,0 +1,29 @@
+<$= system.partial("article-begin.html") $>
+	<div class="zpTABs" id="a<$= article.id $>_tabs" data-bgcoloractive="<$= article.value('color_back_active') $>" data-bgcolorinactive="<$= article.value('color_back_inactive') $>" data-textcoloractive="<$= article.value('color_text_active') $>" data-textcolorinactive="<$= article.value('color_text_inactive') $>" data-bordercolor="<$= article.value('color_border') $>">
+		<ul class="zpTABs">
+			<$
+			var numTabs = parseInt(article.value("tab-count"))
+		
+			for ( var i=1; i <= numTabs; ++i ) {
+			 $>
+				<li class="tab<$ if ( i == 1 ) { $> active<$ } $><$ if ( i == numTabs) { $> last<$ } $>">
+					<a class="zpTABs zpNoScroll" href="#a<$= article.id $>_tab<$= i $>">
+						<$= article.value("tab-title-" + i) $>
+					</a>
+				</li>
+			<$ 
+			} 
+			 $>
+			
+			<$ if ( numTabs == 1) { $>
+				<li class="filler" style="visibility: hidden;"><a class="zpTABs" href="#">&nbsp;</a></li>
+			<$ } $>
+		</ul>
+	
+		<$ for ( var i=1; i <= numTabs; ++i ) {	 $>
+			<div id="a<$= article.id $>_tab<$= i $>"<$ if ( i == 1 ) { $> class="active"<$ } $>>
+				<$= article.value("tab-content-" + i) $>
+			</div>
+		<$ } $>
+	</div>
+<$= system.partial("article-end.html") $>

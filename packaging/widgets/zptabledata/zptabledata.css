@@ -1,0 +1,21 @@
+table.zptabledata {
+    width: 100%;
+    border-collapse: collapse;
+}
+table.zptabledata th,
+table.zptabledata td {
+    padding: 5px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+@media screen and (max-width: 640px) {
+	table.zptabledata {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+	}
+    table.zptabledata th,
+    table.zptabledata td {
+        white-space: nowrap;
+    }
+}

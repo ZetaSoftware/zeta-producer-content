@@ -1,0 +1,79 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "more",
+        "dialogheightvalue": 220,
+        "maincategory": "text",
+        "orderposition": 3,
+        "pgeitemmetainfo": "Unknown",
+        "removelineafter": false,
+        "showCssInputFields": false,
+        "showheadline": false,
+        "uiname": "Button",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "text",
+            "name": "text",
+            "occupylabelspace": true,
+            "placeholdertext": "Button-Text",
+            "showlabel": false,
+            "type": "text-singleline"
+        },
+        {
+            "canenterlinktarget": true,
+            "canselectfileassets": true,
+            "canselectgenericurl": true,
+            "canselectimageassets": true,
+            "canselectlinkassets": false,
+            "canselectnourl": true,
+            "canselectpageitems": true,
+            "canselectpages": true,
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "url",
+            "name": "url",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "url-selection",
+            "validationhelptext": "Bitte geben Sie einen Wert im Feld \"URL\" ein."
+        },
+        {
+            "canedit": false,
+            "displayname": "Ausrichtung",
+            "height": 10,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "align",
+            "name": "align",
+            "type": "list",
+            "values": [
+                {
+                    "Links": "left"
+                },
+                {
+                    "Zentriert": "center"
+                },
+                {
+                    "Rechts": "right"
+                }
+            ],
+            "defaultValue": "left"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

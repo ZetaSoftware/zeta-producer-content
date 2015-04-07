@@ -1,0 +1,592 @@
+{
+    "attributes": [
+        {
+            "name": "so_login_alert",
+            "category": "Widgets",
+            "value": "Bitte geben Sie das korrekte Kennwort ein!",
+            "entail": true
+        },
+        {
+            "name": "so_login_button",
+            "category": "Widgets",
+            "value": "Anmelden",
+            "entail": true
+        },
+        {
+            "name": "so_login_password",
+            "category": "Widgets",
+            "value": "Kennwort",
+            "entail": true
+        },
+        {
+            "name": "picgallery_back",
+            "category": "Widgets",
+            "value": "Zurück",
+            "entail": true
+        },
+        {
+            "name": "picgallery_forward",
+            "category": "Widgets",
+            "value": "Weiter",
+            "entail": true
+        },
+        {
+            "name": "picgallery_overview",
+            "category": "Widgets",
+            "value": "Zur Übersicht",
+            "entail": true
+        },
+        {
+            "name": "picgallery_start",
+            "category": "Widgets",
+            "value": "Start",
+            "entail": true
+        },
+        {
+            "name": "picgallery_stop",
+            "category": "Widgets",
+            "value": "Stopp",
+            "entail": true
+        },
+        {
+            "name": "fade_image_1",
+            "category": "Header",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "fade_image_2",
+            "category": "Header",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "fade_image_3",
+            "category": "Header",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "header_image",
+            "category": "Header",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "search_location_link",
+            "category": "Suche",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "search_script_msg_required",
+            "category": "Suche",
+            "value": "Bitte geben Sie einen Suchbegriff ein.",
+            "entail": true
+        },
+        {
+            "name": "search_script_button_search_title",
+            "category": "Suche",
+            "value": "Suchen",
+            "entail": true
+        },
+        {
+            "name": "search_script_result_txt_for",
+            "category": "Suche",
+            "value": "Suchergebnisse für",
+            "entail": true
+        },
+        {
+            "name": "search_script_result_txt_nohits",
+            "category": "Suche",
+            "value": "Es wurden keine Seiten gefunden.",
+            "entail": true
+        },
+        {
+            "name": "search_script_result_label_hits",
+            "category": "Suche",
+            "value": "Treffer",
+            "entail": true
+        },
+        {
+            "name": "search_script_label_keyword",
+            "category": "Suche",
+            "value": "Suchbegriff",
+            "entail": true
+        },
+        {
+            "name": "so_counter_visits",
+            "category": "Widgets",
+            "value": "Besucher.",
+            "entail": true
+        },
+        {
+            "name": "so_poll_submit",
+            "category": "Widgets",
+            "value": "Absenden / Ergebnisse",
+            "entail": true
+        },
+        {
+            "name": "so_poll_votes",
+            "category": "Widgets",
+            "value": "Stimmen",
+            "entail": true
+        },
+        {
+            "name": "so_poll_results",
+            "category": "Widgets",
+            "value": "Ergebnisse:",
+            "entail": true
+        },
+        {
+            "name": "so_webarticleoverview_more",
+            "category": "Widgets",
+            "value": "mehr...",
+            "entail": true
+        },
+        {
+            "name": "so_uplink",
+            "category": "Widgets",
+            "value": "Nach oben",
+            "entail": true
+        },
+        {
+            "name": "extern_edit_charset",
+            "category": "Standard",
+            "value": "utf-8",
+            "entail": true
+        },
+        {
+            "name": "so_calendar",
+            "category": "Widgets",
+            "value": "Wichtige Termine und Ereignisse",
+            "entail": true
+        },
+        {
+            "name": "so_calendar_language",
+            "category": "Widgets",
+            "value": "de",
+            "entail": true
+        },
+        {
+            "name": "so_countdown_days",
+            "category": "Widgets",
+            "value": "Tag(e)",
+            "entail": true
+        },
+        {
+            "name": "so_countdown_hours",
+            "category": "Widgets",
+            "value": "Stunde(n)",
+            "entail": true
+        },
+        {
+            "name": "so_countdown_minutes",
+            "category": "Widgets",
+            "value": "Minute(n)",
+            "entail": true
+        },
+        {
+            "name": "so_countdown_seconds",
+            "category": "Widgets",
+            "value": "Sekunde(n)",
+            "entail": true
+        },
+        {
+            "name": "so_date_language",
+            "category": "Widgets",
+            "value": "de",
+            "entail": true
+        },
+        {
+            "name": "so_date_time",
+            "category": "Widgets",
+            "value": "Uhr",
+            "entail": true
+        },
+        {
+            "name": "picgallery_language",
+            "category": "Widgets",
+            "value": "de",
+            "entail": true
+        },
+        {
+            "name": "form_script_button_send_title",
+            "category": "Formular",
+            "value": "Absenden",
+            "entail": true
+        },
+        {
+            "name": "form_script_msg_required",
+            "category": "Formular",
+            "value": "Bitte füllen Sie die rot markierten Felder aus:",
+            "entail": true
+        },
+        {
+            "name": "form_script_msg_invalid_email",
+            "category": "Formular",
+            "value": "keine gültige E-Mail",
+            "entail": true
+        },
+        {
+            "name": "form_empty_option",
+            "category": "Formular",
+            "value": "Bitte wählen:",
+            "entail": true
+        },
+        {
+            "name": "additional_meta",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "additional_css",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "copyright_notice",
+            "category": "Standard",
+            "value": "&copy; <$= new Date().getFullYear() $> #attribute(web_name)",
+            "entail": true
+        },
+        {
+            "name": "last_update",
+            "category": "Standard",
+            "value": "Letzte Aktualisierung am",
+            "entail": true
+        },
+        {
+            "name": "web_name",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "google_analytics",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "meta_description",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "meta_keywords",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "show_web_name",
+            "category": "Standard",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "htmleditor_addexternalcssfile",
+            "category": "Standard",
+            "value": "false",
+            "entail": true
+        },
+        {
+            "name": "show_breadcrumb",
+            "category": "Breadcrumb",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "breadcrumb",
+            "category": "Breadcrumb",
+            "value": "Sie befinden sich hier:&nbsp;",
+            "entail": true
+        },
+        {
+            "name": "web_name_slogan",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "extramenu_1",
+            "category": "Extramenu",
+            "value": "Startseite",
+            "entail": true
+        },
+        {
+            "name": "extramenu_url_1",
+            "category": "Extramenu",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "extramenu_2",
+            "category": "Extramenu",
+            "value": "Kontakt",
+            "entail": true
+        },
+        {
+            "name": "extramenu_url_2",
+            "category": "Extramenu",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "extramenu_3",
+            "category": "Extramenu",
+            "value": "Impressum",
+            "entail": true
+        },
+        {
+            "name": "extramenu_url_3",
+            "category": "Extramenu",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "search_field_visible",
+            "category": "Suche",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "search_field_value",
+            "category": "Suche",
+            "value": "Suchbegriff",
+            "entail": true
+        },
+        {
+            "name": "meta_contentlanguage",
+            "category": "Standard",
+            "value": "de",
+            "entail": true
+        },
+        {
+            "name": "meta_robots",
+            "category": "Standard",
+            "value": "index, follow",
+            "entail": true
+        },
+        {
+            "name": "mobile_script",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "show_pagetitle",
+            "category": "Standard",
+            "value": "false",
+            "entail": true
+        },
+        {
+            "name": "show_page_navigation",
+            "category": "Navigation",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "mobile_menu_title",
+            "category": "Navigation",
+            "value": "Menü",
+            "entail": true
+        },
+        {
+            "name": "page_navigation_ui_top",
+            "category": "Navigation",
+            "value": "<$\r\ndim page1\r\nset page1 = Context.Scope.CurrentPage\r\n\r\nif not (page1 is nothing) and isValidPage(page1) then\r\n\r\n\tdim prevPage1\r\n\tset prevPage1 = calcPrevPage(page1)\r\n\t\r\n\tdim nextPage1\r\n\tset nextPage1 = calcNextPage(page1)\r\n\r\n\tdim prevName1\r\n\tprevName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName1\r\n\tnextName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\t\r\n\t<$ if (not prevPage1 is nothing) and isValidPage(prevPage1) then $><a href=\"<$=prevPage1.Url$>\"><$=prevName1$></a><$ end if $>\r\n\t\r\n\t<$ if (not prevPage1 is nothing) and isValidPage(prevPage1) and (not nextPage1 is nothing) and isValidPage(nextPage1) then $>\r\n\t&nbsp;|&nbsp;\r\n\t<$end if$>\r\n\t\r\n\t<$ if (not nextPage1 is nothing) and isValidPage(nextPage1) then $><a href=\"<$=nextPage1.Url$>\"><$=nextName1$></a><$ end if $>\r\n\r\n<$ end if $>",
+            "entail": true
+        },
+        {
+            "name": "page_navigation_ui_prevname",
+            "category": "Navigation",
+            "value": "zurück",
+            "entail": true
+        },
+        {
+            "name": "page_navigation_ui_nextname",
+            "category": "Navigation",
+            "value": "weiter",
+            "entail": true
+        },
+        {
+            "name": "page_navigation_ui_bottom",
+            "category": "Navigation",
+            "value": "<$\r\ndim page2\r\nset page2 = Context.Scope.CurrentPage\r\n\r\nif not (page2 is nothing) and isValidPage(page2) then\r\n\r\n\tdim prevPage2\r\n\tset prevPage2 = calcPrevPage(page2)\r\n\t\r\n\tdim nextPage2\r\n\tset nextPage2 = calcNextPage(page2)\r\n\r\n\tdim prevName2\r\n\tprevName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName2\r\n\tnextName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\r\n\t<$ if (not prevPage2 is nothing) and isValidPage(prevPage2) then $><a href=\"<$=prevPage2.Url$>\"><$=prevName1$></a><$ end if $>\r\n\t\r\n\t<$ if (not prevPage2 is nothing) and isValidPage(prevPage2) and (not nextPage2 is nothing) and isValidPage(nextPage2) then $>\r\n\t&nbsp;|&nbsp;\r\n\t<$end if$>\r\n\t\r\n\t<$ if (not nextPage2 is nothing) and isValidPage(nextPage2) then $><a href=\"<$=nextPage2.Url$>\"><$=nextName1$></a><$ end if $>\r\n\t\r\n<$ end if $>",
+            "entail": true
+        },
+        {
+            "name": "page_navigation",
+            "category": "Navigation",
+            "value": "<$$\r\n' --------------------------------------------\r\n' http://stackoverflow.com/questions/5661072/get-next-item-in-a-tree\r\n\r\nfunction calcNextPage(page)\r\n      dim result\r\n      set result = nothing\r\n      \r\n      dim childPages\r\n      set childPages = page.ChildPages\r\n      \r\n      if childPages.count>0 then\r\n            set result = childPages(0)\r\n      else\r\n            dim nextSibling\r\n            set nextSibling = getNextSibling( page )\r\n            \r\n            if not nextSibling is nothing then\r\n                  set result = nextSibling\r\n            else\r\n                  dim curr\r\n                  set curr = page\r\n                  \r\n                  do while 4>2\r\n                        dim parent\r\n                        set parent = curr.ParentPageOrProjectFolder\r\n                        \r\n                        if parent is nothing then\r\n                             set result = nothing\r\n                             exit do\r\n                        else\r\n                             set nextSibling = getNextSibling( parent )\r\n                             if not nextSibling is nothing then\r\n                                   set result = nextSibling\r\n                                   exit do\r\n                             else\r\n                                   set curr = parent\r\n                             end if\r\n                        end if\r\n                  loop\r\n            end if\r\n      end if\r\n      \r\n      set calcNextPage = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction getNextSibling( page )\r\n      dim result\r\n      set result = nothing\r\n      \r\n      dim parentPage\r\n      set parentPage = page.ParentPageOrProjectFolder\r\n      \r\n      if not parentPage is nothing then\r\n            dim siblingPages\r\n          \tsiblingPages = filterPages(parentPage.ChildPages)\r\n            \r\n            dim i\r\n            for i=0 to UBound(siblingPages)\r\n                  dim p\r\n                  set p = siblingPages(i)\r\n            \r\n                  if p.ID = page.ID then\r\n                        if i<UBound(siblingPages) then\r\n                             set result = siblingPages(i+1)\r\n                             exit for\r\n                        else\r\n                             set result = nothing\r\n                             exit for\r\n                        end if\r\n                  end if\r\n            next\r\n      else\r\n            set result = nothing\r\n      end if\r\n      \r\n      set getNextSibling = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction filterPages( zpPagesArray )\r\n\tdim result()\r\n\t\r\n\tif not zpPagesArray is nothing then\r\n\t\tredim result(zpPagesArray.count-1)\r\n\t\t\r\n\t\tdim r\r\n\t\tr = -1\r\n\t\t\r\n\t    dim i\r\n\t    for i=0 to zpPagesArray.count-1\r\n\t\t\tdim p\r\n\t\t\tset p = zpPagesArray(i)\r\n\t\t\t\r\n\t\t\tif isValidPage(p) then\r\n\t\t\t\tr = r + 1\r\n\t\t\t\tset result(r) = p\r\n\t\t\tend if\t\r\n\t\tnext\r\n\t\t\r\n\t\tif r>=0 then\r\n\t\t\tredim preserve result(r)\r\n\t\tend if\r\n\tend if\r\n\t\t\r\n\tfilterPages\t= result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction calcPrevPage(page)\r\n      dim result\r\n      set result = nothing\r\n\r\n      dim pages\r\n      pages = filterPages(page.ParentPageOrProjectFolder.ChildPages)\r\n\r\n      dim i\r\n      for i=0 to UBound(pages)\r\n            dim p\r\n            set p = pages(i)\r\n      \r\n            if p.ID = page.id then\r\n                  if i>0 then\r\n                        set result = getDeepestChild( pages(i-1) )\r\n                  else\r\n                        dim parent\r\n                        set parent = page.ParentPageOrProjectFolder\r\n                        if parent is nothing then\r\n                             set result = nothing\r\n                        else\r\n                             if parent.IsPage then\r\n                                   set result = parent\r\n                             else\r\n                                   set result = nothing\r\n                             end if\r\n                        end if\r\n                  end if\r\n                  \r\n                  exit for\r\n            end if\r\n      next\r\n      \r\n      set calcPrevPage = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction getDeepestChild( page )\r\n      dim result\r\n      set result = nothing\r\n      \r\n      dim childPages\r\n      childPages = filterPages(page.ChildPages)\r\n\r\n      if UBound(childPages)>0 then\r\n            dim p\r\n            set p = childPages(UBound(childPages))\r\n            set result = getDeepestChild( p )\r\n      else\r\n            set result = page\r\n      end if\r\n      \r\n      set getDeepestChild = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction isValidPage( page )\r\n\tdim result\r\n\tresult = false\r\n\r\n\tif IsNothing(page) then\r\n\t\tresult = true\r\n\telse\r\n'\t\tif page.Url<>\"\" then\r\n'\t\t\tresult = false\r\n'\t\telse\r\n\t\t\tif page.visible and page.active then\r\n\t\t\t\tresult = true\r\n\t\t\telse\r\n\t\t\t\tresult = false\r\n\t\t\tend if\r\n'\t\tend if\r\n\tend if\r\n\r\n\tisValidPage = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nsub log( text )\r\n      Context.WriteLine(\"<p style='background-color:yellow; color:black;font-family:Courier new; font-weight: bold; font-size:12px'>\" & text & \"</p>\")\r\nend sub\r\n\r\n' --------------------------------------------\r\n$>\r\n",
+            "entail": true
+        },
+        {
+            "name": "footer_script",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "background_image",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_foldername",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_additional_url_xml_fragments",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_max_items",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_changefreq",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_priority",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_allow",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_url_alias",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_filename",
+            "category": "Sitemap",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "suppress_phpversioncheck",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "sitemap_addition",
+            "category": "Standard",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "show_teaser_list",
+            "category": "Standard",
+            "value": "0",
+            "entail": true
+        },
+        {
+            "name": "css_parameter",
+            "category": "Standard",
+            "value": "?v=1",
+            "entail": true
+        },
+        {
+            "name": "page_navigation_ui_bottom_2",
+            "category": "Navigation",
+            "value": "<$\r\ndim page2\r\nset page2 = Context.Scope.CurrentPage\r\n\r\nif not (page2 is nothing) and isValidPage(page2) then\r\n\r\n\tdim prevPage2\r\n\tset prevPage2 = calcPrevPage(page2)\r\n\t\r\n\tdim nextPage2\r\n\tset nextPage2 = calcNextPage(page2)\r\n\r\n\tdim prevName2\r\n\tprevName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName2\r\n\tnextName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\r\n\t<$ if (not prevPage2 is nothing) and isValidPage(prevPage2) then $><a class=\"prev\" href=\"<$=prevPage2.Url$>\" title=\"Vorherige Seite\"><i class=\"icon-angle-left icon-large\">&nbsp;</i></a><$ end if $>\r\n\t\r\n\t<$ if (not nextPage2 is nothing) and isValidPage(nextPage2) then $><a class=\"next\" href=\"<$=nextPage2.Url$>\" title=\"Nächste Seite\"><i class=\"icon-angle-right icon-large\">&nbsp;</i></a><$ end if $>\r\n\t\r\n<$ end if $>\r\n\r\n<div class=\"gotop\"><a class=\"gotop\" href=\"#\" title=\"Nach oben\"><i class=\"icon-angle-up icon-large\">&nbsp;</i></a></div>",
+            "entail": true
+        },
+        {
+            "name": "page_navigation_ui_top_2",
+            "category": "Navigation",
+            "value": "<$\r\ndim page1\r\nset page1 = Context.Scope.CurrentPage\r\n\r\nif not (page1 is nothing) and isValidPage(page1) then\r\n\r\n\tdim prevPage1\r\n\tset prevPage1 = calcPrevPage(page1)\r\n\t\r\n\tdim nextPage1\r\n\tset nextPage1 = calcNextPage(page1)\r\n\r\n\tdim prevName1\r\n\tprevName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName1\r\n\tnextName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\t\r\n\t<$ if (not prevPage1 is nothing) and isValidPage(prevPage1) then $><a class=\"prev\" href=\"<$=prevPage1.Url$>\" title=\"Vorherige Seite\"><i class=\"icon-angle-left icon-large\">&nbsp;</i></a><$ end if $>\r\n\t\r\n\t<$ if (not nextPage1 is nothing) and isValidPage(nextPage1) then $><a class=\"next\" href=\"<$=nextPage1.Url$>\" title=\"Nächste Seite\"><i class=\"icon-angle-right icon-large\">&nbsp;</i></a><$ end if $>\r\n\r\n<$ end if $>\r\n\r\n<div class=\"gohome\"><a class=\"gohome\" href=\"#web(address)\" title=\"zur Übersicht\"><i class=\"icon-home icon-large\">&nbsp;</i></a></div>",
+            "entail": true
+        },
+        {
+            "name": "show_extra_menu",
+            "category": "Extramenu",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "show_copyright",
+            "category": "Standard",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "show_web_logo",
+            "category": "Standard",
+            "value": "false",
+            "entail": true
+        },
+        {
+            "name": "show_web_title",
+            "category": "Standard",
+            "value": "true",
+            "entail": true
+        },
+        {
+            "name": "breadcrumb_separator",
+            "category": "Breadcrumb",
+            "value": "/",
+            "entail": true
+        },
+        {
+            "name": "extramenu_target_1",
+            "category": "Extramenu",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "extramenu_target_2",
+            "category": "Extramenu",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "extramenu_target_3",
+            "category": "Extramenu",
+            "value": null,
+            "entail": true
+        },
+        {
+            "name": "form_item_break",
+            "category": "Formular",
+            "value": "0",
+            "entail": true
+        },
+        {
+            "name": "header_prev_text",
+            "category": "Widgets",
+            "value": "zurück",
+            "entail": true
+        },
+        {
+            "name": "header_next_text",
+            "category": "Widgets",
+            "value": "weiter",
+            "entail": true
+        }
+    ]
+}

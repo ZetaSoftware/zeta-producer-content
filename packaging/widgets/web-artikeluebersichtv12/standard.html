@@ -1,0 +1,60 @@
+﻿<$
+	var currentArticleId = article.id;
+$>
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<ul class="zpSO-Overview">
+		<$ 
+		var articles = article.getOverviewArticles();
+
+		for ( var i=0; i < articles.count; ++i ) {
+			var a = articles.item(i);
+			var text = getString(a, "Text");
+			var spalte1 = getString(a, "Spalte 1");
+		 $>
+
+			<$ if ( displayStyle(a.widgetName) && a.headline != "" && a.id !== currentArticleId ) { $>
+				<li>
+					<a href="<$= a.url $>"><span style="font-weight:bold"><$= a.headline $></span></a><br />
+					<$ if ( text != "" || spalte1 !== "" ) { $>
+						<$= text $><$= spalte1 $>...<br />
+						<a href="<$= a.url $>">#attribute(so_webarticleoverview_more)</a>
+					<$ } $>
+				</li>
+			<$ } $>
+
+		<$ } $>
+	</ul>
+<$= system.partial("article-end.html") $>
+
+<$
+function getString(a, fieldName) {
+	var text = a.value(fieldName);		
+	if( isNull(text) ) text = "";
+	if ( text && a.widgetName.toLowerCase() == "markdown") {
+		text = system.markdown(text);
+	}
+
+	text = text.replace(/&nbsp;/g, " ");
+	text = text.replace(/<BR>/gi, " ").replace(/<BR \/>/gi, " ");
+	text = system.removeHtmlTags(text);
+
+	var maxLength = 200;
+	if( text.length>maxLength ) text = text.substring(0, maxLength);
+
+	return text;
+}
+
+function displayStyle(styleName) {
+
+	switch ( styleName.toLowerCase() ) {
+		case "button":
+			return false;
+		case "\"nach oben\"-verweis":
+			return false;
+		default:
+			return true;
+	}
+}
+ $>

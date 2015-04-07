@@ -1,0 +1,10 @@
+/* common, global styles for zp onlineshop */
+.zpSO-OnlineShop-table.zpSO-OnlineShop-addresstable{
+	width: auto;
+}
+.zpSO-OnlineShop-addresstable input[type="text"], .zpSO-OnlineShop-addresstable textarea{
+	width:95%;
+}
+.zpSO-OnlineShop-error{
+	color: #FF0000;
+}

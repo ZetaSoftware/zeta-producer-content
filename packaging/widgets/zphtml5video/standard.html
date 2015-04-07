@@ -1,0 +1,27 @@
+<$= system.partial("article-begin.html") $>
+	<$
+	var mp4id = project.getFile(article.value("file-mp4", ""));
+	var oggid = project.getFile(article.value("file-ogg", ""));
+	var webmid = project.getFile(article.value("file-webm", ""));
+	$>
+
+<$ if ( system.preview ) { $>
+	<$= system.partial("no-preview-info.html") $>    
+<$ }
+   else { $>
+	<video controls>
+		<$ if ( !isNull(mp4id) ) { $><source src="<$= mp4id.path $>" type="video/mp4"><$ } $>
+		<$ if ( !isNull(oggid) ) { $><source src="<$= oggid.path $>" type="video/ogg"><$ } $>
+		<$ if ( !isNull(webmid) ) { $><source src="<$= webmid.path $>" type="video/webm"><$ } $>
+		<div class="zpwarning">
+			<p lang="de">Ihr Browser kann die angegebene Filmdatei leider nicht abspielen, da er das Video-Element nicht unterstützt.</p>
+			<p lang="en">Your browser can't play the requested video file. The browser doesn't support the video element.</p>
+			<p class="zpfallbackdownloads">
+				<$ if ( !isNull(mp4id)  ) { $><a style="margin-right: 10px;" href="<$= mp4id.path $>"><$= mp4id.name $></a><$ } $>
+				<$ if ( !isNull(oggid)  ) { $><a style="margin-right: 10px;" href="<$= oggid.path $>"><$= oggid.name $></a><$ } $>
+				<$ if ( !isNull(webmid) ) { $><a style="margin-right: 10px;" href="<$= webmid.path $>"><$= webmid.name $></a><$ } $>
+			</p>
+		</div>
+	</video>
+<$ } $>
+<$= system.partial("article-end.html") $>

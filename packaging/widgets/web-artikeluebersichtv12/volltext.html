@@ -1,0 +1,52 @@
+﻿<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<$ 
+	var articles = article.getOverviewArticles();
+
+	for ( var i=0; i < articles.count; ++i ) {
+		var a = articles.item(i);
+		var gtop = "\"Nach oben\"-Verweis";
+		var name = a.headline;
+		var artid = a.id;
+		var text = a.value("Text") == null ? "" : a.value("Text", "");
+		var imageId = a.value("Bild");
+		var bild = project.getImage(imageId);
+		var bildurl = a.value("Bild-URL");
+		var bu = a.value("Titel");
+		var inlinestyle = a.value("inlinestyle");
+		var articleModifyDate = a.modifyDate;
+	 $>
+
+		<$ if ( displayStyle(a.widgetName) && name !== "" ) { $>
+			<span style="float: right; margin-left: 8px; text-align: right;"><a href="<$= a.url $>"><$= articleModifyDate $></a></span>
+			<<$= a.headlineLevel $> style="text-align:<$= a.headlineAlign $>;"><$= a.headline $></<$= a.headlineLevel $>>
+		<$ } $>
+		
+		<$ if ( !isNull(bild) ) { $>
+			<div class="articleimage" style="float:left;padding-right:15px">
+				<$ if ( bildurl !== "" ) { $><a href="<$= bildurl $>"><$ } $>
+					<img src="<$= bild.contentCopyPath $>" width="<$= bild.contentCopyWidth $>" height="<$= bild.contentCopyHeight $>" alt="<$= bild.description $>"<$ if ( inlinestyle !== "" ) { $> style="<$= inlinestyle $>"<$ } $> />
+				<$ if ( bildurl !== "" ) { $></a><$ } $>
+				<$ if ( bu !== "" ) { $><span class="bildunterschrift"><$= bu $></span><$ } $>
+			</div>
+		<$ } $>
+		<div class="articletext"><$= text $></div>
+		<div class="clearx" style="margin-bottom: 20px;"></div>
+	<$
+	}
+	 $>
+<$= system.partial("article-end.html") $>
+
+<$
+function displayStyle(styleName) {
+	switch ( styleName.toLowerCase() ) {
+		case "button":
+			return false;
+		case "\"nach oben\"-verweis":
+			return false;
+		default:
+			return true;
+	}
+}
+ $>

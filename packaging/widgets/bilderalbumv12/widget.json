@@ -1,0 +1,82 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "favs",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "editorType": "imageAlbum",
+        "mainCategory": "text",
+        "uiName": "Bilderalbum",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 0,
+        "useDialogHeight": false,
+        "defaults": {
+            "headline_align": "left",
+            "headline_level": "h2",
+            "height": "150",
+            "width": "200",
+            "margin": "10",
+            "slideshowinterval": "5",
+            "slideshowtemplate": "none",
+            "_slideshowtemplate_values": [
+            	{
+            		"Nur Bild": "none"
+            	},
+            	{
+            		"Mit Laptop groß": "assets/js/img/laptop.png"
+            	},
+            	{
+            		"Mit Laptop klein": "assets/js/img/laptop_klein.png"
+            	},
+            	{
+            		"Mit Rahmen groß": "assets/js/img/rahmen.png"
+            	},
+            	{
+            		"Mit Rahmen klein": "assets/js/img/rahmen_klein.png"
+            	}
+            ],
+            "slideshow": "0",
+            "titleposition": "off",
+            "_titleposition_values": [
+            	{"Keine Beschreibung": "off"},
+            	{"Beschreibung unter Bild": "inside"},
+            	{"Beschreibung auf Bild": "over"}
+            ],
+            "zoom": "elastic",
+            "_zoom_values": [
+            	{"Ohne": "none"},
+            	{"Elastisch": "elastic"},
+            	{"Einblenden": "fade"}
+            ],
+            "transition": "white",
+            "_transition_values": [
+            	{"Über Weiß": "white"},
+            	{"Ohne Übergang": "none"}
+            ]
+        },
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": false,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 3,
+        "requiredFeature": "None"
+    },
+    "fields": [],
+    "assets": [
+        { "fileName": "imagegallery.js",	 "mode": "bundle", 	"order": 500 }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html",
+            "uiName": "Standard"
+        }
+    ]
+}

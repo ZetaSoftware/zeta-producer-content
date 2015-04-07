@@ -1,0 +1,8 @@
+<$= system.partial("article-begin.html") $>
+	<p id="<$= article.id $>" class="zpSO-faq-question">
+		<span></span><a href="#a<$= article.id $>" class="zpNoScroll"><$= article.value("question") $></a>
+	</p>
+	<div id="zpSO-faq-answer<$= article.id $>" class="zpSO-faq-answer" style="display:none;padding-left:20px;padding-bottom:#val(paragraph-spacing)">
+		<$= article.value("answer") $>
+	</div>
+<$= system.partial("article-end.html") $>

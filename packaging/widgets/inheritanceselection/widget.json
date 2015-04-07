@@ -1,0 +1,31 @@
+{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "heredity",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "text",
+        "uiName": "Vererbt",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer", "Header"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 0,
+        "useDialogHeight": false,
+        "defaults": {},
+        "userCanResizeDialog": false,
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 1,
+        "requiredFeature": "None",
+        "dontCachePageItem": false,
+        "editorType": "inherited"
+    },
+    "itemTemplates": []
+}

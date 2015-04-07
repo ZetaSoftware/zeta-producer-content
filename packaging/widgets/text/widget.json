@@ -1,0 +1,42 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "favs",
+        "defaults": {
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "dialogwidthvalue": 510,
+        "maincategory": "text",
+        "onlyforinlineediting": true,
+        "orderposition": 1,
+        "removelineafter": false,
+        "showcssinputfields": false,
+        "showheadlinelabel": false,
+        "uiname": "Text",
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Text",
+            "name": "Text",
+            "occupylabelspace": true,
+            "requiredifheadlineempty": true,
+            "showlabel": false,
+            "type": "html-wysiwyg-editor"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

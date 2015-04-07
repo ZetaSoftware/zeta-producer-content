@@ -1,0 +1,125 @@
+<$
+var selectext = system.htmlEncode(article.value("selecttext"));
+var venuelabel = system.htmlEncode(article.value("venuelabel"));
+var genrelabel = system.htmlEncode(article.value("genrelabel"));
+ $>
+
+<$= system.partial("article-begin.html") $>
+	<div id="ec<$= article.id $>" class="eventCalendar" <$ if ( article.value("max_width") !== "" ) { $>style="max-width: <$= article.value("max_width") $>;" <$ } $>data-hide_passed="<$= article.value("hide_passed") $>" data-showfilter="<$= article.value("show_filter") $>" data-rowcolor="<$= article.value("tablerowcolor") $>" data-rowspace="<$= article.value("tablespacing") $>" data-selall="<$= selectext $>" data-venuelabel="<$= venuelabel $>" data-genrelabel="<$= genrelabel $>" data-filterbackgroundcolor="<$= article.value("filterbackgroundcolor") $>">
+
+		<$= system.partial("article-headline.html") $>
+		
+		<$ if ( article.value("Text") !== "" ) { $>
+			<p><$= article.value("Text") $></p>
+		<$ } $>
+		
+		<!--Filter: <$= article.value("Filter") $>
+		Sort: <$= article.value("sort") $>-->
+		
+		<div class="filter">
+			<div class="filteritem">
+				<label for="evvenue-filter"><$= venuelabel $></label><br />
+				<select id="evvenue-filter" name="evvenuefilter">
+					<option>Alle</option>
+				</select>
+			</div>
+			<div class="filteritem">
+				<label for="evgenre-filter"><$= genrelabel $></label><br />
+				<select id="evgenre-filter" name="evgenrefilter">
+					<option>Alle</option>
+				</select>
+			</div>
+			<div class="filteritem">
+				<label for="datefrom-filter">Von Datum</label><br />
+				<input id="datefrom-filter" name="datefrom" type="text" class="datepicker" placeholder="TT.MM.YYYY" />
+			</div>
+			<div class="filteritem">
+				<label for="dateto-filter">Bis Datum </label><br />
+				<input id="dateto-filter" name="dateto" type="text" class="datepicker" placeholder="TT.MM.YYYY" />
+			</div>
+			<button class="resetfilters button" type="submit">Alles zeigen</button>
+		</div>
+
+		<div class="eventOverview" id="eo<$= article.id $>">
+
+			<$ 
+			var articles = article.getOverviewArticles("Style = 'Veranstaltung'");
+
+			for (var i=0; i < articles.count; ++i ) {
+				var a = articles.item(i);
+				var sd = ed = "";
+
+				if ( a.value("date_start") !== "" ) {
+					sd = a.value("date_start").replace(" 00:00:00","");
+				}
+				else {
+					sd = "";
+				}
+	
+				if ( a.value("date_end") !== "" && a.value("date_end") !== "01.01.0001 00:00:00" ) {
+					ed = a.value("date_end").replace(" 00:00:00","");
+				}
+				else {
+					ed = "";
+				}
+	
+				var name = system.htmlEncode(a.headline);
+				var date_start = system.htmlEncode(a.value("date_start"));
+				var date_end = system.htmlEncode(a.value("date_end"));
+				var start = system.htmlEncode(a.value("start"));
+				var endt = system.htmlEncode(a.value("end"));
+				var venue = system.htmlEncode(a.value("venue"));
+				var venuelink = system.htmlEncode(a.value("venuelink"));
+				var venuetarget = system.htmlEncode(a.value("venuelink_target"));
+				var genre = system.htmlEncode(a.value("genre"));
+				var caption = system.htmlEncode(a.value("caption"));
+				var description = a.value("description");
+				var shortdescription = a.value("shortdescription");
+				var imageId = a.value("image");
+				var image = project.getImage(imageId);
+				 $>
+
+			<div class="event" data-evdate="<$= sd $>" data-evenddate="<$= ed $>" data-evname="<$= name $>" data-evvenue="<$= venue $>" data-evgenre="<$= genre $>">
+			
+				<div class="eventdate">
+					<$ if ( ed == "" ) { $><$= sd $><$ if ( !isNull(start) ) { $><br /><$= start $> Uhr<$ } $><$ if ( !isNull(endt) ) { $> – <$= endt $> Uhr<$ } $>
+					<$ } else { $><$= sd $><$ if ( !isNull(start) ) { $>, <$= start $> Uhr<$ } $> bis <br /><$= ed $><$ if ( !isNull(endt) ) { $>, <$= endt $> Uhr<$ } $><$ } $>
+				</div>
+				<div class="eventinfo">
+					<$ if ( !isNull(image) ) { $>
+						<a class="title" href="<$= a.Url $>"><img src="<$= image.contentCopyPath $>" width="140" alt="<$= image.Description $>" style="float: right; width: 140px; margin-left: 15px; border: 1px solid white;" /></a>
+					<$ } $>
+
+					<p>
+						<a class="title" href="<$= a.Url $>"><$= name $></a>
+					</p>
+
+					<$ if ( !isNull(shortdescription) ) { $>
+						<$ if ( shortdescription.indexOf("<p>") == 0 ) {$>
+							<$= shortdescription $>
+						<$ } else { $>
+							<p><$= shortdescription $></p>
+						<$ } $>
+					<$ } $>
+
+					<$ if ( !isNull(venue) ) { $>
+					<p>
+						<span class="venuelabel">Ort:</span> <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( !isNull(venuetarget) ) { $> target="<$= venuetarget $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $>
+					</p>
+					<$ } $>
+
+					<$ if ( !isNull(genre) ) { $>
+						<p><span class="genrelabel">Art:</span> <$= genre $></p>
+					<$ } $>
+				</div>
+			</div>
+
+				<$ 
+			} 
+			 $>
+
+		</div>
+	</div>
+<$= system.partial("article-end.html") $>
+
+

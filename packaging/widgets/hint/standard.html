@@ -1,0 +1,6 @@
+<$= system.partial("article-begin.html") $>
+	<div class="zpSO-hint" style="padding: 8px 16px; background: <$= article.value('background') $>; border: 1px solid <$= article.value('border') $>; <$= article.value('inlinestyle') $>">
+        <$= system.partial("article-headline.html", article.value('textcolor')) $>
+		<div style="color: <$= article.value('textcolor') $>;"><$= article.value('Text') $></div>
+	</div>
+<$= system.partial("article-end.html") $>

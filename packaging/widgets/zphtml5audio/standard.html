@@ -1,0 +1,30 @@
+<$= system.partial("article-begin.html") $>
+	<$
+	var mp3id = project.getFile(article.value("file-mp3", ""));
+	var oggid = project.getFile(article.value("file-ogg", ""));
+	var wavid = project.getFile(article.value("file-wav", ""));
+	var mp4id = project.getFile(article.value("file-mp4", ""));
+	$>
+
+<$ if ( system.preview ) { $>
+	<$= system.partial("no-preview-info.html") $>    
+<$ }
+   else { $>
+	<audio controls>
+		<$ if ( !isNull(mp3id) ) { $><source src="<$= mp3id.path $>" type="audio/mpeg"><$ } $>
+		<$ if ( !isNull(oggid) ) { $><source src="<$= oggid.path $>" type="audio/ogg"><$ } $>
+		<$ if ( !isNull(wavid) ) { $><source src="<$= wavid.path $>" type="audio/wav"><$ } $>
+		<$ if ( !isNull(mp4id) ) { $><source src="<$= mp4id.path $>" type="audio/mp4"><$ } $>
+		<div class="zpwarning">
+			<p lang="de">Ihr Browser kann die angegebene Tondatei leider nicht abspielen, da er das Audio-Element nicht unterstützt.</p>
+			<p lang="en">Your browser can't play the requested audio file. The browser doesn't support the audio element.</p>
+			<p class="zpfallbackdownloads">
+				<$ if ( !isNull(mp3id) ) { $><a style="margin-right: 10px;" href="<$= mp3id.path $>"><$= mp3id.name $></a><$ } $>
+				<$ if ( !isNull(oggid) ) { $><a style="margin-right: 10px;" href="<$= oggid.path $>"><$= oggid.name $></a><$ } $>
+				<$ if ( !isNull(wavid) ) { $><a style="margin-right: 10px;" href="<$= wavid.path $>"><$= wavid.name $></a><$ } $>
+				<$ if ( !isNull(mp4id) ) { $><a style="margin-right: 10px;" href="<$= mp4id.path $>"><$= mp4id.name $></a><$ } $>
+			</p>
+		</div>
+	</audio>
+<$ } $>
+<$= system.partial("article-end.html") $>

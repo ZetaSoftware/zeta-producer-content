@@ -1,0 +1,50 @@
+<$= system.partial("article-begin.html") $>
+<$= system.partial("article-headline.html") $>
+
+<$ 
+var tab = article.tabular('zptabledata');
+var cols = tab.columns;
+var rows = tab.rows;
+$>
+
+<table class="zptabledata" <$=tab.htmlAttributesTable$>>
+      <$ if ( tab.showTableHead ) { $>
+
+            <tr <$=tab.htmlAttributesHeadRow$>>
+                  <$
+
+                  for ( var c = 0; c < cols.count; ++c ) {
+                        var col = cols.item(c);
+                  $>
+
+                        <th <$=col.htmlAttributes?col.htmlAttributes:tab.htmlAttributesHeadCells$>><$=col.Name$></th>
+          
+                  <$ } $>
+
+            </tr>
+      <$ } $>
+
+      <$ 
+
+      for ( var r = 0; r < rows.count; ++r ) {
+            var row = rows.item(r);
+            var cells = row.cells;
+      $>
+
+            <tr <$=row.odd?tab.htmlAttributesOddRows:tab.htmlAttributesEvenRows$>>
+                  <$
+
+                  for ( var ce = 0; ce < cells.count; ++ce ) {
+                        var cell = cells.item(ce);
+                        var col = cols.item(ce);
+                  $>
+
+                        <td <$=col.htmlAttributes?col.htmlAttributes:tab.htmlAttributesCells$>><$=cell.value()$></td>
+
+                  <$ } $>
+
+            </tr>
+      <$ } $>
+</table>
+
+<$= system.partial("article-end.html") $>

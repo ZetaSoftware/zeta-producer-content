@@ -1,0 +1,51 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "visibilityKind": "Internal",
+        "category": "favs",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "editorType": "pageHeader",
+        "mainCategory": "text",
+        "uiName": "Header",
+        "allowedAreas": [
+            "Header"
+        ],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 0,
+        "useDialogHeight": false,
+        "defaults": {
+            "_imageLookupUniqueID": "header-image",
+            "_widthLookupUniqueID": "header-image-width",
+            "_heightLookupUniqueID": "header-image-height",
+            "_areaLookupUniqueID": "header-image-area",
+            "duration": "7000",
+            "effect": "slide",
+            "autoplay": "true"
+        },
+        "userCanResizeDialog": false,
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 4,
+        "requiredFeature": "None"
+    },
+    "assets": [
+        { "fileName": "assets/flexslider-global.css",	"mode": "bundle", 		"order": 40 },
+        { "fileName": "jquery.flexslider.js",			"mode": "bundle", 		"order": 500 },
+        { "fileName": "assets/*",		        		"mode": "copy"}
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+    
+}

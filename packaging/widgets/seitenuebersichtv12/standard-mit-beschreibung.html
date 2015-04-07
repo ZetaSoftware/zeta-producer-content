@@ -1,0 +1,43 @@
+<$
+var maxDepth = 0;
+var showHiddenPages = false;
+if ( article.value("showHiddenPages") == 1 ) {
+	showHiddenPages = true;
+}
+var sitemapAddition = page.attribute("sitemap_addition");
+var pages = page.projectFolder.pages;
+ $>
+
+<$= system.partial("article-begin.html") $>
+	<div id="sitemap" class="sitemapwidget">
+		<$= system.partial("article-headline.html") $>
+		<$	
+		for ( var i = 0; i < pages.count; ++i) {
+			var p = pages.item(i);
+			if ( (p.visible || showHiddenPages) && p.level == 1) {
+			 $>	
+				<div class="sitemap-item standard">
+					<a <$= system.partial("zppagelink-expanded.html", p.id) $>><span><$= p.name $></span></a>
+					<$ if ( p.description !== "" ) { $>
+						<span><$= p.description $></span>
+					<$ } $>
+					<$= system.partial("submenu.html", { "pageId":p.id, "maxDepth":maxDepth, "showHiddenPages":showHiddenPages, "startLevel":0, "showDescription":true} ) $>
+				</div>
+			<$
+			}
+		}
+		if ( sitemapAddition !== "" ) { 
+		 $>
+			<div class="sitemap-item standard">
+				<$= sitemapAddition $>
+			</div>
+		<$ 
+		} 
+		 $>
+	</div>
+<$= system.partial("article-end.html") $>
+
+
+
+
+

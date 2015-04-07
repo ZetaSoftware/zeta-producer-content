@@ -1,0 +1,8 @@
+{
+	"assets": [
+		{ "fileName": "jquery/jquery-1.7.1.js",			"mode": "bundle", "order": 1},
+		{ "fileName": "js/app.js",						"mode": "bundle", "order": 100},
+		{ "fileName": "js/*",							"mode": "copy" },
+		{ "fileName": "jquery/*",						"mode": "copy" }
+	]
+}

@@ -1,0 +1,4 @@
+.shoparticle .articletext,
+.shoparticlefloat .articletext{
+	min-width: 200px;
+}

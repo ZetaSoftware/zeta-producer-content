@@ -1,0 +1,269 @@
+<$
+var contentImageWidth = "#val(contentcopy-max-image-width)";
+if ( contentImageWidth == "" ) {
+	contentImageWidth = 960;
+}
+
+// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen.
+contentImageWidth = parseInt(contentImageWidth);
+
+var paragraphColumnCount = article.paragraph.columns.count;
+var columnWidth = contentImageWidth/paragraphColumnCount;
+
+var columnMargin;
+
+if ( paragraphColumnCount == 1 ) {
+	columnMargin = 0;
+}
+else if ( paragraphColumnCount == 2 ) {
+	columnMargin = columnWidth * 0.032;
+}
+else if ( paragraphColumnCount == 3 ) {
+	var columnMargin = 2 * (columnWidth * 0.032);
+}
+else if ( paragraphColumnCount == 4 ) {
+	columnMargin = 3 * (columnWidth * 0.032);
+}
+
+columnWidth = columnWidth - columnMargin;
+
+var showSlideshow = article.value("slideshow");
+var albumId = article.value("album");
+var images = project.getAlbumImages(albumId);
+var thumbnailWidth = article.value("width");
+var thumbnailHeight = article.value("height");
+var titlePosition = article.value("titleposition");
+if ( titlePosition !== "off" ) {
+	var titleShow = "1";
+}
+else {
+	var titleShow = "0";
+}
+if ( "#attribute(picgallery_language)" == "en" ) {
+	var lang = "en";
+}
+else {
+	var lang = "de";
+}
+
+var backgroundImage = backgroundWidth = backgroundHeight = backgroundLeft = backgroundTop = "";
+
+
+if ( showSlideshow && article.valueRaw("slideshowtemplate") !== "none" ) {
+	backgroundImage = article.value("slideshowtemplate", "");
+	if ( backgroundImage.indexOf("/laptop.png") > -1 ) {
+		backgroundImage = "assets/js/img/laptop.png";
+		var backgroundWidth = "801";
+		var backgroundHeight = "469";
+		var backgroundLeft= "104";
+		var backgroundTop = "31";
+		thumbnailWidth = "590";
+		thumbnailHeight = "369";
+	}
+	else if ( backgroundImage.indexOf("/laptop_klein.png") > -1 ) {
+		backgroundImage = "assets/js/img/laptop_klein.png";
+		var backgroundWidth = "458";
+		var backgroundHeight = "268";
+		var backgroundLeft= "59";
+		var backgroundTop = "18";
+		thumbnailWidth = "338";
+		thumbnailHeight = "211";
+	}
+	else if ( backgroundImage.indexOf("/rahmen.png") > -1 ) {
+		backgroundImage = "assets/js/img/rahmen.png";
+		var backgroundWidth = "758";
+		var backgroundHeight = "469";
+		var backgroundLeft= "55";
+		var backgroundTop = "57";
+		thumbnailWidth = "648";
+		thumbnailHeight = "356";
+	}
+	else if ( backgroundImage.indexOf("/rahmen_klein.png") > -1 ) {
+		backgroundImage = "assets/js/img/rahmen_klein.png";
+		var backgroundWidth = "458";
+		var backgroundHeight = "283";
+		var backgroundLeft= "33";
+		var backgroundTop = "34";
+		thumbnailWidth = "392";
+		thumbnailHeight = "214";
+	}
+}
+else if ( showSlideshow && article.valueRaw("slideshowtemplate") == "none" ) {
+	thumbnailWidth = columnWidth;
+}
+
+system.log(images.count + " images...");
+system.pump();
+ $>
+
+
+<$ if ( !showSlideshow ) { $>
+
+	<$= system.partial("article-begin.html") $>
+		<$= system.partial("article-headline.html") $>
+		
+		<div id="igal<$= article.id $>" class="zpImageGallery"
+			data-width="<$= thumbnailWidth $>"
+			data-height="<$= thumbnailHeight $>"
+			data-margin="<$= article.value("margin", "") $>"
+			data-bordercolor="default"
+			data-borderwidth="0"
+			data-numbershow="0" 
+			data-titleshow="<$= titleShow $>"
+			data-titleposition="<$= article.value("titleposition", "") $>"
+			data-transition="<$= article.value("zoom", "") $>"
+			data-inner-transition="<$= article.value("transition", "") $>"
+			data-slideshow="0"
+			data-slideshowinterval="0"
+			data-lang="<$= lang $>">
+	
+			<$
+			var description, encodedDescription, image;
+	
+			for ( var index=0; index < images.count; ++index ) {
+			    image = images.item(index);
+				description = system.removeHtmlTags(image.description);
+				encodedDescription = system.htmlEncode(image.description);
+	
+				if ( image.createThumb(thumbnailWidth, thumbnailHeight) ) {
+			    	system.log("Erstelle Vorschaubild " + image.Name);
+			    }
+
+		    	system.pump();
+			 $>
+	
+				<a class="fancybox" href="<$= image.workingCopyPath $>" title="<$= encodedDescription $>" rel="g<$= article.id $>">
+					<img src="<$= image.thumbPath(thumbnailWidth, thumbnailHeight) $>" width="<$= thumbnailWidth $>" title="<$= description $>" alt="<$= description $>" />
+				</a>
+	
+			<$} $>
+	
+		</div>
+	<$= system.partial("article-end.html") $>
+
+<$ } else { $>
+
+	<$= system.partial("article-begin.html") $>
+
+		<$= system.partial("article-headline.html") $>
+	
+		<$ if ( backgroundImage !== "" && backgroundImage !== "Keine" ) { $>
+	
+			<div style="margin:0 auto; width:<$= backgroundWidth $>px; height:<$= backgroundHeight $>px;">
+				<div style="position:relative" id="igal<$= article.id $>" class="zpImageGallery zpSlideshow "
+					data-width="<$= thumbnailWidth $>" 
+					data-height="<$= thumbnailHeight $>" 
+					data-margin="0" 
+					data-bordercolor="transparent" 
+					data-borderwidth="0"
+					data-pauseonhover="1"
+					data-numbershow="0" 
+					data-titleshow="<$= titleShow $>"
+					data-titleposition="<$= article.value("titleposition", "") $>" 
+					data-transition="<$= article.value("zoom", "") $>"
+					data-inner-transition="<$= article.value("transition", "") $>"
+					data-slideshow="1"
+					data-slideshowinterval="<$= article.value("slideshowinterval", "") $>">
+			
+					<img style="box-shadow:none; border:none;" src="<$= page.PathToRoot + backgroundImage $>" alt="" />
+		
+					<$
+					var descriptionSlide1, encodedDescription1, imageSlide1;
+					
+					for ( var indexSlide1=0; indexSlide1 < images.count; ++indexSlide1 ) {
+					    imageSlide1 = images.item(indexSlide1);
+						descriptionSlide1 = system.removeHtmlTags(imageSlide1.description);
+					    encodedDescription1 = system.htmlEncode(imageSlide1.description);
+					    
+					    if ( imageSlide1.createThumb(thumbnailWidth, thumbnailHeight) ) {
+					    	system.log("Erstelle Vorschaubild " + imageSlide1.Name);
+					    }
+				    	system.pump();
+					 $>
+			
+						<div class="slide" style="position:absolute; width:<$= thumbnailWidth $>px; height:<$= thumbnailHeight $>px; overflow:hidden; top:<$= backgroundTop $>px; left:<$= backgroundLeft $>px; z-index:100;<$ if ( indexSlide1 !== 0 ) {  $> opacity: 0;<$ } $><$ if ( indexSlide1 == 0 ) { $> z-index: 102;<$ } $>">
+							<a class="fancybox" href="<$= imageSlide1.workingCopyPath $>" title="<$= encodedDescription1 $>" rel="<$= article.id $>">
+								<img style="max-width:100%; height:auto; box-shadow:none; border:none;" src="<$= imageSlide1.thumbPath(thumbnailWidth, thumbnailHeight) $>" title="<$= descriptionSlide1 $>" alt="<$= descriptionSlide1 $>" />
+							</a>
+							<$ if ( titleShow && descriptionSlide1 !== "" ) { $>
+								<div class="caption" style="background:url(<$= page.PathToRoot $>assets/js/img/caption.png); position:absolute; bottom:0; left:0; padding: 6px 15px; color:#ffffff; width:<$= thumbnailWidth $>px;">
+									<$= descriptionSlide1 $>
+								</div>
+							<$ } $>
+						</div>
+			
+					<$
+					}
+					 $>
+
+		<$ } else { $>
+
+			<$
+				var maxThumbnailHeight = 0;
+				
+				for (var indexThumbnailHeight=0;  indexThumbnailHeight < images.count; ++indexThumbnailHeight ) {
+				    var imageThumbnailHeight = images.item(indexThumbnailHeight);
+				    var currentThumbnailHeight = imageThumbnailHeight.createThumbWithInfo(columnWidth);
+
+					if ( currentThumbnailHeight.height > maxThumbnailHeight ) {
+						maxThumbnailHeight = currentThumbnailHeight.height;
+					}
+				}
+			 $>
+			
+			<div style="width: <$= thumbnailWidth $>px; height: <$= maxThumbnailHeight $>px;">
+				<div style="position:relative; width:<$= thumbnailWidth $>px; height:<$= maxThumbnailHeight $>px;" id="igal<$= article.id $>" class="zpImageGallery zpSlideshow" 
+					data-width="<$= thumbnailWidth $>" 
+					data-height="auto" 
+					data-maxheight="<$= maxThumbnailHeight $>" 
+					data-margin="0" 
+					data-bordercolor="transparent" 
+					data-borderwidth="0"
+					data-pauseonhover="1"
+					data-numbershow="0" 
+					data-titleshow="<$= titleShow $>"
+					data-titleposition="<$= article.value("titleposition", "") $>" 
+					data-transition="<$= article.value("zoom", "") $>" 
+					data-inner-transition="<$= article.value("transition", "") $>"
+					data-slideshow="<$= article.value("slideshow", "") $>" 
+					data-slideshowinterval="<$= article.value("slideshowinterval", "") $>">
+					<$
+					var descriptionSlide2, encodedDescription2, imageSlide2;
+					
+					for ( var indexSlide2=0; indexSlide2 < images.count; ++indexSlide2 ) {
+					    imageSlide2 = images.item(indexSlide2);
+						descriptionSlide2 = system.removeHtmlTags(imageSlide2.description);
+				   		encodedDescription2 = system.htmlEncode(imageSlide2.description);
+
+						var tni = imageSlide2.createThumbWithInfo(columnWidth);
+					    if ( tni.WasThumbnailCreated ) {
+					    	system.log("Erstelle Vorschaubild " + imageSlide2.Name);
+					    }
+					    else {
+					    	system.pump();
+					    }
+					    
+					    var tmpWidth = parseInt(tni.ThumbnailWidth);
+					 $>
+			
+					<div class="slide" style="position:absolute; width:<$= tmpWidth $>px; height:<$= tni.ThumbnailHeight $>px; overflow:hidden; z-index:100;<$ if ( indexSlide2 !== 0 ) {  $> opacity: 0;<$ } $><$ if ( indexSlide2 == 0 ) { $> z-index: 102;<$ } $>">
+						<a class="fancybox" href="<$= imageSlide2.workingCopyPath $>" title="<$= encodedDescription2 $>" rel="<$= article.id $>">
+							<img style="max-width:100%; height:auto" src="<$= imageSlide2.thumbPath(columnWidth) $>" title="<$= descriptionSlide2 $>" alt="<$= descriptionSlide2 $>" />
+						</a>
+						<$ if ( titleShow && descriptionSlide2 !== "" ) { $>
+							<div class="caption" style="background:url(<$= page.PathToRoot $>assets/js/img/caption.png); position:absolute; bottom:6px; left:0; padding: 6px 15px; color:#ffffff; width:100%;">
+								<$= imageSlide2.description $>
+							</div>
+						<$ } $>
+					</div>
+			
+					<$} $>
+	
+		<$ } $>
+
+				</div>
+			</div>
+
+	<$= system.partial("article-end.html") $>
+
+<$ } $>

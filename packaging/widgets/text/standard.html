@@ -1,0 +1,11 @@
+﻿<$= system.partial("article-begin.html") $>
+	<$ if ( article.inArea("News") ) { $>
+		<div class="newsbox newsblock">
+			<$= system.partial("article-headline.html") $>
+			<div class="newstext clearbefore newscontent"><$= article.value('Text') $></div>
+		</div>
+	<$ } else { $>
+			<$= system.partial("article-headline.html") $>
+			<$= article.value('Text') $>
+	<$ } $>
+<$= system.partial("article-end.html") $>

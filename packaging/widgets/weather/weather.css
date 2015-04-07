@@ -1,0 +1,4 @@
+﻿#weatherToday img, #weatherTomorrow img{
+	/* fixes a glitch with responsive images in weather widget */
+	width: 100px;
+}

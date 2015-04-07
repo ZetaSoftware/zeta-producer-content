@@ -1,0 +1,42 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "more",
+        "defaults": {
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 510,
+        "dialogwidthvalue": 510,
+        "maincategory": "text",
+        "orderposition": 4,
+        "removelineafter": false,
+        "showcssinputfields": false,
+        "showheadlinelabel": false,
+        "uiname": "Quelltext",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Text",
+            "language": "html",
+            "name": "Text",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "html-source-editor"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

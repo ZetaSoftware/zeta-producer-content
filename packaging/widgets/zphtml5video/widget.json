@@ -1,0 +1,86 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "more",
+        "dialogheightvalue": 310,
+        "dontcachepageitem": false,
+        "maincategory": "text",
+        "orderposition": 7,
+        "removelineafter": false,
+        "showcssinputfields": false,
+        "showheadline": false,
+        "uiname": "Video-Player",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "allowedfiletypes": "*.mp4;*.mov;*.m4v;*.mp4v",
+            "displayname": "MP4-Datei",
+            "enablenonebutton": false,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "isrequired": true,
+            "label": "MP3-Datei",
+            "name": "file-mp4",
+            "type": "file-selection"
+        },
+        {
+            "allowedfiletypes": "*.webm",
+            "displayname": "Webm-Datei",
+            "enablenonebutton": true,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "file-wav",
+            "name": "file-webm",
+            "type": "file-selection"
+        },
+        {
+            "allowedfiletypes": "*.ogv",
+            "displayname": "Ogg-Datei",
+            "enablenonebutton": true,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Ogg-Datei",
+            "name": "file-ogg",
+            "type": "file-selection"
+        },
+        {
+            "initialheight": 3,
+            "name": "(Trennlinie)",
+            "showlabel": false,
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 2.5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(HTML-Anmerkung)",
+            "name": "(Anmerkung)",
+            "showlabel": false,
+            "text": "Wählen Sie zumindest eine MP4-Datei. Für größtmögliche Browser-Kompatibilität, wählen Sie zusätzlich noch eine Ogg- oder Webm-Datei.",
+            "type": "infotext",
+            "usealternativerenderer": true
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "zphtml5video.css",
+            "mode": "Bundle",
+            "order": 50
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

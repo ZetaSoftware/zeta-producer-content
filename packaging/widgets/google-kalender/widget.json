@@ -1,0 +1,107 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "google",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "media",
+        "uiName": "Kalender",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 350,
+        "useDialogHeight": true,
+        "defaults": {
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": false,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 2,
+        "requiredFeature": "None"
+    },
+    "fields": [
+        {
+            "name": "(Trennlinie)",
+            "type": "line",
+            "position": 0,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 5,
+            "showLine": false,
+            "label": "(Trennlinie)"
+        },
+        {
+            "name": "(Anmerkung)",
+            "type": "infotext",
+            "position": 1,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 1,
+            "label": "(HTML-Anmerkung)",
+            "text": "Geben Sie den Code für die <a href=\"http://www.google.com/support/calendar/bin/answer.py?hl=de&answer=41207\">Einbindung Ihres Google Kalenders</a> ein:"
+        },
+        {
+            "name": "Quelltext-Code",
+            "displayName": "Code",
+            "type": "html-source-editor",
+            "position": 2,
+            "isrequired": true,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "height": 1,
+            "language": "html",
+            "label": "Quelltext-Code"
+        },
+        {
+            "name": "(Trennlinie)",
+            "type": "line",
+            "position": 3,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 5,
+            "showLine": false,
+            "label": "(Trennlinie)"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "google-kalender.html"
+        }
+    ]
+}

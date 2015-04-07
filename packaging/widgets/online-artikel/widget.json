@@ -1,0 +1,122 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "apps",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "services",
+        "uiName": "Online-CMS",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": false,
+        "includeInSearchIndex": false,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 310,
+        "useDialogHeight": true,
+        "defaults": {},
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": false,
+        "removeLineAfter": false,
+        "orderPosition": 1,
+        "requiredFeature": "HasOnlineCms"
+    },
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "gd", "mcrypt", "mbstring" ],
+		"writePermissions": ["assets/php/CMS_DATA"]
+	},
+    "fields": [
+        {
+            "name": "password",
+            "displayName": "Kennwort",
+            "type": "text-singleline",
+            "position": 0,
+            "isrequired": true,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": true,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 180,
+            "isPassword": true,
+            "maxCharacters": 0,
+            "label": "Kennwort",
+            "validationHelpText": "Bitte vergeben Sie ein Kennwort für den Bearbeitungsmodus."
+        },
+        {
+            "name": "(Anmerkung)",
+            "type": "infotext",
+            "position": 1,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "height": 120,
+            "label": "(HTML-Anmerkung)",
+            "text": "<p>Diese Seite können Sie online über folgenden Link bearbeiten:<br /><a href=\"{context-page-url}?edit\">{context-page-url}?edit</a></p>\r\n<p>Per E-Mail <a href=\"mailto:HIER%20E-Mail-Adresse%20einsetzen?Subject=Seite%20bearbeiten&Body=Bearbeitungs-Link%3A%20{context-page-url}?edit%0AKennwort%3A%20{context-item-password}\">zum Bearbeiten einladen</a>.</p>"
+        },
+        {
+            "name": "Voraussetzungen",
+            "type": "group",
+            "position": 2,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "initiallyExpanded": false,
+            "showAsPopup": true,
+            "height": 4,
+            "popupButtonWidthInPixel": 0,
+            "popupWidthInPixel": 430,
+            "popupHeightInPixel": 160,
+            "label": "Voraussetzungen",
+            "fields": [
+                {
+                            "name": "(Anmerkung)",
+                    "type": "infotext",
+                    "position": 0,
+                    "isrequired": false,
+                    "requiredIfHeadlineEmpty": false,
+                    "showLabel": false,
+                    "occupyLabelSpace": true,
+                    "treatAsSingleLine": false,
+                    "treatHeightAsPixel": true,
+                            "ignoreForSimilarComparison": false,
+                            "includeInSearchIndex": false,
+                    "width": 0,
+                    "height": 160,
+                    "label": "(HTML-Anmerkung)",
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n\t<li>PHP-Erweiterung \"GD Library\" um Bilder einzufügen</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "php/*",
+            "mode": "copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.php"
+        }
+    ]
+}

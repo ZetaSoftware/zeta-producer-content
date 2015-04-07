@@ -1,0 +1,107 @@
+{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "nav",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "structure",
+        "uiName": "Sitemap",
+        "allowedAreas": [
+            "Standard",
+            "Banner",
+            "Footer"
+        ],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 290,
+        "useDialogHeight": true,
+        "defaults": {
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "userCanResizeDialog": false,
+        "showHeadlineLabel": false,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 4,
+        "requiredFeature": "None"
+    },
+    "fields": [
+        {
+            "type": "checkbox",
+            "name": "showHiddenPages",
+            "treatAsSingleLine": false,
+            "displayName": "Ausgeblendete Seiten anzeigen",
+            "defaultValue": 0,
+            "showLabel": false,
+            "occupyLabelSpace": true
+        },
+        {
+            "name": "Darstellung",
+            "type": "itemtemplate-selection",
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "width": 200,
+            "label": "Darstellung"
+        },
+        {
+            "type": "line",
+            "name": "(Trennlinie)",
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 5,
+            "showLine": false,
+            "label": "(Trennlinie)"
+        },
+        {
+            "type": "infotext",
+            "name": "(Annotation)",
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 50,
+            "label": "(Annotation)",
+            "text": "Die Sitemap (Seitenübersicht) stellt alle Seiten Ihrer Website\r\nals Baumstruktur dar."
+        }
+    ],
+    "assets": [
+        { "fileName": "sitemap.css",		"mode": "bundle",		"order": 50 }
+    ],
+    "itemTemplates": [
+         {
+            "fileName": "mehrspaltig.html",
+            "uiName": "Mehrspaltig"
+        },
+        {
+            "fileName": "standard.html",
+            "uiName": "Einspaltig"
+        },
+        {
+            "fileName": "mehrspaltig-mit-beschreibung.html",
+            "uiName": "Mehrspaltig mit Beschreibung"
+        },
+        {
+            "fileName": "standard-mit-beschreibung.html",
+            "uiName": "Einspaltig mit Beschreibung"
+        }
+    ]
+}

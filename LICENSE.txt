@@ -1,0 +1,3 @@
+The MIT License (MIT)
+
+See widgets for additional license of used libraries.

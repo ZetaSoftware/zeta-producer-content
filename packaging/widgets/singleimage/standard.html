@@ -1,0 +1,102 @@
+<$
+	var image = project.getImage(article.value("image"));
+	var contentImageWidth = "#val(contentcopy-max-image-width)"
+	if ( !parseInt(contentImageWidth) > 0 ) {
+		contentImageWidth = 960;
+	}
+	contentImageWidth = parseInt(contentImageWidth);
+	var paragraphColumnCount = parseInt(article.paragraph.columns.count);
+	var columnWidth = (contentImageWidth / paragraphColumnCount)
+	
+	switch ( paragraphColumnCount ) {
+		case 1:
+			var columnMargin = 0;
+			break;
+		case 2:
+			var columnMargin = columnWidth * 0.032;
+			break;
+		case 3:
+			var columnMargin = 2 * (columnWidth * 0.032);
+			break;
+		case 4:
+			var columnMargin = 3 * (columnWidth * 0.032);
+			break;
+		default:
+			var columnMargin = 0;
+	}
+
+	if ( !isNull(image) ) {
+		image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
+
+        var thumbImageWidth = image.contentCopyWidth;
+		var thumbImageHeight = image.contentCopyHeight;
+		var description = image.description;
+		var encodedDescription = system.htmlEncode(image.description);
+		var stripDescription = system.removeHtmlTags(image.description);
+	}
+	
+	if ( stripDescription !== "" ) {
+		var showCaption = "1";
+	}
+	else {
+		var showCaption = "0";
+	}
+
+	var lightBox = article.value("lightbox");
+	var clickURL = article.value("clickurl");
+	var altText = system.removeHtmlTags(article.valueExpanded("alt"));
+ $>
+
+<$ if ( isNull(image) ) { $>
+	<$ if ( system.preview ) { $>
+		<div class="zpColumnItem"><div style="padding: 6px; background-color: #FD9A9D;" class="articlearea"<$= system.partial("inline-editing-article.html") $>
+			<p style="font-weight: bold;">
+				Das gewählte Bild ist anscheinend gelöscht worden. Bearbeiten Sie diesen Artikel und wählen Sie erneut ein Bild aus.
+			</p>
+		</div></div>
+	<$ } $>
+<$ } else { $>
+	<$ if ( lightBox ) { $>
+
+		<$= system.partial("article-begin.html", "popupimage") $>
+			<div id="igal<$= article.id $>" class="zpImageGallery"
+			 data-kind="singleimage"
+			 data-titleShow="<$= showCaption $>"
+			 data-htmltitle="<$= encodedDescription $>"
+			 data-width="auto"
+			 data-height="auto"
+			 data-bordercolor="default"
+			 data-borderwidth="0"
+			 data-margin="0"
+			 data-titleposition="outside"
+			 data-transition="elastic"
+			 data-slideshow="0">
+			<a class="fancybox" href="<$= image.workingCopyPath $>" title="<$= stripDescription $>">
+				<img class="singleImage" src="<$= image.contentCopyPath $>" width="<$= thumbImageWidth $>" height="<$= thumbImageHeight $>" alt="<$= altText $>" />
+			</a>
+
+			<$ if ( showCaption == "1" ) { $>
+				<span class="imagedescription" style="display:block; clear:both; padding-top:5px;"><$= description $></span>
+			<$ } $>
+		
+			</div>
+		<$= system.partial("article-end.html") $>
+
+	<$ } else { $>
+
+		<$= system.partial("article-begin.html") $>
+			<$ if ( clickURL !== "" ) { $>
+				<a href="<$= clickURL $>"<$ if ( article.value("clicktarget")!='' ) { $> target="_blank"<$ } $><$ if ( article.value("clicknofollow") ) { $> rel="nofollow"<$ } $>>
+					<img class="singleImage" src="<$= image.contentCopyPath $>" width="<$= thumbImageWidth $>" height="<$= thumbImageHeight $>" alt="<$= altText $>" />
+				</a>
+			<$ } else { $>
+				<img class="singleImage" src="<$= image.contentCopyPath $>" width="<$= thumbImageWidth $>" height="<$= thumbImageHeight $>" alt="<$= altText $>" />
+			<$ } $>
+
+			<$ if ( showCaption == "1" ) { $>
+				<span class="imagedescription" style="display:block; clear:both; padding-top:5px;"><$= description $></span>
+			<$ } $>
+		<$= system.partial("article-end.html") $>
+
+	<$ } $>
+<$ } $>

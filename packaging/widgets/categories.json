@@ -1,0 +1,112 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0"
+    },
+    "categories": [
+        {
+            "settings": {
+                "uiName": "Text & Bild",
+                "internalName": "text",
+                "isSelectable": true,
+                "isDefaultCategory": true
+            },
+            "categories": [
+                {
+                    "uiName": "Favoriten",
+                    "internalName": "favs",
+                    "isDefaultChildCategory": true
+                },
+                {
+                    "uiName": "Mehr",
+                    "internalName": "more",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Vererbung",
+                    "internalName": "heredity",
+                    "isDefaultChildCategory": false
+                }
+            ]
+        },
+        {
+            "settings": {
+                "uiName": "Webdienste",
+                "internalName": "services",
+                "isSelectable": true,
+                "isDefaultCategory": false
+            },
+            "categories": [
+                {
+                    "uiName": "Anwendungen",
+                    "internalName": "apps",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Online-Shop",
+                    "internalName": "shop",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Veranstaltungen",
+                    "internalName": "events",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Informationen",
+                    "internalName": "info",
+                    "isDefaultChildCategory": false
+                }
+            ]
+        },
+        {
+            "settings": {
+                "uiName": "Social Media",
+                "internalName": "media",
+                "isSelectable": true,
+                "isDefaultCategory": false
+            },
+            "categories": [
+                {
+                    "uiName": "Video-Portale",
+                    "internalName": "videos",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Google Gadgets",
+                    "internalName": "google",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Facebook & Twitter",
+                    "internalName": "facebook",
+                    "isDefaultChildCategory": false
+                }
+            ]
+        },
+        {
+            "settings": {
+                "uiName": "Struktur",
+                "internalName": "structure",
+                "isSelectable": true,
+                "isDefaultCategory": false
+            },
+            "categories": [
+                {
+                    "uiName": "Navigation",
+                    "internalName": "nav",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "HTML-Elemente",
+                    "internalName": "html",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Textdarstellung",
+                    "internalName": "textarticles",
+                    "isDefaultChildCategory": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,89 @@
+<$	 
+	var url = project.url;
+	var showFaces = "false";
+	var showSendButton = "false";
+	var width = 450;
+	var height = 80;
+	 
+	if ( article.value("useUrl") == "Aktuelle Seite" ) {
+		url = page.absoluteUrl;
+	}   
+	 
+	if ( isNumeric(article.value("width")) ) {
+	 	width = article.value("width");
+	}
+	
+	if ( isNumeric(article.value("height")) ) {
+	 	height = article.value("height");
+	}
+	 
+	if ( article.value("faces") == "1" ) {
+		showFaces = "true";
+	}  
+	 
+	if ( article.value("showSendButton") == "1" ) {
+		showSendButton = "true";
+	}  
+	
+	switch (article.value("layout")) {
+		case "Standard":
+			var layout = "standard";
+			break;
+		case "Button":
+			layout = "button_count";
+			break;
+		case "Box":
+			layout = "box_count";
+			break;
+		default:
+			var layout = "standard";
+			break;
+	}
+	 
+	switch (article.value("displayVerb")) {
+		case "Gefällt mir":
+			var displayVerb = "like";
+			break;
+		case "Empfehlen":
+			var displayVerb = "recommend";
+			break;
+		default:
+			var displayVerb = "like";
+			break;
+	}	
+	 
+	switch (article.value("colorScheme")) {
+		case "Hell":
+			var colorScheme = "light";
+			break;
+		case "Dunkel":
+			var colorScheme = "dark";
+			break;
+		default:
+			var colorScheme = "light";
+			break;
+	}	
+ $>
+
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<$ 
+	if ( showSendButton = "true" ) { $>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = (("https:" == document.location.protocol) ? "https://connect.facebook.net/de_DE/all.js#xfbml=1" : "http://connect.facebook.net/de_DE/all.js#xfbml=1");
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		<div class="fb-like" data-href="<$= url $>" data-layout="<$= layout $>" data-send="<$= showSendButton $>" data-action="<$= displayVerb $>" data-width="<$= width $>" data-show-faces="<$= showFaces $>" data-colorscheme="<$= colorScheme $>"></div>
+
+	<$ 
+	}
+	else { $>
+		<iframe name="likebutton" src="http://www.facebook.com/plugins/like.php?href=<$= encodeURIComponent(url) $>&amp;send=false&amp;layout=<$= layout $>&amp;width=<$= width $>&amp;show_faces=<$= showFaces $>&amp;action=<$= displayVerb $>&amp;colorscheme=<$= colorScheme $>&amp;font&amp;height=<$= height $>" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<$= width $>px; height:<$= height $>px;" allowTransparency="true"></iframe>
+		
+	<$ } $>
+<$= system.partial("article-end.html") $>

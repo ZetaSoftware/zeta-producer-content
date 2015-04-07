@@ -1,0 +1,95 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "google",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "media",
+        "uiName": "+1 Button",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 200,
+        "useDialogHeight": true,
+        "defaults": {},
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": false,
+        "removeLineAfter": false,
+        "orderPosition": 4,
+        "requiredFeature": "None"
+    },
+    "fields": [
+        {
+            "name": "buttonsize",
+            "displayName": "Button",
+            "type": "list",
+            "position": 0,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 180,
+            "canedit": false,
+            "height": 1,
+            "label": "buttonsize",
+            "defaultValue": "medium",
+            "values": [
+                {
+                    "Klein": "small"
+                },
+                {
+                    "Mittel": "medium"
+                },
+                {
+                    "Normal": "standard"
+                },
+                {
+                    "Groß": "tall"
+                }
+            ]
+        },
+        {
+            "name": "showcount",
+            "displayName": "Anzahl anzeigen",
+            "type": "list",
+            "position": 1,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 180,
+            "canedit": false,
+            "height": 1,
+            "label": "showcount",
+            "defaultValue": "bubble",
+            "values": [
+                {
+                    "Daneben": "bubble"
+                },
+                {
+                    "Verbergen": "none"
+                }
+            ]
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

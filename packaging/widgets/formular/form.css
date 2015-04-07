@@ -1,0 +1,38 @@
+/***** FORM ANTI SPAM *****/
+.asfield {
+	display: none;
+}
+
+/***** FORM GLOBAL DEFAULTS *****/
+.zp-form .asfield{display: none;}
+.zp-form input.typetext, .zp-form input[type="text"], .zp-form input[type="number"], .zp-form input[type="email"], .zp-form input[type="tel"], .zp-form input[type="url"], .zp-form input[type="date"], .zp-form input[type="time"], .zp-form input[type="color"], .zp-form input[type="search"], .zp-form textarea{
+	font-family: inherit;
+	font-size: inherit;
+	color: #333333;
+	background: #ffffff;
+	padding: 6px 8px;
+	border: 1px solid #D9D9D9;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.zp-form select{
+	font-family: inherit;
+	font-size: inherit;
+	color: #333333;
+}
+.zp-form label {
+	font-family: inherit;
+	font-size: inherit;
+	padding: 3px 10px 3px 0;
+}
+.zp-form label.field{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 4px;
+	padding: 0;
+}
+.zp-form input[type="submit"]{
+	font-family: inherit;
+	font-size: inherit;
+	display: block;
+	margin-top: 20px;
+}

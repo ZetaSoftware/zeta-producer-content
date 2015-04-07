@@ -1,0 +1,12 @@
+<$= system.partial("article-begin.html") $>
+	
+	<$= system.partial("article-headline.html") $>
+	
+	<div id="zpWeatherWidget<$= article.id $>" class="zpWeatherWidget" data-woeid="<$= article.value("woeid") $>" data-temp="<$= article.value("temperature") $>" style="color: <$= article.value("fontcolor") $>; background: <$= article.value("bgcolor") $>; border: 1px solid <$= system.less("darken(" & article.value("bgcolor") & ", 10%)") $>; margin: 40px 0 15px 0; border-radius: 20px; box-shadow: 1px 1px 4px <$= system.less("darken(" & article.value("bgcolor") & ", 10%)") $>; width: 240px; height: 175px; position: relative;">
+		<div id="weatherIcon" style="position: absolute; top: -40px; left: 0px; width: 250px; height:180px;"></div>
+		<div id="weatherTemp" style="position: absolute; right: 10px; top: 10px; margin-bottom: 50px; text-align: right; font-weight: bold; line-height: normal;"></div>
+		<div id="weatherToday" style="position: absolute; left: 20px; top: 90px; overflow:hidden;"></div>
+		<div id="weatherTomorrow" style="position: absolute; right: 0px; top: 90px; overflow:hidden;"></div>
+		<div id="weatherAttribution" style="position: absolute; left: 0px; bottom: 0px; width: 100%; text-align: center; opacity: 0.7; font-size: 75%;overflow:hidden;"></div>
+	</div>
+<$= system.partial("article-end.html") $>

@@ -1,0 +1,45 @@
+<$	
+var imageId = article.value("Bild");
+var image = project.getImage(imageId);
+ $>
+
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+
+	<$ 
+	if ( isNull(image) ) {
+		if ( !isNull(imageId) ) {
+			system.warn("Bild (" + imageId + ") auf Seite '" + page.name + "' konnte nicht gefunden werden. Falls das Bild gelöscht wurde, löschen Sie bitte auch den entsprechenden Artikel.");
+		}
+	} 
+	else { 
+		var imageUrl = article.value("Bild-URL");
+		var imageTarget = article.value('Bild-URL_target');
+		var imageTitle = article.value("Titel");
+		var inlineStyle = article.value('inlinestyle');
+	    var description = system.removeHtmlTags(image.description);
+	 $>
+		<div class="articleimage" style="float:right;padding-left:15px">
+			<$ if ( !isNull(imageUrl) ) { $>
+				<a href="<$= imageUrl $>"  <$= isNull(imageTarget) ? '' : 'target="' + imageTarget + '"' $>>
+			<$ } $>
+				<img 
+					src="<$= image.contentCopyPath $>" 
+					width="<$= image.contentCopyWidth $>" 
+					height="<$= image.contentCopyHeight $>" 
+					<$= description == '' ? '' : 'alt="' + description + '"' $> 
+					<$= description == '' ? '' : 'title="' + description + '"' $>
+					<$= inlineStyle == '' ? '' : 'style="' + inlineStyle + '"' $> 
+				/>
+			<$ if ( !isNull(imageUrl) ) { $>
+				</a>
+			<$ } $>
+			<$ if ( !isNull(imageTitle) ) { $>
+				<span class="bildunterschrift"><$= imageTitle $></span>
+			<$ } $>
+		</div>
+	<$ } $>
+	<div class="articletext">
+		<$= article.value('Text') $>
+	</div><div class="clearx"></div>
+<$= system.partial("article-end.html") $>

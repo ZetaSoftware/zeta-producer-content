@@ -1,0 +1,13 @@
+<div class="clearx"></div>
+
+<$= system.partial("article-begin.html", "zpSO-separator") $>
+	<$ if ( article.value('color') == "transparent" && system.showEmptyPreviewAreas ) { $>
+
+		<div class="zpieInfobox" style="margin-top:#data(top)px;margin-bottom:#data(bottom)px;">
+			Hier ist ein Artikel <strong>"<$= article.widgetName $>"</strong> eingefügt. (Diese Information erscheint nur in der internen Vorschau.)
+		</div>
+
+	<$ } else { $>
+		<hr class="zpSO-separator" style="display:block;border:none;height:1px;line-height:1px;color:<$= article.value('color') $>;background-color:<$= article.value('color') $>;margin-top:<$= article.value('top') $>px;margin-bottom:<$= article.value('bottom') $>px;" />	
+	<$ } $>
+<$= system.partial("article-end.html") $>

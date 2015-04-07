@@ -1,0 +1,41 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "favs",
+        "onlyForInlineEditing": true,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "editorType": "singleImage",
+        "mainCategory": "text",
+        "uiName": "Bild",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 0,
+        "useDialogHeight": false,
+        "defaults": [],
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": false,
+        "removeLineAfter": false,
+        "orderPosition": 2,
+        "requiredFeature": "None"
+    },
+    "fields": [],
+    "assets": [
+        {
+            "fileName": "*.js",
+            "mode": "bundle", "order": 500
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

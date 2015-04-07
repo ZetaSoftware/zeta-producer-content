@@ -1,0 +1,91 @@
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<$
+	var columns = parseInt(article.value('column_count'));
+	if ( isNaN(columns) ) { 
+	    columns = 1;
+	}
+	
+	var pages = page.pages;
+	var showHiddenPages = article.value("In der Navigation ausgeblendete Seiten anzeigen");
+	
+	if ( columns == 1 ) {
+	    $>
+	    <ul class="zpSO-SubMenu">
+			<$
+			for ( var i=0; i < pages.count; ++i ) {
+				var p = pages.item(i);
+				if ( p.active && (showHiddenPages || p.visible) ) {
+			 $>
+					<li>
+						<a href="<$= p.url $>" title="<$= system.htmlEncode(p.name) $>"><$= p.name $></a>
+						<$ if ( p.description !== "" ) { $>
+							<br /><span><$= p.description $></span><br /><br />
+						<$ } $>
+					</li>
+			<$
+				}
+			}
+			 $>
+	    </ul>
+	
+	<$ 
+	}
+	else { $>
+	
+		<$
+		// Count displayable pages once to get line wrap.
+		var totalPages = 0;
+	
+		// Count total pages.
+		for ( var i=0; i < pages.count; ++i ) {
+			var p = pages.item(i);
+			if ( p.active && (showHiddenPages || p.visible) ) {
+				totalPages++;
+			}
+		}
+		var wrapAt = parseInt(totalPages / columns +1); // was totalPages / columns + 1
+		 $>
+		
+	    <table border="0">
+	        <tr>
+	            <td>
+	                <ul class="zpSO-SubMenu">
+	                    <$
+	                    var printedCount = 0;
+	
+						for ( var j=0; j < pages.count; ++j ) {
+	                        var p = pages.item(j);
+	                        if ( p.active && (showHiddenPages || p.visible) ) {
+	
+	                            if ( printedCount > 0 && (printedCount % wrapAt == 0) ) {
+	                    $>
+					</ul>
+				</td>
+				<td>
+					<ul class="zpSO-SubMenu">
+	                    <$
+	                            }
+	                    $>
+	
+	                            <li>
+	                            	<a href="<$= p.url $>" title="<$= system.htmlEncode(p.name) $>"><$= p.name $></a>
+	                            	<$ if ( p.description !== "" ) { $>
+										<br /><span><$= p.description $></span><br /><br />
+									<$ } $>
+	                            </li>
+	
+	                    <$
+	                            printedCount++;
+	                        }
+	                    }
+	                    $>
+	                </ul>
+	            </td>
+	        </tr>
+	    </table>
+	
+	<$ } $>
+	
+<$= system.partial("article-end.html") $>

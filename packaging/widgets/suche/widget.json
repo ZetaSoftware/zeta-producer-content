@@ -1,0 +1,82 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.0",
+        "category": "apps",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": "Sitesearch",
+        "mainCategory": "services",
+        "uiName": "Suche",
+        "allowedAreas": [
+            "Standard",
+            "Banner",
+            "Footer"
+        ],
+        "canEntail": false,
+        "includeInSearchIndex": true,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 210,
+        "useDialogHeight": true,
+        "defaults": {
+            "_internalType": "sitesearch",
+            "_nameAlign": "left",
+            "_nameLevel": "h2"
+        },
+        "userCanResizeDialog": false,
+        "showHeadlineLabel": false,
+        "headlineRequired": false,
+        "showHeadline": true,
+        "removeLineAfter": false,
+        "orderPosition": 5,
+        "requiredFeature": "None",
+        "dontCachePageItem": false,
+        "editorType": null
+    },
+    "fields": [
+        {
+            "type": "line",
+            "name": "(Trennlinie)",
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": false,
+            "width": 0,
+            "height": 10,
+            "showLine": false,
+            "label": "(Trennlinie)"
+        },
+        {
+            "type": "infotext",
+            "name": "(Annotation)",
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "height": 40,
+            "label": "(Annotation)",
+            "text": "Dies ist die Suchfunktion für Ihre Website.\r\nSie müssen keine weiteren Einstellungen vornehmen."
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "sitesearch.html",
+            "uiName": "Suche"
+        },
+        {
+            "fileName": "sitesearch php.php",
+            "uiName": "Suche PHP"
+        }
+    ]
+}

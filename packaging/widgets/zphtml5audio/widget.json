@@ -1,0 +1,91 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "more",
+        "dialogheightvalue": 350,
+        "dontcachepageitem": false,
+        "maincategory": "text",
+        "orderposition": 6,
+        "removelineafter": false,
+        "showCssInputFields": false,
+        "showheadline": false,
+        "uiname": "Audio-Player",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "allowedfiletypes": "*.mp3;*.m2a;*.mpga",
+            "displayname": "MP3-Datei",
+            "enablenonebutton": false,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "isrequired": true,
+            "label": "MP3-Datei",
+            "name": "file-mp3",
+            "type": "file-selection"
+        },
+        {
+            "allowedfiletypes": "*.ogg;*.oga",
+            "displayname": "Ogg-Datei",
+            "enablenonebutton": true,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Ogg-Datei",
+            "name": "file-ogg",
+            "type": "file-selection"
+        },
+        {
+            "allowedfiletypes": "*.wav",
+            "displayname": "WAV-Datei",
+            "enablenonebutton": true,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "file-wav",
+            "name": "file-wav",
+            "type": "file-selection"
+        },
+        {
+            "allowedfiletypes": "*.mp4;*.aac;*.m4a",
+            "displayname": "MP4-Datei",
+            "enablenonebutton": true,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "file-mp4",
+            "name": "file-mp4",
+            "type": "file-selection"
+        },
+        {
+            "height": 10,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 2.5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(HTML-Anmerkung)",
+            "name": "(Anmerkung)",
+            "showlabel": false,
+            "text": "Wählen Sie zumindest eine MP3-Datei. Für größtmögliche Browser-Kompatibilität, wählen Sie zusätzlich noch eine Ogg-Datei.",
+            "type": "infotext",
+            "usealternativerenderer": true
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

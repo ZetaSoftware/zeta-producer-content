@@ -1,0 +1,142 @@
+﻿{
+    "settings": {
+        "version": "12.5.0.1",
+        "category": "apps",
+        "onlyForInlineEditing": false,
+        "includeInRssFeed": false,
+        "defaultItemTemplate": null,
+        "mainCategory": "services",
+        "uiName": "Geschützter Bereich",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
+        "canEntail": true,
+        "includeInSearchIndex": false,
+        "dialogWidthType": "Pixel",
+        "dialogWidthValue": 0,
+        "useDialogWidth": false,
+        "dialogHeightType": "Pixel",
+        "dialogHeightValue": 230,
+        "useDialogHeight": true,
+        "defaults": {},
+        "userCanResizeDialog": "false",
+        "showHeadlineLabel": true,
+        "headlineRequired": false,
+        "showHeadline": false,
+        "removeLineAfter": false,
+        "orderPosition": 2,
+        "requiredFeature": "None"
+    },
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "mcrypt" ],
+		"writePermissions": []
+	},
+    "fields": [
+        {
+            "name": "password",
+            "displayName": "Kennwort",
+            "type": "text-singleline",
+            "position": 0,
+            "isrequired": true,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": true,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 180,
+            "isPassword": false,
+            "maxCharacters": 0,
+            "label": "password",
+            "validationHelpText": "Bitte vergeben Sie ein Kennwort für den geschützten Bereich."
+        },
+        {
+            "name": "area",
+            "displayName": "Bereichsname",
+            "type": "text-singleline",
+            "position": 1,
+            "isrequired": true,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": true,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 180,
+            "isPassword": false,
+            "maxCharacters": 0,
+            "label": "area",
+            "defaultValue": "Geschuetzter-Bereich",
+            "userInfoText": "Sie können mehrere geschützte Seiten zu einem Bereich zusammenfassen, indem Sie immer das selbe Kennwort und den selben Bereichsnamen vergeben. Dadurch muss das Kennwort nur einmal eingegeben werden und gilt für alle Bereiche."
+        },
+        {
+            "name": "(Trennlinie)",
+            "type": "line",
+            "position": 2,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": true,
+            "occupyLabelSpace": false,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": true,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "height": 5,
+            "showLine": false,
+            "label": "(Trennlinie)"
+        },
+        {
+            "name": "Voraussetzungen",
+            "type": "group",
+            "position": 3,
+            "isrequired": false,
+            "requiredIfHeadlineEmpty": false,
+            "showLabel": false,
+            "occupyLabelSpace": true,
+            "treatAsSingleLine": false,
+            "treatHeightAsPixel": false,
+            "ignoreForSimilarComparison": false,
+            "includeInSearchIndex": true,
+            "width": 0,
+            "initiallyExpanded": false,
+            "showAsPopup": true,
+            "height": 4,
+            "popupButtonWidthInPixel": 0,
+            "popupWidthInPixel": 400,
+            "popupHeightInPixel": 140,
+            "label": "Voraussetzungen",
+            "fields": [
+                {
+                            "name": "(Anmerkung)",
+                    "type": "infotext",
+                    "position": 0,
+                    "isrequired": false,
+                    "requiredIfHeadlineEmpty": false,
+                    "showLabel": false,
+                    "occupyLabelSpace": true,
+                    "treatAsSingleLine": false,
+                    "treatHeightAsPixel": true,
+                            "ignoreForSimilarComparison": false,
+                            "includeInSearchIndex": false,
+                    "width": 0,
+                    "height": 140,
+                    "label": "(HTML-Anmerkung)",
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>"
+                }
+            ]
+        }
+    ],
+    "assets": [
+    	{
+            "fileName": "php/*",
+            "mode": "copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "zugriff-ueber-kennwort.php"
+        }
+    ]
+}

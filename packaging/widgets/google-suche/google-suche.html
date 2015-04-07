@@ -1,0 +1,21 @@
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<$
+	var theWeb = article.value('selector') == 'Das Web';
+	var myWebsite = article.value('selector') == 'Meine Website';
+	 $>
+
+	<form method="get" action="http://www.google.com/search">
+		<input type="hidden" name="ie" value="utf-8" />
+		<input type="hidden" name="oe" value="utf-8" />
+		<$ if ( parseInt(article.value("Mit Google Logo")) ) { $>
+		<a href="http://www.google.com/"><img style="display:block;margin:0;padding:0;border-style:none" src="http://www.google.de/logos/Logo_25wht.gif" width="75" height="32" alt="Google" /></a>
+		<$ } $>
+		<input style="margin-top: 0; margin-bottom: 10px;" type="text" name="q" size="31" maxlength="255" value="" />
+		<input style="margin-top: 0; margin-bottom: 10px;" type="submit" name="btnG" value="<$= article.value('Beschriftung der Schaltfläche') $>" />
+		<input type="hidden" name="domains" value="<$= project.url $>" /><br />
+		<input type="radio" id="gsweb<$= article.id $>" name="sitesearch" value="" <$= theWeb ? 'checked="checked"' : '' $> /> <label for="gsweb<$= article.id $>" style="margin-right: 1rem;">Das Web</label> 
+		<input type="radio" id="gsite<$= article.id $>" name="sitesearch" value="<$= project.url $>" <$= myWebsite ? 'checked="checked"' : '' $> /> <label for="gsite<$= article.id $>"><$= project.url $></label>
+	</form>
+<$= system.partial("article-end.html") $>

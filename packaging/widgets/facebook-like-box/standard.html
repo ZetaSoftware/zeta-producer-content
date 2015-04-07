@@ -1,0 +1,47 @@
+<$
+	var url = article.value("useUrl");
+	var borderColor = article.value("borderColor");
+	var width = 300;
+	var height = 556;
+	var showHeader = 0;
+	var showStream = 0;
+	var showFaces = 0 ;
+	 
+	if ( isNumeric(article.value("width")) ) {
+	 	width = article.value("width");
+	}
+	 
+	if ( isNumeric(article.value("height")) ) {
+	 	height = article.value("height");
+	}
+	 
+	if ( article.value("showHeader") == "1" ) {
+		showHeader = "true";
+	}  
+	 
+	if ( article.value("showStream") == "1" ) {
+		showStream = "true";
+	}  
+	 
+	if ( article.value("showFaces") == "1" ) {
+		showFaces = "true";
+	}  
+	
+	switch (article.value("colorScheme")) {
+		case "Hell":
+			var colorScheme = "light";
+			break;
+		case "Dunkel":
+			var colorScheme = "dark";
+			break;
+		default:
+			var colorScheme = "light";
+			break;
+	}	 
+ $>
+
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=<$= encodeURIComponent(url) $>&amp;width=<$= width $>&amp;height=<$= height $>&amp;header=<$= showHeader $>&amp;colorscheme=<$= colorScheme $>&amp;show_faces=<$= showFaces $>&amp;stream=<$= showStream $>&amp;linktarget=_top&amp;border_color=<$= borderColor $>&amp;font&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<$= width $>px; height:<$= height $>px;" allowTransparency="true"></iframe>
+<$= system.partial("article-end.html") $>
