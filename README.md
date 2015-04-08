@@ -14,3 +14,4 @@ Sie können die hier bereitgestellten Quelltexte für Ihre eigenen Widgets koste
 
 Aus Lizenzgründen sind die Anzeige-Symbole ("widget.png") im Repository nicht enthalten. Verwenden Sie eigene PNG-Bilder mit 48x48 Pixel um ein Symbolbild anzuzeigen.
 
+Bitte beachten Sie auch die Lizenzen der enthaltenen Bibliotheken (z.B. jQuery) innerhalb der einzelnen Widgets.
