@@ -1,10 +1,8 @@
 <$
-	if ( article.value("action_url").indexOf("http") == 0 ){
-		// action_url starts with "http" and is absolute, so we don't need to find the pathToRoot
-		var action_url = article.value("action_url");
-	}
-	else {
-		var action_url = page.pathToRoot + article.value("action_url");
+	var action_url = article.value("action_url", "");
+	if ( action_url.indexOf("http") !== 0 ){
+		// action_url does not start with "http" and is thus absolute, so we need the pathToRoot
+		action_url = page.pathToRoot + action_url;
 	}
 	var email_address = system.encrypt(article.value("email_address"));
 	var email_subject = article.value("email_subject");
@@ -21,7 +19,7 @@
 	
 	<form enctype="multipart/form-data" class="zp-form" id="form<$= article.id $>" name="form<$= article.id $>" action="<$= action_url $>" method="post">
 		<input type="hidden" name="f_receiver" value="<$= email_address $>">
-		<input type="hidden" name="f_title" value="<$= email_subject.replace(/\"/g, "&quot;") $>">
+		<input type="hidden" name="f_title" value="<$= email_subject.toString().replace(/\"/g, "&quot;") $>">
 		<input type="hidden" name="f_success" value="<$= success_page_url $>">
 		<input type="hidden" name="f_error" value="<$= error_page_url $>">
 		<input type="hidden" name="f_alertPrefix" value="<$= system.htmlEncode(page.attribute("form_script_msg_required")) $>">
@@ -51,7 +49,7 @@
 				// HTML Radio Buttons
 				case "radio":
 					 $>
-					<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+					<label class="field"><$= article.value("element-name-" + i) $></label>
 					<$
 					var checkboxValues = article.value("element-value-" + i).toString().split(";");
 					var fieldDefault = article.value("element-default-" + i);
@@ -70,7 +68,7 @@
 				// HTML Checkboxes 
 				case "checkbox":
 					 $>
-					<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+					<label class="field"><$= article.value("element-name-" + i) $></label>
 					<$
 					var checkboxValues = article.value("element-value-" + i).toString().split(";");
 					var fieldDefault = article.value("element-default-" + i);
@@ -149,7 +147,7 @@
 					<$
 					break;
 				// ZP File Upload
-				file:
+				case "file":
 					 $>
 					<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
 					<input class="<$= cssClass $>" type="file" name="F<$= i $>" id="F<$= i $>" <$= article.value("element-attributes-" + i) $>>
@@ -169,7 +167,7 @@
 		var scriptName = "SendEmail.php";
 		if ( action_url.substring(action_url.length - scriptName.length, action_url.length) == scriptName ) { 
 		 $>
-			<label id="recaptchalabel" class="multiline field">Spam-Schutz</label>
+			<label id="recaptchalabel" class="multiline field"><$= system.htmlEncode(page.attribute("form_spam_protection")) $></label>
 			<script type="text/javascript">
 				var RecaptchaOptions = 
 				{   
@@ -177,9 +175,9 @@
 					theme : 'clean' 
 				};
 			</script>
-			<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1"></script>
+			<script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1"></script>
 			<noscript>
-			 <iframe src="http://www.google.com/recaptcha/api/noscript?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1" height="300" width="500" frameborder="0"></iframe><br>
+			 <iframe src="//www.google.com/recaptcha/api/noscript?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1" height="300" width="500" frameborder="0"></iframe><br>
 			 <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
 			 <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
 			</noscript>

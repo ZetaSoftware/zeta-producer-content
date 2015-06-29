@@ -1,11 +1,7 @@
 <$
 var contentImageWidth = "#val(contentcopy-max-image-width)";
-if ( contentImageWidth == "" ) {
-	contentImageWidth = 960;
-}
-
-// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen.
-contentImageWidth = parseInt(contentImageWidth);
+// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
+contentImageWidth = parseInt(contentImageWidth) || 960;
 
 var paragraphColumnCount = article.paragraph.columns.count;
 var columnWidth = contentImageWidth/paragraphColumnCount;
@@ -91,11 +87,10 @@ if ( showSlideshow && article.valueRaw("slideshowtemplate") !== "none" ) {
 else if ( showSlideshow && article.valueRaw("slideshowtemplate") == "none" ) {
 	thumbnailWidth = columnWidth;
 }
-
-system.log(images.count + " images...");
-system.pump();
- $>
-
+if ( system.preview ){
+	system.log(images.count == 1 ? ("1 Bild...") : (images.count + " Bilder..."));
+}
+$>
 
 <$ if ( !showSlideshow ) { $>
 
@@ -122,17 +117,15 @@ system.pump();
 	
 			for ( var index=0; index < images.count; ++index ) {
 			    image = images.item(index);
-				description = system.removeHtmlTags(image.description);
+				description = system.htmlEncode(system.removeHtmlTags(image.description));
 				encodedDescription = system.htmlEncode(image.description);
 	
 				if ( image.createThumb(thumbnailWidth, thumbnailHeight) ) {
 			    	system.log("Erstelle Vorschaubild " + image.Name);
 			    }
-
-		    	system.pump();
 			 $>
 	
-				<a class="fancybox" href="<$= image.workingCopyPath $>" title="<$= encodedDescription $>" rel="g<$= article.id $>">
+				<a class="fancybox" href="<$= image.workingCopyPath $>" title="<$= encodedDescription $>" data-fancybox-group="g<$= article.id $>" rel="g<$= article.id $>">
 					<img src="<$= image.thumbPath(thumbnailWidth, thumbnailHeight) $>" width="<$= thumbnailWidth $>" title="<$= description $>" alt="<$= description $>" />
 				</a>
 	
@@ -172,20 +165,19 @@ system.pump();
 					
 					for ( var indexSlide1=0; indexSlide1 < images.count; ++indexSlide1 ) {
 					    imageSlide1 = images.item(indexSlide1);
-						descriptionSlide1 = system.removeHtmlTags(imageSlide1.description);
+						descriptionSlide1 = system.htmlEncode(system.removeHtmlTags(imageSlide1.description));
 					    encodedDescription1 = system.htmlEncode(imageSlide1.description);
 					    
 					    if ( imageSlide1.createThumb(thumbnailWidth, thumbnailHeight) ) {
 					    	system.log("Erstelle Vorschaubild " + imageSlide1.Name);
 					    }
-				    	system.pump();
 					 $>
 			
 						<div class="slide" style="position:absolute; width:<$= thumbnailWidth $>px; height:<$= thumbnailHeight $>px; overflow:hidden; top:<$= backgroundTop $>px; left:<$= backgroundLeft $>px; z-index:100;<$ if ( indexSlide1 !== 0 ) {  $> opacity: 0;<$ } $><$ if ( indexSlide1 == 0 ) { $> z-index: 102;<$ } $>">
-							<a class="fancybox" href="<$= imageSlide1.workingCopyPath $>" title="<$= encodedDescription1 $>" rel="<$= article.id $>">
+							<a class="fancybox" href="<$= imageSlide1.workingCopyPath $>" title="<$= encodedDescription1 $>" data-fancybox-group="<$= article.id $>" rel="<$= article.id $>">
 								<img style="max-width:100%; height:auto; box-shadow:none; border:none;" src="<$= imageSlide1.thumbPath(thumbnailWidth, thumbnailHeight) $>" title="<$= descriptionSlide1 $>" alt="<$= descriptionSlide1 $>" />
 							</a>
-							<$ if ( titleShow && descriptionSlide1 !== "" ) { $>
+							<$ if ( titleShow == "1" && descriptionSlide1 !== "" ) { $>
 								<div class="caption" style="background:url(<$= page.PathToRoot $>assets/js/img/caption.png); position:absolute; bottom:0; left:0; padding: 6px 15px; color:#ffffff; width:<$= thumbnailWidth $>px;">
 									<$= descriptionSlide1 $>
 								</div>
@@ -200,6 +192,7 @@ system.pump();
 
 			<$
 				var maxThumbnailHeight = 0;
+				var maxThumbnailWidth = 0;
 				
 				for (var indexThumbnailHeight=0;  indexThumbnailHeight < images.count; ++indexThumbnailHeight ) {
 				    var imageThumbnailHeight = images.item(indexThumbnailHeight);
@@ -208,12 +201,15 @@ system.pump();
 					if ( currentThumbnailHeight.height > maxThumbnailHeight ) {
 						maxThumbnailHeight = currentThumbnailHeight.height;
 					}
+					if ( currentThumbnailHeight.width > maxThumbnailWidth ) {
+						maxThumbnailWidth = currentThumbnailHeight.width;
+					}
 				}
 			 $>
 			
-			<div style="width: <$= thumbnailWidth $>px; height: <$= maxThumbnailHeight $>px;">
+			<div style="width: <$= maxThumbnailWidth $>px; height: <$= maxThumbnailHeight $>px;">
 				<div style="position:relative; width:<$= thumbnailWidth $>px; height:<$= maxThumbnailHeight $>px;" id="igal<$= article.id $>" class="zpImageGallery zpSlideshow" 
-					data-width="<$= thumbnailWidth $>" 
+					data-width="<$= maxThumbnailWidth $>" 
 					data-height="auto" 
 					data-maxheight="<$= maxThumbnailHeight $>" 
 					data-margin="0" 
@@ -232,25 +228,22 @@ system.pump();
 					
 					for ( var indexSlide2=0; indexSlide2 < images.count; ++indexSlide2 ) {
 					    imageSlide2 = images.item(indexSlide2);
-						descriptionSlide2 = system.removeHtmlTags(imageSlide2.description);
+						descriptionSlide2 = system.htmlEncode(system.removeHtmlTags(imageSlide2.description));
 				   		encodedDescription2 = system.htmlEncode(imageSlide2.description);
-
+						
 						var tni = imageSlide2.createThumbWithInfo(columnWidth);
 					    if ( tni.WasThumbnailCreated ) {
 					    	system.log("Erstelle Vorschaubild " + imageSlide2.Name);
-					    }
-					    else {
-					    	system.pump();
 					    }
 					    
 					    var tmpWidth = parseInt(tni.ThumbnailWidth);
 					 $>
 			
 					<div class="slide" style="position:absolute; width:<$= tmpWidth $>px; height:<$= tni.ThumbnailHeight $>px; overflow:hidden; z-index:100;<$ if ( indexSlide2 !== 0 ) {  $> opacity: 0;<$ } $><$ if ( indexSlide2 == 0 ) { $> z-index: 102;<$ } $>">
-						<a class="fancybox" href="<$= imageSlide2.workingCopyPath $>" title="<$= encodedDescription2 $>" rel="<$= article.id $>">
+						<a class="fancybox" href="<$= imageSlide2.workingCopyPath $>" title="<$= encodedDescription2 $>" data-fancybox-group="<$= article.id $>" rel="<$= article.id $>">
 							<img style="max-width:100%; height:auto" src="<$= imageSlide2.thumbPath(columnWidth) $>" title="<$= descriptionSlide2 $>" alt="<$= descriptionSlide2 $>" />
 						</a>
-						<$ if ( titleShow && descriptionSlide2 !== "" ) { $>
+						<$ if ( titleShow == "1" && descriptionSlide2 !== "" ) { $>
 							<div class="caption" style="background:url(<$= page.PathToRoot $>assets/js/img/caption.png); position:absolute; bottom:6px; left:0; padding: 6px 15px; color:#ffffff; width:100%;">
 								<$= imageSlide2.description $>
 							</div>

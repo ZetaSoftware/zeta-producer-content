@@ -115,6 +115,18 @@
             "entail": true
         },
         {
+            "name": "search_field_aria",
+            "category": "Navigation",
+            "value": "Suchbegriff",
+            "entail": true
+        },
+        {
+            "name": "search_button_aria",
+            "category": "Navigation",
+            "value": "Suchen",
+            "entail": true
+        },
+        {
             "name": "so_counter_visits",
             "category": "Widgets",
             "value": "Besucher.",
@@ -232,6 +244,12 @@
             "name": "form_empty_option",
             "category": "Formular",
             "value": "Bitte wählen:",
+            "entail": true
+        },
+        {
+            "name": "form_spam_protection",
+            "category": "Formular",
+            "value": "Spam-Schutz",
             "entail": true
         },
         {
@@ -397,9 +415,15 @@
             "entail": true
         },
         {
+            "name": "mobile_menu_button_aria",
+            "category": "Navigation",
+            "value": "Menü ein-/ausblenden",
+            "entail": true
+        },
+        {
             "name": "page_navigation_ui_top",
             "category": "Navigation",
-            "value": "<$\r\ndim page1\r\nset page1 = Context.Scope.CurrentPage\r\n\r\nif not (page1 is nothing) and isValidPage(page1) then\r\n\r\n\tdim prevPage1\r\n\tset prevPage1 = calcPrevPage(page1)\r\n\t\r\n\tdim nextPage1\r\n\tset nextPage1 = calcNextPage(page1)\r\n\r\n\tdim prevName1\r\n\tprevName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName1\r\n\tnextName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\t\r\n\t<$ if (not prevPage1 is nothing) and isValidPage(prevPage1) then $><a href=\"<$=prevPage1.Url$>\"><$=prevName1$></a><$ end if $>\r\n\t\r\n\t<$ if (not prevPage1 is nothing) and isValidPage(prevPage1) and (not nextPage1 is nothing) and isValidPage(nextPage1) then $>\r\n\t&nbsp;|&nbsp;\r\n\t<$end if$>\r\n\t\r\n\t<$ if (not nextPage1 is nothing) and isValidPage(nextPage1) then $><a href=\"<$=nextPage1.Url$>\"><$=nextName1$></a><$ end if $>\r\n\r\n<$ end if $>",
+            "value": "",
             "entail": true
         },
         {
@@ -417,13 +441,13 @@
         {
             "name": "page_navigation_ui_bottom",
             "category": "Navigation",
-            "value": "<$\r\ndim page2\r\nset page2 = Context.Scope.CurrentPage\r\n\r\nif not (page2 is nothing) and isValidPage(page2) then\r\n\r\n\tdim prevPage2\r\n\tset prevPage2 = calcPrevPage(page2)\r\n\t\r\n\tdim nextPage2\r\n\tset nextPage2 = calcNextPage(page2)\r\n\r\n\tdim prevName2\r\n\tprevName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName2\r\n\tnextName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\r\n\t<$ if (not prevPage2 is nothing) and isValidPage(prevPage2) then $><a href=\"<$=prevPage2.Url$>\"><$=prevName1$></a><$ end if $>\r\n\t\r\n\t<$ if (not prevPage2 is nothing) and isValidPage(prevPage2) and (not nextPage2 is nothing) and isValidPage(nextPage2) then $>\r\n\t&nbsp;|&nbsp;\r\n\t<$end if$>\r\n\t\r\n\t<$ if (not nextPage2 is nothing) and isValidPage(nextPage2) then $><a href=\"<$=nextPage2.Url$>\"><$=nextName1$></a><$ end if $>\r\n\t\r\n<$ end if $>",
+            "value": "",
             "entail": true
         },
         {
             "name": "page_navigation",
             "category": "Navigation",
-            "value": "<$$\r\n' --------------------------------------------\r\n' http://stackoverflow.com/questions/5661072/get-next-item-in-a-tree\r\n\r\nfunction calcNextPage(page)\r\n      dim result\r\n      set result = nothing\r\n      \r\n      dim childPages\r\n      set childPages = page.ChildPages\r\n      \r\n      if childPages.count>0 then\r\n            set result = childPages(0)\r\n      else\r\n            dim nextSibling\r\n            set nextSibling = getNextSibling( page )\r\n            \r\n            if not nextSibling is nothing then\r\n                  set result = nextSibling\r\n            else\r\n                  dim curr\r\n                  set curr = page\r\n                  \r\n                  do while 4>2\r\n                        dim parent\r\n                        set parent = curr.ParentPageOrProjectFolder\r\n                        \r\n                        if parent is nothing then\r\n                             set result = nothing\r\n                             exit do\r\n                        else\r\n                             set nextSibling = getNextSibling( parent )\r\n                             if not nextSibling is nothing then\r\n                                   set result = nextSibling\r\n                                   exit do\r\n                             else\r\n                                   set curr = parent\r\n                             end if\r\n                        end if\r\n                  loop\r\n            end if\r\n      end if\r\n      \r\n      set calcNextPage = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction getNextSibling( page )\r\n      dim result\r\n      set result = nothing\r\n      \r\n      dim parentPage\r\n      set parentPage = page.ParentPageOrProjectFolder\r\n      \r\n      if not parentPage is nothing then\r\n            dim siblingPages\r\n          \tsiblingPages = filterPages(parentPage.ChildPages)\r\n            \r\n            dim i\r\n            for i=0 to UBound(siblingPages)\r\n                  dim p\r\n                  set p = siblingPages(i)\r\n            \r\n                  if p.ID = page.ID then\r\n                        if i<UBound(siblingPages) then\r\n                             set result = siblingPages(i+1)\r\n                             exit for\r\n                        else\r\n                             set result = nothing\r\n                             exit for\r\n                        end if\r\n                  end if\r\n            next\r\n      else\r\n            set result = nothing\r\n      end if\r\n      \r\n      set getNextSibling = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction filterPages( zpPagesArray )\r\n\tdim result()\r\n\t\r\n\tif not zpPagesArray is nothing then\r\n\t\tredim result(zpPagesArray.count-1)\r\n\t\t\r\n\t\tdim r\r\n\t\tr = -1\r\n\t\t\r\n\t    dim i\r\n\t    for i=0 to zpPagesArray.count-1\r\n\t\t\tdim p\r\n\t\t\tset p = zpPagesArray(i)\r\n\t\t\t\r\n\t\t\tif isValidPage(p) then\r\n\t\t\t\tr = r + 1\r\n\t\t\t\tset result(r) = p\r\n\t\t\tend if\t\r\n\t\tnext\r\n\t\t\r\n\t\tif r>=0 then\r\n\t\t\tredim preserve result(r)\r\n\t\tend if\r\n\tend if\r\n\t\t\r\n\tfilterPages\t= result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction calcPrevPage(page)\r\n      dim result\r\n      set result = nothing\r\n\r\n      dim pages\r\n      pages = filterPages(page.ParentPageOrProjectFolder.ChildPages)\r\n\r\n      dim i\r\n      for i=0 to UBound(pages)\r\n            dim p\r\n            set p = pages(i)\r\n      \r\n            if p.ID = page.id then\r\n                  if i>0 then\r\n                        set result = getDeepestChild( pages(i-1) )\r\n                  else\r\n                        dim parent\r\n                        set parent = page.ParentPageOrProjectFolder\r\n                        if parent is nothing then\r\n                             set result = nothing\r\n                        else\r\n                             if parent.IsPage then\r\n                                   set result = parent\r\n                             else\r\n                                   set result = nothing\r\n                             end if\r\n                        end if\r\n                  end if\r\n                  \r\n                  exit for\r\n            end if\r\n      next\r\n      \r\n      set calcPrevPage = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction getDeepestChild( page )\r\n      dim result\r\n      set result = nothing\r\n      \r\n      dim childPages\r\n      childPages = filterPages(page.ChildPages)\r\n\r\n      if UBound(childPages)>0 then\r\n            dim p\r\n            set p = childPages(UBound(childPages))\r\n            set result = getDeepestChild( p )\r\n      else\r\n            set result = page\r\n      end if\r\n      \r\n      set getDeepestChild = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nfunction isValidPage( page )\r\n\tdim result\r\n\tresult = false\r\n\r\n\tif IsNothing(page) then\r\n\t\tresult = true\r\n\telse\r\n'\t\tif page.Url<>\"\" then\r\n'\t\t\tresult = false\r\n'\t\telse\r\n\t\t\tif page.visible and page.active then\r\n\t\t\t\tresult = true\r\n\t\t\telse\r\n\t\t\t\tresult = false\r\n\t\t\tend if\r\n'\t\tend if\r\n\tend if\r\n\r\n\tisValidPage = result\r\nend function\r\n\r\n' --------------------------------------------\r\n\r\nsub log( text )\r\n      Context.WriteLine(\"<p style='background-color:yellow; color:black;font-family:Courier new; font-weight: bold; font-size:12px'>\" & text & \"</p>\")\r\nend sub\r\n\r\n' --------------------------------------------\r\n$>\r\n",
+            "value": "",
             "entail": true
         },
         {
@@ -436,7 +460,18 @@
             "name": "background_image",
             "category": "Standard",
             "value": null,
-            "entail": true
+            "entail": true,
+            "style": 
+			{
+				"settings": {},
+				"fields": [
+					{
+						"displayName": "background_image",
+						"name": "value",
+						"type": "image-selection"
+					}
+				]
+			}
         },
         {
             "name": "sitemap_foldername",
@@ -513,13 +548,13 @@
         {
             "name": "page_navigation_ui_bottom_2",
             "category": "Navigation",
-            "value": "<$\r\ndim page2\r\nset page2 = Context.Scope.CurrentPage\r\n\r\nif not (page2 is nothing) and isValidPage(page2) then\r\n\r\n\tdim prevPage2\r\n\tset prevPage2 = calcPrevPage(page2)\r\n\t\r\n\tdim nextPage2\r\n\tset nextPage2 = calcNextPage(page2)\r\n\r\n\tdim prevName2\r\n\tprevName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName2\r\n\tnextName2 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\r\n\t<$ if (not prevPage2 is nothing) and isValidPage(prevPage2) then $><a class=\"prev\" href=\"<$=prevPage2.Url$>\" title=\"Vorherige Seite\"><i class=\"icon-angle-left icon-large\">&nbsp;</i></a><$ end if $>\r\n\t\r\n\t<$ if (not nextPage2 is nothing) and isValidPage(nextPage2) then $><a class=\"next\" href=\"<$=nextPage2.Url$>\" title=\"Nächste Seite\"><i class=\"icon-angle-right icon-large\">&nbsp;</i></a><$ end if $>\r\n\t\r\n<$ end if $>\r\n\r\n<div class=\"gotop\"><a class=\"gotop\" href=\"#\" title=\"Nach oben\"><i class=\"icon-angle-up icon-large\">&nbsp;</i></a></div>",
+            "value": "",
             "entail": true
         },
         {
             "name": "page_navigation_ui_top_2",
             "category": "Navigation",
-            "value": "<$\r\ndim page1\r\nset page1 = Context.Scope.CurrentPage\r\n\r\nif not (page1 is nothing) and isValidPage(page1) then\r\n\r\n\tdim prevPage1\r\n\tset prevPage1 = calcPrevPage(page1)\r\n\t\r\n\tdim nextPage1\r\n\tset nextPage1 = calcNextPage(page1)\r\n\r\n\tdim prevName1\r\n\tprevName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_prevname\")\r\n\r\n\tdim nextName1\r\n\tnextName1 = page1.GetInheritedAttributeValue(\"page_navigation_ui_nextname\")\r\n\t$>\r\n\t\r\n\t<$ if (not prevPage1 is nothing) and isValidPage(prevPage1) then $><a class=\"prev\" href=\"<$=prevPage1.Url$>\" title=\"Vorherige Seite\"><i class=\"icon-angle-left icon-large\">&nbsp;</i></a><$ end if $>\r\n\t\r\n\t<$ if (not nextPage1 is nothing) and isValidPage(nextPage1) then $><a class=\"next\" href=\"<$=nextPage1.Url$>\" title=\"Nächste Seite\"><i class=\"icon-angle-right icon-large\">&nbsp;</i></a><$ end if $>\r\n\r\n<$ end if $>\r\n\r\n<div class=\"gohome\"><a class=\"gohome\" href=\"#web(address)\" title=\"zur Übersicht\"><i class=\"icon-home icon-large\">&nbsp;</i></a></div>",
+            "value": "",
             "entail": true
         },
         {

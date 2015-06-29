@@ -16,14 +16,14 @@
 <$= system.partial("article-end.html") $>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('iframe').each(function() {
-			var url = $(this).attr("src");
+	$z(document).ready(function() {
+		$z('iframe').each(function() {
+			var url = $z(this).attr("src");
 			var char = "?";
 			if(url.indexOf("?") != -1) {
 				var char = "&";
 			}
-			$(this).attr("src",url+char+"wmode=transparent");
+			$z(this).attr("src",url+char+"wmode=transparent");
 		});
 	});
 </script>

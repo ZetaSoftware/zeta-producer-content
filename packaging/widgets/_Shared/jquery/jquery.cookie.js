@@ -7,11 +7,11 @@
  * http://www.gnu.org/licenses/gpl.html
  *
  */
-jQuery.cookie = function (key, value, options) {
+$z.cookie = function (key, value, options) {
 
     // key and at least value given, set cookie...
     if (arguments.length > 1 && String(value) !== "[object Object]") {
-        options = jQuery.extend({}, options);
+        options = $z.extend({}, options);
 
         if (value === null || value === undefined) {
             options.expires = -1;

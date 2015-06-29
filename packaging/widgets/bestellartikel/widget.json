@@ -1,6 +1,7 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
+        "version": "12.5.0.1",
+        "minAppVersion": "12.5.0.0",
         "category": "shop",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,
@@ -17,7 +18,6 @@
         "dialogHeightValue": 570,
         "useDialogHeight": true,
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "userCanResizeDialog": true,

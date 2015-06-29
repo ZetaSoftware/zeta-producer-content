@@ -1,6 +1,7 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
+        "version": "12.5.0.1",
+        "minAppVersion": "12.5.0.0",
         "category": "events",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,
@@ -21,7 +22,6 @@
         "dialogHeightValue": 350,
         "useDialogHeight": true,
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "userCanResizeDialog": "false",
@@ -366,7 +366,9 @@
         }
     ],
     "assets": [
+        { "fileName": "eventcalendar.css",		"mode": "bundle",		"order": 40 },
         { "fileName": "eventcalendar.js",		"mode": "bundle",		"order": 500 }
+        
     ],
     "itemTemplates": [
         {

@@ -1,5 +1,7 @@
 ﻿{
     "settings": {
+        "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -16,8 +18,7 @@
         "showheadline": false,
         "uiname": "Audio-Player",
         "usedialogheight": true,
-        "usercanresizedialog": false,
-        "version": "12.5.0.0"
+        "usercanresizedialog": false
     },
     "fields": [
         {

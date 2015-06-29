@@ -1,10 +1,9 @@
 <$
 	var image = project.getImage(article.value("image"));
-	var contentImageWidth = "#val(contentcopy-max-image-width)"
-	if ( !parseInt(contentImageWidth) > 0 ) {
-		contentImageWidth = 960;
-	}
-	contentImageWidth = parseInt(contentImageWidth);
+	var contentImageWidth = "#val(contentcopy-max-image-width)";
+	// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
+	contentImageWidth = parseInt(contentImageWidth) || 960;
+
 	var paragraphColumnCount = parseInt(article.paragraph.columns.count);
 	var columnWidth = (contentImageWidth / paragraphColumnCount)
 	
@@ -32,7 +31,10 @@
 		var thumbImageHeight = image.contentCopyHeight;
 		var description = image.description;
 		var encodedDescription = system.htmlEncode(image.description);
-		var stripDescription = system.removeHtmlTags(image.description);
+		var stripDescription = system.htmlEncode(system.removeHtmlTags(image.description));
+		// strip <p>-Tags from description as <p> is not valid inside SPAN
+		description = description.toString().replace(/<p>/g,"");
+		description = description.toString().replace(/<\/p>/g,"<br />");
 	}
 	
 	if ( stripDescription !== "" ) {
@@ -44,7 +46,7 @@
 
 	var lightBox = article.value("lightbox");
 	var clickURL = article.value("clickurl");
-	var altText = system.removeHtmlTags(article.valueExpanded("alt"));
+	var altText = system.htmlEncode(system.removeHtmlTags(article.valueExpanded("alt")));
  $>
 
 <$ if ( isNull(image) ) { $>

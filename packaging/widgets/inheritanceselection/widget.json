@@ -1,6 +1,7 @@
 {
     "settings": {
         "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "category": "heredity",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,

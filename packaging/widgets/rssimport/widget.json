@@ -1,5 +1,7 @@
 ﻿{
     "settings": {
+        "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "category": "info",
         "defaultitemtemplate": "dynamic",
         "dialogheightvalue": 360,
@@ -13,8 +15,7 @@
         "allowedAreas": ["Banner", "Standard", "News", "Footer"],
         "usedialogheight": true,
         "usedialogwidth": true,
-        "usercanresizedialog": false,
-        "version": "12.5.0.0"
+        "usercanresizedialog": false
     },
     "fields": [
         {

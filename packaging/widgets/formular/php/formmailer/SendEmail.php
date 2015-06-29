@@ -4,24 +4,30 @@
  *
  * Zeta Producer Form-Mailer
  * 
- * $Id: SendEmail.php 27433 2014-08-13 10:16:40Z sseiz $
- * @author  Daniel Friedrich
- * @version 1.0 07.11.2011
- * @copyright (c)2011 zeta Software GmbH
+ * $Id: SendEmail.php 30427 2015-04-21 14:49:33Z sseiz $
  */
 
+require_once('debug.inc.php');
 require_once('recaptchalib.php'); 
+require_once('mailer/PHPMailerAutoload.php');
 
-ini_set('default_charset', 'utf-8');
-ini_set('display_errors', 'On');
-ini_set('error_reporting', E_ERROR );
-//ini_set('error_reporting', 0 );
+if( DebugConfiguration::$errorDisplay ) {
+	error_reporting(E_ALL);
+	ini_set('display_startup_errors', 'On');
+	ini_set('display_errors', 'On');
+	
+	ini_set("log_errors", 1);
+	ini_set('error_log', 'phperrors.log');
+}
+else {
+	ini_set('display_errors', 'Off');
+}
 
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    // Past date
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // Modified
-header("Cache-Control: no-store, no-cache, must-revalidate");  // HTTP/1.1
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");				// Past date
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");	// Modified
+header("Cache-Control: no-store, no-cache, must-revalidate");	// HTTP/1.1
 header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");                          // HTTP/1.0
+header("Pragma: no-cache");										// HTTP/1.0
 
 session_start();
 
@@ -193,7 +199,28 @@ function DoProcessFormAndRedirect( 	$formData,
 		}
 	}
 
-	if ( DoSendEmail( $formData ))
+	// https://github.com/PHPMailer/PHPMailer/blob/master/examples/exceptions.phps
+	try {
+		DoSendEmail( $formData );
+		header("Location: $successPage");	
+
+		// 2015-04-12, Uwe Keim: Im Fehlerfall _nicht_ mehr auf die Fehlerseite weiterleiten,
+		// da ansonsten die detaillierte Fehlermeldung nicht mehr zu sehen ist.
+
+	} catch (phpmailerException $e) {
+		error_log( $e->errorMessage() ); // http://stackoverflow.com/a/3531852/107625
+		echo $e->errorMessage();
+		die;
+	} catch (Exception $e) {
+		error_log( $e->getMessage() ); // http://stackoverflow.com/a/3531852/107625
+		echo $e->getMessage();
+		die;
+	}
+
+	/*
+	DoSendEmail( $formData );
+
+	if ( $result)
     {
     	header("Location: $successPage");	
     }
@@ -201,6 +228,7 @@ function DoProcessFormAndRedirect( 	$formData,
     {
     	header("Location: $errorPage");
     }
+	*/
 }
 
 function CatchUploads( &$formData )
@@ -461,6 +489,8 @@ function DoSendEmail(
 			break;
 		}
 	}
+
+	// --
 	
 	$deleteDate = strtotime("+$maxAgeUploads day");        
 	$deleteDate = date('d.m.Y', $deleteDate);
@@ -474,6 +504,25 @@ function DoSendEmail(
 	//$body[] = "Besucher-Hostname: " . gethostbyaddr( $_SERVER["REMOTE_ADDR"] ) . "<br/>";
     $body[] = "</body></html>";
 
+	// --
+
+	// Passing true to the constructor enables the use of exceptions for error handling.
+	$mail = new PHPMailer(true);
+
+	$mail->setLanguage('de', 'language');
+	$mail->CharSet = 'utf-8';
+
+	$mail->isHTML(true); 
+	$mail->From      = $senderEmail;
+	$mail->FromName  = $senderName;
+	$mail->Subject   = $subject;
+	$mail->Body      = implode("\r\n",$body);
+	$mail->addAddress( $receiverEmail );
+	$mail->addReplyTo( $senderEmail, $senderName );
+
+	$mail->Send();
+
+	/*
     $header = array();
 	$header[] = "From: =?UTF-8?B?" . base64_encode($senderName) . "?= <" . $receiverEmail . ">";
 	$header[] = "Reply-To: =?UTF-8?B?" . base64_encode($senderName) . "?= <" . $senderEmail . ">";
@@ -491,6 +540,7 @@ function DoSendEmail(
 	{
 		return false;
 	}
+	*/
 }
 
 function decrypt( $encrypted_text,

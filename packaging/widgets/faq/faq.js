@@ -2,16 +2,16 @@
  * ZP FAQ Widget
  * Copyright $Date:: 2014#$ Zeta Software GmbH
  */
- $(document).ready(function () {
+ $z(document).ready(function () {
 	// initialize TABs
-	$("p.zpSO-faq-question[id]").each(function (i){
+	$z("p.zpSO-faq-question[id]").each(function (i){
 		new zp.Faq().init("#" + this.id.toString(), i);
 	});
 	
 	// show faq if we deep-linked to it
 	if ( window.location.hash ){
-	 $("#" + window.location.hash.substring(2)).toggleClass("zpSO-faq-question-selected");
-	 $("#zpSO-faq-answer" + window.location.hash.substring(2)).slideToggle('fast');
+	 $z("#" + window.location.hash.substring(2)).toggleClass("zpSO-faq-question-selected");
+	 $z("#zpSO-faq-answer" + window.location.hash.substring(2)).slideToggle('fast');
 	}
 });
 
@@ -43,11 +43,11 @@ zp.Faq = function (){
 			head.appendChild(style);
 		}
 		
-		$(faq.root + " > a").click(function(e){
+		$z(faq.root + " > a").click(function(e){
 			e.preventDefault();
-			var myID = $(faq.root).attr("id");
-			$(faq.root).toggleClass('zpSO-faq-question-selected');
-			$('#zpSO-faq-answer' + myID).slideToggle('fast');
+			var myID = $z(faq.root).attr("id");
+			$z(faq.root).toggleClass('zpSO-faq-question-selected');
+			$z('#zpSO-faq-answer' + myID).slideToggle('fast');
 			// URL in Browser-Adressleiste aktualisieren, ohne dass der Browser die Seite lädt und zur Sprungmarke scrollt
 			if (history.pushState){
 				window.history.pushState("object or string", "Title", window.location.pathname + "#a" + myID);

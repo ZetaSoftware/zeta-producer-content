@@ -15,21 +15,21 @@
 	}
 
 	function showHidePayPalOrderButton() {
-		var val = $("input[name='payment_method']:checked").val();
+		var val = $z("input[name='payment_method']:checked").val();
 
 		if( val=='paypal') {
-			$('#normal-order').hide();
-			$('#paypal-order').show();
+			$z('#normal-order').hide();
+			$z('#paypal-order').show();
 		} else {
-			$('#normal-order').show();
-			$('#paypal-order').hide();
+			$z('#normal-order').show();
+			$z('#paypal-order').hide();
 		}
 	}
 
-	$(document).ready(function() {
+	$z(document).ready(function() {
 		showHidePayPalOrderButton();
 
-		$("input[name='payment_method']").change(function() {
+		$z("input[name='payment_method']").change(function() {
 			showHidePayPalOrderButton();
 		});
 	});
@@ -95,9 +95,9 @@
 	{
 ?>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				$('html,body').animate({
-						scrollTop: $("#address").offset().top - parseInt($("body").css("padding-top"))
+			$z(document).ready(function() {
+				$z('html,body').animate({
+						scrollTop: $z("#name").offset().top - parseInt($z("body").css("padding-top"))
 				}, 1000);
 			});
 		</script>
@@ -106,9 +106,9 @@
 	else{
 ?>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				$('html,body').animate({
-						scrollTop: $("<?php echo $this->_['conf_basket_anchor'];?>").offset().top - parseInt($("body").css("padding-top"))
+			$z(document).ready(function() {
+				$z('html,body').animate({
+						scrollTop: $z("<?php echo $this->_['conf_basket_anchor'];?>").offset().top - parseInt($z("body").css("padding-top"))
 				}, 1000);
 			});
 		</script>

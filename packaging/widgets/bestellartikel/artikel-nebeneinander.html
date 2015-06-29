@@ -26,7 +26,7 @@ else {
 	var shopPostage =  basketArticle.value("shippingCosts", "");
 	var pricename = system.htmlEncode(basketArticle.value("price_name", "Preise"));
 	var pricelabel = system.htmlEncode(basketArticle.value("label_price", "inkl. USt. zzgl. Versandkosten ([VERSANDKOSTEN])"));
-	pricelabel = pricelabel.replace(/\[VERSANDKOSTEN\]/g, shopPostage & " " & shopCurrency);
+	pricelabel = pricelabel.replace(/\[VERSANDKOSTEN\]/g, shopPostage + " " + shopCurrency);
 	var buttontext = system.htmlEncode(basketArticle.value("article_button_text", "Zum Warenkorb hinzufügen"));
 	var price = article.valueRaw("unitPrice").replace(/,/g,".");
 	var currentArticlePrice = price;

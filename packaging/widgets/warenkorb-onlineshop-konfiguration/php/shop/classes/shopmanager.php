@@ -40,17 +40,23 @@ class ShopManager
 		$viewArticleTable->Assign('showPosNo', true);    
 		$viewArticleTable->Assign('showArticleNo', true);    
 		
+		// "B" für "Bestellung".
+		$orderNumber = "B" . time();
+		
 		// Platzhalter.
 		$subject = str_replace("[SHOPNAME]", $shopname, $subject);
+		$subject = str_replace("[REFERENZNUMMER]", $orderNumber, $subject);
 		$subject_customer = str_replace("[SHOPNAME]", $shopname, $subject_customer);
+		$subject_customer = str_replace("[REFERENZNUMMER]", $orderNumber, $subject_customer);
 		
 		// Compose E-Mail to Shop Owner
 		$text  = '<html><head></head><body style="font-family: Arial, Helvetica, Sans Serif";>';
-		
+
 		SetTimeZone();
 
 		$tmp = utf8_encode(Configuration::$conf_email_to_shop);
 		$tmp = str_replace("[DATUM]", $orderdate, $tmp);
+		$tmp = str_replace("[REFERENZNUMMER]", $orderNumber, $tmp);
 		$tmp = str_replace("[NAME]", $name, $tmp);
 		$tmp = str_replace("[ADRESSE]", nl2br($address), $tmp);
 		$tmp = str_replace("[EMAIL]", $email, $tmp);
@@ -65,6 +71,7 @@ class ShopManager
 		$text_customer = '<html><head></head><body style="font-family: Arial, Helvetica, Sans Serif";>';
 		$tmp = utf8_encode(Configuration::$conf_email_to_customer);
 		$tmp = str_replace("[DATUM]", $orderdate, $tmp);
+		$tmp = str_replace("[REFERENZNUMMER]", $orderNumber, $tmp);
 		$tmp = str_replace("[NAME]", $name, $tmp);
 		$tmp = str_replace("[ADRESSE]", nl2br($address), $tmp);
 		$tmp = str_replace("[EMAIL]", $email, $tmp);
@@ -90,14 +97,15 @@ class ShopManager
 		// --
 		// An den Besteller senden.
 
-		$mail = new PHPMailer;
+		// Passing true to the constructor enables the use of exceptions for error handling.
+		$mail = new PHPMailer(true);
 
 		$mail->setLanguage('de', 'language');
 		$mail->CharSet = 'utf-8';
 
 		$mail->isHTML(true); 
 		$mail->From      = Configuration::$conf_shopemail;
-		$mail->FromName  = $shopname;
+		$mail->FromName  = html_entity_decode($shopname, ENT_COMPAT, "UTF-8");  // shopname is HTML encoded, so we need to convert to URF-8
 		$mail->Subject   = $subject_customer;
 		$mail->Body      = $text_customer;
 		$mail->addAddress( $email );
@@ -116,14 +124,15 @@ class ShopManager
 		// --
 		// An den Shop-Betreiber senden.
 
-		$mail = new PHPMailer;
+		// Passing true to the constructor enables the use of exceptions for error handling.
+		$mail = new PHPMailer(true);
 
 		$mail->setLanguage('de', 'language');
 		$mail->CharSet = 'utf-8';
 
 		$mail->isHTML(true); 
 		$mail->From      = Configuration::$conf_shopemail;
-		$mail->FromName  = $shopname;
+		$mail->FromName  = html_entity_decode($shopname, ENT_COMPAT, "UTF-8");
 		$mail->Subject   = $subject;
 		$mail->Body      = $text;
 		$mail->addAddress( Configuration::$conf_shopemail );

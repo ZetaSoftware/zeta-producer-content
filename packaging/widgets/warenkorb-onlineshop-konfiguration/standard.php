@@ -63,16 +63,16 @@ $>
 		
 			// -- NEW Text Template configs to replace text statically in PHP
 			// TODO Add procedure to rpelace empty values with defaults in case of user opening an existing project 
-			content = append( content, "public static $conf_email_subject_shop = '" + article.value("email_subject_shop","").replace("[SHOPNAME]",article.value("shopname","")) + "';" );
-			content = append( content, "public static $conf_email_subject_customer = '" + article.value("email_subject_customer","").replace("[SHOPNAME]", article.value("shopname","")) + "';" );
+			content = append( content, "public static $conf_email_subject_shop = '" + article.value("email_subject_shop","").toString().replace("[SHOPNAME]",article.value("shopname","")) + "';" );
+			content = append( content, "public static $conf_email_subject_customer = '" + article.value("email_subject_customer","").toString().replace("[SHOPNAME]", article.value("shopname","")) + "';" );
 	
 			var email_to_shop = article.value("email_to_shop","");
-			email_to_shop = email_to_shop.replace("\r\n", "\\n");
-			content = append( content, "public static $conf_email_to_shop = '" + system.htmlEncode(email_to_shop.replace("[SHOPNAME]", article.value("shopname","")), true) + "';" );
+			email_to_shop = email_to_shop.toString().replace("\r\n", "\\n");
+			content = append( content, "public static $conf_email_to_shop = '" + system.htmlEncode(email_to_shop.toString().replace("[SHOPNAME]", article.value("shopname","")), true) + "';" );
 	
 			var email_to_customer = article.value("email_to_customer","");
-			email_to_customer = email_to_customer.replace("\r\n", "\\n");
-			content = append( content, "public static $conf_email_to_customer = '" + system.htmlEncode(email_to_customer.replace("[SHOPNAME]", article.value("shopname","")), true) + "';" );
+			email_to_customer = email_to_customer.toString().replace("\r\n", "\\n");
+			content = append( content, "public static $conf_email_to_customer = '" + system.htmlEncode(email_to_customer.toString().replace("[SHOPNAME]", article.value("shopname","")), true) + "';" );
 		
 			var tmp_val = article.value("label_payment_delivery","");
 			content = append( content, "public static $conf_label_payment_delivery = '" + system.htmlEncode(tmp_val) + "';" );
@@ -153,7 +153,7 @@ $>
 			content = append( content, "public static $conf_label_goaddressform = '" + system.htmlEncode(tmp_val) + "';" );
 		
 			tmp_val = article.value("text_thankyoupage","");
-			tmp_val = tmp_val.replace("\r\n", "\n");
+			tmp_val = tmp_val.toString().replace("\r\n", "\n");
 			content = append( content, "public static $conf_text_thankyoupage = '" + system.htmlEncode(tmp_val, true) + "';" );
 		
 			tmp_val = article.value("error_name","");
@@ -186,7 +186,7 @@ $>
 			//tmp_val = article.value("XXX");
 			//content = append( content, "public static $conf_XXX = '" + system.htmlEncode(tmp_val) + "';" );
 	
-			var shippingCosts = article.valueRaw("shippingCosts","").replace(",",".");
+			var shippingCosts = article.valueRaw("shippingCosts","").toString().replace(",",".");
 			
 			content = append( content, "public static $conf_shippingcosts = " + shippingCosts +";" )
 			content = append( content, "public static $conf_currency = '" + article.value("currency","") + "';" )

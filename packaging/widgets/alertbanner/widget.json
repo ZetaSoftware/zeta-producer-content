@@ -1,0 +1,100 @@
+﻿{
+    "settings": {
+        "version": "12.5.6.0",
+        "minappversion": "12.5.6.0",
+        "category": "textarticles",
+        "dialogheightvalue": 220,
+        "dialogwidthvalue": 510,
+        "includeinsearchindex": false,
+        "maincategory": "structure",
+        "orderposition": 2,
+        "showcssinputfields": false,
+        "showheadline": false,
+        "showheadlinelabel": false,
+        "uiname": "Info-Banner",
+        "usedialogheight": true,
+        "usedialogwidth": true
+    },
+    "fields": [
+        {
+            "displayname": "Text",
+            "height": 2,
+            "includeinsearchindex": false,
+            "isrequired": true,
+            "name": "text",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "html-wysiwyg-editor"
+        },
+        {
+            "displayname": "Optionen",
+            "name": "options",
+            "occupylabelspace": true,
+            "popupheightinpixel": 180,
+            "popupwidthinpixel": 320,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Textfarbe",
+                    "includeinsearchindex": false,
+                    "name": "textColor",
+                    "type": "color-selection",
+                    "defaultValue": "#ffffff"
+                },
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "includeinsearchindex": false,
+                    "name": "backgroundColor",
+                    "type": "color-selection",
+                    "defaultValue": "rgba(29, 130, 18, 0.9)"
+                },
+                {
+                    "displayName": "Effekt",
+                    "name": "effect",
+                    "type": "list",
+                    "values": [
+                        {
+                            "Herunterfallen": "fall"
+                        },
+                        {
+                            "Hineinbewegen": "slide"
+                        }
+                    ],
+                    "defaultValue": "fall"
+                },
+                {
+                    "displayname": "Nach dem Schließen nicht erneut anzeigen.",
+                    "includeinsearchindex": false,
+                    "name": "hideAfterClose",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "type": "checkbox",
+                    "userinfotext": "Wenn aktiviert, wird beim Schließen des Info-Banner ein Cookie gesetzt und der Banner wird danach nicht mehr angezeigt.",
+                    "defaultValue": "1"
+                },
+                {
+                    "displayname": "Cookie-ID",
+                    "includeinsearchindex": false,
+                    "name": "cookieid",
+                    "type": "text-singleline",
+                    "userinfotext": "Diese ID wird im Cookie gespeichert, so dass  die \"Nach dem Schließen nicht erneut anzeigen\"-Einstellung auch für mehrere Info-Banner gleichzeitig (alle, die die selbe Cookie-ID haben) gelten kann.",
+                    "width": 80,
+                    "defaultValue": "1"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "alertbanner.css",
+            "mode": "Bundle",
+            "order": 40
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

@@ -533,7 +533,8 @@
           }
         }
         // SMOOTH HEIGHT:
-        if (vars.smoothHeight) methods.smoothHeight(vars.animationSpeed);
+        if (vars.smoothHeight) methods.smoothHeight(100);
+        //if (vars.smoothHeight) methods.smoothHeight(vars.animationSpeed);
       }
     } 
     slider.wrapup = function(dimension) {
@@ -900,4 +901,4 @@
     }
   }  
 
-})(jQuery);
+})($z);

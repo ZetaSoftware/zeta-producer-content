@@ -1153,4 +1153,4 @@
 		$.fancybox.init();
 	});
 
-})(jQuery);
+})($z);

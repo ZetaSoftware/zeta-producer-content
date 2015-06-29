@@ -19,7 +19,7 @@ var image = project.getImage(imageId);
 		
 		<p class="ecinfo">
 			<$ if ( date_end == "" || date_end == "01.01.0001" ) { $>
-				<$= date_start $><$ if ( !isNull(start) ) { $>,<$= start $><$ if ( !isNull(endt) ) { $> bis <$= endt $> Uhr<$ } else { $> Uhr<$ } $><$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
+				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $><$ if ( !isNull(endt) ) { $> bis <$= endt $> Uhr<$ } else { $> Uhr<$ } $><$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
 			<$ }
 			   else { $>
 				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $> Uhr<$ } $> bis <$= date_end $><$ if ( !isNull(endt) ) { $>, <$= endt $> Uhr<$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>

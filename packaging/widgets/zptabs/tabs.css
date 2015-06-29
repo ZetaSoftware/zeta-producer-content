@@ -218,4 +218,26 @@ div.zpTABs.small > div {
     display: none !important;
   }
 }
+
+/* Print Stylesheet */
+@media print {
+	div.zpTABs > ul.zpTABs > li,
+	div.zpTABs > ul.zpTABs > li.acc,
+	div.zpTABs > ul.zpTABs > li.tab {
+    	display: block;
+    	float: left;
+    	clear: both;
+    	border: 0;
+    	background-color: transparent !important;
+  	}
+  	div.zpTABs > ul.zpTABs > li.tab::after {
+  		border: 0 !important;
+  	}
+  	div.zpTABs>ul.zpTABs>li a.zpTABs{
+  		padding: 0 !important;
+  	}
+  	div.zpTABs > div {
+    	display: none !important;
+  	}
+}
 /* END zpTABs Styles */

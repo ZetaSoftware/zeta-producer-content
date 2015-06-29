@@ -1,5 +1,7 @@
 ﻿{
     "settings": {
+        "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -8,7 +10,6 @@
         ],
         "category": "more",
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "dialogheightvalue": 510,
@@ -20,8 +21,7 @@
         "showheadlinelabel": false,
         "uiname": "Markdown",
         "usedialogheight": true,
-        "usedialogwidth": true,
-        "version": "12.5.0.0"
+        "usedialogwidth": true
     },
     "fields": [
         {

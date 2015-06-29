@@ -1,5 +1,7 @@
 {
     "settings": {
+        "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -8,7 +10,6 @@
         ],
         "category": "more",
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "dialogwidthvalue": 510,
@@ -18,8 +19,7 @@
         "showcssinputfields": false,
         "showheadlinelabel": false,
         "uiname": "Tabellarische Daten",
-        "usedialogwidth": true,
-        "version": "12.5.0.0"
+        "usedialogwidth": true
     },
     "fields": [
         {

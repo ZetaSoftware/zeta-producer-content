@@ -2,6 +2,7 @@
     "settings": {
         "name": "TeaserV12",
         "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "category": "textarticles",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,
@@ -18,7 +19,6 @@
         "dialogHeightValue": 0,
         "useDialogHeight": false,
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "userCanResizeDialog": "true",

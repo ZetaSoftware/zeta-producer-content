@@ -1,6 +1,7 @@
 ﻿{
     "settings": {
         "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "category": "apps",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,
@@ -17,7 +18,6 @@
         "dialogHeightValue": 350,
         "useDialogHeight": true,
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "userCanResizeDialog": "false",

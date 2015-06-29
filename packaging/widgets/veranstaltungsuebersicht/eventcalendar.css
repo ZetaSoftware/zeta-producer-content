@@ -1,0 +1,76 @@
+/*! 
+ * ZP Eventcalendar CSS
+ * Copyright Zeta Software GmbH
+ */
+
+#ui-datepicker-div{ 
+ z-index: 200 !important; 
+ background-color: #ffffff !important;
+}
+div.eventOverview{ 
+	width: 100%; 
+	margin: 0; 
+	padding: 0; 
+	border-collapse: collapse; 
+}
+div.eventOverview div.event{ 
+	padding: 10px; 
+	overflow: hidden;
+}
+div.eventOverview div.event div.eventdate { 
+	width: 28%; float: left; 
+	font-weight: bolder; 
+} 
+div.eventOverview div.event div.eventinfo{ 
+	width: 67%; 
+	float: right;
+}
+div.eventOverview div.event div.eventinfo a.title{ 
+	font-weight: bolder;
+}
+div.eventOverview div.event div.eventinfo a.title img{
+	float: right; 
+	width: 140px; 
+	margin-left: 15px; 
+	border: 1px solid white;
+}
+.eventCalendar div.filter button.resetfilters{ 
+	display: inline-block; 
+	margin-top: 1em;
+}
+.eventCalendar div.filter { 
+	padding: 10px; 
+	overflow: hidden; 
+	-webkit-border-top-left-radius: 8px; 
+	-webkit-border-top-right-radius: 8px; 
+	-moz-border-radius-topleft: 8px; 
+	-moz-border-radius-topright: 8px; 
+	border-top-left-radius: 8px; 
+	border-top-right-radius: 8px; 
+}
+.eventCalendar div.filteritem{ 
+	float: left; 
+	margin-right: 20px;
+}
+.eventCalendar div.filteritem select, 
+.eventCalendar div.filteritem input{ 
+	width: 120px;
+}
+
+
+@media (max-width: 580px) {
+	div.eventOverview div.event div.eventdate{
+		margin-bottom: 10px;
+	}
+	div.eventOverview div.event div.eventdate,
+	div.eventOverview div.event div.eventinfo {
+		float: none;
+		width: 100%;
+	}
+	div.eventOverview div.event div.eventinfo a.title img{
+		float: none;
+		margin-left: 0;
+		width: auto;
+		margin-bottom: 10px;
+	}
+}

@@ -1,5 +1,7 @@
 ﻿{
     "settings": {
+        "version": "12.5.0.1",
+        "minappversion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -12,12 +14,11 @@
         "orderposition": 3,
         "pgeitemmetainfo": "Unknown",
         "removelineafter": false,
-        "showCssInputFields": false,
+        "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Button",
         "usedialogheight": true,
-        "usercanresizedialog": false,
-        "version": "12.5.0.0"
+        "usercanresizedialog": false
     },
     "fields": [
         {

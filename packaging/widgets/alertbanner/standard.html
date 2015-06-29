@@ -1,0 +1,60 @@
+<$
+	// This article should only be placed once per page, check if there already is one
+	var pageArticles = page.articles;
+	var alertsOnPage = 0;
+	var thisWidgetName = article.widgetName;
+	
+	for ( var i=0; i < pageArticles.count; ++i ) {
+		var currentArticle = pageArticles.item(i);
+		if ( currentArticle.widgetName == thisWidgetName && currentArticle.active ){
+			alertsOnPage ++;
+		}
+	}
+	
+	// get Widget Settings
+	var alertText = article.value("text", "").toString();
+	// sanitize User-Input
+	alertText = alertText.toString().replace(/\n|\r/g, "");
+	alertText = alertText.toString().replace(/\'/g, "\\'");
+	
+	var textColor = article.value("textColor", "#ffffff");
+	var backgroundColor = article.value("backgroundColor", "rgba(36, 163, 23, 0.9)");
+	var effect = article.value("effect", "fall");
+	var hideAfterClose = article.value("hideAfterClose") == "1" ? true : false;
+	var cookieId = article.value("cookieid", "1").toString();
+	cookieId = cookieId.replace(/\n|\r|\'|\"/g, "");
+$>
+
+<$ if ( system.preview ) { $>
+	<$= system.partial("article-begin.html") $>
+		<$ if ( alertsOnPage > 1 ){ $>
+			<$= system.partial("no-preview-info.html", "", "wird nur im Webbrowser angezeigt. <br /><span style=\"color: red; font-weight: bold;\">Es ist nur ein Info-Banner-Widget pro Seite zugelassen! Bitte löschen Sie überzählige Info-Banner-Widgets.</span>") $>
+		<$ } else { $>
+			<$= system.partial("no-preview-info.html", "", "wird nur im Webbrowser angezeigt.") $>
+		<$ } $>
+	<$= system.partial("article-end.html") $>
+<$ } else { $>
+	<script>
+		var theBanner = '<div class="alertbanner <$= effect $> content" id="alertbanner<$= article.id $>" style="background-color: <$= backgroundColor $>; color: <$= textColor $>;">'
+					  + '<a id="close" title="Schließen / Close" href="#off" style="border: 1px solid <$= textColor $>;">✕</a>';
+		theBanner += '<$= alertText $>';
+		theBanner += '</div>';
+				  
+		$z(document).ready(function () {
+			var hideAfterClose = <$= hideAfterClose $>;
+			
+			if( !hideAfterClose || document.cookie.indexOf('hidealertbanner<$= cookieId $>=1') == -1 ){
+				//append banner to document
+				$z("body").prepend(theBanner);
+			}
+		
+			$z("#alertbanner<$= article.id $> a#close").click(function(e){
+				$z("#alertbanner<$= article.id $>").addClass("off");
+				if ( hideAfterClose ){
+					document.cookie = 'hidealertbanner<$= cookieId $>=1;path=/';
+				}
+				e.preventDefault();
+			});
+		});
+	</script>
+<$ } $>

@@ -2,22 +2,22 @@
  * ZP Teaser Widget
  * Copyright $Date:: 2014#$ Zeta Software GmbH
  */
-$(document).ready(function () {
+$z(document).ready(function () {
 	// ******* ZP Teaser *******
-	$(".zpteasertext").toggle();
-	$(".zphidelink").toggle();
-	$(".zpteaserlink").click(function (event){
+	$z(".zpteasertext").toggle();
+	$z(".zphidelink").toggle();
+	$z(".zpteaserlink").click(function (event){
 		event.preventDefault();
-		$(this).toggle();
-		$(this).next(".zpteasertext").slideDown("fast");
-		$(this).nextAll(".zphidelink").toggle();
+		$z(this).toggle();
+		$z(this).next(".zpteasertext").slideDown("fast");
+		$z(this).nextAll(".zphidelink").toggle();
 		return false;
 	});
-	$(".zphidelink").click(function (event){
+	$z(".zphidelink").click(function (event){
 		event.preventDefault();
-		$(this).toggle();
-		$(this).prevAll(".zpteasertext").slideUp("fast");
-		$(this).prevAll(".zpteaserlink").toggle();
+		$z(this).toggle();
+		$z(this).prevAll(".zpteasertext").slideUp("fast");
+		$z(this).prevAll(".zpteaserlink").toggle();
 		return false;
 	});
 });

@@ -1,6 +1,7 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
+        "version": "12.5.0.5",
+        "minAppVersion": "12.5.0.0",
         "category": "more",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,
@@ -29,7 +30,6 @@
                     "Via PHP mit Sicherheitsprüfung": "assets/php/formmailer/SendEmail.php"
                 }
             ],
-            "_nameAlign": "left",
             "_nameLevel": "h2",
             "_element-inputtype": "text",
             "_element-inputtype_values": [

@@ -11,9 +11,27 @@
 	color: #333333;
 	background: #ffffff;
 	padding: 6px 8px;
-	border: 1px solid #D9D9D9;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid #9A9A9A;
+	border: 1px solid rgba(0,0,0,0.4);
+	max-width: 100%;
 }
+.zp-form ::-webkit-input-placeholder{
+	opacity:  1;
+	color: rgba(0,0,0,0.4);
+}
+.zp-form :-moz-placeholder{
+	opacity:  1;
+	color: rgba(0,0,0,0.4);
+}
+.zp-form ::-moz-placeholde{
+	opacity:  1;
+	color: rgba(0,0,0,0.4);
+}
+.zp-form :-ms-input-placeholder{
+	opacity:  1;
+	color: rgba(0,0,0,0.4);
+}
+
 .zp-form select{
 	font-family: inherit;
 	font-size: inherit;
@@ -35,4 +53,10 @@
 	font-size: inherit;
 	display: block;
 	margin-top: 20px;
+}
+.zp-form #recaptcha_area img{
+	border: 0 !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
 }

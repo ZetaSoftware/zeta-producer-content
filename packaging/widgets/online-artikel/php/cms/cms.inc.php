@@ -2,7 +2,7 @@
 /**
  * Online-CMS master entry point.
  *
- * $Id: cms.inc.php 28538 2014-11-10 11:17:40Z sseiz $
+ * $Id: cms.inc.php 22047 2013-05-27 11:30:09Z sseiz $
  */
 
 $cmszipfile = "zpocmsmodule.zip";

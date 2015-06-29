@@ -7,7 +7,7 @@
 	<?php 
 		 $uiUrl = $siteUrl . "/assets/php/pa/etc/jquery/jquery-ui-1.8.16.custom.min.js";
 		 echo '<script  type="text/javascript" src="' . $uiUrl . '"></script>';
-		 echo '<div style="padding:0 10px 10px 0; position:fixed; bottom:0; right:0; z-index:9999;"><input type="button" id="paLogout" class="button" onClick="javascript:window.location = \'?action=palogout\'; return false;" value="Abmelden"  title="Von diesem Bereich abmelden" style="color: #000000;"/></div><script type="text/javascript">$( "#paLogout" ).button();</script>';
+		 echo '<div style="padding:0 10px 10px 0; position:fixed; bottom:0; right:0; z-index:9999;"><input type="button" id="paLogout" class="button" onClick="javascript:window.location = \'?action=palogout\'; return false;" value="Abmelden"  title="Von diesem Bereich abmelden" /></div><script type="text/javascript">$z( "#paLogout" ).button();</script>';
 	?>
 	
 	<$= system.partial("php-widget-end.html") $>

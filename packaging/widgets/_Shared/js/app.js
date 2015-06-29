@@ -6,7 +6,7 @@
 
 var nualc = navigator.userAgent.toLowerCase();
 
-jQuery.support.placeholder = (function(){
+$z.support.placeholder = (function(){
     var i = document.createElement('input');
     return 'placeholder' in i;
 })();
@@ -30,23 +30,26 @@ function hoverToClickMenu() {
 	}
 	var onClick; // this will be a function
 	var firstClick = function(e) {
-		onClick = secondClick;
-		if ( $(e).parent().hasClass("clicked") || $(e).parents("div.nav-collapse.in").length > 0 || ($(e).parent().children("ul").css("display") == "block" && $(e).parent().children("ul").css("visibility") == "visible") ) {
+		var otherMenus = $z(e).parent().prevAll(".clicked").add($z(e).parent().nextAll(".clicked"));
+		otherMenus.removeClass("clicked");
+		otherMenus.find("ul").css({'display' : '', 'visibility' : ''});
+		otherMenus.find(".clicked").removeClass("clicked");
+		
+		if ( $z(e).parent().hasClass("clicked") || ($z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible") ) {
+			// element has been clicked before, so now we fire a click
 			return true;
 		}
+		// element has been clicked for the first time, so we do not fire a click and only show submenues
+		
 		// add ".open" classname to parent li element so we can style it if we want
-		$(e).parent().addClass("clicked");
+		$z(e).parent().addClass("clicked");
 		// in case suckerfish is used
-		$(e).parent().children("ul").css({'display' : 'block', 'visibility' : 'visible'});
+		$z(e).parent().children("ul").css({'display' : 'block', 'visibility' : 'visible'});
 		return false;
 	};
-	var secondClick = function(e) {
-		onClick = firstClick;
-		return true;
-	};
 	onClick = firstClick;
-	$(this).on( listenEvent , function() {
-		return onClick($(this));
+	$z(this).on( listenEvent , function() {
+		return onClick($z(this));
 	});
 }
 
@@ -59,7 +62,7 @@ if (!Date.now) {
 
 // FIX Viewports for iOS Devices as they always report the short side for "device-width", even when in landscape
 if (navigator.userAgent.match(/xxiPhone/i) || navigator.userAgent.match(/xxiPad/i)) {
-	var viewportmeta = $('meta[name=viewport]'); //document.querySelector('meta[name="viewport"]');
+	var viewportmeta = $z('meta[name=viewport]'); //document.querySelector('meta[name="viewport"]');
 	if (viewportmeta) {
 		// set viewport on first page load if in portrait orientation
 		if ( window.orientation !== 0 && window.orientation !== 180 ){
@@ -78,43 +81,43 @@ if (navigator.userAgent.match(/xxiPhone/i) || navigator.userAgent.match(/xxiPad/
 }
 
 // lets us define css classes which only apply after all assets are loaded
-$(window).load(function(){
-	$("body").addClass("loaded");
+$z(window).load(function(){
+	$z("body").addClass("loaded");
 });
 				
-$(document).ready(function () {
+$z(document).ready(function () {
 	//define some helper css classes
-		$("html").removeClass("no-js");
-		$("body").addClass("js");
+		$z("html").removeClass("no-js");
+		$z("body").addClass("js");
 		// recognize IE (since IE10 doesn't support conditional comments anymore)
 		// removed in jQuery 1.9, so be careful!
-		if ($.browser.msie) {
-			$("html").removeClass("notie");
-			$("html").addClass("ie");
-			$("html").addClass("ie" + parseInt($.browser.version, 10));
+		if ( $z.browser.msie || !!navigator.userAgent.match(/Trident.*rv\:11\./) ) {
+			$z("html").removeClass("notie");
+			$z("html").addClass("ie");
+			$z("html").addClass("ie" + parseInt($z.browser.version, 10));
 		}
-		else if ($.browser.mozilla){
-			$("html").addClass("mozilla");
+		else if ($z.browser.mozilla){
+			$z("html").addClass("mozilla");
 		}
 		
 		// add a top-padding to html5 audio because firefox has a time indicator implemented as a bubble which would be cut off due to our overflow hidden grid system
-		if ($.browser.mozilla){
-			$("audio").animate({paddingTop: '+=12px'}, 0); // we only use .animate() here, as that is a convenient way to be able to add values to (possibly) existing values
+		if ($z.browser.mozilla){
+			$z("audio").animate({paddingTop: '+=12px'}, 0); // we only use .animate() here, as that is a convenient way to be able to add values to (possibly) existing values
 		}
 		
 		if(is_touch_device()) {
 			// add .touch class to body if we run on a touch device, so we can use the class in css (used e.g. in ONLINE-CMS)
-			$("body").removeClass("notouch");
-			$("body").addClass("touch");
+			$z("body").removeClass("notouch");
+			$z("body").addClass("touch");
 			
 			// fix for hover menues (which contain submenues) to make them work on touch devices
-			$(".touchhovermenu li:has(li) > a").each(hoverToClickMenu);
+			$z(".touchhovermenu li:has(li) > a").each(hoverToClickMenu);
 		}
 		else{
 			// In case we want to substitute hover with click menues on non touch devices too
-			$("body").removeClass("touch");
-			$("body").addClass("notouch");
-			$(".clickhovermenu li:has(li) > a").each(hoverToClickMenu);
+			$z("body").removeClass("touch");
+			$z("body").addClass("notouch");
+			$z(".clickhovermenu li:has(li) > a").each(hoverToClickMenu);
 		}
 });
 
@@ -122,7 +125,7 @@ $(document).ready(function () {
 var zp = {  
 }; // end zp
 
-// make $.unique also work on arrays and not only DOM-Elements (without this, we have a problem with the EventCalendars in Chrome)
+// make $z.unique also work on arrays and not only DOM-Elements (without this, we have a problem with the EventCalendars in Chrome)
 // http://stackoverflow.com/a/7366133
 (function($){
     var _old = $.unique;
@@ -138,7 +141,7 @@ var zp = {
             });
         }
     };
-})(jQuery);
+})($z);
 
 /*!
  * END $Id: app-src.js 27448 2014-08-14 08:38:17Z sseiz $ 

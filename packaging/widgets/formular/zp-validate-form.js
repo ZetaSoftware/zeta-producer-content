@@ -2,16 +2,38 @@
  * ZP Form Validation
  * Copyright $Date:: 2014#$ Zeta Software GmbH
  */
-$(document).ready(function () {
+$z(document).ready(function () {
+	// helper function to figure out when to hide labels and siaplay them as placeholder instead
+	function hideLabel(theField){
+		// Check for HTML5-Fieldtypes which fill the field with widgets, so the placeholder text isn't visible
+		var fieldsWithoutPlaceholder = ["date","time","color"];
+		var fieldType = $z(theField).attr("type");
+		if ( fieldsWithoutPlaceholder.indexOf(fieldType) !== -1 ){  
+			// current field type was found in array of field types we want to ignore
+			// check if the browser supports the current field type and if so, return false so we don't hide the label
+			var i = document.createElement("input");
+			i.setAttribute("type", fieldType);
+			if (i.type !== "text"){
+				return false;
+			}	
+		}
+		
+		if ( $z(theField).attr("placeholder") !== "" && $z(theField).attr("placeholder") !== undefined ){
+			// placeholder attribute is set, so we hide the label
+			return true;
+		}
+		return false;
+	}
+	
 	// initialize Templating - simple Templating (replace template-string with URL parameter)
 	// The template-string {@name} will be replaced with the value of the URLs Query-String named "name" or else be removed - templating is enabled for: input and textarea
 	new zp.Templating().init();
 		
 	// initialize form validation	
-	$("form.zp-form").each(function (){
-		var formID = "#" + $(this).attr("id");
+	$z("form.zp-form").each(function (){
+		var formID = "#" + $z(this).attr("id");
 		
-		$(this).submit(function (e){
+		$z(this).submit(function (e){
 			zpValidateForm(formID, e);
 		});
 		
@@ -20,20 +42,21 @@ $(document).ready(function () {
 	// apply some global form Styling
 	
 	// hide the as field - this is already done in styles.css but old custom layouts might not have an up-to-date css
-	$(".zp-form input.asfield").css("display", "none");
+	$z(".zp-form input.asfield").css("display", "none");
 	
 	// Hide form labels for browsers which support the placeholder attribute and if it is set
-	if ($.support.placeholder){
-		$(".zp-form input:text, .zp-form .typetext, .zp-form textarea").each(function (){
-			if ( $(this).attr("placeholder") !== "" && $(this).attr("placeholder") !== undefined ){
-				$(".zp-form label[for='"+$(this).attr('id')+"']").css({"height":"0px", "overflow":"hidden", "opacity":"0"});
+	if ($z.support.placeholder){
+		$z(".zp-form input:text, .zp-form .typetext, .zp-form textarea").each(function (){
+			if ( hideLabel($z(this)) ) {
+			//if ( $z(this).attr("placeholder") !== "" && $z(this).attr("placeholder") !== undefined ){
+				$z(".zp-form label[for='"+$z(this).attr('id')+"']").css({"height":"0px", "overflow":"hidden", "opacity":"0"});
 			}
 		});
 	}		
 
 	// globally style recaptcha tables in Forms and give them a description in the title
-	$("#recaptcha_table").css({"border" : "1px solid #dfdfdf !important", "background-color" : "#ffffff"});
-	$("#recaptcha_table").attr('title', 'Um sicherzustellen, dass dieser Formularservice nicht missbräuchlich verwendet wird, geben Sie bitte die 2 Wörter im Feld unten ein.');
+	$z("#recaptcha_table").css({"border" : "1px solid #dfdfdf !important", "background-color" : "#ffffff"});
+	$z("#recaptcha_table").attr('title', 'Um sicherzustellen, dass dieser Formularservice nicht missbräuchlich verwendet wird, geben Sie bitte die 2 Wörter im Feld unten ein.');
 		
 });
 
@@ -51,7 +74,7 @@ zp.Templating = function (){
 		urlParams = {};
 		while (match = search.exec(query)){
 		   // for safety reasons, encode html in the query string using jquery (http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery) - seems not needed in this context
-		   // var encodedString = $("<div/>").text(decode(match[2])).html();
+		   // var encodedString = $z("<div/>").text(decode(match[2])).html();
 		   // urlParams[decode(match[1])] = encodedString;
 		   urlParams[decode(match[1])] = decode(match[2]);
 		}
@@ -66,20 +89,20 @@ zp.Templating = function (){
 	};
 	
 	this.doTemplate = function(){
-		$("form input[value*='{@'], form textarea:contains('{@')").each(function(){
+		$z("form input[value*='{@'], form textarea:contains('{@')").each(function(){
 			// iterate trough each placeholder pattern (search)
 			var search = /({\@([^}]+)})/g;
-			while ( match = search.exec($(this).val()) ){
+			while ( match = search.exec($z(this).val()) ){
 				var re = new RegExp(match[1], "gi"); //sets a new pattern (i.e.: /{@name}/gi ) based on the found teplate string
 		
 				if ( urlParams[match[2]] ){ 
 					// if the query string contains a value for the currently matched template, replace template with value
-					$(this).val( $(this).val().replace(re, urlParams[match[2]]) );
+					$z(this).val( $z(this).val().replace(re, urlParams[match[2]]) );
 				}
 				else{
 					// else, remove template (incl. trailing whitespace) string
 					re = new RegExp(match[1] + "\\s*", "gi");
-					$(this).val( $(this).val().replace(re, "") );
+					$z(this).val( $z(this).val().replace(re, "") );
 				}
 			}
 		});
@@ -92,7 +115,7 @@ function zpValidateForm(formID, e)
 	var focusablefields = [];
 	var fieldstofill = "";
 	var returncode = true;
-	var invalidEmailMsg = $("form"+ formID + " input[name='f_invalidEmailMsg']").val();
+	var invalidEmailMsg = $z("form"+ formID + " input[name='f_invalidEmailMsg']").val();
 	if ( !invalidEmailMsg ){
 		invalidEmailMsg = "keine gültige E-Mail";
 	}
@@ -103,76 +126,76 @@ function zpValidateForm(formID, e)
 	}
 	
 	function ValidateField (formID,theField){
-		if ( $("form" + formID + " *[name='F" + theField +"']").length === 0 ){ // it's probably a checkbox or select which has [] appended to the name to allow for multi values via a php array
+		if ( $z("form" + formID + " *[name='F" + theField +"']").length === 0 ){ // it's probably a checkbox or select which has [] appended to the name to allow for multi values via a php array
 			// reset error css styles
-			$("form" + formID + " label[for='F" + theField + "']").css("color", "");
-			$("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "");
+			$z("form" + formID + " label[for='F" + theField + "']").css("color", "");
+			$z("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "");
 				
-			if ( $("form" + formID + " input:checkbox[name='F" + theField + "[]']").length && $("form" + formID + " input:checkbox[name='F" + theField + "[]']:checked").val() === undefined ) {
-				fieldstofill += $("form" + formID + " #NAME" + theField).val() + ", ";
+			if ( $z("form" + formID + " input:checkbox[name='F" + theField + "[]']").length && $z("form" + formID + " input:checkbox[name='F" + theField + "[]']:checked").val() === undefined ) {
+				fieldstofill += $z("form" + formID + " #NAME" + theField).val() + ", ";
 				returncode = false;
-				$("form" + formID + " label[for='F" + theField + "']").css("color", "red");
-				$("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "1px 1px 0 #ffffff");
+				$z("form" + formID + " label[for='F" + theField + "']").css("color", "red");
+				$z("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "1px 1px 0 #ffffff");
 			}
 			
-			if ( $("form" + formID + " select[name='F" + theField + "[]']").length && !$("form" + formID + " select[name='F" + theField + "[]']").val() ) {
-				fieldstofill += $("form" + formID + " #NAME" + theField).val() + ", ";
+			if ( $z("form" + formID + " select[name='F" + theField + "[]']").length && !$z("form" + formID + " select[name='F" + theField + "[]']").val() ) {
+				fieldstofill += $z("form" + formID + " #NAME" + theField).val() + ", ";
 				returncode = false;
-				$("form" + formID + " label[for='F" + theField + "']").css("color", "red");
-				$("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "1px 1px 0 #ffffff");
+				$z("form" + formID + " label[for='F" + theField + "']").css("color", "red");
+				$z("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "1px 1px 0 #ffffff");
 			}
 		}
 		else{
 			// it's not checkbox but a textfield or radio
 			if ( (
-				  	$("form" + formID + " *[name='F" + theField +"']").attr('type') !== "radio" && 
-				  	$("form" + formID + " *[name='F" + theField +"']").val() === ""
+				  	$z("form" + formID + " *[name='F" + theField +"']").attr('type') !== "radio" && 
+				  	$z("form" + formID + " *[name='F" + theField +"']").val() === ""
 				 ) || 
 				 (
-					$("form" + formID + " *[name='F" + theField +"']").attr('type') == "email" && 
-					!isValidEmail( $("form" + formID + " *[name='F" + theField +"']").val() )
+					$z("form" + formID + " *[name='F" + theField +"']").attr('type') == "email" && 
+					!isValidEmail( $z("form" + formID + " *[name='F" + theField +"']").val() )
 				 ) ||
 				 ( 
-					$("form" + formID + " *[name='F" + theField +"']").attr('type') == "radio" && 
-					$("form" + formID + " input:radio[name='F" + theField + "']").filter(":checked").val() === undefined
+					$z("form" + formID + " *[name='F" + theField +"']").attr('type') == "radio" && 
+					$z("form" + formID + " input:radio[name='F" + theField + "']").filter(":checked").val() === undefined
 				 ) 
 				) {
 				
 				var focusableFieldTypes = ["text","number","email","tel","url","date","time","color","search"];
-				if ( focusableFieldTypes.indexOf($("form" + formID + " #F" + theField).attr('type')) !== -1 || $("form" + formID + " #F" + theField).is("textarea") ){
-					focusablefields.push($("form" + formID + " #F" + theField)); 
+				if ( focusableFieldTypes.indexOf($z("form" + formID + " #F" + theField).attr('type')) !== -1 || $z("form" + formID + " #F" + theField).is("textarea") ){
+					focusablefields.push($z("form" + formID + " #F" + theField)); 
 				}
-				if ( $("form" + formID + " #F" + theField).attr('type') == "email" && $("form" + formID + " *[name='F" + theField +"']").val() !== "" ){
-					fieldstofill += $("form" + formID + " #NAME" + theField).val() + " (" + invalidEmailMsg + "), ";
+				if ( $z("form" + formID + " #F" + theField).attr('type') == "email" && $z("form" + formID + " *[name='F" + theField +"']").val() !== "" ){
+					fieldstofill += $z("form" + formID + " #NAME" + theField).val() + " (" + invalidEmailMsg + "), ";
 				}
 				else{
-					fieldstofill += $("form" + formID + " #NAME" + theField).val() + ", ";
+					fieldstofill += $z("form" + formID + " #NAME" + theField).val() + ", ";
 				}
 				returncode = false;
 
-				$("form" + formID + " label[for='F" + theField + "']").css("color", "red");
-				$("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "1px 1px 0 #ffffff");
-				$("form" + formID + " #F" + theField).css("border", "1px solid red");
+				$z("form" + formID + " label[for='F" + theField + "']").css("color", "red");
+				$z("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "1px 1px 0 #ffffff");
+				$z("form" + formID + " #F" + theField).css("border", "1px solid red");
 			}
 			else{
 				// reset error css styles
-				$("form" + formID + " label[for='F" + theField + "']").css("color", "");
-				$("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "");
-				$("form" + formID + " #F" + theField).css("border", "");
+				$z("form" + formID + " label[for='F" + theField + "']").css("color", "");
+				$z("form" + formID + " label[for='F" + theField + "']").css("text-shadow", "");
+				$z("form" + formID + " #F" + theField).css("border", "");
 			}
 		}
 	}
 
 	// call ValidateField(339,1); -> "ValidateField(FormID,FieldINDEX);" for every required field AND for fields with input type="email" (regardless if required or not)
-	$("form" + formID + " .required, " + "form" + formID + " input[type=email]").each(function (){
-		var fieldName = $(this).attr("name");
+	$z("form" + formID + " .required, " + "form" + formID + " input[type=email]").each(function (){
+		var fieldName = $z(this).attr("name");
 		fieldName = fieldName.replace("F", "").replace("[]", "");
 		ValidateField(formID, fieldName);
 	});
 
 	// do captcha validation if captcha is included in form
-	if ( $("#recaptcha_challenge_field").length > 0 ){
-		$.ajaxSetup({
+	if ( $z("#recaptcha_challenge_field").length > 0 ){
+		$z.ajaxSetup({
 			error: function(jqXHR, exception) {
 				if (jqXHR.status === 0) {
 						alert('Not connected. Please verify your network.');
@@ -193,20 +216,21 @@ function zpValidateForm(formID, e)
 			async: false
 		});
 		
-		var action_url = $("form" + formID).attr("action");
-		$.post(action_url, { verifycaptcha: "yes", recaptcha_challenge_field: $("#recaptcha_challenge_field").val(), recaptcha_response_field: $("#recaptcha_response_field").val() },
+		var action_url = $z("form" + formID).attr("action");
+		$z.post(action_url, { verifycaptcha: "yes", recaptcha_challenge_field: $z("#recaptcha_challenge_field").val(), recaptcha_response_field: $z("#recaptcha_response_field").val() },
 			function(data) {				
 				if ( data !== "OK"){
+					console.log(data);
 					returncode = false;
-					fieldstofill += "Spam-Schutz, ";
-					$("form" + formID + " #recaptchalabel").css("color", "red");
-					$("form" + formID + " #recaptchalabel").css("text-shadow", "1px 1px 0 #ffffff");
-					$("form" + formID + " #recaptcha_widget_div").css("border", "1px solid red");
+					fieldstofill += $z("form" + formID + " #recaptchalabel").text() + ", ";
+					$z("form" + formID + " #recaptchalabel").css("color", "red");
+					$z("form" + formID + " #recaptchalabel").css("text-shadow", "1px 1px 0 #ffffff");
+					$z("form" + formID + " #recaptcha_table").attr("style", "border: 1px solid red !important");
 				}
 				else{
-					$("form" + formID + " #recaptchalabel").css("color", "");
-					$("form" + formID + " #recaptchalabel").css("text-shadow", "");
-					$("form" + formID + " #recaptcha_widget_div").css("border", "");
+					$z("form" + formID + " #recaptchalabel").css("color", "");
+					$z("form" + formID + " #recaptchalabel").css("text-shadow", "");
+					$z("form" + formID + " #recaptcha_table").removeAttr("style");
 				}
 			}
 		);
@@ -214,17 +238,17 @@ function zpValidateForm(formID, e)
 
 	fieldstofill = fieldstofill.substr(0, fieldstofill.length - 2); //delete last comma and blank
 	if (fieldstofill !== ""){
-		var alertPrefix = $("form"+ formID + " input[name='f_alertPrefix']").val();
+		var alertPrefix = $z("form"+ formID + " input[name='f_alertPrefix']").val();
 		if ( !alertPrefix ){
 			alertPrefix = "Bitte füllen Sie die rot markierten Felder aus:";
 		}
-		$("form"+ formID+ " .formvalidateerror").remove();
-		$("form"+ formID).prepend('<div class="formvalidateerror" style="color: #fff; background-color: red; padding: 6px 12px;"><p>' + alertPrefix + '<br/><strong>' + fieldstofill + '</strong></p></div>');
-		$('html, body').animate({
-			scrollTop: $("form"+ formID+ " .formvalidateerror").first().offset().top - parseInt($("body").css("padding-top"))
+		$z("form"+ formID+ " .formvalidateerror").remove();
+		$z("form"+ formID).prepend('<div class="formvalidateerror" style="color: #fff; background-color: red; padding: 6px 12px;"><p>' + alertPrefix + '<br/><strong>' + fieldstofill + '</strong></p></div>');
+		$z('html, body').animate({
+			scrollTop: $z("form"+ formID+ " .formvalidateerror").first().offset().top - parseInt($z("body").css("padding-top"))
 		}, 500);
 		
-		$(focusablefields[0]).focus();
+		$z(focusablefields[0]).focus();
 	}
 	
 	if ( !returncode ){

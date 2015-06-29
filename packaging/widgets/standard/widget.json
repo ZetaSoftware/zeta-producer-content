@@ -1,6 +1,7 @@
 ﻿{
     "settings": {
         "version": "12.5.0.0",
+        "minAppVersion": "12.5.0.0",
         "category": "textarticles",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,
@@ -242,6 +243,10 @@
         {
             "fileName": "bild-rechts-(text-umfliessend).html",
             "uiName": "Bild rechts, Text umfließend"
+        },
+        {
+            "fileName": "zentriert.html",
+            "uiName": "Zentriert"
         },
         {
             "fileName": "standard.html",

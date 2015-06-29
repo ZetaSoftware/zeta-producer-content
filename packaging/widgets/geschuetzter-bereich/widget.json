@@ -1,6 +1,7 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.1",
+        "version": "12.5.0.2",
+        "minAppVersion": "12.5.0.0",
         "category": "apps",
         "onlyForInlineEditing": false,
         "includeInRssFeed": false,

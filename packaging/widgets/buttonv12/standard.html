@@ -1,6 +1,21 @@
+<$
+	var cssClass = article.cssClass || "";
+	var inlineCss = article.inlineCss || "";
+	
+	if ( cssClass ) {
+		cssClass = "button " + cssClass;
+	}
+	else {
+		cssClass = "button";
+	}
+	
+	if ( inlineCss ) {
+		inlineCss = ' style="' + inlineCss + '"';
+	}
+$>
 <$= system.partial("article-begin.html") $>
 	<p style="text-align:<$= article.value('align') $>">
-		<a <$= system.partial("zplink-expanded.html") $> class="button">
+		<a <$= system.partial("zplink-expanded.html") $> class="<$= cssClass $>"<$= inlineCss $>>
 			<span><$= article.value('text') $></span>
 		</a>
 	</p>

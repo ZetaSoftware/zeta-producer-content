@@ -1,5 +1,7 @@
 {
     "settings": {
+        "version": "12.5.0.1",
+        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Standard",
             "Banner",
@@ -8,7 +10,6 @@
         "canentail": false,
         "category": "shop",
         "defaults": {
-            "_nameAlign": "left",
             "_nameLevel": "h2"
         },
         "dialogheightvalue": 510,
@@ -24,9 +25,13 @@
         "uiname": "Konfiguration / Warenkorb",
         "usedialogheight": true,
         "usedialogwidth": true,
-        "usercanresizedialog": false,
-        "version": "12.5.0.0"
+        "usercanresizedialog": false
     },
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "mcrypt", "mbstring" ],
+		"writePermissions": []
+	},
     "fields": [
         {
             "displayname": "Shopname",
@@ -286,7 +291,7 @@
                     "name": "(Anmerkung)",
                     "occupylabelspace": true,
                     "showlabel": false,
-                    "text": "<p>Informationen zur Konfiguration von PayPal<br />finden Sie im <a href=\"http://docs.zeta-producer.com/\">Handbuch</a>.</p>",
+                    "text": "<p>Informationen zur Konfiguration von PayPal<br />finden Sie im <a href=\"http://docs.zeta-producer.com/zahlung-per-paypal.html\">Handbuch</a>.</p>",
                     "treatheightaspixel": true,
                     "type": "infotext"
                 }
@@ -381,11 +386,11 @@
                     "label": "email_subject_shop",
                     "name": "email_subject_shop",
                     "type": "text-singleline",
-                    "userinfotext": "Der Betreff der E-Mail an den Shop-Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Der Betreff der E-Mail an den Shop-Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "validationexpression": "^((?!\"|').)*$",
                     "validationhelptext": "Das Feld \"Shop E-Mail Betreff\" darf nicht leer sein und weder \" noch ' enthalten.",
                     "width": 400,
-                    "defaultValue": "Neue Bestellung - [SHOPNAME]"
+                    "defaultValue": "Neue Bestellung [REFERENZNUMMER] - [SHOPNAME]"
                 },
                 {
                     "displayname": "E-Mail an Shop",
@@ -396,9 +401,9 @@
                     "treatassingleline": true,
                     "treatheightaspixel": true,
                     "type": "html-wysiwyg-editor",
-                    "userinfotext": "Die E-Mail an den Shop Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Die E-Mail an den Shop Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "width": 400,
-                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nNeue Bestellung vom [DATUM]\r\n</p>\r\n<p>\r\nKunde: [NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
+                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nNeue Bestellung [REFERENZNUMMER] vom [DATUM]\r\n</p>\r\n<p>\r\nKunde: [NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
                 },
                 {
                     "height": 5,
@@ -416,11 +421,11 @@
                     "label": "email_subject_customer",
                     "name": "email_subject_customer",
                     "type": "text-singleline",
-                    "userinfotext": "Der Betreff der E-Mail an Kunden.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Der Betreff der E-Mail an Kunden.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "validationexpression": "^((?!\"|').)*$",
                     "validationhelptext": "Das Feld \"Kunden E-Mail Betreff\" darf nicht leer sein und weder \" noch ' enthalten.",
                     "width": 400,
-                    "defaultValue": "Bestellbestätigung -  [SHOPNAME]"
+                    "defaultValue": "Bestellbestätigung [REFERENZNUMMER] - [SHOPNAME]"
                 },
                 {
                     "displayname": "E-Mail an Kunde",
@@ -431,9 +436,9 @@
                     "treatassingleline": true,
                     "treatheightaspixel": true,
                     "type": "html-wysiwyg-editor",
-                    "userinfotext": "Die E-Mail an den Kunden (Bestellbestätigung).\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Die E-Mail an den Kunden (Bestellbestätigung).\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "width": 400,
-                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nGuten Tag [NAME],\r\n</p>\r\n<p>\r\nIhre Bestellung vom [DATUM] ist bei uns eingegangen und wird umgehend bearbeitet.\r\n</p>\r\n<p>\r\n[NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
+                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nGuten Tag [NAME],\r\n</p>\r\n<p>\r\nIhre Bestellung [REFERENZNUMMER] vom [DATUM] ist bei uns eingegangen und wird umgehend bearbeitet.\r\n</p>\r\n<p>\r\n[NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
                 },
                 {
                     "height": 5,

@@ -1,6 +1,7 @@
-﻿{
+{
     "settings": {
-        "version": "12.5.0.0",
+        "version": "12.5.0.2",
+        "minAppVersion": "12.5.0.0",
         "visibilityKind": "Internal",
         "category": "favs",
         "onlyForInlineEditing": false,
@@ -40,7 +41,7 @@
     "assets": [
         { "fileName": "assets/flexslider-global.css",	"mode": "bundle", 		"order": 40 },
         { "fileName": "jquery.flexslider.js",			"mode": "bundle", 		"order": 500 },
-        { "fileName": "assets/*",		        		"mode": "copy"}
+        { "fileName": "assets/*",		        		"mode": "copy", "ignore": ["flexslider-global.css", "jquery.flexslider.js"]}
     ],
     "itemTemplates": [
         {

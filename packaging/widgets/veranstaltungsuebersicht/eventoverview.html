@@ -2,16 +2,19 @@
 var selectext = system.htmlEncode(article.value("selecttext"));
 var venuelabel = system.htmlEncode(article.value("venuelabel"));
 var genrelabel = system.htmlEncode(article.value("genrelabel"));
+
+var articleText = article.value("Text");
+if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
+	articleText = "<p>" + articleText + "</p>";
+}
  $>
 
 <$= system.partial("article-begin.html") $>
 	<div id="ec<$= article.id $>" class="eventCalendar" <$ if ( article.value("max_width") !== "" ) { $>style="max-width: <$= article.value("max_width") $>;" <$ } $>data-hide_passed="<$= article.value("hide_passed") $>" data-showfilter="<$= article.value("show_filter") $>" data-rowcolor="<$= article.value("tablerowcolor") $>" data-rowspace="<$= article.value("tablespacing") $>" data-selall="<$= selectext $>" data-venuelabel="<$= venuelabel $>" data-genrelabel="<$= genrelabel $>" data-filterbackgroundcolor="<$= article.value("filterbackgroundcolor") $>">
 
 		<$= system.partial("article-headline.html") $>
+		<$= articleText $>
 		
-		<$ if ( article.value("Text") !== "" ) { $>
-			<p><$= article.value("Text") $></p>
-		<$ } $>
 		
 		<!--Filter: <$= article.value("Filter") $>
 		Sort: <$= article.value("sort") $>-->
@@ -86,13 +89,13 @@ var genrelabel = system.htmlEncode(article.value("genrelabel"));
 					<$ } else { $><$= sd $><$ if ( !isNull(start) ) { $>, <$= start $> Uhr<$ } $> bis <br /><$= ed $><$ if ( !isNull(endt) ) { $>, <$= endt $> Uhr<$ } $><$ } $>
 				</div>
 				<div class="eventinfo">
-					<$ if ( !isNull(image) ) { $>
-						<a class="title" href="<$= a.Url $>"><img src="<$= image.contentCopyPath $>" width="140" alt="<$= image.Description $>" style="float: right; width: 140px; margin-left: 15px; border: 1px solid white;" /></a>
-					<$ } $>
-
 					<p>
 						<a class="title" href="<$= a.Url $>"><$= name $></a>
 					</p>
+					
+					<$ if ( !isNull(image) ) { $>
+						<a class="title" href="<$= a.Url $>"><img src="<$= image.contentCopyPath $>" width="140" alt="<$= image.Description $>" /></a>
+					<$ } $>
 
 					<$ if ( !isNull(shortdescription) ) { $>
 						<$ if ( shortdescription.indexOf("<p>") == 0 ) {$>
