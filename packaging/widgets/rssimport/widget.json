@@ -1,6 +1,6 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
+        "version": "12.5.0.1",
         "minAppVersion": "12.5.0.0",
         "category": "info",
         "defaultitemtemplate": "dynamic",

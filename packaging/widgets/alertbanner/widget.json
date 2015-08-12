@@ -1,6 +1,6 @@
 ﻿{
     "settings": {
-        "version": "12.5.6.0",
+        "version": "12.5.6.2",
         "minappversion": "12.5.6.0",
         "category": "textarticles",
         "dialogheightvalue": 220,
@@ -12,6 +12,7 @@
         "showheadline": false,
         "showheadlinelabel": false,
         "uiname": "Info-Banner",
+        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
         "usedialogheight": true,
         "usedialogwidth": true
     },
@@ -78,7 +79,7 @@
                     "includeinsearchindex": false,
                     "name": "cookieid",
                     "type": "text-singleline",
-                    "userinfotext": "Diese ID wird im Cookie gespeichert, so dass  die \"Nach dem Schließen nicht erneut anzeigen\"-Einstellung auch für mehrere Info-Banner gleichzeitig (alle, die die selbe Cookie-ID haben) gelten kann.",
+                    "userinfotext": "Diese ID wird im Cookie gespeichert, damit die \"Nach dem Schließen nicht erneut anzeigen\"-Einstellung auch für mehrere Info-Banner gleichzeitig (alle mit der selben Cookie-ID) gelten kann.",
                     "width": 80,
                     "defaultValue": "1"
                 }

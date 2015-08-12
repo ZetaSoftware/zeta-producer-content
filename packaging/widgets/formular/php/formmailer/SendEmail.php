@@ -4,7 +4,7 @@
  *
  * Zeta Producer Form-Mailer
  * 
- * $Id: SendEmail.php 30427 2015-04-21 14:49:33Z sseiz $
+ * $Id: SendEmail.php 31609 2015-07-25 11:48:51Z ukeim $
  */
 
 require_once('debug.inc.php');
@@ -466,7 +466,7 @@ function DoSendEmail(
 	        		 (stripos($name, "email") !== false ||
 					 stripos($name, "e-mail") !== false ))
 				{
-					if ( !empty($value) ) {
+					if ( !empty($value) && isValidEmail($value) ) {
 						$senderEmail = $value;
 					}
 					$searchSenderEmail = false;

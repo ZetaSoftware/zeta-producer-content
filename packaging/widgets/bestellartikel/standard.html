@@ -20,7 +20,7 @@ if ( isNull(basketArticle) ) {
 }
 else {
 	var shopCurrency = basketArticle.value("Currency", "");
-	var shopPostage =  basketArticle.value("shippingCosts", "");
+	var shopPostage =  basketArticle.valueRaw("shippingCosts", "");
 	var pricename = system.htmlEncode(basketArticle.value("price_name", "Preise"));
 	var pricelabel = system.htmlEncode(basketArticle.value("label_price", "inkl. USt. zzgl. Versandkosten ([VERSANDKOSTEN])"));
 	pricelabel = pricelabel.replace(/\[VERSANDKOSTEN\]/g, shopPostage + " " + shopCurrency);

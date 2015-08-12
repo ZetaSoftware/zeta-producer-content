@@ -73,7 +73,12 @@ zp.EventCalendar = function (){
 				// set now to the current Date without any time, so we can easily compare dates
 				var now = new Date().setHours(0,0,0,0);
 				$z(ecal.root + " .eventOverview div.event").each(function() {
-					var tmp = $z(this).data("evdate").split(".");
+					if ( $z(this).data("evenddate").length ){
+						var tmp = $z(this).data("evenddate").split(".");
+					}
+					else{
+						var tmp = $z(this).data("evdate").split(".");
+					}
 					var tmpdate = new Date(tmp[2], tmp[1]-1, tmp[0]); // WTF: JS counts months from 0-11!!!
 					// if user pref is set to hide passed events, hide anything < today
 					if (tmpdate < now){

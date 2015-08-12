@@ -213,6 +213,7 @@ div.zpTABs.small > div {
   }
   div.zpTABs > ul.zpTABs > li.acc.active {
     display: block;
+    border-top-width: 0;
   }
   div.zpTABs > div {
     display: none !important;

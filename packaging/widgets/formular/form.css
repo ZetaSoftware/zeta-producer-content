@@ -4,8 +4,13 @@
 }
 
 /***** FORM GLOBAL DEFAULTS *****/
+form.zp-form{
+	max-width: 100%;
+}
+
 .zp-form .asfield{display: none;}
 .zp-form input.typetext, .zp-form input[type="text"], .zp-form input[type="number"], .zp-form input[type="email"], .zp-form input[type="tel"], .zp-form input[type="url"], .zp-form input[type="date"], .zp-form input[type="time"], .zp-form input[type="color"], .zp-form input[type="search"], .zp-form textarea{
+	box-sizing: border-box;
 	font-family: inherit;
 	font-size: inherit;
 	color: #333333;
@@ -28,6 +33,11 @@
 	color: rgba(0,0,0,0.4);
 }
 .zp-form :-ms-input-placeholder{
+	opacity:  1;
+	color: rgba(0,0,0,0.4);
+}
+/* fix a specificity issue with IE 11(-) which would otherwise apply the text-color fromthe rule in line 8 */
+.zp-form input:-ms-input-placeholder{ 
 	opacity:  1;
 	color: rgba(0,0,0,0.4);
 }

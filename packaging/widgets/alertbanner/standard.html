@@ -12,10 +12,10 @@
 	}
 	
 	// get Widget Settings
-	var alertText = article.value("text", "").toString();
+	var alertText = article.valueExpanded("text", "").toString();
 	// sanitize User-Input
-	alertText = alertText.toString().replace(/\n|\r/g, "");
-	alertText = alertText.toString().replace(/\'/g, "\\'");
+	alertText = alertText.replace(/\n|\r/g, "");
+	alertText = alertText.replace(/\'/g, "\\'");
 	
 	var textColor = article.value("textColor", "#ffffff");
 	var backgroundColor = article.value("backgroundColor", "rgba(36, 163, 23, 0.9)");
@@ -51,7 +51,10 @@ $>
 			$z("#alertbanner<$= article.id $> a#close").click(function(e){
 				$z("#alertbanner<$= article.id $>").addClass("off");
 				if ( hideAfterClose ){
-					document.cookie = 'hidealertbanner<$= cookieId $>=1;path=/';
+					var date = new Date();
+					date.setTime(date.getTime()+(365*24*60*60*1000)); // expire 365 days from today
+					var expires = ";expires="+date.toGMTString();
+					document.cookie = 'hidealertbanner<$= cookieId $>=1' + expires + '; path=/';
 				}
 				e.preventDefault();
 			});

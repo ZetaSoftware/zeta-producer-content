@@ -60,6 +60,10 @@
 			$loopCount = $loopCount + 1;
 
 			$link = $item['link'];
+			// To avoid warnings, set default timezone if none has been set in php.ini
+			if ( !ini_get('date.timezone') ) {
+				date_default_timezone_set('Europe/Berlin');
+			}
 			$date = strtotime($item['pubdate']);
 			$title = $item['title'];
 			$body = getBody($item);
