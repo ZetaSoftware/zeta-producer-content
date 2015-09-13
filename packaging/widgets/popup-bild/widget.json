@@ -21,6 +21,7 @@
         "userCanResizeDialog": "true",
         "showHeadlineLabel": false,
         "headlineRequired": false,
+        "showcssinputfields": true,
         "showHeadline": true,
         "removeLineAfter": false,
         "orderPosition": 4,

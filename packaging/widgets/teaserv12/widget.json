@@ -22,6 +22,7 @@
             "_nameLevel": "h2"
         },
         "userCanResizeDialog": "true",
+        "showcssinputfields": true,
         "showHeadlineLabel": false,
         "headlineRequired": false,
         "showHeadline": true,

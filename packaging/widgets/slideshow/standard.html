@@ -1,0 +1,73 @@
+<$= system.partial("article-begin.html", "zp13slides") $>
+	<div class="zp13slides-container">
+		<ul class="slides">
+		<$
+		var numHeaders = article.value("header-count");
+
+		for ( var i = 1; i <= numHeaders; ++i ) {
+			var headerTitle = article.value("header-title-" + i, "");
+			var headerDescription = article.value("header-description-" + i, "");
+
+			var headerImage = article.value("header-image-" + i);
+			var image = project.getImage(headerImage);
+			$>
+		
+			<li>
+				<$ if ( image ) { $>
+					<img src="<$= image.workingCopyPath $>" alt="<$= system.removeHtmlTags(image.description) $>" />
+				<$ } $>
+				<$ if ( headerTitle || headerDescription ) { $>
+					<div class="flex-caption">
+						<$ if ( headerTitle ) { $>
+							<$= system.partial("header-headline.html", i) $>
+						<$ } $>
+						<$= headerDescription $>
+					</div>
+				<$ } $>
+			</li>
+
+		<$ } $>
+
+	</ul>
+  </div>
+<$= system.partial("article-end.html") $>
+
+<$
+	var nextText = system.htmlEncode(page.attribute("header_next_text")) || "weiter";
+	var prevText = system.htmlEncode(page.attribute("header_prev_text")) || "zurück";
+	var inlineEditingInitDelay = 50;
+	var useSmoothHeight = "#val(smootHeight)" === "false" ? "false" : "true";
+	if ( useSmoothHeight === "true" ){
+		inlineEditingInitDelay = 1000;
+	}
+$>
+
+<$ if ( numHeaders > 0 ) { $>
+	<script type="text/javascript">
+		$z(document).ready(function() {
+			// init flexslider after 1st image has loaded, so have dimensions as quickly as possible without having to wait too long on window loaded or such and can start right with doc ready
+			$z('#a<$= article.id $> .zp13slides-container ul.slides li img').first().one("load", function(){
+				$z('#a<$= article.id $>  .zp13slides-container').flexslider({
+					useCSS: true,
+					touch: true,
+					itemMargin: 20,
+					animation: 'fade',
+					controlsContainer: '#a<$= article.id $>.flexslider',
+					slideshow: <$= article.value("autoplay") $>,
+					slideshowSpeed: <$= article.value("duration", "5000") $>,
+					<$ if ( "#val(header-navicons)" ) { $>directionNav: #val(header-navicons),<$ } $>
+					<$ if ( "#val(header-pagination)" ) { $>controlNav: #val(header-pagination),<$ } $>
+					<$ if ( "#val(header-randomize)" ) { $>randomize: #val(header-randomize),<$ } $>
+					<$ if ( system.preview ){ $>start: function(){ setTimeout(zpieInit,<$= inlineEditingInitDelay $>); },<$ } $>
+					pauseOnHover: true,
+					smoothHeight: <$= useSmoothHeight $>,
+					prevText: "<$= prevText $>",
+					nextText: "<$= nextText $>"
+				});
+
+			}).each(function() {
+				if(this.complete) $z(this).load();
+			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
+		});
+  	</script>
+<$ } $>

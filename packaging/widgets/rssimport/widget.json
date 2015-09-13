@@ -10,6 +10,7 @@
         "maincategory": "services",
         "orderposition": 1,
         "removelineafter": false,
+        "showcssinputfields": true,
         "showheadline": false,
         "uiname": "RSS-Feed",
         "allowedAreas": ["Banner", "Standard", "News", "Footer"],

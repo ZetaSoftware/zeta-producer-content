@@ -36,6 +36,7 @@
             ]
         },
         "userCanResizeDialog": "false",
+        "showcssinputfields": true,
         "showHeadlineLabel": true,
         "headlineRequired": false,
         "showHeadline": true,

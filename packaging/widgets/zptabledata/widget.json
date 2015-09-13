@@ -16,7 +16,7 @@
         "maincategory": "text",
         "orderposition": 2,
         "removelineafter": false,
-        "showcssinputfields": false,
+        "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Tabellarische Daten",
         "usedialogwidth": true

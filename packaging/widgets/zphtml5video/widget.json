@@ -14,7 +14,7 @@
         "maincategory": "text",
         "orderposition": 7,
         "removelineafter": false,
-        "showcssinputfields": false,
+        "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Video-Player",
         "usedialogheight": true,

@@ -25,6 +25,7 @@
         "headlineRequired": false,
         "showHeadline": true,
         "removeLineAfter": false,
+        "showcssinputfields": true,
         "orderPosition": 2,
         "requiredFeature": "None",
         "dontCachePageItem": false,

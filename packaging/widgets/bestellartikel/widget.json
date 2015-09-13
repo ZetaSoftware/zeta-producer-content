@@ -25,6 +25,7 @@
         "headlineRequired": false,
         "showHeadline": true,
         "removeLineAfter": false,
+        "showcssinputfields": true,
         "orderPosition": 1,
         "requiredFeature": "HasOnlineshop",
         "dontCachePageItem": false,

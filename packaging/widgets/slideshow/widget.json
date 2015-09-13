@@ -1,0 +1,43 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "favs",
+        "editortype": "pageHeader",
+        "maincategory": "text",
+        "minappversion": "13.0.0.0",
+        "orderposition": 4,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "uiname": "SlideshowZP13",
+        "version": "12.5.0.3"
+    },
+    "assets": [
+        {
+            "fileName": "assets/slideshow-global.css",
+            "mode": "Bundle",
+            "order": 60
+        },
+        {
+            "fileName": "jquery.flexslider.js",
+            "mode": "Bundle"
+        },
+        {
+            "fileName": "assets/*",
+            "mode": "Copy",
+            "ignores": [
+                "slideshow-global.css",
+                "jquery.flexslider.js"
+            ]
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

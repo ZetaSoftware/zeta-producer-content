@@ -14,7 +14,7 @@
         "maincategory": "text",
         "orderposition": 6,
         "removelineafter": false,
-        "showCssInputFields": false,
+        "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Audio-Player",
         "usedialogheight": true,

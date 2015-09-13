@@ -8,7 +8,7 @@
         "includeinsearchindex": false,
         "maincategory": "structure",
         "orderposition": 2,
-        "showcssinputfields": false,
+        "showcssinputfields": true,
         "showheadline": false,
         "showheadlinelabel": false,
         "uiname": "Info-Banner",

@@ -20,7 +20,7 @@
         "orderposition": 2,
         "removelineafter": false,
         "requiredfeature": "HasOnlineshop",
-        "showcssinputfields": false,
+        "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Konfiguration / Warenkorb",
         "usedialogheight": true,

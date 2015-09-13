@@ -19,6 +19,7 @@
         "useDialogHeight": true,
         "defaults": {},
         "userCanResizeDialog": "false",
+        "showcssinputfields": true,
         "showHeadlineLabel": true,
         "headlineRequired": false,
         "showHeadline": false,

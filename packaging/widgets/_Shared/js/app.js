@@ -119,6 +119,21 @@ $z(document).ready(function () {
 			$z("body").addClass("notouch");
 			$z(".clickhovermenu li:has(li) > a").each(hoverToClickMenu);
 		}
+		
+		// TODO ZP 13 Grid: move to inline-editing when done testing
+		// Grid
+			var grid = '<div id="grid"><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div></div>';
+			//var gridswitch = '<div id="gridswitch" style="height: 22px; -webkit-transform: rotate(90deg)  translatey(-100%) translatex(-50%); transform: rotate(90deg) translatey(-100%) translatex(-50%); font-family: helvetica; font-size: 13px; background-color: rgba(0,0,0,0.6); color: #ffffff; padding: 4px 10px; position: fixed; z-index: 9998; bottom: 0; right: 0;"><a style="color: #ffffff; text-decoration: none;" href="#">Grid An/Aus</a></div>';
+			var gridswitch = '<div id="gridswitch" style="height: 22px; font-family: helvetica; font-size: 13px; background-color: rgba(0,0,0,0.6); color: #ffffff; padding: 4px 10px; position: fixed; z-index: 9998; bottom: 0; right: 0; "><a style="color: #ffffff; text-decoration: none;" href="#">Grid An/Aus</a></div>';
+			$z(".zpgrid #grid").remove();
+			$z(".zpgrid").prepend(grid);
+			$z("#gridswitch").remove();
+			$z("body").append(gridswitch);
+			$z("#gridswitch > a").click(function(e){
+				e.preventDefault();
+				$z(".zpgrid #grid").toggle();
+				return false;
+			});
 });
 
 // define zp Namespace for later use in individual widgets
