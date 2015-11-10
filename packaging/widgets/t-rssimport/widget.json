@@ -1,0 +1,199 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "all",
+        "defaultitemtemplate": "dynamic",
+        "dialogheightvalue": 360,
+        "dialogwidthvalue": 460,
+        "includeinsearchindex": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "showheadline": false,
+        "uiname": "t-RSS-Feed",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.1"
+    },
+    "fields": [
+        {
+            "canenterlinktarget": false,
+            "canselectfileassets": false,
+            "canselectgenericurl": true,
+            "canselectimageassets": false,
+            "canselectlinkassets": false,
+            "canselectnourl": true,
+            "canselectpageitems": false,
+            "canselectpages": false,
+            "displayname": "RSS-Feed",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "RSS-Feed",
+            "name": "url",
+            "type": "url-selection",
+            "defaultValue": "http://xkcd.com/rss.xml"
+        },
+        {
+            "height": 140,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(HTML-Anmerkung)",
+            "name": "(Anmerkung)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "<p>Mit diesem Widget können Sie die in einem RSS-Feed enthaltenen Artikel auf Ihrer Seite anzeigen.</p>\r\n<p>Hinweis: <a href=\"http://de.wikipedia.org/wiki/RSS\">RSS (Really Simple Syndication)</a> ist ein elektronisches Nachrichtenformat.</p>",
+            "treatheightaspixel": true,
+            "type": "infotext"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Optionen",
+            "name": "Optionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 170,
+            "popupheightinpixel": 105,
+            "popupwidthinpixel": 360,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "canedit": false,
+                    "displayname": "Titel/Überschriften-Größe",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "titlesize",
+                    "name": "titlesize",
+                    "type": "list",
+                    "width": 120,
+                    "values": [
+                        {
+                            "H1 (groß)": "h1"
+                        },
+                        {
+                            "H2 (normal)": "h2"
+                        },
+                        {
+                            "H3 (klein)": "h3"
+                        },
+                        {
+                            "P (Absatz)": "p"
+                        }
+                    ],
+                    "defaultValue": "h2"
+                },
+                {
+                    "displayname": "Maximal angezeigte Artikel",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "maxarticles",
+                    "maximumvalue": 100,
+                    "minimumvalue": 0,
+                    "name": "maxarticles",
+                    "type": "text-singleline-updown",
+                    "userinfotext": "Bei 0 werden alle im Feed vorhandenen Artikel angezeigt.",
+                    "width": 80,
+                    "defaultValue": "0"
+                },
+                {
+                    "displayname": "Darstellung",
+                    "name": "Darstellung",
+                    "type": "itemtemplate-selection",
+                    "defaultValue": "dynamic"
+                }
+            ]
+        },
+        {
+            "name": "Erweiterte Optionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 170,
+            "popupheightinpixel": 215,
+            "popupwidthinpixel": 260,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Titel/Überschriften anzeigen",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "showTitle",
+                    "name": "showTitle",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "True"
+                },
+                {
+                    "displayname": "Titel/Überschriften verlinken",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "linkTitle",
+                    "name": "linkTitle",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "True"
+                },
+                {
+                    "displayname": "Datum anzeigen",
+                    "name": "showdate",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "False"
+                },
+                {
+                    "displayname": "Artikel-Inhalte anzeigen",
+                    "includeinsearchindex": false,
+                    "name": "showcontent",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "True"
+                },
+                {
+                    "displayname": "Vollen Artikel-Inhalt",
+                    "name": "showcontentfullhtml",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "userinfotext": "Wenn deaktiviert, wird nur der Text angezeigt, keine Bilder und Formatierungen",
+                    "defaultValue": "True"
+                },
+                {
+                    "displayname": "Inhalt-Ausschnitt-Länge",
+                    "maximumvalue": 10000,
+                    "name": "contentexcerptlength",
+                    "type": "text-singleline-updown",
+                    "userinfotext": "\"0\" für gesamten Inhalt (sofern verfügbar)",
+                    "width": 80
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "rssimport.css",
+            "mode": "Bundle",
+            "order": 40
+        },
+        {
+            "fileName": "php/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "dynamic.php",
+            "uiName": "Automatisch aktualisiert"
+        },
+        {
+            "fileName": "standard.html",
+            "uiName": "Statischer RSS-Import"
+        }
+    ]
+}

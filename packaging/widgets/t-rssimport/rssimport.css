@@ -1,0 +1,16 @@
+.zp-rss-import-article {
+	margin-bottom: 2em;
+}
+
+.zp-rss-import-headline a{
+	color: inherit;
+}
+
+.zp-rss-import-date {
+	margin-bottom: 1em;
+	font-size: 0.8em;
+	color: gray;
+}
+
+.zp-rss-import-body {
+}

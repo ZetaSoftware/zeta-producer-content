@@ -1,0 +1,124 @@
+<$
+	var articleAlign = article.value('align');
+	var showDropdown = article.value("showDropdown");
+	var cssClass = article.cssClass || "";
+	var inlineCss = article.inlineCss || "";
+	
+	if ( cssClass ) {
+		cssClass += " " + cssClass;
+	}
+	if ( article.value('mobileonly') ){
+		cssClass += " mobileonly";
+	}
+$>
+<$= system.partial("article-begin.html", "zpnavcontainer") $>
+	<style scoped>
+		#zpnavmenu<$= article.id $>{
+			text-align: <$= articleAlign $>;
+		<$ if ( articleAlign !== "center" ) { $>
+			float: <$= articleAlign $>;
+		 <$ } else { $>
+			float: none;
+		}
+		#zpnavmenu<$= article.id $> > ul,
+		#zpnavmenu<$= article.id $> > ul.on{
+			display: inline-block;
+		 <$ } $>
+		}
+		<$ if ( articleAlign !== "center" ) { $>
+		<$ } $>
+		#zpnavmenu<$= article.id $> a.mobilenavtoggle{
+			font-family: <$= article.value('fontFamilyLevel1') $>;
+			font-size: <$= article.value('fontSizeLevel1') $>;
+			color: <$= article.value('textcolor1Inactive') $>;
+			background-color: <$= article.value('bgcolor1Inactive') $>;
+			border-color: <$= article.value('textcolor1Inactive') $>;
+			float: right;
+			clear: both;
+			margin-bottom: 10px;
+		}
+		#zpnavmenu<$= article.id $> > ul > li > a{
+			border-radius: <$= article.value('borderRadius') $>px;
+		}
+		#zpnavmenu<$= article.id $> ul > li > ul{
+			padding: <$= article.value('borderRadius') $>px 0;
+			border-radius: <$= article.value('borderRadius') $>px;
+			background-color: <$= article.value('bgcolor2Inactive') $>;
+			
+		}
+		#zpnavmenu<$= article.id $> ul ul ul{
+			top: -<$= article.value('borderRadius') $>px;
+		}
+		#zpnavmenu<$= article.id $> ul > li > ul:before{
+			border-bottom: 7px solid <$= article.value('bgcolor2Inactive') $>;
+		}
+
+		#zpnavmenu<$= article.id $> > ul > li > a{
+			font-family: <$= article.value('fontFamilyLevel1') $>;
+			font-size: <$= article.value('fontSizeLevel1') $>;
+			font-weight: <$= article.value('fontweight1Inactive') $>;
+			text-decoration: <$= article.value('textDecoration1Inactive') $>;
+			color: <$= article.value('textcolor1Inactive') $>;
+			background-color: <$= article.value('bgcolor1Inactive') $>;
+		}
+		#zpnavmenu<$= article.id $> ul > li > a:hover, #zpnavmenu<$= article.id $> ul > li > a.active{
+			font-weight: <$= article.value('fontweight1Active') $>;
+			text-decoration: <$= article.value('textDecoration1Active') $>;
+			color: <$= article.value('textcolor1Active') $>;
+			background-color: <$= article.value('bgcolor1Active') $>;
+		}
+		<$ if ( article.value('bgcolor1Active') == "transparent"  ) { $>
+		#zpnavmenu<$= article.id $> ul.zpnavmainmenu ul {
+			left: 15px;
+		}
+		<$ } $>
+		#zpnavmenu<$= article.id $> ul ul > li > a{
+			font-family: <$= article.value('fontFamilyLevel2') $>;
+			font-size: <$= article.value('fontSizeLevel2') $>;
+			font-weight: <$= article.value('fontweight2Inactive') $>;
+			text-decoration: <$= article.value('textDecoration2Inactive') $>;
+			color: <$= article.value('textcolor2Inactive') $>;
+			
+		}
+		#zpnavmenu<$= article.id $> ul ul > li > a:hover, #zpnavmenu<$= article.id $> ul ul > li > a.active{
+			font-weight: <$= article.value('fontweight2Active') $>;
+			text-decoration: <$= article.value('textDecoration2Active') $>;
+			color: <$= article.value('textcolor2Active') $>;
+			background-color: <$= article.value('bgcolor2Active') $>;
+		}
+		@media (max-width: 768px) { 
+			#zpnavmenu<$= article.id $> > ul{
+				float: none;
+				clear: both;
+				width: 100%;
+				background-color: <$= article.value('bgcolor2Inactive') $>;
+				text-align: left;
+			}
+			#zpnavmenu<$= article.id $> ul > li > a{
+				color: <$= article.value('textcolor2Inactive') $>;
+				background-color: <$= article.value('bgcolor2Inactive') $>;
+			}
+			#zpnavmenu<$= article.id $> ul > li > a.active{
+				color: <$= article.value('textcolor2Active') $>;
+				background-color: <$= article.value('bgcolor2Active') $>;
+			}
+		}
+	</style>
+	<div id="zpnavmenu<$= article.id $>" class="zpnavmenu<$=cssClass$>" style="<$=inlineCss$>">
+		
+		<a style="text-align: <$= articleAlign $>;" href="#" id="mobilenavtoggle<$= article.id $>" class="mobilenavtoggle tabletonly" aria-label="#attribute(mobile_menu_button_aria)">#attribute(mobile_menu_title)</a>
+		<$ if ( showDropdown ){ $>
+			<$= system.partial("mainmenu.html", { "ulClass":"zpnavmainmenu touchhovermenu", "activeClass":"active", "openClass":"open","submeuUlClass":"zpnavdropdown-menu", "submenuLiClass":"zpnavdropdown" }) $>
+		<$ } else { $>
+			<$= system.partial("mainmenu.html", { "ulClass":"zpnavmainmenu ", "activeClass":"active", "openClass":"open","submeuUlClass":"zpnavdropdown-menu", "submenuLiClass":"zpnavdropdown" }) $>
+		<$ } $>
+	</div>
+	<script>
+		$z("#mobilenavtoggle<$= article.id $>").click(function(e){
+			e.preventDefault();
+			$("#zpnavmenu<$= article.id $> ul.zpnavmainmenu").slideToggle(300, function (){
+				$(this).toggleClass("on");
+			});
+		});
+	</script>
+<$= system.partial("article-end.html") $>

@@ -1,5 +1,15 @@
+<$
+	var cssClass = article.cssClass || "";
+	if ( cssClass ){
+		cssClass = " " + cssClass;
+	}
+	var inlineCss = article.inlineCss || "";
+	if ( inlineCss ){
+		inlineCss = ' style="' + inlineCss + '"';
+	}
+$>
 <a id="a<$= article.id $>"></a>
-<div id="headerslider" class="flexslider" <$= system.partial("inline-editing-header.html") $>>
+<div id="headerslider" class="flexslider<$= cssClass $>"<$= inlineCss $> <$= system.partial("inline-editing-header.html") $>>
 	<div class="flex-container">
 		<ul class="slides">
 		<$
@@ -51,6 +61,7 @@ $>
 				$z('#headerslider .flex-container').flexslider({
 					useCSS: true,
 					touch: true,
+					keyboard: true,
 					itemMargin: 20,
 					animation: '<$= article.value("effect", "fade") $>',
 					controlsContainer: '#headerslider.flexslider',

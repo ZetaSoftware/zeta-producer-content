@@ -1,0 +1,226 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Standard",
+            "Banner",
+            "Footer"
+        ],
+        "category": "all",
+        "defaults": {
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 520,
+        "headlinerequired": true,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Veranstaltung",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.1"
+    },
+    "fields": [
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Datum Start",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "Datum",
+            "name": "date_start",
+            "type": "datetime",
+            "validationexpression": "^\\d\\d\\.\\d\\d\\.[1-9]\\d\\d\\d",
+            "validationhelptext": "Bitte geben Sie ein Datum im Format TT.MM.JJJJ ein.",
+            "width": 110
+        },
+        {
+            "displayname": "Uhrzeit Start",
+            "ignoreforsimilarcomparison": false,
+            "label": "Start Uhrzeit",
+            "name": "start",
+            "type": "text-singleline",
+            "width": 110
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Datum Ende",
+            "ignoreforsimilarcomparison": false,
+            "label": "date_end",
+            "name": "date_end",
+            "type": "datetime",
+            "validationexpression": "(^\\d\\d\\.\\d\\d\\.\\d\\d\\d\\d|^$)",
+            "validationhelptext": "Lassen Sie dieses Feld leer oder geben Sie ein Datum im Format TT.MM.JJJJ ein.",
+            "width": 110
+        },
+        {
+            "displayname": "Uhrzeit Ende",
+            "ignoreforsimilarcomparison": false,
+            "label": "Ende Uhrzeit",
+            "name": "end",
+            "type": "text-singleline",
+            "width": 110
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Ort",
+            "ignoreforsimilarcomparison": false,
+            "label": "venue",
+            "name": "venue",
+            "type": "text-singleline",
+            "width": 200
+        },
+        {
+            "canenterlinktarget": true,
+            "canselectfileassets": true,
+            "canselectgenericurl": true,
+            "canselectimageassets": true,
+            "canselectlinkassets": false,
+            "canselectnourl": true,
+            "canselectpageitems": true,
+            "canselectpages": true,
+            "displayname": "Link zu Ort",
+            "ignoreforsimilarcomparison": false,
+            "label": "venuelink",
+            "name": "venuelink",
+            "type": "url-selection",
+            "width": 200
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Art / Genre",
+            "ignoreforsimilarcomparison": false,
+            "label": "Genre",
+            "name": "genre",
+            "type": "text-singleline",
+            "userinfotext": "Zum Beispiel: Pop, Rock, Theater oder Konzert.",
+            "width": 110
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Bild",
+            "name": "Bild",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 200,
+            "popupheightinpixel": 70,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Bild",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "image",
+                    "name": "image",
+                    "type": "image-selection",
+                    "width": 400
+                },
+                {
+                    "displayname": "Bildunterschrift",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "caption",
+                    "name": "caption",
+                    "type": "text-singleline",
+                    "width": 400
+                }
+            ]
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Beschreibung",
+            "name": "Beschreibung",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 200,
+            "popupheightinpixel": 320,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Kurzbeschreibung",
+                    "height": 4,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "fgfg",
+                    "name": "shortdescription",
+                    "treatassingleline": true,
+                    "type": "html-wysiwyg-editor",
+                    "userinfotext": "Die Kurzbeschreibung wird in der Veranstaltungsübersicht angezeigt.",
+                    "width": 400
+                },
+                {
+                    "displayname": "Beschreibung",
+                    "height": 6,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "description",
+                    "name": "description",
+                    "treatassingleline": true,
+                    "type": "html-wysiwyg-editor",
+                    "userinfotext": "Geben Sie hier eine Beschreibung der Veranstaltung ein.",
+                    "width": 400
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "event.css",
+            "mode": "Bundle",
+            "order": 40
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "veranstaltung.html"
+        }
+    ]
+}

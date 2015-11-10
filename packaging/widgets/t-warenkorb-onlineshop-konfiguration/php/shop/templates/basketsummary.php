@@ -1,0 +1,1 @@
+<a href="<?php echo $this->_['conf_basketUrl']; ?>"><?php echo $this->_['conf_label_basket']; ?>:  <?php echo $this->_['articlecount']; ?> <?php echo $this->_['conf_label_product']; ?> (<?php echo $this->_['total']; ?>)</a>

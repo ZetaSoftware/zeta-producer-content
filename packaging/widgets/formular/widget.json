@@ -1,23 +1,12 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.8",
-        "minAppVersion": "12.5.0.0",
-        "category": "more",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "editorType": "htmlForm",
-        "mainCategory": "text",
-        "uiName": "Formular",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 190,
-        "useDialogHeight": true,
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "misc",
         "defaults": {
             "success_page_url": "oid://page/de$nachricht-erfolgreich-gesendet",
             "error_page_url": "oid://page/de$nachricht-konnte-nicht-versendet-werden",
@@ -62,26 +51,35 @@
                 }
             ]
         },
-        "userCanResizeDialog": false,
+        "dialogheightvalue": 190,
+        "editortype": "htmlForm",
+        "maincategory": "applications",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": false,
-        "headlineRequired": false,
-        "showHeadline": true,
-        "removeLineAfter": false,
-        "orderPosition": 1,
-        "requiredFeature": "None"
+        "showheadlinelabel": false,
+        "uiname": "Formular",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.8"
     },
-    "php": {
-		"minimumVersion": "5.3",
-		"extensions": [ "mcrypt", "mbstring" ],
-		"writePermissions": []
-	},
-	"assets": [
-        { "fileName": "form.css",					"mode": "bundle", "order": 40 },
-        { "fileName": "zp-validate-form.js",		"mode": "bundle", "order": 110 },
-        { "fileName": "php/*",						"mode": "copy" }
+    "assets": [
+        {
+            "fileName": "form.css",
+            "mode": "Bundle",
+            "order": 40
+        },
+        {
+            "fileName": "zp-validate-form.js",
+            "mode": "Bundle",
+            "order": 110
+        },
+        {
+            "fileName": "php/*",
+            "mode": "Copy"
+        }
     ],
-    
     "itemTemplates": [
         {
             "fileName": "standard.html"

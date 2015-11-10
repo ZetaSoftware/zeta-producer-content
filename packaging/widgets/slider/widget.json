@@ -1,0 +1,208 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "image",
+        "dialogheightvalue": 550,
+        "dialogwidthvalue": 525,
+        "editortype": "genericListArticleEditor",
+        "maincategory": "text-image",
+        "minappversion": "13.0.0.0",
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "uiname": "Slider",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "usercanresizedialog": false,
+        "version": "13.0.0.0"
+    },
+    "fields": [
+        {
+            "displayname": "Automatisch abspielen",
+            "name": "autoplay",
+            "type": "checkbox",
+            "defaultValue": "1",
+
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": 0,
+			"y": "=z.labelYOffsetForOneRow"
+        },
+        {
+            "displayname": "Sekunden pro Bild",
+            "name": "secondsperimage",
+            "type": "text-singleline-updown",
+            "defaultValue": "8",
+
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": 70,
+			"height": "auto",
+			"x": "=z.right('autoplay') + z.oneColumnDistance",
+			"y": 0
+        },
+        {
+            "displayname": "Sekunden pro Bild",
+            "name": "secondslabel",
+            "type": "label",
+
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": "=z.right('secondsperimage') + z.oneColumnDistance",
+			"y": "=z.labelYOffsetForOneRow"
+        },
+        {
+        	"displayname": "Effekt",
+        	"name": "effect",
+        	"type": "list",
+			"values": [
+				{
+					"Einfahren": "slide"
+				},
+				{
+					"Einblenden": "fade"
+				},
+				{
+					"Ken-Burns-Effekt": "kenburns"
+				}
+			],
+			"defaultValue": "fade",
+			
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": 145,
+			"height": "=z.oneLineHeight",
+			"x": 0,
+			"y": "=z.bottom('autoplay') + z.oneLineDistance + z.oneLineDistance"
+        },
+        ,
+        {
+            "displayname": "Text-Optionen",
+            "expandedheight": 4,
+            "name": "styleGroup1",
+            "popupheightinpixel": 110,
+            "popupwidthinpixel": 290,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Position",
+                    "name": "textPosition",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "Oben": "top"
+                        },
+                        {
+                            "Mitte": "middle"
+                        },
+                        {
+                            "Unten": "bottom"
+                        }
+                    ],
+                    "defaultValue": "middle"
+                },
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "name": "textBgColor",
+                    "type": "color-selection",
+                    "width": 160
+                },
+                {
+                    "displayname": "Schattenfarbe",
+                    "name": "textShadowColor",
+                    "type": "color-selection",
+                    "width": 160
+                }
+            ],
+
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": "=z.right('effect') + z.oneColumnDistance+ z.oneColumnDistance",
+			"y": "=z.y('effect')"
+        },
+        {
+            "displayname": "Randlos",
+            "name": "breakout",
+            "type": "checkbox",
+            "defaultValue": "0",
+
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": 0,
+			"y": "=z.bottom('effect') + z.oneLineDistance + z.oneLineDistance"
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "assets/slider-global.css",
+            "mode": "Bundle",
+            "order": 60
+        },
+        {
+            "fileName": "jquery.flexslider.js",
+            "mode": "Bundle"
+        },
+        {
+            "fileName": "assets/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ],
+    "extended": {
+        "settings": {
+            "globalFieldsAreaHeight": 104,
+            "localFieldsAreaHeight": 420,
+            "treatHeightAsPixel": true,
+            "headerElementContentFieldName": "image"
+        },
+        "fields": [
+            {
+                "displayName": "Bild",
+                "name": "image",
+                "type": "image-selection",
+                "largePreviewImage": true,
+                "height": 4,
+                "treatHeightAsPixel": false
+            },
+            {
+                "displayName": "Link",
+                "name": "slideUrl",
+                "type": "url-selection"
+            },
+            {
+                "defaultLevel": 2,
+                "displayName": "Überschrift",
+                "name": "header-title",
+                "type": "single-headline"
+            },
+            {
+                "displayName": "Text",
+                "name": "text",
+                "type": "html-wysiwyg-editor",
+                "minimalEditor": true,
+                "height": 120,
+                "treatHeightAsPixel": true,
+                "treatAsSingleLine": true
+            }
+        ]
+    }
+}

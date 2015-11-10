@@ -1,0 +1,72 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "all",
+        "dialogheightvalue": 220,
+        "dontcachepageitem": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Disqus",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "displayname": "Disqus \"Shortname\"",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "disqusshortname",
+            "name": "disqusshortname",
+            "type": "text-singleline",
+            "validationhelptext": "Bitte geben Sie einen Wert im Feld \"Disqus \"Shortname\" (wie bei disqus.com konfiguriert)\" ein.",
+            "width": 180
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Voraussetzungen",
+            "name": "Voraussetzungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 0,
+            "popupheightinpixel": 160,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 160,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Ein bestehendes <a href=\"http://disqus.com\">Disqus</a> Konto<br />(Sie können dort kostenlos ein Konto registrieren)</li>\r\n\t<li>\"Shortname\" der in Disqus konfigurierten Website</li>\r\n</ul>\r\n<p><i>Sämtliche Kommentare werden unabhängig von Zeta Producer und Ihrer Website auf den Servern von Disqus gespeichert.</i></p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "disqus-kommentare.html"
+        }
+    ]
+}

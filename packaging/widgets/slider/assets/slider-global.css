@@ -1,0 +1,327 @@
+﻿/*
+ * jQuery FlexSlider v2.0 (global singleHeader Widget)
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ */
+
+
+/* Browser Resets */
+.zp13slider-container a:active,
+.zp13slider a:active,
+.zp13slider-container a:focus,
+.zp13slider a:focus  {outline: none;}
+
+ul.zp13slider,
+.zp13slider-control-nav,
+.zp13slider-direction-nav {
+	margin: 0 !important; 
+	padding: 0 !important; 
+	list-style: none !important;
+} 
+
+/* FlexSlider Necessary Styles
+*********************************/ 
+.zp13sliderWidget {margin: 0; padding: 0;}
+.zp13sliderWidget ul.zp13slider > li {display: none; -webkit-backface-visibility: hidden; list-style-type: none !important; padding: 0 !important;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.zp13sliderWidget ul.zp13slider img {width: 100%; max-width: 100%; height: auto; display: block;}
+.zp13slider-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+ul.zp13slider:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] ul.zp13slider {display: block;} 
+* html ul.zp13slider {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js ul.zp13slider > li {display: block;}
+
+
+/* FlexSlider Default Theme
+*********************************/
+/*.zp13slider {margin: 0 0 60px; background: #fff; border: 4px solid #fff; position: relative; -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.2); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 4px rgba(0,0,0,.2); -o-box-shadow: 0 1px 4px rgba(0,0,0,.2); zoom: 1;}*/
+.zp13sliderWidget {position: relative; zoom: 1; overflow: hidden;} /* overflow is needed to not cause the relative positioned pev/next arrows cause a wide page */
+
+.zp13slider-viewport {max-height: 2000px; -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; transition: all 500ms ease;}
+.loading .zp13slider-viewport {max-height: 300px;}
+.zp13sliderWidget ul.zp13slider {zoom: 1;}
+
+.carousel li {margin-right: 5px}
+
+
+
+
+.zp13slider-direction-nav .zp13slider-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
+
+/* Control Nav */
+.zp13slider-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center; z-index: 10;}
+.zp13slider-control-nav li {margin: 0 6px; display: inline-block; zoom: 1;}
+
+.zp13slider-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden;}
+.zp13slider-control-thumbs img {display: block; opacity: .7; cursor: pointer;}
+.zp13slider-control-thumbs img:hover {opacity: 1;}
+.zp13slider-control-thumbs .zp13slider-active {opacity: 1; cursor: default;}
+
+/* New ZP13 Rules for Slideshow */
+.supportsbreakout body:not(.withnews) div.zp13sliderWidget.zpBreakout{
+	/* we don't use overflow hidden on body to avoid horizontal scrollbar because dropdown menues (e.g. on the far right) might need an overflow */
+	width: calc(100vw - 9px);  /* -9px compensates possible scrollbar Safari: -8, Chrome: -9 */
+	margin-left: calc(-50vw + 50%);  /* Todo: this might break if less compression is used! */
+	box-sizing: border-box;
+	padding: 0; /* padding-left is equal to amount to compensate scrollbar */
+	overflow:hidden !important;
+	
+}
+.supportsbreakout body.touch:not(.withnews) div.zp13sliderWidget.zpBreakout{
+	width: 100vw;  /* Do not compensate on transparent Scrollbars on touch devices like e.g. the ipad. */
+}
+
+.supportsbreakout div.zp13sliderWidget.zpBreakout li img,
+.supportsbreakout #content div.zp13sliderWidget.zpBreakout li img, 
+.supportsbreakout .content div.zp13sliderWidget.zpBreakout li img{
+	border: 0;
+	box-shadow: none;
+}
+
+.zp13sliderWidget ul.zp13slider{
+	overflow:hidden;
+	-webkit-animation: fadeIn 1800ms ease-out;
+	     -o-animation: fadeIn 1800ms ease-out;
+	   -moz-animation: fadeIn 1800ms ease-out;
+	        animation: fadeIn 1800ms ease-out; 
+}
+.zp13sliderWidget ul.zp13slider > li{
+	position: relative;
+	list-style: none !important;
+}
+.zp13sliderWidget.burns ul.zp13slider > li:nth-child(odd) img{
+	    -ms-animation: kburnsright 10s ease-in-out forwards;
+	-webkit-animation: fadeIn 1800ms ease-out,kburnsright 10s ease-in-out forwards;
+	     -o-animation: fadeIn 1800ms ease-out,kburnsright 10s ease-in-out forwards;
+	   -moz-animation: fadeIn 1800ms ease-out,kburnsright 10s ease-in-out forwards;
+	        animation: kburnsright 10s ease-in-out forwards; 
+
+}
+.zp13sliderWidget.burns ul.zp13slider > li:nth-child(even) img{
+	    -ms-animation: kburnsleft 10s ease-in-out forwards;
+	-webkit-animation: fadeIn 1800ms ease-out,kburnsleft 10s ease-in-out forwards;
+	     -o-animation: fadeIn 1800ms ease-out,kburnsleft 10s ease-in-out forwards;
+	   -moz-animation: fadeIn 1800ms ease-out,kburnsleft 10s ease-in-out forwards;
+	        animation: kburnsleft 10s ease-in-out forwards; 
+}
+@-webkit-keyframes kburnsright {
+  from {
+  	        transform: scale(1.0);
+        -ms-transform: scale(1.0); /* IE 9 */
+    -webkit-transform: scale(1.0); /* Safari and Chrome */
+         -o-transform: scale(1.0); /* Opera */
+       -moz-transform: scale(1.0); /* Firefox */
+  }
+  to {
+  	        transform: scale(1.2) translate(7%,4%);
+        -ms-transform: scale(1.2) translate(7%,4%); /* IE 9 */
+    -webkit-transform: scale(1.2) translate(7%,4%); /* Safari and Chrome */
+         -o-transform: scale(1.2) translate(7%,4%); /* Opera */
+       -moz-transform: scale(1.2) translate(7%,4%); /* Firefox */
+  }
+}
+@keyframes kburnsright {
+  from {
+  	        transform: scale(1.0);
+        -ms-transform: scale(1.0); /* IE 9 */
+         -o-transform: scale(1.0); /* Opera */
+       -moz-transform: scale(1.0); /* Firefox */
+  }
+  to {
+  	        transform: scale(1.2) translate(7%,4%);
+        -ms-transform: scale(1.2) translate(7%,4%); /* IE 9 */
+         -o-transform: scale(1.2) translate(7%,4%); /* Opera */
+       -moz-transform: scale(1.2) translate(7%,4%); /* Firefox */
+  }
+}
+@-webkit-keyframes kburnsleft {
+  from {
+  	        transform: scale(1.0);
+        -ms-transform: scale(1.0); /* IE 9 */
+    -webkit-transform: scale(1.0); /* Safari and Chrome */
+         -o-transform: scale(1.0); /* Opera */
+       -moz-transform: scale(1.0); /* Firefox */
+  }
+  to {
+  	        transform: scale(1.2) translate(-7%,4%);
+        -ms-transform: scale(1.2) translate(-7%,4%); /* IE 9 */
+    -webkit-transform: scale(1.2) translate(-7%,4%); /* Safari and Chrome */
+         -o-transform: scale(1.2) translate(-7%,4%); /* Opera */
+       -moz-transform: scale(1.2) translate(-7%,4%); /* Firefox */
+  }
+}
+@keyframes kburnsleft {
+  from {
+  	        transform: scale(1.0);
+        -ms-transform: scale(1.0); /* IE 9 */
+         -o-transform: scale(1.0); /* Opera */
+       -moz-transform: scale(1.0); /* Firefox */
+  }
+  to {
+  	        transform: scale(1.2) translate(-7%,4%);
+        -ms-transform: scale(1.2) translate(-7%,4%); /* IE 9 */
+         -o-transform: scale(1.2) translate(-7%,4%); /* Opera */
+       -moz-transform: scale(1.2) translate(-7%,4%); /* Firefox */
+  }
+}
+
+@-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.zp13sliderWidget .zp13slider-caption{
+	position: absolute;
+	<$ if ( "#val(article-image-border)" !== "" && "#val(article-image-border)" !== "0"){ $>
+	width: calc(100% - #val(article-image-border)px - #val(article-image-border)px);
+	margin: 0 #val(article-image-border)px 0 #val(article-image-border)px;
+	<$ } else { $>
+	width: 100%;
+	margin: 0 auto;
+	<$ } $>
+	left: auto;
+	right: auto;
+	top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);	
+	padding: 0 45px;
+	box-sizing: border-box;
+	max-height: 90%;
+	overflow:auto;
+}
+.zp13sliderWidget .zp13slider-caption.relative{
+	position: relative;
+	margin: 0 auto 60px auto;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+
+}
+.zp13sliderWidget .zp13slider-caption{
+	text-align: center;
+	color: #ffffff;
+  	text-shadow: 1px 1px 0 rgba(0,0,0,0.7);
+}
+.zp13sliderWidget .zp13slider-caption h1, 
+.zp13sliderWidget .zp13slider-caption h2, 
+.zp13sliderWidget .zp13slider-caption h3{
+	text-align: inherit;
+	color: inherit;
+	text-shadow: inherit;
+}
+.zp13sliderWidget .zp13slider-caption h1:first-child, 
+.zp13sliderWidget .zp13slider-caption h2:first-child, 
+.zp13sliderWidget .zp13slider-caption h3:first-child{
+	margin-top: 0;
+}
+
+/* Direction Nav */
+/* TODO: remove if this IE-Fix is no longer needed .zp13slider-direction-nav {*height: 0;} */
+.zp13slider-direction-nav a {
+	width: 29px; height: 29px; margin: -20px 0 0; display: block; 
+	background: url(images/zp13_slides_bg_direction_nav.png) no-repeat 0 0; 
+	position: absolute; top: 50%; z-index: 10; cursor: pointer; 
+	text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease; transition: all .3s ease;}
+.zp13slider-direction-nav .zp13slider-next, .zp13slider-direction-nav .next {background-position: 100% 0; right: -36px; }
+.zp13slider-direction-nav .zp13slider-prev, .zp13slider-direction-nav .prev {left: -36px;}
+.zp13sliderWidget:hover .zp13slider-next, .zp13sliderWidget:hover .next {opacity: 0.75; right: 15px;}
+.zp13sliderWidget:hover .zp13slider-prev, .zp13sliderWidget:hover .prev {opacity: 0.75; left: 15px;}
+.zp13sliderWidget:hover .zp13slider-next:hover, 
+.zp13sliderWidget:hover .next:hover, 
+.zp13sliderWidget:hover .zp13slider-prev:hover, 
+.zp13sliderWidget:hover .prev:hover {opacity: 1;}
+
+.zp13sliderWidget .zp13slider-control-nav li,
+.zp13sliderWidget .zp13slider-direction-nav li{
+	list-style: none !important;
+}
+.zp13sliderWidget .zp13slider-control-nav{
+	position: absolute;
+	bottom: 20px;
+	top: auto;
+}
+.zp13sliderWidget.captionbottom .zp13slider-control-nav{
+	bottom: auto;
+	top: 20px;
+}
+
+.zp13sliderWidget .zp13slider-control-thumbs{
+	position: static;
+	margin: 5px 0 0 0;
+}
+
+.zp13sliderWidget .zp13slider-control-nav li{ 
+	list-style-type: none !important; position: relative; width: 26px; height: 26px; margin: 0; padding: 0; text-align: left;
+}
+.zp13sliderWidget .zp13slider-control-thumbs li{ 
+	width: auto;
+	height: auto;
+	float: left;
+	margin: 0;
+}
+.zp13sliderWidget .zp13slider-control-nav li a{
+	width: 20px;
+	height: 20px;
+	display: block; 
+	background-color: transparent; 
+	cursor: pointer; 
+	text-indent: -9999px; 
+	-webkit-border-radius: 20px; 
+	-moz-border-radius: 20px; 
+	-o-border-radius: 20px; 
+	border-radius: 20px; 	
+}
+.zp13sliderWidget .zp13slider-control-nav li a.zp13slider-active { 
+	cursor: default; 
+}
+
+.zp13sliderWidget .zp13slider-control-nav li a:before{
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+	top: 6px;
+	left: 50%;
+	margin-left: -7px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #ffffff;
+	display: inline-block;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.15);
+}
+.zp13sliderWidget .zp13slider-control-nav li a.zp13slider-active:before, 
+.zp13sliderWidget .zp13slider-control-nav li a:hover:before{
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -12px;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ffffff;
+	background-color: transparent;
+}

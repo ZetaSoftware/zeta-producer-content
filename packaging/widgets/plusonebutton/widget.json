@@ -1,51 +1,32 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
         "category": "google",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "mainCategory": "media",
-        "uiName": "+1 Button",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 200,
-        "useDialogHeight": true,
-        "defaults": {},
-        "userCanResizeDialog": "false",
+        "dialogheightvalue": 200,
+        "maincategory": "applications",
+        "minappversion": "12.5.0.0",
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": true,
-        "headlineRequired": false,
-        "showHeadline": false,
-        "removeLineAfter": false,
-        "orderPosition": 4,
-        "requiredFeature": "None"
+        "showheadline": false,
+        "uiname": "+1 Button",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
     },
     "fields": [
         {
-            "name": "buttonsize",
-            "displayName": "Button",
-            "type": "list",
-            "position": 0,
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": false,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 180,
             "canedit": false,
-            "height": 1,
+            "displayname": "Button",
+            "ignoreforsimilarcomparison": false,
             "label": "buttonsize",
-            "defaultValue": "medium",
+            "name": "buttonsize",
+            "type": "list",
+            "width": 180,
             "values": [
                 {
                     "Klein": "small"
@@ -59,26 +40,17 @@
                 {
                     "Groß": "tall"
                 }
-            ]
+            ],
+            "defaultValue": "medium"
         },
         {
-            "name": "showcount",
-            "displayName": "Anzahl anzeigen",
-            "type": "list",
-            "position": 1,
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": false,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 180,
             "canedit": false,
-            "height": 1,
+            "displayname": "Anzahl anzeigen",
+            "ignoreforsimilarcomparison": false,
             "label": "showcount",
-            "defaultValue": "bubble",
+            "name": "showcount",
+            "type": "list",
+            "width": 180,
             "values": [
                 {
                     "Daneben": "bubble"
@@ -86,7 +58,8 @@
                 {
                     "Verbergen": "none"
                 }
-            ]
+            ],
+            "defaultValue": "bubble"
         }
     ],
     "itemTemplates": [

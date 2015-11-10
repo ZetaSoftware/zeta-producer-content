@@ -1,52 +1,38 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.2",
-        "minAppVersion": "12.5.0.0",
-        "category": "textarticles",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "editorType": "tabs",
-        "mainCategory": "structure",
-        "uiName": "Tabs",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 0,
-        "useDialogHeight": false,
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "text",
         "defaults": {
-            "color_back_active": [
-                "ffffff"
-            ],
-            "color_back_inactive": [
-                "f7f7f7"
-            ],
-            "color_text_active": [
-                "5e5e5e"
-            ],
-            "color_text_inactive": [
-                777777
-            ],
-            "color_border": [
-                "e7e7e7"
-            ]
+            "color_back_active": "ffffff",
+            "color_back_inactive": "f7f7f7",
+            "color_text_active": "5e5e5e",
+            "color_text_inactive": "777777",
+            "color_border": "e7e7e7"
         },
-        "userCanResizeDialog": "false",
+        "editortype": "tabs",
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": true,
-        "headlineRequired": false,
-        "showHeadline": true,
-        "removeLineAfter": false,
-        "orderPosition": 4,
-        "requiredFeature": "None"
+        "uiname": "Tabs",
+        "usercanresizedialog": false,
+        "version": "12.5.0.2"
     },
     "assets": [
-        { "fileName": "tabs.css",		"mode": "bundle", 		"order": 40 },
-        { "fileName": "tabs.js",		"mode": "bundle", 		"order": 500 }
+        {
+            "fileName": "tabs.css",
+            "mode": "Bundle",
+            "order": 40
+        },
+        {
+            "fileName": "tabs.js",
+            "mode": "Bundle"
+        }
     ],
     "itemTemplates": [
         {

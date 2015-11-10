@@ -1,27 +1,27 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
             "News",
             "Footer"
         ],
-        "category": "more",
+        "category": "text",
         "defaults": {
             "_nameLevel": "h2"
         },
         "dialogheightvalue": 510,
         "dialogwidthvalue": 510,
-        "maincategory": "text",
-        "orderposition": 5,
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Markdown",
         "usedialogheight": true,
-        "usedialogwidth": true
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
     },
     "fields": [
         {

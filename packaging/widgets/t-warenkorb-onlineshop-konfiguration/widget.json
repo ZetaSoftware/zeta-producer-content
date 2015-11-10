@@ -1,0 +1,884 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Standard",
+            "Banner",
+            "Footer"
+        ],
+        "canentail": false,
+        "category": "all",
+        "defaults": {
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 510,
+        "dialogwidthvalue": 510,
+        "dontcachepageitem": false,
+        "includeinsearchindex": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "requiredfeature": "HasOnlineshop",
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Konfiguration / Warenkorb",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.1"
+    },
+    "fields": [
+        {
+            "displayname": "Shopname",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "shopname",
+            "name": "shopname",
+            "placeholdertext": "Name Ihres Online-Shops",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "validationexpression": "^((?!\"|').)*$",
+            "validationhelptext": "Das Feld \"Shopname\" muss ausgefüllt sein und darf keine Anführungszeichen enthalten.",
+            "width": 400
+        },
+        {
+            "displayname": "E-Mail",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "shopemail",
+            "name": "shopemail",
+            "placeholdertext": "Für Empfang und Versand von Bestellungen",
+            "type": "text-singleline",
+            "validationexpression": "^((?!\"|').)*$",
+            "validationhelptext": "Das Feld \"E-Mail\" darf nicht leer sein und weder \" noch ' enthalten."
+        },
+        {
+            "displayname": "AGB-Seite",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "AGBPage",
+            "name": "AGBPage",
+            "type": "page-item-selection"
+        },
+        {
+            "displayname": "Widerrufs-Seite",
+            "isrequired": true,
+            "name": "WiderrufPage",
+            "type": "page-item-selection"
+        },
+        {
+            "initialheight": 8,
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Optionen",
+            "name": "Warenkorboptionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 160,
+            "popupheightinpixel": 300,
+            "popupwidthinpixel": 340,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Währung",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "Currency",
+                    "name": "currency",
+                    "type": "text-singleline",
+                    "userinfotext": "Bitte das Kürzel der Währung angeben welche im Shop verwendet werden soll, \r\nz.B. \"EUR\".",
+                    "validationhelptext": "Bitte geben Sie einen Wert im Feld \"Währung\" ein.",
+                    "width": 50,
+                    "defaultValue": "EUR"
+                },
+                {
+                    "displayname": "Dezimaltrennzeichen",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "currency_comma",
+                    "name": "currency_comma",
+                    "treatassingleline": true,
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "\" und ' dürfen im Feld \"Dezimaltrennzeichen\" nicht als Wert benutzt werden.",
+                    "width": 15,
+                    "defaultValue": ","
+                },
+                {
+                    "displayname": "Tausendertrennzeichen",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "currency_thousands",
+                    "name": "currency_thousands",
+                    "treatassingleline": true,
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\").)*$",
+                    "validationhelptext": "\" darf im Feld \"Tausendertrennzeichen\" nicht als Wert benutzt werden.",
+                    "width": 15,
+                    "defaultValue": "."
+                },
+                {
+                    "displayname": "Versandkosten",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "shippingCosts",
+                    "name": "shippingCosts",
+                    "treatassingleline": true,
+                    "type": "text-singleline",
+                    "userinfotext": "Bitte die Versandkosten als Zahl ohne Währung angeben, z.B. \"8,90\".",
+                    "validationexpression": "^\\d*([,.]\\d\\d)?$",
+                    "validationhelptext": "Versandkosten bitte als Zahl ohne Währung und Tausender-Trennzeichen eingeben, z.B.: 8,90",
+                    "width": 50,
+                    "defaultValue": "0"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Zahlung per Vorkasse",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "allowPaymentInAdvance",
+                    "name": "allowPaymentInAdvance",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "type": "checkbox",
+                    "defaultValue": "True"
+                },
+                {
+                    "displayname": "Zahlung per Nachnahme",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "allowPaymentOnDelivery",
+                    "name": "allowPaymentOnDelivery",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "type": "checkbox",
+                    "defaultValue": "True"
+                },
+                {
+                    "displayname": "Zahlung per Rechnung",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "allowPaymentPerBill",
+                    "name": "allowPaymentPerBill",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "type": "checkbox",
+                    "defaultValue": "False"
+                },
+                {
+                    "displayname": "Zahlung per PayPal",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "allowPaymentPerPayPal",
+                    "name": "allowPaymentPerPayPal",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "type": "checkbox",
+                    "defaultValue": "False"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Hintergrund Tabellenkopf",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "bgcolor_head",
+                    "name": "bgcolor_head",
+                    "type": "color-selection",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Hintergrund Tabellenkopf\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 130,
+                    "defaultValue": "#E7E7E7"
+                },
+                {
+                    "displayname": "Text Tabellenkopf",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "textcolor_head",
+                    "name": "textcolor_head",
+                    "type": "color-selection",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Text Tabellenkopf\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 130,
+                    "defaultValue": "#323232"
+                },
+                {
+                    "displayname": "Hintergrund Tabellenfuß",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "bgcolor_foot",
+                    "name": "bgcolor_foot",
+                    "type": "color-selection",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Hintergrund Tabellenfuß\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 130,
+                    "defaultValue": "#B3B3B3"
+                },
+                {
+                    "displayname": "Text Tabellenfuß",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "textcolor_foot",
+                    "name": "textcolor_foot",
+                    "type": "color-selection",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Text Tabellenfuß\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 130,
+                    "defaultValue": "#323232"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "PayPal-API-Benutzername",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "paypal_userid",
+                    "name": "paypal_userid",
+                    "type": "text-singleline",
+                    "width": 130
+                },
+                {
+                    "displayname": "PayPal-API-Passwort",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "paypal_password",
+                    "name": "paypal_password",
+                    "type": "text-singleline",
+                    "width": 130
+                },
+                {
+                    "displayname": "PayPal-Unterschrift",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "paypal_signature",
+                    "name": "paypal_signature",
+                    "type": "text-singleline",
+                    "width": 130
+                },
+                {
+                    "height": 80,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<p>Informationen zur Konfiguration von PayPal<br />finden Sie im <a href=\"http://docs.zeta-producer.com/zahlung-per-paypal.html\">Handbuch</a>.</p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        },
+        {
+            "name": "E-Mail-Optionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 160,
+            "popupheightinpixel": 100,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Anhang 1",
+                    "name": "attachment1",
+                    "type": "file-selection",
+                    "userinfotext": "z.B. für Widerrufsbelehrung als PDF-Dokument"
+                },
+                {
+                    "displayname": "Anhang 2",
+                    "name": "attachment2",
+                    "type": "file-selection",
+                    "userinfotext": "z.B. für AGB als PDF-Dokument"
+                }
+            ]
+        },
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Artikel Optionen",
+            "name": "Artikeloptionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 160,
+            "popupheightinpixel": 120,
+            "popupwidthinpixel": 520,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Bezeichnung Preis",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "price_name",
+                    "name": "price_name",
+                    "type": "text-singleline",
+                    "userinfotext": "Die Bezeichnung, die vor dem Betrag angezeigt wird.",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Preis\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 350,
+                    "defaultValue": "Preis"
+                },
+                {
+                    "displayname": "Beschreibung Preis",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_price",
+                    "name": "label_price",
+                    "type": "text-singleline",
+                    "userinfotext": "Die Beschreibung, die unter dem Artikelpreis angezeigt wird",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Beschreibung Preis\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 350,
+                    "defaultValue": "inkl. USt. zzgl. Versandkosten ([VERSANDKOSTEN])"
+                },
+                {
+                    "displayname": "Text Warenkorbbutton",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "article_button_text",
+                    "name": "article_button_text",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Text Warenkorbbutton\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 350,
+                    "defaultValue": "Zum Warenkorb hinzufügen"
+                }
+            ]
+        },
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Textvorlagen",
+            "name": "Textvorlagen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 160,
+            "popupheightinpixel": 520,
+            "popupwidthinpixel": 520,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Betreff E-Mail an Shop",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "email_subject_shop",
+                    "name": "email_subject_shop",
+                    "type": "text-singleline",
+                    "userinfotext": "Der Betreff der E-Mail an den Shop-Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Shop E-Mail Betreff\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 400,
+                    "defaultValue": "Neue Bestellung [REFERENZNUMMER] - [SHOPNAME]"
+                },
+                {
+                    "displayname": "E-Mail an Shop",
+                    "height": 200,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "shop_email",
+                    "name": "email_to_shop",
+                    "treatassingleline": true,
+                    "treatheightaspixel": true,
+                    "type": "html-wysiwyg-editor",
+                    "userinfotext": "Die E-Mail an den Shop Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "width": 400,
+                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nNeue Bestellung [REFERENZNUMMER] vom [DATUM]\r\n</p>\r\n<p>\r\nKunde: [NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Betreff E-Mail an Kunde",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "email_subject_customer",
+                    "name": "email_subject_customer",
+                    "type": "text-singleline",
+                    "userinfotext": "Der Betreff der E-Mail an Kunden.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Kunden E-Mail Betreff\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 400,
+                    "defaultValue": "Bestellbestätigung [REFERENZNUMMER] - [SHOPNAME]"
+                },
+                {
+                    "displayname": "E-Mail an Kunde",
+                    "height": 200,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "email_to_customer",
+                    "name": "email_to_customer",
+                    "treatassingleline": true,
+                    "treatheightaspixel": true,
+                    "type": "html-wysiwyg-editor",
+                    "userinfotext": "Die E-Mail an den Kunden (Bestellbestätigung).\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "width": 400,
+                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nGuten Tag [NAME],\r\n</p>\r\n<p>\r\nIhre Bestellung [REFERENZNUMMER] vom [DATUM] ist bei uns eingegangen und wird umgehend bearbeitet.\r\n</p>\r\n<p>\r\n[NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Text Bestellbutton",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "buttontext",
+                    "name": "buttontext",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Text Bestellbutton\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "width": 400,
+                    "defaultValue": "Zahlungspflichtig bestellen"
+                },
+                {
+                    "displayname": "Text Danke-Seite",
+                    "height": 200,
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "text_thankyoupage",
+                    "name": "text_thankyoupage",
+                    "treatassingleline": true,
+                    "treatheightaspixel": true,
+                    "type": "html-wysiwyg-editor",
+                    "userinfotext": "Der Inhalt der Seite, die dem Kunden nach dem Absenden der Bestellung angezeigt wird. Hir können keine makros verwendet werden.",
+                    "width": 400,
+                    "defaultValue": "<h2>Vielen Dank!</h2><p>Ihre Bestellung wurde abgesendet.</p><p>Sie erhalten umgehend eine Bestellbestätigung per E-Mail.</p>"
+                }
+            ]
+        },
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Textanpassungen / Übersetzungen",
+            "name": "Textanpassungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 160,
+            "popupheightinpixel": 300,
+            "popupwidthinpixel": 520,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Überschrift Warenkorbseite",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "head_basketpage",
+                    "name": "head_basketpage",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Überschrift Warenkorbseite\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Ihr Warenkorb"
+                },
+                {
+                    "displayname": "Bezeichnung Position",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_position",
+                    "name": "label_position",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Position\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Position"
+                },
+                {
+                    "displayname": "Bezeichnung Artikelnummer",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_artikelnummer",
+                    "name": "label_artikelnummer",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Artikelnummer\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Artikelnummer"
+                },
+                {
+                    "displayname": "Bezeichnung Menge",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_menge",
+                    "name": "label_menge",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Menge\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Menge"
+                },
+                {
+                    "displayname": "Bezeichnung \"Bezeichnung\"",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_bezeichnung",
+                    "name": "label_bezeichnung",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld 'Bezeichnun \"Bezeichnung\"' darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bezeichnung"
+                },
+                {
+                    "displayname": "Bezeichnung Einzelpreis",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_einzelpreis",
+                    "name": "label_einzelpreis",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Einzelpreis\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Einzelpreis"
+                },
+                {
+                    "displayname": "Bezeichnung Gesamtpreis",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_gesamtpreis",
+                    "name": "label_gesamtpreis",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Gesamtpreis\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Gesamtpreis"
+                },
+                {
+                    "displayname": "Bezeichnung Entfernen",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_entfernen",
+                    "name": "label_entfernen",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Entfernen\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Entfernen"
+                },
+                {
+                    "displayname": "Bezeichnung Zwischensumme",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_zwischensumme",
+                    "name": "label_zwischensumme",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Zwischensumme\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Zwischensumme"
+                },
+                {
+                    "displayname": "Bezeichnung Versandkosten",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_versandkosten",
+                    "name": "label_versandkosten",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Versandkosten\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Versandkosten"
+                },
+                {
+                    "displayname": "Bezeichnung Gesamtsumme",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_gesamtsumme",
+                    "name": "label_gesamtsumme",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Gesamtsumme\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Gesamtsumme inkl. USt."
+                },
+                {
+                    "displayname": "Bezeichung Warenkorb aktualisieren",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_updatebasket",
+                    "name": "label_updatebasket",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichung Warenkorb aktualisieren\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Warenkorb aktualisieren"
+                },
+                {
+                    "displayname": "Hilfe leerer Warenkorb",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "help_emptybasket",
+                    "name": "help_emptybasket",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Hilfe leerer Warenkorb\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Es befinden sich keine Artikel in Ihrem Warenkorb."
+                },
+                {
+                    "displayname": "Hilfe unvollst. Formular",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "help_fillform",
+                    "name": "help_fillform",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Hilfe unvollst. Formular\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bitte füllen Sie das Formular vollständig aus."
+                },
+                {
+                    "displayname": "Text Button \"zur Adresseingabe\"",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_goaddressform",
+                    "name": "label_goaddressform",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld 'Text Button \"zur Adresseingabe\"' darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Adresse eingeben und Bestellung absenden"
+                },
+                {
+                    "ignoreforsimilarcomparison": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "occupylabelspace": true,
+                    "showline": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Überschrift Bestellseite",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "head_orderpage",
+                    "name": "head_orderpage",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Überschrift Bestellseite\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bestellung aufgeben"
+                },
+                {
+                    "displayname": "Bezeichnung Name",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_name",
+                    "name": "label_name",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Name\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Name"
+                },
+                {
+                    "displayname": "Bezeichnung E-Mail",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_email",
+                    "name": "label_email",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung E-Mail\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "E-Mail-Adresse"
+                },
+                {
+                    "displayname": "Bezeichnung Anschrift",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_address",
+                    "name": "label_address",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Anschrift\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Anschrift"
+                },
+                {
+                    "displayname": "Text Zahlungsweise",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_payment",
+                    "name": "label_payment",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Text Zahlungsweise\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Gewünschte Zahlungsweise"
+                },
+                {
+                    "displayname": "Bezeichnung Nachnahme",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_payment_delivery",
+                    "name": "label_payment_delivery",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Nachnahme\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Nachnahme"
+                },
+                {
+                    "displayname": "Bezeichnung Vorkasse",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_payment_advance",
+                    "name": "label_payment_advance",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Vorkasse\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Vorkasse (Überweisung)"
+                },
+                {
+                    "displayname": "Bezeichnung Rechnung",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_payment_bill",
+                    "name": "label_payment_bill",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Rechnung\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Rechnung"
+                },
+                {
+                    "displayname": "Bezeichnung PayPal",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "paypal_label_payment",
+                    "name": "paypal_label_payment",
+                    "type": "text-singleline",
+                    "defaultValue": "PayPal"
+                },
+                {
+                    "displayname": "Text Button \"PayPal\"",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "paypal_buttontext",
+                    "name": "paypal_buttontext",
+                    "type": "text-singleline",
+                    "defaultValue": "Weiter zu PayPal"
+                },
+                {
+                    "displayname": "PayPal Headline \"Überprüfung\"",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "paypal_head_basketverify",
+                    "name": "paypal_head_basketverify",
+                    "type": "text-singleline",
+                    "defaultValue": "Bestellung überprüfen"
+                },
+                {
+                    "displayname": "Text AGB bestätigen",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_agb",
+                    "name": "label_agb",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Text AGB bestätigen\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Ich habe die allgemeinen Geschäftsbedingungen ([LINK]AGB[/LINK]) sowie die [WLINK]Widerrufsbelehrung[/WLINK] gelesen und akzeptiere diese ausdrücklich."
+                },
+                {
+                    "displayname": "Fehler Name",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "error_name",
+                    "name": "error_name",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Fehler Name\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bitte geben Sie einen Namen an."
+                },
+                {
+                    "displayname": "Fehler E-Mail",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "error_email",
+                    "name": "error_email",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Fehler E-Mail\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bitte geben Sie eine gültige E-Mail-Adresse an."
+                },
+                {
+                    "displayname": "Fehler Anschrift",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "error_address",
+                    "name": "error_address",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Fehler Anschrift\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bitte geben Sie eine Anschrift an."
+                },
+                {
+                    "displayname": "Fehler Zahlungsweise",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "error_payment",
+                    "name": "error_payment",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Fehler Zahlungsweise\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bitte wählen Sie die gewünschte Zahlungsweise aus."
+                },
+                {
+                    "displayname": "Fehler AGB-Akzeptiert",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "error_agb",
+                    "name": "error_agb",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Fehler AGB-Akzeptiert\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Bitte lesen und bestätigen Sie unsere AGB und die Widerrufsbelehrung um mit der Bestellung fortzufahren."
+                },
+                {
+                    "ignoreforsimilarcomparison": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "occupylabelspace": true,
+                    "showline": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Bezeichnung Warenkorb",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_basket",
+                    "name": "label_basket",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Warenkorb\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Mein Warenkorb"
+                },
+                {
+                    "displayname": "Bezeichnung Artikel",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_product",
+                    "name": "label_product",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Artikel\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Artikel"
+                }
+            ]
+        },
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Voraussetzungen",
+            "name": "Voraussetzungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 160,
+            "popupheightinpixel": 160,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 160,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n\t<li>Versenden von E-Mails per Skript</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "shop.css",
+            "mode": "Bundle",
+            "order": 40
+        },
+        {
+            "fileName": "php/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.php"
+        }
+    ]
+}

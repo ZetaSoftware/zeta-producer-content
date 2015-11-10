@@ -28,14 +28,13 @@ function hoverToClickMenu() {
 	if ( nualc.indexOf("android 4") > -1 && nualc.indexOf("chrome") === -1 ) {
 		listenEvent = "click";
 	}
-	var onClick; // this will be a function
 	var firstClick = function(e) {
 		var otherMenus = $z(e).parent().prevAll(".clicked").add($z(e).parent().nextAll(".clicked"));
 		otherMenus.removeClass("clicked");
 		otherMenus.find("ul").css({'display' : '', 'visibility' : ''});
 		otherMenus.find(".clicked").removeClass("clicked");
 		
-		if ( $z(e).parent().hasClass("clicked") || ($z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible") ) {
+		if ( $z(e).parent().hasClass("clicked") ){ // TODO ZP13 check layouts for incompatibilities due to commenting out this: || ($z(e).parent().children("xul").css("display") == "block" && $z(e).parent().children("xul").css("visibility") == "visible") ) {
 			// element has been clicked before, so now we fire a click
 			return true;
 		}
@@ -47,9 +46,8 @@ function hoverToClickMenu() {
 		$z(e).parent().children("ul").css({'display' : 'block', 'visibility' : 'visible'});
 		return false;
 	};
-	onClick = firstClick;
-	$z(this).on( listenEvent , function() {
-		return onClick($z(this));
+	$z(this).on( listenEvent , function(e) {
+		return firstClick($z(this));
 	});
 }
 
@@ -120,20 +118,23 @@ $z(document).ready(function () {
 			$z(".clickhovermenu li:has(li) > a").each(hoverToClickMenu);
 		}
 		
-		// TODO ZP 13 Grid: move to inline-editing when done testing
-		// Grid
-			var grid = '<div id="grid"><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div></div>';
-			//var gridswitch = '<div id="gridswitch" style="height: 22px; -webkit-transform: rotate(90deg)  translatey(-100%) translatex(-50%); transform: rotate(90deg) translatey(-100%) translatex(-50%); font-family: helvetica; font-size: 13px; background-color: rgba(0,0,0,0.6); color: #ffffff; padding: 4px 10px; position: fixed; z-index: 9998; bottom: 0; right: 0;"><a style="color: #ffffff; text-decoration: none;" href="#">Grid An/Aus</a></div>';
-			var gridswitch = '<div id="gridswitch" style="height: 22px; font-family: helvetica; font-size: 13px; background-color: rgba(0,0,0,0.6); color: #ffffff; padding: 4px 10px; position: fixed; z-index: 9998; bottom: 0; right: 0; "><a style="color: #ffffff; text-decoration: none;" href="#">Grid An/Aus</a></div>';
-			$z(".zpgrid #grid").remove();
-			$z(".zpgrid").prepend(grid);
-			$z("#gridswitch").remove();
-			$z("body").append(gridswitch);
-			$z("#gridswitch > a").click(function(e){
-				e.preventDefault();
-				$z(".zpgrid #grid").toggle();
-				return false;
-			});
+		// set correct dimensions for breakout elements which in CSS are only approximated due to problems with browsers handling scrollbars differently
+		function setBreakout(){
+			var bodyWidth = $z("body").outerWidth();
+			$z(".supportsbreakout body:not(.withnews) .zpBreakout").css("width",bodyWidth+"px").css("margin-left","calc(-" + bodyWidth/2 + "px + 50% )")
+		}
+		setBreakout();
+		var resizeTimeout = null;
+		$z(window).resize(function() {
+			//console.log(Date.now() + " Resize");
+			if (resizeTimeout) {
+				clearTimeout(resizeTimeout);
+			}
+			// throttle the resize event
+			resizeTimeout = setTimeout(function () {
+				setBreakout();
+			},100);
+		});
 });
 
 // define zp Namespace for later use in individual widgets

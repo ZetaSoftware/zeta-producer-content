@@ -1,38 +1,28 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.2",
-        "minAppVersion": "12.5.0.0",
-        "category": "favs",
-        "onlyForInlineEditing": true,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "editorType": "singleImage",
-        "mainCategory": "text",
-        "uiName": "Bild",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 0,
-        "useDialogHeight": false,
-        "defaults": [],
-        "userCanResizeDialog": "false",
-        "showHeadlineLabel": true,
-        "headlineRequired": false,
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "image",
+        "editortype": "singleImage",
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
+        "onlyforinlineediting": true,
+        "orderposition": 0,
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadline": false,
-        "removeLineAfter": false,
-        "orderPosition": 2,
-        "requiredFeature": "None"
+        "showheadline": false,
+        "uiname": "Bild",
+        "usercanresizedialog": false,
+        "version": "12.5.0.2"
     },
-    "fields": [],
     "assets": [
         {
             "fileName": "*.js",
-            "mode": "bundle", "order": 500
+            "mode": "Bundle"
         }
     ],
     "itemTemplates": [

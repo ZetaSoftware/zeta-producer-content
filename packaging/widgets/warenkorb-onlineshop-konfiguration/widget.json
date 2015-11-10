@@ -1,7 +1,5 @@
-{
+﻿{
     "settings": {
-        "version": "12.5.0.1",
-        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Standard",
             "Banner",
@@ -16,8 +14,9 @@
         "dialogwidthvalue": 510,
         "dontcachepageitem": false,
         "includeinsearchindex": false,
-        "maincategory": "services",
-        "orderposition": 2,
+        "maincategory": "applications",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
         "removelineafter": false,
         "requiredfeature": "HasOnlineshop",
         "showcssinputfields": true,
@@ -25,13 +24,9 @@
         "uiname": "Konfiguration / Warenkorb",
         "usedialogheight": true,
         "usedialogwidth": true,
-        "usercanresizedialog": false
+        "usercanresizedialog": false,
+        "version": "12.5.0.1"
     },
-    "php": {
-		"minimumVersion": "5.3",
-		"extensions": [ "mcrypt", "mbstring" ],
-		"writePermissions": []
-	},
     "fields": [
         {
             "displayname": "Shopname",

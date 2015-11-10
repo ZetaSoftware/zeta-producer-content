@@ -1,0 +1,60 @@
+<$= system.partial("article-begin.html") $>
+
+	<$
+	var album = article.value("Album");
+	var thumbnailWidth =  parseInt( article.value("width", 200) );
+	var thumbnailHeight = parseInt( article.value("height", 150) );
+	var borderWidth = 	  parseInt( article.value("borderwidth", 0) );
+	var totalWidth = thumbnailWidth + borderWidth + borderWidth;
+	 $>
+
+	<$= system.partial("article-headline.html") $>
+	
+	<$ 
+	var articles = article.getOverviewArticles("Style = 'Bestellartikel'");
+
+	for ( var i=0; i < articles.count; ++i ) {
+		var a = articles.item(i);
+	
+		if ( a.value("Bild", "") !== "" ) {
+			var imageId = a.value("Bild");
+			var image = project.getImage(imageId);
+			
+			if  ( image.createThumb(thumbnailWidth) ) {
+				system.log("Erstelle Vorschaubild " + image.name);
+			}
+
+			system.pump();
+			
+			var aStyle = 
+				"display: inline; zoom: 1; vertical-align: top; display: inline-block; font-size: {0}px; width: {1}px; height: auto; margin: 0 {2}px {3}px 0;"
+				.format(
+					a.value('fontsize'),
+					totalWidth,
+					a.value('margin'),
+					a.value('margin') );
+
+			var imgStyle =
+				"box-shadow: none; border: {0}px solid {1}"
+				.format(
+					a.value('borderWidth'),
+					a.value('bordercolor') );
+		 $>
+		
+			<a 
+				title="<$= system.htmlEncode(a.headline) $>" href="<$= a.url $>" style="<$= aStyle $>">
+
+				<img 
+					style="<$= imgStyle $>" 
+					src="<$= image.thumbPath(thumbnailWidth) $>" 
+					width="<$= thumbnailWidth $>" />
+
+				<$= a.value("showtitle") == 1 ? system.htmlEncode(a.headline) : '' $>
+			</a>
+			
+		<$		
+		}
+	}
+	 $>
+
+<$= system.partial("article-end.html") $>

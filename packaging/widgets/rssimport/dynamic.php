@@ -16,6 +16,7 @@
 
 	<?php
 	require_once(dirname($_SERVER["SCRIPT_FILENAME"]) . "/" . "<$= page.pathToRoot $>assets/php/rssimport/debug.inc.php");
+	require_once(dirname($_SERVER["SCRIPT_FILENAME"]) . "/" . "<$= page.pathToRoot $>assets/php/rssimport/config.php");
 	error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 
 	if ( DebugConfiguration::$debug )
@@ -25,28 +26,7 @@
 		ini_set('display_errors', 'On');
 	}
 
-	define('MAGPIE_OUTPUT_ENCODING', 'UTF-8');
 	require_once(dirname($_SERVER["SCRIPT_FILENAME"]) . "/" . "<$= page.pathToRoot $>assets/php/rssimport/magpierss/rss_fetch.inc");
-
-	function getBody($item)
-	{
-		$key = 'content';
-		if ( array_key_exists($key, $item) ) 
-		{
-			$key2 = 'encoded';
-			if( array_key_exists($key2, $item[/**/$key]) ) return $item[/**/$key][/**/$key2];
-
-			return $item[/**/$key];
-		}
-		
-		$key = 'description';
-		if ( array_key_exists($key, $item) ) return $item[/**/$key];
-		
-		$key = 'atom_content';
-		if ( array_key_exists($key, $item) ) return $item[/**/$key];
-		
-		return "";
-	}
 	
 	$rss = fetch_rss('<$=feed$>');
 

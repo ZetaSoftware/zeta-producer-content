@@ -1,22 +1,27 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.1",
-        "minAppVersion": "12.5.0.0",
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
         "category": "info",
         "defaultitemtemplate": "dynamic",
         "dialogheightvalue": 360,
         "dialogwidthvalue": 460,
         "includeinsearchindex": false,
-        "maincategory": "services",
-        "orderposition": 1,
+        "maincategory": "applications",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
         "removelineafter": false,
-        "showcssinputfields": true,
+        "showCssInputFields": false,
         "showheadline": false,
         "uiname": "RSS-Feed",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
         "usedialogheight": true,
         "usedialogwidth": true,
-        "usercanresizedialog": false
+        "usercanresizedialog": false,
+        "version": "12.5.0.2"
     },
     "fields": [
         {
@@ -28,13 +33,13 @@
             "canselectnourl": true,
             "canselectpageitems": false,
             "canselectpages": false,
-            "defaultvalue": "http://xkcd.com/rss.xml",
             "displayname": "RSS-Feed",
             "ignoreforsimilarcomparison": false,
+            "isrequired": true,
             "label": "RSS-Feed",
             "name": "url",
-            "isrequired": true,
-            "type": "url-selection"
+            "type": "url-selection",
+            "defaultValue": "http://xkcd.com/rss.xml"
         },
         {
             "height": 140,
@@ -58,12 +63,11 @@
             "popupbuttonwidthinpixel": 170,
             "popupheightinpixel": 105,
             "popupwidthinpixel": 360,
+            "showlabel": false,
             "type": "group",
-            "showLabel": false,
             "fields": [
                 {
                     "canedit": false,
-                    "defaultvalue": "h2",
                     "displayname": "Titel/Überschriften-Größe",
                     "ignoreforsimilarcomparison": false,
                     "includeinsearchindex": false,
@@ -84,10 +88,10 @@
                         {
                             "P (Absatz)": "p"
                         }
-                    ]
+                    ],
+                    "defaultValue": "h2"
                 },
                 {
-                    "defaultvalue": 0,
                     "displayname": "Maximal angezeigte Artikel",
                     "ignoreforsimilarcomparison": false,
                     "includeinsearchindex": false,
@@ -97,13 +101,14 @@
                     "name": "maxarticles",
                     "type": "text-singleline-updown",
                     "userinfotext": "Bei 0 werden alle im Feed vorhandenen Artikel angezeigt.",
-                    "width": 80
+                    "width": 80,
+                    "defaultValue": "0"
                 },
                 {
-                    "defaultvalue": "dynamic",
                     "displayname": "Darstellung",
                     "name": "Darstellung",
-                    "type": "itemtemplate-selection"
+                    "type": "itemtemplate-selection",
+                    "defaultValue": "dynamic"
                 }
             ]
         },
@@ -113,51 +118,51 @@
             "popupbuttonwidthinpixel": 170,
             "popupheightinpixel": 215,
             "popupwidthinpixel": 260,
+            "showlabel": false,
             "type": "group",
-            "showLabel": false,
             "fields": [
                 {
-                    "defaultvalue": true,
                     "displayname": "Titel/Überschriften anzeigen",
                     "ignoreforsimilarcomparison": false,
                     "includeinsearchindex": false,
                     "label": "showTitle",
                     "name": "showTitle",
                     "occupylabelspace": true,
-                    "type": "checkbox"
+                    "type": "checkbox",
+                    "defaultValue": "True"
                 },
                 {
-                    "defaultvalue": true,
                     "displayname": "Titel/Überschriften verlinken",
                     "ignoreforsimilarcomparison": false,
                     "includeinsearchindex": false,
                     "label": "linkTitle",
                     "name": "linkTitle",
                     "occupylabelspace": true,
-                    "type": "checkbox"
+                    "type": "checkbox",
+                    "defaultValue": "True"
                 },
                 {
-                    "defaultvalue": false,
                     "displayname": "Datum anzeigen",
                     "name": "showdate",
                     "occupylabelspace": true,
-                    "type": "checkbox"
+                    "type": "checkbox",
+                    "defaultValue": "False"
                 },
                 {
-                    "defaultvalue": true,
                     "displayname": "Artikel-Inhalte anzeigen",
                     "includeinsearchindex": false,
                     "name": "showcontent",
                     "occupylabelspace": true,
-                    "type": "checkbox"
+                    "type": "checkbox",
+                    "defaultValue": "True"
                 },
                 {
-                    "defaultvalue": true,
                     "displayname": "Vollen Artikel-Inhalt",
                     "name": "showcontentfullhtml",
                     "occupylabelspace": true,
                     "type": "checkbox",
-                    "userinfotext": "Wenn deaktiviert, wird nur der Text angezeigt, keine Bilder und Formatierungen"
+                    "userinfotext": "Wenn deaktiviert, wird nur der Text angezeigt, keine Bilder und Formatierungen",
+                    "defaultValue": "True"
                 },
                 {
                     "displayname": "Inhalt-Ausschnitt-Länge",
@@ -181,11 +186,6 @@
             "mode": "Copy"
         }
     ],
-    "php": {
-		"minimumVersion": "5.3",
-		"extensions": [],
-		"writePermissions": []
-	},
     "itemTemplates": [
         {
             "fileName": "dynamic.php",

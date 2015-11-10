@@ -1,0 +1,41 @@
+<$
+var name = system.htmlEncode(article.headline);
+var date_start = system.htmlEncode(article.value("date_start")).replace(" 00:00:00","");
+var date_end = system.htmlEncode(article.value("date_end")).replace(" 00:00:00","");
+var start = system.htmlEncode(article.value("start"));
+var endt = system.htmlEncode(article.value("end"));
+var venue = system.htmlEncode(article.value("venue"));
+var venuelink = system.htmlEncode(article.value("venuelink"));
+var genre = system.htmlEncode(article.value("genre"));
+var caption = system.htmlEncode(article.value("caption"));
+var description = article.value("description");
+var imageId = article.value("image");
+var image = project.getImage(imageId);
+ $>
+
+<div class="eventdetail">
+	<$= system.partial("article-begin.html") $>
+		<$= system.partial("article-headline.html") $>
+		
+		<p class="ecinfo">
+			<$ if ( date_end == "" || date_end == "01.01.0001" ) { $>
+				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $><$ if ( !isNull(endt) ) { $> bis <$= endt $> Uhr<$ } else { $> Uhr<$ } $><$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
+			<$ }
+			   else { $>
+				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $> Uhr<$ } $> bis <$= date_end $><$ if ( !isNull(endt) ) { $>, <$= endt $> Uhr<$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
+			<$ } $>
+		</p>
+	
+		<$ if ( !isNull(image) ) { $>
+			<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= image.Description $>" />
+				<$ if ( !isNull(caption) ) { $>
+					<p class="eccaption"><$= caption $></p>
+				<$ } $>
+		<$ } $>
+	
+		<div class="ecdescription">
+			<$= description $>
+		</div>
+		
+	<$= system.partial("article-end.html") $>
+</div>

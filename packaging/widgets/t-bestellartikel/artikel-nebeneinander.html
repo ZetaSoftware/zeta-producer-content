@@ -1,0 +1,147 @@
+<$
+// First lets get the current set language
+// If nothing set, consider german
+var language = projectFolder.language;
+if ( language == "" || (language !== "en" && language !== "de") ) {
+	language = "de";
+}
+
+var foundItems = project.getArticlesWithStyle("warenkorb-onlineshop-konfiguration");
+var basketArticle = null;
+
+for ( var g=0; g < foundItems.count; ++g ) {
+	var foundItem = foundItems.item(g);
+	if ( foundItem.active ) { 
+		basketArticle = foundItems.item(g);
+		break;
+	}
+}
+
+if ( isNull(basketArticle) ) {
+	system.pump();
+	system.error("Fehler bei der Onlineshop-Erstellung. Um einen Onlineshop-Artikel einzubinden, müssen Sie zuerst das Widget \"Konfiguration / Warenkorb\" auf einer  Seite einfügen.");
+}
+else {
+	var shopCurrency = basketArticle.value("Currency", "");
+	var shopPostage =  basketArticle.value("shippingCosts", "");
+	var pricename = system.htmlEncode(basketArticle.value("price_name", "Preise"));
+	var pricelabel = system.htmlEncode(basketArticle.value("label_price", "inkl. USt. zzgl. Versandkosten ([VERSANDKOSTEN])"));
+	pricelabel = pricelabel.replace(/\[VERSANDKOSTEN\]/g, shopPostage + " " + shopCurrency);
+	var buttontext = system.htmlEncode(basketArticle.value("article_button_text", "Zum Warenkorb hinzufügen"));
+	var price = article.valueRaw("unitPrice").replace(/,/g,".");
+	var currentArticlePrice = price;
+	var currentArticlePriceFormatted = price.replace(/,/g, "@");
+	currentArticlePriceFormatted = currentArticlePriceFormatted.replace(/\./g, basketArticle.value("currency_comma"));
+	currentArticlePriceFormatted = currentArticlePriceFormatted.replace(/@/g, basketArticle.value("currency_thousands"));
+}
+var shopIncPath = page.pathToRoot + "assets/php/shop/shop.inc.php";
+ $>
+
+<$= system.partial("article-begin.html", "shoparticlefloat", "border: none; overflow: visible;", "overflow: visible;") $>
+	<$
+		var imagefloatstyle = "";
+		var textoverflow = "";
+		
+		if ( article.value("image_position") == "floatleft" ) {
+			imagefloatstyle = "float:left;padding-right:15px; padding-bottom: 5px;";
+			textoverflow = "";
+		}
+		if ( article.value("image_position") == "left" ) {
+			imagefloatstyle = "float:left;padding-right:15px;";
+			textoverflow = "overflow: hidden;";
+		}
+		if ( article.value("image_position") == "floatright" ) {
+			imagefloatstyle = "float:right;padding-left:15px; padding-bottom: 5px;";
+			textoverflow = "";
+		}
+		if ( article.value("image_position") == "right" ) {
+			imagefloatstyle = "float:right;padding-left:15px;";
+			textoverflow = "overflow: hidden;";
+		}
+		if ( article.value("image_position") == "top" ) {
+			imagefloatstyle = "float:none; margin-bottom: 15px;";
+			textoverflow = "overflow: hidden;";
+		}
+	
+		// handle variants via 2 freely configurable fields - walk the fields and generate a select from a semicolon separated list
+		var field1html = "";
+		var field1htmlcount = 0;
+		if ( article.valueRaw("field1content", "") !== "" ) {
+			field1htmlcount = article.value("field1content", "").toString().split(";").length;
+		}
+		if ( field1htmlcount > 0 ) {
+			field1html = "<label for=\"afield1\" style=\"margin-right: 6px;\">" + article.value("field1name") + ":</label>";
+			field1html += "<select id=\"afield1\" name=\"afield1\" size=\"1\" style=\"width: auto; margin-top:6px;\">";
+			var field1array = article.value("field1content", "").toString().split(";");
+			
+			for (index = 0; index < field1array.length; ++index) {
+				field1html += "<option>" + field1array[index] + "</option>";
+			}
+			field1html += "</select><br />";
+		}
+		else {
+			field1html = "<input id=\"afield1\" name=\"afield1\" type=\"hidden\" value=\"" + article.value("field1content") + "\" />";
+		}
+		
+		var field2html = "";
+		var field2htmlcount = 0;
+		if ( article.valueRaw("field2content", "") !== "" ) {
+			field2htmlcount = article.value("field2content", "").toString().split(";").length;
+		}
+		if ( field2htmlcount > 0 ) {
+			field2html = "<label for=\"afield2\" style=\"margin-right: 6px;\">" + article.value("field2name") + ":</label>";
+			field2html += "<select id=\"afield2\" name=\"afield2\" size=\"1\" style=\"width: auto; margin-top:6px;\">";
+			var field2array = article.value("field2content", "").toString().split(";");
+			
+			for (index = 0; index < field2array.length; ++index) {
+				field2html += "<option>" + field2array[index] + "</option>";
+			}
+			field2html += "</select><br />";
+		}
+		else {
+			field2html = "<input id=\"afield2\" name=\"afield2\" type=\"hidden\" value=\"" + article.value("field2content") + "\" />";
+		}
+	 $>
+
+	<div style="width:250px;float:left;padding-right:15px;">
+		<$= system.partial("article-headline.html") $>
+		
+		<$
+		var imageId = article.value("Bild");
+		var image = project.getImage(imageId);
+		
+		if ( !isNull(image) ) { $>
+			<div class="articleimage" style="<$= imagefloatstyle $>">
+				<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= image.description $>" title="<$= image.description $>" />
+			</div>
+			<$
+		}
+		 $>
+		
+		<div class="articletext" style="<$= textoverflow $>">
+			<$= article.value("Beschreibung") $>
+			<$ if ( article.value("Beschreibung").indexOf("</p>") == -1 ) { $>
+				<br /><br />
+			<$ } $>
+			<b><$= pricename $>: <$= currentArticlePriceFormatted $> <$= shopCurrency $></b>
+			<br />
+			<small><i><$= pricelabel $></i></small>
+			<br /><br />
+			<form id="Form<$= article.id $>" action="<$= shopIncPath $>" method="get" accept-charset="UTF-8">
+			<input id="action" name="action" type="hidden" value="add" />
+			<input id="aid" name="aid" type="hidden" value="<$= article.id $>" />
+			<input id="ano" name="ano" type="hidden" value="<$= article.value("articleNo") $>" />
+			<input id="aqtyunit" name="aqtyunit" type="hidden" value="<$= article.value("quantityUnit") $>" />
+			<input id="atext" name="atext" type="hidden" value="<$= article.headline $>" />
+			<input id="field1name" name="field1name" type="hidden" value="<$= article.value("field1name") $>" />
+			<$= field1html $>
+			<input id="field2name" name="field2name" type="hidden" value="<$= article.value("field2name") $>" />
+			<$= field2html $>
+			<input id="aprice" name="aprice" type="hidden" value="<$= currentArticlePrice $>" />
+			<input id="aqty" name="aqty" type="text" value="1" size="1" maxlength="3" style="width:25px; text-align:right;"  />&nbsp;<$= article.value("quantityUnit") $><br /><a style="margin-top: 10px;" href="#" class="button" onclick="javascript:document.forms['Form<$= article.id $>'].submit(); return false"><span><$= buttontext $></span></a>
+			</form>
+		</div>
+	
+	</div>
+
+<$= system.partial("article-end.html") $>

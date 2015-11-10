@@ -1,0 +1,104 @@
+{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "apps",
+        "dialogheightvalue": 230,
+        "includeinsearchindex": false,
+        "maincategory": "services",
+        "minappversion": "12.5.0.0",
+        "removelineafter": false,
+        "showcssinputfields": false,
+        "showheadline": false,
+        "uiName": "Dateibrowser",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.2"
+    },
+    "fields": [
+        {
+            "displayname": "Ordnerpfad auf Server",
+            "ignoreforsimilarcomparison": false,
+            "includeInSearchIndex": false,
+            "isrequired": true,
+            "label": "password",
+            "name": "serverfolderpath",
+            "placeholderText": "/home/etc/my/folder",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "userInfoText": "Der vollständige Pfad auf Ihrem Server",
+            "validationhelptext": "Bitte geben Sie einen Ordner ein"
+        },
+        {
+            "displayname": "Dateifilter",
+            "ignoreforsimilarcomparison": false,
+            "includeInSearchIndex": false,
+            "label": "area",
+            "name": "includefilter",
+            "placeholderText": "*.docx;*.pdf;*.xlsx",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "userinfotext": "Konfigurieren Sie die Dateitypen, die angezeigt werden sollen",
+            "defaultValue": "*"
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Voraussetzungen",
+            "name": "Voraussetzungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 0,
+            "popupheightinpixel": 140,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 140,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "assets/filebrowser.less",
+            "mode": "Bundle",
+            "order": 60
+        },
+        {
+            "fileName": "assets/php/*",
+            "mode": "Copy"
+        },
+        {
+            "fileName": "assets/images/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.php"
+        }
+    ]
+}

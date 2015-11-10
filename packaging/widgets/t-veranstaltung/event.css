@@ -1,0 +1,7 @@
+div.eventdetail .ecinfo{ 
+	font-weight: bold; 
+}
+div.eventdetail .eccaption{
+	margin-top: 6px;
+	font-style: italic;
+}

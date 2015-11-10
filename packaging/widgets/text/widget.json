@@ -1,26 +1,25 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
             "News",
             "Footer"
         ],
-        "category": "favs",
+        "category": "text",
         "defaults": {
             "_nameLevel": "h2"
         },
-        "dialogwidthvalue": 510,
-        "maincategory": "text",
+        "dialogwidthvalue": 610,
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
         "onlyforinlineediting": true,
-        "orderposition": 1,
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Text",
-        "usedialogwidth": true
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
     },
     "fields": [
         {

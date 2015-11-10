@@ -1,0 +1,214 @@
+<$
+function encode_html(astring) //helps prevent XSS e.g. when printing search strings
+{
+	astring = typeof astring !== 'undefined' ? astring : "";
+
+	astring = astring.replace(/</g, "&lt;");
+	astring = astring.replace(/>/g, "&gt;");
+	astring = astring.replace(/"/g, "&quo" + "t;");
+	astring = astring.replace(/'/g, "&#x27;");
+	astring = astring.replace(/\//g, "&#x2F;");
+	astring = astring.replace(/\[\$/g, "");
+	astring = astring.replace(/\$\]/g, "");
+	
+	return astring;
+}
+$>
+
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+	
+	<$ if ( system.preview ) { $>
+    	<$= system.partial("no-preview-info.html") $>
+	<$ 
+	}
+	else { 
+		var pages = page.projectFolder.allPages;
+		 $>
+
+		<script type="text/javascript">
+
+			function getParameterByName(name)
+			{
+				name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+				var regexS = "[\\?&]" + name + "=([^&#]*)";
+				var regex = new RegExp(regexS);
+				var results = regex.exec(window.location.search);
+				if(results == null) {
+					return "";
+				}
+				else {
+					return decodeURIComponent(results[1].replace(/\+/g, " "));
+				}
+			}
+	
+			function encode_html(astring) //helps prevent XSS e.g. when printing search strings
+			{
+				astring = typeof astring !== 'undefined' ? astring : "";
+
+				astring = astring.replace(/</g, "&lt;");
+				astring = astring.replace(/>/g, "&gt;");
+				astring = astring.replace(/"/g, "&quo" + "t;");
+				astring = astring.replace(/'/g, "&#x27;");
+				astring = astring.replace(/\//g, "&#x2F;");
+				astring = astring.replace(/\[\$/g, "");
+				astring = astring.replace(/\$\]/g, "");
+	
+				return astring;
+			}
+
+			function search()
+			{
+			  if ( document.forms.searchengine.keyword.value.length == 0)
+			  {
+				alert("#attribute(search_script_msg_required)");
+				return false;
+			  }
+			}
+	
+			<$ if ( !page.attribute("search_field_visible") ) { $>
+				document.write( "<form name=\"searchengine\" method=\"get\" onSubmit=\"return search()\" class=\"SO-SiteSearchForm zp-form\" style=\"margin-bottom: 20px;\"‚>" );
+				document.write( "<label class=\"field\" for=\"q2\">#attribute(search_script_label_keyword)</label> <input placeholder=\"#attribute(search_script_label_keyword)\" class=\"typetext\" type=\"text\" id=\"q2\" name=\"q\" size=\"20\" style=\"margin: 0;\" /> <input type=\"submit\" class=\"button\" value=\"#attribute(search_script_button_search_title)\" style=\"margin: 0; display: inline;\" />" );
+				document.write( "</form>" );
+			<$ } $>
+
+			var c = getParameterByName("q");
+			if ( c === "" ) {
+				// if q parameter is absent, it may be old search tags are in use which just pass a string as query
+				c = decodeURIComponent(window.location.search.substring(1));
+				// zp internal preview mode
+				<$ if ( system.preview ) { $>
+				if ( document.URL.indexOf("?page") != -1 ) {
+					c = "";
+				}
+				<$ } $>
+			}
+			if ( c != null && c != "" ) 		{
+			  var aName = new Array(<$= pages.count $>);
+			  var aDescription = new Array(<$= pages.count $>);
+			  var aURL = new Array(<$= pages.count $>);
+			  var aKeys = new Array(<$= pages.count $>);
+				<$
+				for ( var index=0; index < pages.count; ++index ) {
+					var p = pages.item(index);
+					if ( p.active && !p.attribute("noindex") ) {
+						system.pump();
+						system.log("Erstelle Suchindex für Seite '" + p.name + "'.");
+  
+						aname = p.name || "";
+						adescription = p.description || "";
+						akeys = p.searchTerms || "";
+			
+						aname = aname.replace(/\\/g, '\\\\');
+						adescription = adescription.replace(/\\/g, '\\\\');
+						akeys = akeys.replace(/\\/g, '\\\\');
+	
+						// filter out #attributes from all strings
+						aname = aname.replace(/#(attribute|text|page|html|web|system)\([^\)]+\)\s*/gi, "");
+						adescription = adescription.replace(/#(attribute|text|page|html|web|system)\([^\)]+\)\s*/gi, "");
+						akeys = akeys.replace(/#(attribute|text|page|html|web|system)\([^\)]+\)\s*/gi, "");
+	
+						aname = encode_html(aname);
+						adescription = encode_html(adescription);
+						akeys = encode_html(akeys);
+						$>
+ 
+						aName[<$= index $>] = "<$= aname $>";
+						aDescription[<$= index $>] = "<$= adescription $>";
+						aURL[<$= index $>] = "<$= p.url $>";
+						aKeys[<$= index $>] = "<$= akeys $>";
+				<$
+					}
+					else {
+					$>
+						aName[<$= index $>] = "";
+						aDescription[<$= index $>] = "";
+						aURL[<$= index $>] = "";
+						aKeys[<$= index $>] = "";
+					<$
+					}
+				}
+				$>
+	 
+			  var kw = c;
+			  if (kw != "") {
+				kw = kw.toLowerCase();
+				document.write( '<p>#attribute(search_script_result_txt_for) &quot;<span style="font-weight:bold">' + encode_html(kw) + '</span>&quot;:</p>' );
+				var nFound = 0;
+				var i;
+				document.write( "<ol class='SO-SiteSearchList'>" );
+				function Trim(txt) {
+					var i=0, j=txt.length-1;
+					while (i<txt.length && txt.charAt(i) == " ") i++; // von Anfang und Ende nach nicht Leerzeichen
+					while (j>=0 && txt.charAt(j) == " ") j--;		  // suchen 
+					return txt.substring(i, j+1);
+				}
+
+				kw = Trim (kw);
+				// da im index "." und "-" durch leerzeichen ersetzt sind, müssen wir im Suchstring das selbe machen damit wir korrekte Matches erhalten
+				// no longer needed in ZP 11.2 as the index is fixed
+				//kw = kw.replace(/\./g, " ");
+				//kw = kw.replace(/\-/g, " ");
+				// da im index " und ' entfernt sind, müssen wir im Suchstring das selbe machen damit wir korrekte Matches erhalten
+				kw = kw.replace(/\"/g, "");
+				kw = kw.replace(/\'/g, "");
+	
+				var NumberOfWords = 0;
+				var pos;
+				var field = new Array(15);
+				var temp = encode_html(kw);
+				var loop = true;
+				while (loop) // Eingegebener String nach Wörter durchsuchen
+				{
+					pos = temp.indexOf(" ");
+					if (pos >= 0) 
+					{
+						field[NumberOfWords] = temp.substr(0,pos);
+						temp = temp.substr(pos+1,temp.length-1);
+					}
+					else
+					{
+						field[NumberOfWords] = temp.substr(0,temp.length);
+						loop = false;
+					}
+					NumberOfWords++; // Anzahl der gefundenen Wörter
+				}
+				var nFound = 0;
+				var foundWords = 0;
+				for(a=0; a<<$= pages.count $>; a++) //Felder hochzählen
+				{
+					foundWords = 0;
+					for (y=0; y<NumberOfWords; y++) //jedes Wort testen
+					{
+							kw = field[y];
+							if (aKeys[a].indexOf( kw ) >= 0) // Wenn Wort vorhanden..
+							{
+								foundWords++; 
+							}
+					}	
+					if (foundWords==NumberOfWords) // wenn alle Wörter in dem Feld gefunden wurden
+					{
+						nFound++;
+						document.write("<li>");
+						document.write( '<span style="font-weight:bold"><a href="' + aURL[a] + '" target="_top">' + encode_html(aName[a]) + '</a></span><br /><span class="search-description">' + 	encode_html(aDescription[a]) + '</span><br />' );
+						if (aDescription[a] != "") {
+							document.write("<br />");
+						}
+						document.write("</li>");
+					}
+				}
+				document.write( "</ol>" );
+				if (nFound == 0){
+				  document.write( "#attribute(search_script_result_txt_nohits)" );
+				}
+				else{
+				  document.write( '<span style="font-weight:bold">' + nFound + ' #attribute(search_script_result_label_hits).</span>' );
+				}
+			  }
+			}
+			else {
+				document.write("<p>#attribute(search_script_msg_required)</p>");
+			}
+		</script>
+	<$ } $>
+<$= system.partial("article-end.html") $>

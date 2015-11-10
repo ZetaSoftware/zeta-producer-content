@@ -1,0 +1,94 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "all",
+        "dialogheightvalue": 230,
+        "includeinsearchindex": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showCssInputFields": false,
+        "showheadline": false,
+        "uiname": "t-Geschützter Bereich",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.2"
+    },
+    "fields": [
+        {
+            "displayname": "Kennwort",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "password",
+            "name": "password",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "validationhelptext": "Bitte vergeben Sie ein Kennwort für den geschützten Bereich.",
+            "width": 180
+        },
+        {
+            "displayname": "Bereichsname",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "area",
+            "name": "area",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "userinfotext": "Sie können mehrere geschützte Seiten zu einem Bereich zusammenfassen, indem Sie immer das selbe Kennwort und den selben Bereichsnamen vergeben. Dadurch muss das Kennwort nur einmal eingegeben werden und gilt für alle Bereiche.",
+            "width": 180,
+            "defaultValue": "Geschuetzter-Bereich"
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Voraussetzungen",
+            "name": "Voraussetzungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 0,
+            "popupheightinpixel": 140,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 140,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "php/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "zugriff-ueber-kennwort.php"
+        }
+    ]
+}

@@ -1,0 +1,171 @@
+<$
+	var defaultLevel = "h2";
+	var numSlides = article.value("header-count");
+	var slideSpeed = parseInt( article.value("secondsperimage", "8") * 1000);
+	var showthumbs = article.value("showthumbs", 0);
+	var textStyles = "";
+	var textPosition = article.value("textPosition", "middle");
+	var textBgColor = article.value("textBgColor", "");
+	var textShadowColor = article.value("textShadowColor", "");
+	var effect = article.value("effect", "fade");
+	
+	var cssClass = "";
+	var imageInlineStyles = "";
+	
+	if ( effect == "kenburns" ){
+		cssClass += " burns";
+		effect = "fade";
+	}
+	if ( article.value("breakout") ){
+		cssClass += " zpBreakout";
+		imageInlineStyles = ' style="border-radius: 0;"';
+	}
+	if ( textPosition == "bottom" ){
+		cssClass += " captionbottom";
+	}
+	
+	var contentImageWidth = "#val(contentcopy-max-image-width)";
+	// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
+	contentImageWidth = parseInt(contentImageWidth) || 960;
+$>
+<$= system.partial("article-begin.html", "zp13sliderWidget" + cssClass) $>
+	<div class="zp13slider-container">
+		<ul class="zp13slider">
+		<$
+		if ( textPosition == "top" ){
+			textStyles += " bottom: auto; top: #val(article-image-border)px; transform: none; -webkit-transform: none; -ms-transform: none;";
+		}
+		else if ( textPosition == "bottom" ){
+			textStyles += " top: auto; bottom: #val(article-image-border)px; transform: none; -webkit-transform: none; -ms-transform: none;";
+		}
+		if ( textBgColor ){
+			textStyles += " padding-top: 20px; padding-bottom: 20px; background-color: " + textBgColor + ";";
+		}
+		if ( textShadowColor == "transparent" ){
+			textStyles += " text-shadow: none;";
+		}
+		else if ( textShadowColor !== "" ){
+			textStyles += " text-shadow: 1px 1px 0 " + textShadowColor + ";";
+		}
+		
+		var controlNav = "true";
+		
+		for ( var i = 1; i <= numSlides; ++i ) {
+			var inlineStyle = "";
+			var slideUrl = article.value("slideUrl-" + i);
+			var headerTitle = article.value("header-title-" + i, "");
+			var headerLevel = article.value("header-title-" + i + "_level", defaultLevel) !== "" ? article.value("header-title-level-" + i, defaultLevel) : defaultLevel;
+			var headerAlign = article.value("header-title-" + i + "_align", "");
+			if ( headerAlign ){
+				inlineStyle += "text-align: " + headerAlign + "; ";
+			}
+			var headerColor = article.value("header-title-" + i + "_color", "");
+			if ( headerColor ){
+				inlineStyle += "color: " + headerColor + "; ";
+			}
+			var headerDescription = article.value("text-" + i, "");
+			var headerImage = article.value("image-" + i);
+			var image = project.getImage(headerImage);
+			var dataThumb = "";
+			
+			if ( image ){
+				// TODO for V13 read column class and figure out width from there.
+				var gridCols = article.column.cssClass;
+				if ( gridCols ){
+					gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
+				}
+				else{
+					gridCols = 12;
+				}
+				var columnMargin = 30;
+				var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
+
+				image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
+
+				var thumbImageWidth = image.contentCopyWidth;
+				var thumbImageHeight = image.contentCopyHeight;
+				var description = image.description;
+				var encodedDescription = system.htmlEncode(image.description);
+				var stripDescription = system.htmlEncode(system.removeHtmlTags(image.description));
+				// strip <p>-Tags from description as <p> is not valid inside SPAN
+				description = description.toString().replace(/<p>/g,"");
+				description = description.toString().replace(/<\/p>/g,"<br />");
+
+				if ( showthumbs ){ // Thumbnails are currently disabled by default - may be used in future version
+					controlNav = "thumbnails";
+					var thumbnailWidth = "100";
+					var thumbnailHeight = "62";
+					if ( image.createThumb(thumbnailWidth, thumbnailHeight) ) {
+						system.log("Erstelle Vorschaubild " + image.Name);
+					}
+					dataThumb = ' data-thumb="' + image.thumbPath(thumbnailWidth, thumbnailHeight) + '"';
+			    }
+			}
+			else if( showthumbs ){
+				dataThumb =' data-thumb=""';
+			}
+			$>
+		
+			<li<$= dataThumb $>>
+				<$ if ( slideUrl ){ $>
+				<$ } $>
+				<$ if ( image ) { $>
+					<img src="<$= image.contentCopyPath $>" width="<$= thumbImageWidth $>" height="<$= thumbImageHeight $>" alt="<$= system.removeHtmlTags(image.description) $>"<$= imageInlineStyles $> />
+				<$ } $>
+				<$ if ( headerTitle || headerDescription ) { $>
+					<div class="zp13slider-caption<$ if ( !image){ $> relative<$}$>" style="<$=textStyles$>">
+						<$ if ( headerTitle ) { $>
+							<<$= headerLevel $><$ if ( inlineStyle ){$> style="<$=inlineStyle$>"<$ } $>><$= headerTitle $></<$= headerLevel $>>
+						<$ } $>
+						<$= headerDescription $>
+					</div>
+				<$ } $>
+			</li>
+
+		<$ } $>
+
+	</ul>
+  </div>
+<$= system.partial("article-end.html") $>
+
+<$
+	var nextText = system.htmlEncode(page.attribute("header_next_text")) || "weiter";
+	var prevText = system.htmlEncode(page.attribute("header_prev_text")) || "zurück";
+	var inlineEditingInitDelay = 50;
+	var useSmoothHeight = "#val(smootHeight)" === "false" ? "false" : "true";
+	if ( useSmoothHeight === "true" ){
+		inlineEditingInitDelay = 1000;
+	}
+$>
+
+<$ if ( numSlides > 0 ) { $>
+	<script type="text/javascript">
+		$z(document).ready(function() {
+			// init flexslider after 1st image has loaded, so have dimensions as quickly as possible without having to wait too long on window loaded or such and can start right with doc ready
+			$z('#a<$= article.id $> ul.zp13slider li img').first().one("load", function(){
+				$z('#a<$= article.id $> .zp13slider-container').flexslider({
+					useCSS: true,
+					touch: true,
+					itemMargin: 20,
+					animation: '<$= effect $>',
+					namespace: 'zp13slider-',
+					selector: '.zp13slider > li',
+					controlsContainer: '#a<$= article.id $>.zp13sliderWidget',
+					multipleKeyboard: true,
+					slideshow: <$= article.value("autoplay") $>,
+					slideshowSpeed: <$= slideSpeed $>,
+					<$ if ( "#val(header-navicons)" ) { $>directionNav: #val(header-navicons),<$ } $>
+					controlNav: "<$= controlNav $>",
+					<$ if ( "#val(header-randomize)" ) { $>randomize: #val(header-randomize),<$ } $>
+					<$ if ( system.preview ){ $>start: function(){ setTimeout(zpieInit,<$= inlineEditingInitDelay $>); },<$ } $>
+					pauseOnHover: true,
+					smoothHeight: <$= useSmoothHeight $>,
+					prevText: "<$= prevText $>",
+					nextText: "<$= nextText $>"
+				});
+			}).each(function() {
+				if(this.complete) $z(this).load();
+			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
+		});
+  	</script>
+<$ } $>

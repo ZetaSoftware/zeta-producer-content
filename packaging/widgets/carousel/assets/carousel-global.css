@@ -1,0 +1,240 @@
+﻿/*
+ * jQuery FlexSlider v2.0 (global singleHeader Widget)
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ */
+
+
+/* Browser Resets */
+.zp13carousel-container a:active,
+.zp13carousel a:active,
+.zp13carousel-container a:focus,
+.zp13carousel a:focus  {outline: none;}
+ul.zp13carousel,
+.zp13carousel-control-nav,
+.zp13carousel-direction-nav{
+	margin: 0 !important; 
+	padding: 0 !important; 
+	list-style: none !important;
+} 
+
+/* FlexSlider Necessary Styles
+*********************************/ 
+.zp13carouselWidget {margin: 0; padding: 0;}
+.zp13carouselWidget ul.zp13carousel > li { display: none; -webkit-backface-visibility: hidden; list-style-type: none !important; margin: 0 !important; padding: 0 !important;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.no-js ul.zp13carousel > li{ display: block; }
+.zp13carouselWidget ul.zp13carousel img {max-width: 100%; height: auto; display: block;}
+.zp13carousel-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+ul.zp13carousel:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] ul.zp13carousel {display: block;} 
+* html ul.zp13carousel {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js ul.zp13carousel > li {display: block;}
+
+
+/* FlexSlider Default Theme
+*********************************/
+/*.zp13carousel {margin: 0 0 60px; background: #fff; border: 4px solid #fff; position: relative; -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.2); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 4px rgba(0,0,0,.2); -o-box-shadow: 0 1px 4px rgba(0,0,0,.2); zoom: 1;}*/
+.zp13carouselWidget {position: relative; zoom: 1;}
+
+.zp13carousel-viewport {max-height: 2000px; -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; transition: all 500ms ease;}
+.loading .zp13carousel-viewport {max-height: 300px;}
+.zp13carouselWidget ul.zp13carousel {zoom: 1;}
+
+.carousel li {margin-right: 5px}
+
+
+
+
+.zp13carousel-direction-nav .zp13carousel-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
+
+/* Control Nav */
+.zp13carousel-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center; z-index: 10;}
+.zp13carousel-control-nav li {margin: 0 6px; display: inline-block; zoom: 1;}
+.zp13carousel-control-paging li a {width: 11px; height: 11px; display: block; border: 1px solid rgba(255,255,255,0.3);background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: 0 0 2px rgba(255,255,255,0.5);}
+.zp13carousel-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
+.zp13carousel-control-paging li a.zp13carousel-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
+
+.zp13carousel-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden;}
+.zp13carousel-control-thumbs img {display: block; opacity: .7; cursor: pointer;}
+.zp13carousel-control-thumbs img:hover {opacity: 1;}
+.zp13carousel-control-thumbs .zp13carousel-active {opacity: 1; cursor: default;}
+
+/* New ZP13 Rules for Slideshow */
+div.zp13carouselWidget li img,
+#content div.zp13carouselWidget li img,
+.content div.zp13carouselWidget li img{
+	border: 0;
+	box-shadow: none;
+}
+
+.zp13carouselWidget ul.zp13carousel{
+	overflow:hidden;
+	-webkit-animation: fadeIn 1800ms ease-out;
+	     -o-animation: fadeIn 1800ms ease-out;
+	   -moz-animation: fadeIn 1800ms ease-out;
+	        animation: fadeIn 1800ms ease-out; 
+}
+.zp13carouselWidget ul.zp13carousel > li{
+	position: relative;
+}
+
+@-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.zp13carouselWidget .zp13carousel-caption{
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	left: auto;
+	right: auto;	
+	padding: 0;
+	box-sizing: border-box;
+	overflow:auto;
+}
+.zp13carouselWidget .zp13carousel-caption:hover{
+	-webkit-transition: opacity 500ms ease-out; 
+	transition: opacity 500ms ease-out;
+	opacity: 1;
+}
+.zp13carouselWidget .zp13carousel-caption span{
+	position: absolute;
+	padding: 10px 0;
+	top: 50%;
+	left: 20px;
+	right: 20px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%); 
+}
+.zp13carouselWidget .zp13carousel-caption.relative{
+	position: relative;
+	margin: 0 auto 60px auto;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+
+}
+#fancybox-title-over.zp13carousel,
+#fancybox-title-over.zp13carousel h1,
+#fancybox-title-over.zp13carousel h2,
+#fancybox-title-over.zp13carousel h3,
+#fancybox-title-over.zp13carousel h4,
+#fancybox-title-over.zp13carousel h5,
+#fancybox-title-over.zp13carousel h6{
+	margin-top: 0;
+	color: #ffffff;
+}
+.zp13carouselWidget .zp13carousel-caption{
+	text-align: center;
+	color: #ffffff;
+  	text-shadow: 1px 1px 0 rgba(0,0,0,0.7);
+}
+.zp13carouselWidget .zp13carousel-caption h1, 
+.zp13carouselWidget .zp13carousel-caption h2, 
+.zp13carouselWidget .zp13carousel-caption h3{
+	text-align: inherit;
+	color: inherit;
+	text-shadow: inherit;
+}
+.zp13carouselWidget .zp13carousel-caption h1:first-child, 
+.zp13carouselWidget .zp13carousel-caption h2:first-child, 
+.zp13carouselWidget .zp13carousel-caption h3:first-child{
+	margin-top: 0;
+}
+
+/* Direction Nav */
+/* TODO: remove if this IE-Fix is no longer needed .zp13carousel-direction-nav {*height: 0;} */
+.zp13carousel-direction-nav a {
+	width: 29px; height: 29px; margin: -20px 0 0; display: block; 
+	background: url(images/zp13_carousel_bg_direction_nav.png) no-repeat 0 0; 
+	position: absolute; top: 50%; z-index: 10; cursor: pointer; 
+	text-indent: -9999px; opacity: 0; -webkit-transition: all .3s ease; transition: all .3s ease;}
+.zp13carousel-direction-nav .zp13carousel-next, .zp13carousel-direction-nav .next {background-position: 100% 0; right: -36px; }
+.zp13carousel-direction-nav .zp13carousel-prev, .zp13carousel-direction-nav .prev {left: -36px;}
+.zp13carouselWidget:hover .zp13carousel-next, .zp13carouselWidget:hover .next {opacity: 0.75; right: 0;}
+.zp13carouselWidget:hover .zp13carousel-prev, .zp13carouselWidget:hover .prev {opacity: 0.75; left: 0;}
+.zp13carouselWidget:hover .zp13carousel-next:hover, 
+.zp13carouselWidget:hover .next:hover, 
+.zp13carouselWidget:hover .zp13carousel-prev:hover, 
+.zp13carouselWidget:hover .prev:hover {opacity: 1;}
+
+.zp13carouselWidget .zp13carousel-control-nav li,
+.zp13carouselWidget .zp13carousel-direction-nav li{
+	list-style: none !important;
+}
+.zp13carouselWidget .zp13carousel-control-nav{
+	position: absolute;
+	bottom: 20px;
+	top: auto;
+}
+.zp13carouselWidget.captionbottom .zp13carousel-control-nav{
+	bottom: auto;
+	top: 20px;
+}
+
+.zp13carouselWidget .zp13carousel-control-thumbs{
+	position: static;
+	margin: 5px 0 0 0;
+}
+
+.zp13carouselWidget .zp13carousel-control-nav li{ 
+	list-style-type: none !important; position: relative; width: 20px; height: 20px; margin: 0 6px; padding: 0; text-align: left;
+}
+.zp13carouselWidget .zp13carousel-control-thumbs li{ 
+	width: auto;
+	height: auto;
+	float: left;
+	margin: 0;
+}
+.zp13carouselWidget .zp13carousel-control-nav li a{
+	box-sizing: border-box;
+	position: absolute;
+	top: 6px;
+	left: 50%;
+	margin-left: -3px;
+	width: 8px;
+	height: 8px;
+	border: 0;
+	border-radius: 50%;
+	background-color: #ffffff;
+	display: inline-block;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.15);
+}
+.zp13carouselWidget .zp13carousel-control-nav li a.zp13carousel-active, 
+.zp13carouselWidget .zp13carousel-control-nav li a:hover{
+	top: 0;
+	left: 50%;
+	margin-left: -10px;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ffffff;
+	background-color: transparent;
+}

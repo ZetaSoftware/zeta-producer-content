@@ -1,49 +1,39 @@
-﻿{
+{
     "settings": {
-        "version": "12.5.0.0"
+        "version": "13.0.0.0"
     },
     "categories": [
         {
             "settings": {
                 "uiName": "Text & Bild",
-                "internalName": "text",
+                "internalName": "text-image",
                 "isSelectable": true,
                 "isDefaultCategory": true
             },
             "categories": [
                 {
-                    "uiName": "Favoriten",
-                    "internalName": "favs",
-                    "isDefaultChildCategory": true
-                },
-                {
-                    "uiName": "Mehr",
-                    "internalName": "more",
+                    "uiName": "Text",
+                    "internalName": "text",
                     "isDefaultChildCategory": false
                 },
                 {
-                    "uiName": "Vererbung",
-                    "internalName": "heredity",
+                    "uiName": "Bild",
+                    "internalName": "image",
                     "isDefaultChildCategory": false
                 }
             ]
         },
         {
             "settings": {
-                "uiName": "Webdienste",
-                "internalName": "services",
+                "uiName": "Anwendungen",
+                "internalName": "applications",
                 "isSelectable": true,
                 "isDefaultCategory": false
             },
             "categories": [
                 {
-                    "uiName": "Anwendungen",
-                    "internalName": "apps",
-                    "isDefaultChildCategory": false
-                },
-                {
-                    "uiName": "Online-Shop",
-                    "internalName": "shop",
+                    "uiName": "Verschiedenes",
+                    "internalName": "misc",
                     "isDefaultChildCategory": false
                 },
                 {
@@ -55,55 +45,126 @@
                     "uiName": "Informationen",
                     "internalName": "info",
                     "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Online-Shop",
+                    "internalName": "shop",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Google",
+                    "internalName": "google",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Facebook & Twitter",
+                    "internalName": "facebook-twitter",
+                    "isDefaultChildCategory": false
                 }
             ]
         },
         {
             "settings": {
-                "uiName": "Social Media",
+                "uiName": "Multimedia",
                 "internalName": "media",
                 "isSelectable": true,
                 "isDefaultCategory": false
             },
             "categories": [
                 {
-                    "uiName": "Video-Portale",
-                    "internalName": "videos",
+                    "uiName": "Audio",
+                    "internalName": "audio",
                     "isDefaultChildCategory": false
                 },
                 {
-                    "uiName": "Google Gadgets",
-                    "internalName": "google",
-                    "isDefaultChildCategory": false
-                },
-                {
-                    "uiName": "Facebook & Twitter",
-                    "internalName": "facebook",
+                    "uiName": "Video",
+                    "internalName": "video",
                     "isDefaultChildCategory": false
                 }
             ]
         },
         {
             "settings": {
-                "uiName": "Struktur",
-                "internalName": "structure",
+                "uiName": "Sonstige",
+                "internalName": "other",
                 "isSelectable": true,
                 "isDefaultCategory": false
             },
             "categories": [
+                {
+                    "uiName": "HTML",
+                    "internalName": "html",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Effekte",
+                    "internalName": "effects",
+                    "isDefaultChildCategory": false
+                },
                 {
                     "uiName": "Navigation",
                     "internalName": "nav",
                     "isDefaultChildCategory": false
                 },
                 {
-                    "uiName": "HTML-Elemente",
-                    "internalName": "html",
+                    "uiName": "Aggregation",
+                    "internalName": "aggregation",
                     "isDefaultChildCategory": false
                 },
                 {
-                    "uiName": "Textdarstellung",
-                    "internalName": "textarticles",
+                    "uiName": "Darstellung",
+                    "internalName": "display",
+                    "isDefaultChildCategory": false
+                }
+            ]
+        },
+        {
+            "settings": {
+                "uiName": "Inhalte",
+                "internalName": "contents",
+                "isSelectable": true,
+                "isDefaultCategory": false,
+				"isDefaultForExport": true
+            },
+            "categories": [
+                {
+                    "uiName": "Header",
+                    "internalName": "header",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Kontakt",
+                    "internalName": "contact",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Team",
+                    "internalName": "team",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Footer",
+                    "internalName": "footer",
+                    "isDefaultChildCategory": false
+                },
+                {
+                    "uiName": "Eigene",
+                    "internalName": "own",
+                    "isDefaultChildCategory": false
+                }
+            ]
+        },
+        {
+            "settings": {
+                "uiName": "Test",
+                "internalName": "test",
+                "isSelectable": true,
+                "isDefaultCategory": false
+            },
+            "categories": [
+                {
+                    "uiName": "Alle",
+                    "internalName": "all",
                     "isDefaultChildCategory": false
                 }
             ]

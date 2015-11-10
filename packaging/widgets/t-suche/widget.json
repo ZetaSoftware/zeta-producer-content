@@ -1,0 +1,63 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Standard",
+            "Banner",
+            "Footer"
+        ],
+        "canentail": false,
+        "category": "all",
+        "defaultitemtemplate": "Sitesearch",
+        "defaults": {
+            "_internalType": "sitesearch",
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 210,
+        "dontcachepageitem": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Suche",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "height": 10,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 40,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Annotation)",
+            "name": "(Annotation)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "Dies ist die Suchfunktion für Ihre Website.\r\nSie müssen keine weiteren Einstellungen vornehmen.",
+            "treatheightaspixel": true,
+            "type": "infotext"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "sitesearch.html",
+            "uiName": "Suche"
+        },
+        {
+            "fileName": "sitesearch php.php",
+            "uiName": "Suche PHP"
+        }
+    ]
+}

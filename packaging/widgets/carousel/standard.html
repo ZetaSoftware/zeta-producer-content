@@ -1,0 +1,226 @@
+<$
+	var defaultLevel = "h2";
+	var numSlides = article.value("header-count");
+	var slideSpeed = parseInt( article.value("secondsperimage", "8") * 1000);
+	var showthumbs = article.value("showthumbs", 0);
+	var showTitle = article.value("showTitle", 0) == 1 ? true : false;
+	var textStyles = "";
+	var textPosition = article.value("textPosition", "middle");
+	var textBgColor = article.value("textBgColor", "");
+	var textShadowColor = article.value("textShadowColor", "");
+	var thumbnailWidth = article.value("thumbnailWidth", "350");
+	var thumbnailHeight = article.value("thumbnailHeight", "750");
+	// carousel images variables
+	var maxItems = article.value("maxItems", 4);
+	var minItems = 2;
+	var minWidth = article.value("minWidth", 150);
+	
+	var cssClass = "";
+	if ( article.value("breakout") ){
+		cssClass += " zpBreakout";
+	}
+	if ( textPosition == "bottom" ){
+		cssClass += " captionbottom";
+	}
+	
+	var contentImageWidth = "#val(contentcopy-max-image-width)";
+	// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
+	contentImageWidth = parseInt(contentImageWidth) || 960;
+$>
+<$= system.partial("article-begin.html", "zp13carouselWidget" + cssClass) $>
+	<div class="zp13carousel-container">
+		<ul class="zp13carousel">
+		<$
+		if ( textPosition == "top" ){
+			textStyles += " bottom: auto; top: #val(article-image-border)px; transform: none; -webkit-transform: none; -ms-transform: none;";
+		}
+		else if ( textPosition == "bottom" ){
+			textStyles += " top: auto; bottom: #val(article-image-border)px; transform: none; -webkit-transform: none; -ms-transform: none;";
+		}
+		if ( textShadowColor == "transparent" ){
+			textStyles += " text-shadow: none;";
+		}
+		else if ( textShadowColor !== "" ){
+			textStyles += " text-shadow: 1px 1px 0 " + textShadowColor + ";";
+		}
+		textStylesParent = "";
+		if ( textBgColor ){
+			textStylesParent += " style=\"background-color: " + textBgColor + ";\"";
+		}
+		
+		
+		var controlNav = "true";
+		
+		for ( var i = 1; i <= numSlides; ++i ) {
+			var inlineStyle = "";
+			//var slideUrl = article.value("slideUrl-" + i);
+			var slideUrl = "";
+			if ( article.value("slideUrl-" + i) ){
+				slideUrl = system.partial("zplink-expanded.html", "slideUrl-" + i);
+			}
+			var headerTitle = article.value("header-title-" + i, "");
+			var headerLevel = article.value("header-title-" + i + "_level", defaultLevel);
+			var headerAlign = article.value("header-title-" + i + "_align", "");
+			if ( headerAlign ){
+				inlineStyle += "text-align: " + headerAlign + "; ";
+			}
+			var headerColor = article.value("header-title-" + i + "_color", "");
+			if ( headerColor ){
+				inlineStyle += "color: " + headerColor + "; ";
+			}
+			var headerDescription = article.value("text-" + i, "");
+			var headerImage = article.value("image-" + i);
+			var image = project.getImage(headerImage);
+			var dataThumb = "";
+			
+			if ( image ){
+				// create thumbnails
+				if ( image.createThumb(thumbnailWidth, thumbnailHeight) ) {
+			    	system.log("Erstelle Vorschaubild " + image.Name);
+			    }
+			    
+			    
+				// TODO for V13 read column class and figure out width from there.
+				/*
+				var gridCols = article.column.cssClass;
+				if ( gridCols ){
+					gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
+				}
+				else{
+					gridCols = 12;
+				}
+				var columnMargin = 30;
+				var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
+				*/
+				
+				var description = image.description || "";
+				var stripDescription = "";
+				if (description){
+					var stripDescription = system.htmlEncode(system.removeHtmlTags(description));
+				}
+				
+				if ( headerTitle ){
+					var titleString = headerTitle;
+					// strip <p>-Tags from description as <p> is not valid inside SPAN (in fancybox title)
+					titleString = titleString.toString().replace(/<p>/g,"");
+					titleString = titleString.toString().replace(/<\/p>/g,"<br />");
+					headerTitle = "<" + headerLevel;
+					if ( inlineStyle ){
+						headerTitle += ' style="' + inlineStyle + '"'
+					}
+					headerTitle += ">" + titleString + '</' + headerLevel + '>';
+				}
+				var htmltitle = system.htmlEncode(headerTitle + headerDescription);
+				var imageLinkTag = "";
+				if ( slideUrl){
+					imageLinkTag = '<a ' + slideUrl + '>';
+				}
+				else{
+					imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '">';
+					//imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '" data-fancybox-group="g' + article.id + '" rel="g' + article.id + '">';
+				}
+				
+			}
+			$>
+		
+			<li>
+				<$= imageLinkTag $>
+				<$ if ( image ) { $>
+						<img src="<$= image.thumbPath(thumbnailWidth, thumbnailHeight) $>" width="<$= thumbnailWidth $>" height="<$= thumbnailHeight $>" title="<$= stripDescription $>" alt="<$= stripDescription $>" />
+				<$ } $>
+				
+				<$ if ( headerTitle || headerDescription ) { $>
+					<div class="zp13carousel-caption<$ if ( !image){ $> relative<$}$>"<$= textStylesParent $>>
+						<span style="<$=textStyles$>">
+							<$ if ( headerTitle ) { $>
+								<$= headerTitle $>
+							<$ } $>
+							<$= headerDescription $>
+						</span>
+					</div>
+				<$ } $>
+				</a>
+			</li>
+
+		<$ } $>
+
+	</ul>
+  </div>
+<$= system.partial("article-end.html") $>
+
+<$
+	var nextText = system.htmlEncode(page.attribute("header_next_text")) || "weiter";
+	var prevText = system.htmlEncode(page.attribute("header_prev_text")) || "zurück";
+	var inlineEditingInitDelay = 50;
+	var useSmoothHeight = "#val(smootHeight)" === "false" ? "false" : "true";
+	if ( useSmoothHeight === "true" ){
+		inlineEditingInitDelay = 1000;
+	}
+$>
+
+<$ if ( numSlides > 0 ) { $>
+	<script type="text/javascript">
+		$z(document).ready(function() {
+			// dynamically calculate the maxItems depending on browser width and minimum image width, so that the carousel will not show cut off images
+			var maxItems = <$= maxItems $>;
+			var itemsFit = Math.floor($z('#a<$= article.id $> .zp13carousel-container').width() / <$= minWidth $>);
+			if ( itemsFit < <$= maxItems $> && itemsFit !== 0){
+				maxItems = itemsFit;
+			}
+			console.log(".zp13carousel-container Width: " + $z('#a<$= article.id $> .zp13carousel-container').width() + " - MinWidth: <$= minWidth $>" );
+			// init flexslider after 1st image has loaded, so have dimensions as quickly as possible without having to wait too long on window loaded or such and can start right with doc ready
+			$z('#a<$= article.id $> ul.zp13carousel li img').first().one("load", function(){
+				$z('#a<$= article.id $> .zp13carousel-container').flexslider({
+					useCSS: true,
+					touch: true,
+					itemWidth: <$= minWidth $>,
+					itemMargin: 0,
+					minItems: <$= minItems $>,
+					maxItems: maxItems,
+					move: 1,
+					mousewheel: true,
+					animation: 'slide',
+					animationLoop: true,
+					namespace: 'zp13carousel-',
+					selector: '.zp13carousel > li',
+					controlsContainer: '#a<$= article.id $>.zp13carousel',
+					multipleKeyboard: true,
+					slideshow: <$= article.value("autoplay") $>,
+					slideshowSpeed: <$= slideSpeed $>,
+					directionNav: true,
+					controlNav: false,
+					<$ if ( system.preview ){ $>start: function(){ setTimeout(zpieInit,<$= inlineEditingInitDelay $>); },<$ } $>
+					pauseOnHover: true,
+					smoothHeight: <$= useSmoothHeight $>,
+					prevText: "<$= prevText $>",
+					nextText: "<$= nextText $>"
+				});
+			}).each(function() {
+				if(this.complete) $z(this).load();
+			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
+		});
+		
+		$z("#a<$= article.id $> .fancybox").fancybox({
+			'hideOnContentClick': true,
+			'padding': 0,	//Space between FancyBox wrapper and content
+			'margin': 30,	//Space between viewport and FancyBox wrapper
+			'cyclic' : true, 
+			'changeSpeed'		: 0, 
+			'speedIn'	: 300,
+			'speedOut'	: 300,
+			'transitionIn'	: "elastic",
+			'transitionOut'	: "elastic", 
+			'easingIn'			: 'easeOutCubic', 
+			'easingOut'			: 'easeInCubic', 
+			'titleShow'			: <$= showTitle $>,
+			'overlayColor'	: "black",
+			'overlayOpacity': 0.85,
+			'titlePosition'	: "over",
+			'titleFormat'		: function(title, currentArray, currentIndex) {
+				var title = $z("#a<$= article.id $> .fancybox").eq(currentIndex).data("htmltitle");
+				return '<span id="fancybox-title-over" class="zp13carousel">' +  title + '</span>';
+			}
+			
+		});
+  	</script>
+<$ } $>

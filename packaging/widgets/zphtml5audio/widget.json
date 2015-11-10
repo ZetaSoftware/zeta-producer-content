@@ -1,24 +1,24 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
             "News",
             "Footer"
         ],
-        "category": "more",
+        "category": "audio",
         "dialogheightvalue": 350,
         "dontcachepageitem": false,
-        "maincategory": "text",
-        "orderposition": 6,
+        "maincategory": "media",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Audio-Player",
         "usedialogheight": true,
-        "usercanresizedialog": false
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
     },
     "fields": [
         {

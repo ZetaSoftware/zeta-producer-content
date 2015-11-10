@@ -1,0 +1,164 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "all",
+        "defaults": {
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 250,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "requiredfeature": "HasOnlineshop",
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Produktalbum",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Artikel",
+            "ignoreforsimilarcomparison": false,
+            "label": "Artikelauswahl",
+            "name": "Artikelauswahl",
+            "type": "article-overview"
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Optionen",
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "previewimages",
+            "name": "previewimages",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 147,
+            "popupheightinpixel": 280,
+            "popupwidthinpixel": 330,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Artikelnamen anzeigen",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "showtitle",
+                    "name": "showtitle",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "1"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Rahmenfarbe",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "bordercolor",
+                    "name": "bordercolor",
+                    "type": "color-selection",
+                    "width": 90,
+                    "defaultValue": "transparent"
+                },
+                {
+                    "displayname": "Rahmenstärke",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "borderwidth",
+                    "maximumvalue": 30,
+                    "minimumvalue": 0,
+                    "name": "borderwidth",
+                    "type": "text-singleline-updown",
+                    "validationexpression": "^\\d+$",
+                    "validationhelptext": "Bitte geben Sie eine Zahl in das Feld Rahmenstärke ein.",
+                    "width": 90,
+                    "defaultValue": "0"
+                },
+                {
+                    "displayname": "Breite der Vorschaubilder",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "Breite der Vorschaubilder",
+                    "name": "width",
+                    "type": "text-singleline",
+                    "userinfotext": "Breite in Pixel",
+                    "validationexpression": "^\\d+$",
+                    "validationhelptext": "Bitte geben Sie eine Zahl im Feld  'Breite der Vorschaubilder' ein.",
+                    "width": 90,
+                    "defaultValue": "200"
+                },
+                {
+                    "displayname": "Höhe der Vorschaubilder",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "height",
+                    "name": "height",
+                    "type": "text-singleline",
+                    "userinfotext": "Höhe in Pixel",
+                    "validationexpression": "^\\d+$",
+                    "validationhelptext": "Bitte geben Sie eine Zahl ein",
+                    "width": 90,
+                    "defaultValue": "150"
+                },
+                {
+                    "displayname": "Abstand zwischen Vorschaubildern",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "margin",
+                    "name": "margin",
+                    "type": "text-singleline",
+                    "userinfotext": "Abstand in Pixel",
+                    "validationexpression": "^\\d+$",
+                    "validationhelptext": "Bitte geben Sie eine Zahl ein",
+                    "width": 90,
+                    "defaultValue": "10"
+                },
+                {
+                    "displayname": "Schriftgröße",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "fontsize",
+                    "name": "fontsize",
+                    "type": "text-singleline",
+                    "userinfotext": "Legt die Schrifgröße (in Pixel) für Artikelnamen fest, falls diese angezeigt werden.",
+                    "validationexpression": "^\\d+$",
+                    "validationhelptext": "Das Feld \"Schriftgröße\" darf nur Zahlen enthalten!",
+                    "width": 90,
+                    "defaultValue": "14"
+                }
+            ]
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

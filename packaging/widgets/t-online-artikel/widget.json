@@ -1,0 +1,87 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "canentail": false,
+        "category": "all",
+        "dialogheightvalue": 310,
+        "includeinsearchindex": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "requiredfeature": "HasOnlineCms",
+        "showcssinputfields": true,
+        "showheadline": false,
+        "uiname": "t-Online-CMS",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
+    },
+    "fields": [
+        {
+            "displayname": "Kennwort",
+            "ignoreforsimilarcomparison": false,
+            "ispassword": true,
+            "isrequired": true,
+            "label": "Kennwort",
+            "name": "password",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "validationhelptext": "Bitte vergeben Sie ein Kennwort für den Bearbeitungsmodus.",
+            "width": 180
+        },
+        {
+            "height": 120,
+            "ignoreforsimilarcomparison": false,
+            "label": "(HTML-Anmerkung)",
+            "name": "(Anmerkung)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "<p>Diese Seite können Sie online über folgenden Link bearbeiten:<br /><a href=\"{context-page-url}?edit\">{context-page-url}?edit</a></p>\r\n<p>Per E-Mail <a href=\"mailto:HIER%20E-Mail-Adresse%20einsetzen?Subject=Seite%20bearbeiten&Body=Bearbeitungs-Link%3A%20{context-page-url}?edit%0AKennwort%3A%20{context-item-password}\">zum Bearbeiten einladen</a>.</p>",
+            "treatheightaspixel": true,
+            "type": "infotext"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Voraussetzungen",
+            "name": "Voraussetzungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 0,
+            "popupheightinpixel": 160,
+            "popupwidthinpixel": 430,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 160,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n\t<li>PHP-Erweiterung \"GD Library\" um Bilder einzufügen</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "php/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.php"
+        }
+    ]
+}

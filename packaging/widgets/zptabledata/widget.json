@@ -1,25 +1,24 @@
-{
+﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
             "News",
             "Footer"
         ],
-        "category": "more",
+        "category": "text",
         "defaults": {
             "_nameLevel": "h2"
         },
         "dialogwidthvalue": 510,
-        "maincategory": "text",
-        "orderposition": 2,
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Tabellarische Daten",
-        "usedialogwidth": true
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
     },
     "fields": [
         {

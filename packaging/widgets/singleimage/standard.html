@@ -1,4 +1,6 @@
 <$
+	var inlineCss = article.inlineCss;
+	var cssClass = article.cssClass;
 	var image = project.getImage(article.value("image"));
 	var contentImageWidth = "#val(contentcopy-max-image-width)";
 	// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
@@ -111,7 +113,7 @@
 				<img class="singleImage" src="<$= image.contentCopyPath $>" width="<$= thumbImageWidth $>" height="<$= thumbImageHeight $>" alt="<$= altText $>" />
 			<$ } $>
 
-			<$ if ( showCaption == "1" ) { $>
+			<$ if ( showCaption == "1" && description ) { $>
 				<span class="imagedescription" style="display:block; clear:both; padding-top:5px;"><$= description $></span>
 			<$ } $>
 		<$= system.partial("article-end.html") $>

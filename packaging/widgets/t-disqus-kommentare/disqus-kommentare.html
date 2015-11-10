@@ -1,0 +1,46 @@
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+
+<$ 
+var shortname = system.htmlEncode(article.value("disqusshortname", ""));
+
+if ( system.preview ) { $>
+	<$= system.partial("no-preview-info.html") $>
+	<$ 
+}
+else { 
+	 $>		
+		<div id="disqus_thread"></div>
+	
+		<script type="text/javascript">
+			// fix a clashing css class which resulted in the disqus div being hidden
+			function disqus_config() {
+			  this.callbacks.onReady = [function() { document.getElementById("dsq-content").className="dsq-clearfix"; }];
+			}
+
+			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+			var disqus_shortname = '<$= shortname $>'; // required: replace example with your forum shortname
+	
+			// set disqus_developer to 1 to avoid errors when we're previewing locally or via file:// etc.
+			if (document.location.protocol.search("http") == 0 && document.location.hostname.search("127.0.0.1") == -1 ) {
+			  var disqus_developer = 0; // developer mode is on
+			}
+			else {
+			  var disqus_developer = 1; // developer mode is on
+			}
+
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Kommentare powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">Kommentare powered by <span class="logo-disqus">Disqus</span></a>
+	<$ 
+} 
+ $>
+ 
+<$= system.partial("article-end.html") $>

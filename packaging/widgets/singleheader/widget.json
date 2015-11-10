@@ -1,26 +1,9 @@
-{
+﻿{
     "settings": {
-        "version": "12.5.0.3",
-        "minAppVersion": "12.5.0.0",
-        "visibilityKind": "Internal",
-        "category": "favs",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "editorType": "pageHeader",
-        "mainCategory": "text",
-        "uiName": "Header",
-        "allowedAreas": [
+        "allowedareas": [
             "Header"
         ],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 0,
-        "useDialogHeight": false,
+        "category": "image",
         "defaults": {
             "_imageLookupUniqueID": "header-image",
             "_widthLookupUniqueID": "header-image-width",
@@ -30,24 +13,39 @@
             "effect": "slide",
             "autoplay": "true"
         },
-        "userCanResizeDialog": false,
+        "editortype": "pageHeader",
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": true,
-        "headlineRequired": false,
-        "showHeadline": true,
-        "removeLineAfter": false,
-        "orderPosition": 4,
-        "requiredFeature": "None"
+        "uiname": "Header",
+        "usercanresizedialog": false,
+        "version": "12.5.0.3",
+        "visibilitykind": "Internal"
     },
     "assets": [
-        { "fileName": "assets/flexslider-global.css",	"mode": "bundle", 		"order": 40 },
-        { "fileName": "jquery.flexslider.js",			"mode": "bundle", 		"order": 500 },
-        { "fileName": "assets/*",		        		"mode": "copy", "ignore": ["flexslider-global.css", "jquery.flexslider.js"]}
+        {
+            "fileName": "assets/flexslider-global.css",
+            "mode": "Bundle",
+            "order": 40
+        },
+        {
+            "fileName": "jquery.flexslider.js",
+            "mode": "Bundle"
+        },
+        {
+            "fileName": "assets/*",
+            "mode": "Copy",
+            "ignores": [
+                "flexslider-global.css",
+                "jquery.flexslider.js"
+            ]
+        }
     ],
     "itemTemplates": [
         {
             "fileName": "standard.html"
         }
     ]
-    
 }

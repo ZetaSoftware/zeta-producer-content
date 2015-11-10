@@ -1,0 +1,206 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "image",
+        "dialogheightvalue": 550,
+        "dialogwidthvalue": 525,
+        "editortype": "genericListArticleEditor",
+        "maincategory": "text-image",
+        "minappversion": "13.0.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "uiname": "Carousel",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "usercanresizedialog": false,
+        "version": "13.0.0.0"
+    },
+    "fields": [
+        {
+            "displayname": "Automatisch abspielen",
+            "height": 20,
+            "name": "autoplay",
+            "treatheightaspixel": true,
+            "type": "checkbox",
+            "defaultValue": "1"
+        },
+        {
+            "displayname": "Sekunden pro Bild",
+            "name": "secondsperimage",
+            "type": "text-singleline-updown",
+            "userinfotext": "Wartezeit bis zu nächsten Animation. Hat keine Auswirkung, wenn \"Automatisch abspielen\" deaktiviert ist.",
+            "width": 80,
+            "defaultValue": "8"
+        },
+        {
+            "displayname": "Randlos",
+            "height": 20,
+            "name": "breakout",
+            "treatheightaspixel": true,
+            "type": "checkbox",
+            "defaultValue": "0"
+        },
+        {
+            "displayname": "Text Optionen",
+            "expandedheight": 4,
+            "name": "styleGroup1",
+            "popupheightinpixel": 110,
+            "popupwidthinpixel": 290,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Position",
+                    "name": "textPosition",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "Oben": "top"
+                        },
+                        {
+                            "Mitte": "middle"
+                        },
+                        {
+                            "Unten": "bottom"
+                        }
+                    ],
+                    "defaultValue": "middle"
+                },
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "name": "textBgColor",
+                    "type": "color-selection",
+                    "width": 160
+                },
+                {
+                    "displayname": "Schattenfarbe",
+                    "name": "textShadowColor",
+                    "type": "color-selection",
+                    "width": 160
+                }
+            ]
+        },
+        {
+            "displayname": "Bild Optionen",
+            "name": "imageOptions",
+            "popupheightinpixel": 170,
+            "popupwidthinpixel": 230,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Breite",
+                    "maximumvalue": 0,
+                    "name": "thumbnailWidth",
+                    "type": "text-singleline-updown",
+                    "width": 80,
+                    "defaultValue": "350"
+                },
+                {
+                    "displayname": "Höhe",
+                    "maximumvalue": 0,
+                    "name": "thumbnailHeight",
+                    "type": "text-singleline-updown",
+                    "width": 80,
+                    "defaultValue": "570"
+                },
+                {
+                    "displayname": "Mindestbreite",
+                    "maximumvalue": 1000,
+                    "minimumvalue": 100,
+                    "name": "minWidth",
+                    "type": "text-singleline-updown",
+                    "userinfotext": "Mindestbreite der Bilder. Schmaler werden die Bilder auch auf kleinen Bildschirmen dann nicht dargestellt.",
+                    "width": 80,
+                    "defaultValue": "150"
+                },
+                {
+                    "displayname": "Bilder max.",
+                    "maximumvalue": 6,
+                    "minimumvalue": 1,
+                    "name": "maxItems",
+                    "type": "text-singleline-updown",
+                    "userinfotext": "Die maximale Anzahl an Bildern, die nebeneinander angezeigt werden.",
+                    "width": 80,
+                    "defaultValue": "4"
+                },
+                {
+                    "displayname": "Beschreibung auf großem Bild",
+                    "height": 20,
+                    "name": "showTitle",
+                    "occupylabelspace": true,
+                    "treatheightaspixel": true,
+                    "type": "checkbox",
+                    "userinfotext": "Text-Beschreibung auch in der Lightbox-Darstellung anzeigen.",
+                    "defaultValue": "0"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "assets/carousel-global.css",
+            "mode": "Bundle",
+            "order": 60
+        },
+        {
+            "fileName": "jquery.flexslider.js",
+            "mode": "Bundle"
+        },
+        {
+            "fileName": "assets/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ],
+    "extended": {
+        "settings": {
+            "globalFieldsAreaHeight": 160,
+            "localFieldsAreaHeight": 420,
+            "treatHeightAsPixel": true,
+            "headerElementContentFieldName": "image"
+        },
+        "fields": [
+            {
+                "displayName": "Bild",
+                "name": "image",
+                "type": "image-selection",
+                "largePreviewImage": true,
+                "height": 4,
+                "treatHeightAsPixel": false
+            },
+            {
+                "displayName": "Link",
+                "name": "slideUrl",
+                "type": "url-selection"
+            },
+            {
+                "defaultLevel": 2,
+                "displayName": "Überschrift",
+                "name": "header-title",
+                "type": "single-headline"
+            },
+            {
+                "displayName": "Text",
+                "name": "text",
+                "type": "html-wysiwyg-editor",
+                "minimalEditor": true,
+                "height": 120,
+                "treatHeightAsPixel": true,
+                "treatAsSingleLine": true
+            }
+        ]
+    }
+}

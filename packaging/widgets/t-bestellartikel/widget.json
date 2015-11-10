@@ -1,0 +1,224 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "all",
+        "defaults": {
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 570,
+        "dialogwidthvalue": 510,
+        "dontcachepageitem": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "requiredfeature": "HasOnlineshop",
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Bestellartikel",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "version": "12.5.0.2"
+    },
+    "fields": [
+        {
+            "height": 2,
+            "ignoreforsimilarcomparison": false,
+            "label": "Beschreibung",
+            "name": "Beschreibung",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "html-wysiwyg-editor"
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "ignoreforsimilarcomparison": false,
+            "label": "Bild",
+            "name": "Bild",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "image-selection"
+        },
+        {
+            "canedit": false,
+            "displayname": "Darstellung",
+            "ignoreforsimilarcomparison": false,
+            "label": "image_position",
+            "name": "image_position",
+            "type": "list",
+            "width": 217,
+            "values": [
+                {
+                    "Bild links (Text umfließend)": "floatleft"
+                },
+                {
+                    "Bild rechts": "right"
+                },
+                {
+                    "Bild rechts (Text umfließend)": "floatright"
+                },
+                {
+                    "Bild oben": "top"
+                },
+                {
+                    "Standard": "left"
+                }
+            ],
+            "defaultValue": "left"
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Preis",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "Preis",
+            "name": "unitPrice",
+            "type": "text-singleline",
+            "userinfotext": "Den Preis als Zahl angeben (ohne Währung), z.B. \"14,99\".",
+            "validationexpression": "^\\d*([,.]\\d\\d)?$",
+            "validationhelptext": "Preis bitte als Zahl ohne Währung und Tausender-Trennzeichen eingeben, z.B.: 8,90",
+            "width": 80
+        },
+        {
+            "displayname": "Mengeneinheit",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "quantityUnit",
+            "name": "quantityUnit",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "userinfotext": "Geben Sie hier die Mengeneinheit an. Z.B. \"Stk.\" oder \"Meter\".",
+            "width": 80,
+            "defaultValue": "Stk."
+        },
+        {
+            "displayname": "Artikelnummer",
+            "ignoreforsimilarcomparison": false,
+            "label": "articleNo",
+            "name": "articleNo",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "width": 217
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Optionale Felder",
+            "name": "Optionale Listenfelder (Varianten)",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 317,
+            "popupheightinpixel": 160,
+            "popupwidthinpixel": 330,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Name Feld 1",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "field1name",
+                    "name": "field1name",
+                    "type": "text-singleline",
+                    "userinfotext": "Der Feldname wird im Bestellartikel vor den Werten dargestellt.",
+                    "width": 200
+                },
+                {
+                    "displayname": "Werte Feld 1",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "field1content",
+                    "name": "field1content",
+                    "type": "text-singleline",
+                    "userinfotext": "Geben Sie mehrere, durch Semikolon (ohne Leerzeichen vor oder nach dem Semikolon) getrennte Werte wie z.B.: \"Rot;Grün;Blau\" ein.",
+                    "validationexpression": "^$|^(\\S*;\\S*)[^;]$",
+                    "validationhelptext": "Werte Feld 1 muss entweder leer bleiben, oder durch Semikolon (;) getrennte Werte enthalten.",
+                    "width": 200
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Name Feld 2",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "field2name",
+                    "name": "field2name",
+                    "type": "text-singleline",
+                    "userinfotext": "Der Feldname wird im Bestellartikel vor den Werten dargestellt.",
+                    "width": 200
+                },
+                {
+                    "displayname": "Werte Feld 2",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "field2content",
+                    "name": "field2content",
+                    "type": "text-singleline",
+                    "userinfotext": "Geben Sie mehrere, durch Semikolon (ohne Leerzeichen vor oder nach dem Semikolon) getrennte Werte wie z.B.: \"Rot;Grün;Blau\" ein.",
+                    "validationexpression": "^$|^(\\S*;\\S*)[^;]$",
+                    "validationhelptext": "Werte Feld 2 muss entweder leer bleiben, oder durch Semikolon (;) getrennte Werte enthalten.",
+                    "width": 200
+                }
+            ]
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "bestellartikel.css",
+            "mode": "Bundle",
+            "order": 40
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        },
+        {
+            "fileName": "artikel-nebeneinander.html",
+            "uiName": "Artikel nebeneinander"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8" />
+	<title>WOEID finden</title>
+	<meta name="generator" content="BBEdit 10.1" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	
+<style type="text/css" title="text/css" media="screen">
+	body{
+		font-size: 14px;
+		font-family: "Segoe UI", Verdana, sans-serif;
+		color: #363B43;
+		background-color: #F7F7F7;
+	}
+	.frm{
+		text-align: right; width: auto; float:left;
+		line-height: 30px;
+	}	
+	input{
+		font-size: 14px;
+		font-family: "Segoe UI", Verdana, sans-serif;
+		margin-bottom: -2px;
+	}
+</style>
+
+</head>
+<body>
+
+<div id="woform" style="overflow: hidden;">
+	<p style="margin: 0 0 10px 0;">Geben Sie bitte die PLZ oder den Namen des Ortes ein, für den Sie das Wetter anzeigen wollen:</p>
+	<div class="frm">
+	PLZ oder Ort: <input type="text" name="ort" id="ort" style="width: 160px;" /><br />
+	Land: <input type="text" name="land" id="land" value="Deutschland" style="width: 160px;" /><br />
+	<input type="submit" id="submit" value="Suchen"/>
+	</div>
+</div>
+<div id="result" style="overflow: hidden;">
+	<p style="margin: 10px 0 0 0;">Beachten Sie die <a href="http://developer.yahoo.com/weather/#terms" target="_blank">Nutzungsbedingungen</a> für Yahoo Weather</p>
+</div>
+
+<script type="text/javascript">	
+	$('#submit').click(function () {
+		var ort = encodeURI($('#ort').val());
+		var land = encodeURI($('#land').val());
+		
+		if ( land !== "" && ort !== "") {
+			var qurl = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.places%20where%20text%3D%22" + ort + "%20" + land + "%22&format=json";
+			
+			$.ajax({ 
+				type: "GET",
+				url: qurl,
+				dataType: "jsonp",
+				cache: false,
+				contentType: "application/json",
+				success: function(data) {
+					p = data.query.results.place
+					if (p.woeid) {
+						try{
+							$('#result').html('<h3 style="margin:0;" title="Kopieren Sie diese Zahl in das Feld Orts-ID."><span style="font-weight: normal;">Orts-ID: </span>' + p.woeid + '</h3><p style="margin:0;">' + p.locality1.content + ", " + p.admin1.content + ", " + p.country.content + "</p>");
+						}
+						catch(err) {
+							$('#result').html('<h3 style="margin:0;">Nichts gefunden!</h3><p>Überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.</p>');
+						}
+					}
+					else {
+						$('#result').html('<h3 style="margin:0;">Nichts gefunden!</h3><p>Überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.</p>');
+					}
+				},
+				error: function(xhr, status, error) {
+						//alert(xhr.status);
+				}
+			});
+		}
+		else {
+			alert("Geben Sie bitte Ort und Land ein!");
+		}
+	});	
+</script>
+
+<!--
+ * $Id: getwoid.html 32282 2015-09-16 11:06:43Z sseiz $
+ * Copyright Zeta Software GmbH
+-->
+</body>
+</html>

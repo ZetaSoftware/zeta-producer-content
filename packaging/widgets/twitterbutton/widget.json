@@ -1,74 +1,46 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
-        "category": "facebook",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "mainCategory": "media",
-        "uiName": "Twitter-Button",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 200,
-        "useDialogHeight": true,
-        "defaults": {},
-        "userCanResizeDialog": "false",
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "facebook-twitter",
+        "dialogheightvalue": 200,
+        "maincategory": "applications",
+        "minappversion": "12.5.0.0",
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": true,
-        "headlineRequired": false,
-        "showHeadline": false,
-        "removeLineAfter": false,
-        "orderPosition": 4,
-        "requiredFeature": "None"
+        "showheadline": false,
+        "uiname": "Twitter-Button",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
     },
     "fields": [
         {
-            "name": "buttonsize",
-            "displayName": "Button",
-            "type": "list",
-            "position": 0,
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": false,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 130,
             "canedit": false,
-            "height": 1,
+            "displayname": "Button",
+            "ignoreforsimilarcomparison": false,
             "label": "buttonsize",
-            "defaultValue": "Klein",
+            "name": "buttonsize",
+            "type": "list",
+            "width": 130,
             "values": [
                 "Klein",
                 "Groß"
-            ]
+            ],
+            "defaultValue": "Klein"
         },
         {
-            "name": "showcount",
-            "displayName": "Anzahl anzeigen",
-            "type": "list",
-            "position": 1,
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": false,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 130,
             "canedit": false,
-            "height": 1,
+            "displayname": "Anzahl anzeigen",
+            "ignoreforsimilarcomparison": false,
             "label": "showcount",
-            "defaultValue": "horizontal",
+            "name": "showcount",
+            "type": "list",
+            "width": 130,
             "values": [
                 {
                     "Daneben": "horizontal"
@@ -79,7 +51,8 @@
                 {
                     "Verbergen": "none"
                 }
-            ]
+            ],
+            "defaultValue": "horizontal"
         }
     ],
     "itemTemplates": [

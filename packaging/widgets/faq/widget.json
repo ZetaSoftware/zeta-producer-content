@@ -1,73 +1,51 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
-        "category": "textarticles",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "mainCategory": "structure",
-        "uiName": "FAQ",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 510,
-        "useDialogWidth": true,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 0,
-        "useDialogHeight": false,
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "text",
         "defaults": {
             "_nameLevel": "h2"
         },
-        "userCanResizeDialog": "true",
+        "dialogwidthvalue": 510,
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": true,
-        "headlineRequired": false,
-        "showHeadline": false,
-        "removeLineAfter": false,
-        "orderPosition": 5,
-        "requiredFeature": "None"
+        "showheadline": false,
+        "uiname": "FAQ",
+        "usedialogwidth": true,
+        "version": "12.5.0.0"
     },
     "fields": [
         {
-            "name": "question",
-            "displayName": "Frage",
-            "type": "text-singleline",
-            "position": 0,
+            "displayname": "Frage",
+            "ignoreforsimilarcomparison": false,
             "isrequired": true,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": false,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 0,
-            "isPassword": false,
-            "maxCharacters": 0,
-            "label": "question"
+            "label": "question",
+            "name": "question",
+            "type": "text-singleline"
         },
         {
-            "name": "answer",
-            "displayName": "Antwort",
-            "type": "html-wysiwyg-editor",
-            "position": 1,
-            "isrequired": true,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": true,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 0,
+            "displayname": "Antwort",
             "height": 4,
-            "label": "Text"
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "Text",
+            "name": "answer",
+            "treatheightaspixel": true,
+            "type": "html-wysiwyg-editor"
         }
     ],
     "assets": [
-        { "fileName": "*.js",		"mode": "bundle", 		"order": 500 }
+        {
+            "fileName": "*.js",
+            "mode": "Bundle"
+        }
     ],
     "itemTemplates": [
         {

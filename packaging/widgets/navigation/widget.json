@@ -1,0 +1,338 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "Footer"
+        ],
+        "category": "nav",
+        "dialogheightvalue": 420,
+        "maincategory": "other",
+        "minappversion": "13.0.0.0",
+        "orderposition": 0,
+        "pgeitemmetainfo": "Unknown",
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "showheadline": false,
+        "uiname": "Navigationsmenü",
+        "usedialogheight": true,
+        "version": "13.0.0.0"
+    },
+    "fields": [
+        {
+            "canedit": false,
+            "displayname": "Ausrichtung",
+            "height": 10,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "align",
+            "name": "align",
+            "type": "list",
+            "width": 200,
+            "values": [
+                {
+                    "Links": "left"
+                },
+                {
+                    "Zentriert": "center"
+                },
+                {
+                    "Rechts": "right"
+                }
+            ],
+            "defaultValue": "right"
+        },
+        {
+            "displayname": "Dropdownmenü",
+            "name": "showDropdown",
+            "type": "checkbox",
+            "defaultValue": "1"
+        },
+        {
+            "displayname": "Mobile Navigation immer zeigen",
+            "name": "mobileonly",
+            "type": "checkbox",
+            "defaultValue": "0"
+        },
+        {
+            "displayname": "Eckenradius",
+            "maximumvalue": 20,
+            "name": "borderRadius",
+            "type": "text-singleline-updown",
+            "width": 50,
+            "defaultValue": "0"
+        },
+        {
+            "displayname": "Hauptmenü inaktiv",
+            "expandedheight": 4,
+            "name": "goupinactive1",
+            "popupbuttonwidthinpixel": 200,
+            "popupheightinpixel": 220,
+            "popupwidthinpixel": 280,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "name": "bgcolor1Inactive",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "transparent"
+                },
+                {
+                    "displayname": "Textfarbe",
+                    "name": "textcolor1Inactive",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#333333"
+                },
+                {
+                    "displayname": "Schriftart",
+                    "name": "fontFamilyLevel1",
+                    "type": "font-family-selection",
+                    "width": 160,
+                    "defaultValue": "Helvetica, Arial"
+                },
+                {
+                    "displayname": "Schriftgröße",
+                    "name": "fontSizeLevel1",
+                    "type": "font-size-selection",
+                    "width": 160,
+                    "defaultValue": "1em"
+                },
+                {
+                    "displayname": "Schriftgewicht",
+                    "name": "fontweight1Inactive",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "normal": "normal"
+                        },
+                        {
+                            "fett": "bold"
+                        }
+                    ],
+                    "defaultValue": "normal"
+                },
+                {
+                    "displayname": "Textauszeichnung",
+                    "name": "textDecoration1Inactive",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "keine": "none"
+                        },
+                        {
+                            "unterstreichen": "underline"
+                        }
+                    ],
+                    "defaultValue": "none"
+                }
+            ]
+        },
+        {
+            "displayname": "Hauptmenü aktiv",
+            "expandedheight": 4,
+            "name": "goupactive1",
+            "popupbuttonwidthinpixel": 200,
+            "popupheightinpixel": 140,
+            "popupwidthinpixel": 280,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "name": "bgcolor1Active",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#E6E6E6"
+                },
+                {
+                    "displayname": "Textfarbe",
+                    "name": "textcolor1Active",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#333333"
+                },
+                {
+                    "displayname": "Schriftgewicht",
+                    "name": "fontweight1Active",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "normal": "normal"
+                        },
+                        {
+                            "fett": "bold"
+                        }
+                    ],
+                    "defaultValue": "normal"
+                },
+                {
+                    "displayname": "Textauszeichnung",
+                    "name": "textDecoration1Active",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "keine": "none"
+                        },
+                        {
+                            "unterstreichen": "underline"
+                        }
+                    ],
+                    "defaultValue": "none"
+                }
+            ]
+        },
+        {
+            "displayname": "Dropdownmenü inaktiv",
+            "expandedheight": 4,
+            "name": "goupinactive2",
+            "popupbuttonwidthinpixel": 200,
+            "popupheightinpixel": 220,
+            "popupwidthinpixel": 280,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "name": "bgcolor2Inactive",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#E6E6E6"
+                },
+                {
+                    "displayname": "Textfarbe",
+                    "name": "textcolor2Inactive",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#333333"
+                },
+                {
+                    "displayname": "Schriftart",
+                    "name": "fontFamilyLevel2",
+                    "type": "font-family-selection",
+                    "width": 160,
+                    "defaultValue": "Helvetica, Arial"
+                },
+                {
+                    "displayname": "Schriftgröße",
+                    "name": "fontSizeLevel2",
+                    "type": "font-size-selection",
+                    "width": 160,
+                    "defaultValue": "1em"
+                },
+                {
+                    "displayname": "Schriftgewicht",
+                    "name": "fontweight2Inactive",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "normal": "normal"
+                        },
+                        {
+                            "fett": "bold"
+                        }
+                    ],
+                    "defaultValue": "normal"
+                },
+                {
+                    "displayname": "Textauszeichnung",
+                    "name": "textDecoration2Inactive",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "keine": "none"
+                        },
+                        {
+                            "unterstreichen": "underline"
+                        }
+                    ],
+                    "defaultValue": "none"
+                }
+            ]
+        },
+        {
+            "displayname": "Dropdownmenü aktiv",
+            "expandedheight": 4,
+            "name": "goupactive2",
+            "popupbuttonwidthinpixel": 200,
+            "popupheightinpixel": 140,
+            "popupwidthinpixel": 280,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Hintergrundfarbe",
+                    "name": "bgcolor2Active",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#333333"
+                },
+                {
+                    "displayname": "Textfarbe",
+                    "name": "textcolor2Active",
+                    "type": "color-selection",
+                    "width": 160,
+                    "defaultValue": "#ffffff"
+                },
+                {
+                    "displayname": "Schriftgewicht",
+                    "name": "fontweight2Active",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "normal": "normal"
+                        },
+                        {
+                            "fett": "bold"
+                        }
+                    ],
+                    "defaultValue": "bold"
+                },
+                {
+                    "displayname": "Textauszeichnung",
+                    "name": "textDecoration2Active",
+                    "type": "list",
+                    "width": 160,
+                    "values": [
+                        {
+                            "keine": "none"
+                        },
+                        {
+                            "unterstreichen": "underline"
+                        }
+                    ],
+                    "defaultValue": "none"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "assets/navigation.less",
+            "mode": "Bundle",
+            "order": 60
+        },
+        {
+            "fileName": "assets/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.html"
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+div.filebrowser-container {
+
+    .filebrowser-top {
+        margin-bottom: 2em;
+    }
+
+    th {
+        padding: .2em 1em .2em 0;
+        text-align: left;
+    }
+
+    thead {
+        border-bottom: 1px solid;
+    }
+
+    #top {
+        height: 52px;
+    }
+
+    #breadcrumb {
+        padding-top: 34px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td {  
+    	padding: .2em 1em .2em 0;
+    	margin: 0;
+        height: 44px;
+        white-space: nowrap;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+    th:last-child, td:last-child{
+    	padding-right: 0;
+    }
+    
+    td.first {
+        white-space: normal;
+    }
+
+    td.empty {
+        color: #777;
+        text-align: center;
+        padding: 3em 0;
+    }
+
+    .size, .h-size{
+    	text-align: right;
+    }
+    
+    .name {
+        background: url(images/filebrowser/file.png) no-repeat scroll 0;
+        padding: 0 0 0 40px;
+        display: inline-block;
+		line-height: 32px; // icon-height
+    }
+
+    .is-dir .name {
+        background: url(images/filebrowser/folder.png) no-repeat scroll 0;
+        padding: 0 0 0 40px;
+        display: inline-block;
+        line-height: 32px; // icon-height
+    }
+}

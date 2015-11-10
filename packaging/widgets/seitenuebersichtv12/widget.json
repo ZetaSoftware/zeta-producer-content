@@ -1,96 +1,74 @@
-{
+﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
-        "category": "nav",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "mainCategory": "structure",
-        "uiName": "Sitemap",
-        "allowedAreas": [
+        "allowedareas": [
             "Standard",
             "Banner",
             "Footer"
         ],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 290,
-        "useDialogHeight": true,
+        "category": "nav",
         "defaults": {
             "_nameLevel": "h2"
         },
-        "userCanResizeDialog": false,
+        "dialogheightvalue": 290,
+        "maincategory": "other",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": false,
-        "headlineRequired": false,
-        "showHeadline": true,
-        "removeLineAfter": false,
-        "orderPosition": 4,
-        "requiredFeature": "None"
+        "showheadlinelabel": false,
+        "uiname": "Sitemap",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
     },
     "fields": [
         {
-            "type": "checkbox",
+            "displayname": "Ausgeblendete Seiten anzeigen",
             "name": "showHiddenPages",
-            "treatAsSingleLine": false,
-            "displayName": "Ausgeblendete Seiten anzeigen",
-            "defaultValue": 0,
-            "showLabel": false,
-            "occupyLabelSpace": true
+            "occupylabelspace": true,
+            "showlabel": false,
+            "type": "checkbox",
+            "defaultValue": "0"
         },
         {
+            "label": "Darstellung",
             "name": "Darstellung",
             "type": "itemtemplate-selection",
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "width": 200,
-            "label": "Darstellung"
+            "width": 200
         },
         {
-            "type": "line",
-            "name": "(Trennlinie)",
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": true,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": false,
-            "width": 0,
             "height": 5,
-            "showLine": false,
-            "label": "(Trennlinie)"
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
         },
         {
-            "type": "infotext",
-            "name": "(Annotation)",
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": false,
-            "occupyLabelSpace": true,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": true,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": false,
-            "width": 0,
             "height": 50,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
             "label": "(Annotation)",
-            "text": "Die Sitemap (Seitenübersicht) stellt alle Seiten Ihrer Website\r\nals Baumstruktur dar."
+            "name": "(Annotation)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "Die Sitemap (Seitenübersicht) stellt alle Seiten Ihrer Website\r\nals Baumstruktur dar.",
+            "treatheightaspixel": true,
+            "type": "infotext"
         }
     ],
     "assets": [
-        { "fileName": "sitemap.css",		"mode": "bundle",		"order": 50 }
+        {
+            "fileName": "sitemap.css",
+            "mode": "Bundle",
+            "order": 50
+        }
     ],
     "itemTemplates": [
-         {
-            "fileName": "mehrspaltig.html",
-            "uiName": "Mehrspaltig"
+        {
+            "fileName": "mehrspaltig.html"
         },
         {
             "fileName": "standard.html",

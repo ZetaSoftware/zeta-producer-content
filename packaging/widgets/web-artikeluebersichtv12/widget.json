@@ -1,94 +1,67 @@
-{
+﻿{
     "settings": {
-        "version": "12.5.0.0",
-        "minAppVersion": "12.5.0.0",
-        "category": "nav",
-        "onlyForInlineEditing": false,
-        "includeInRssFeed": false,
-        "defaultItemTemplate": null,
-        "mainCategory": "structure",
-        "uiName": "Artikelübersicht",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
-        "canEntail": true,
-        "includeInSearchIndex": true,
-        "dialogWidthType": "Pixel",
-        "dialogWidthValue": 0,
-        "useDialogWidth": false,
-        "dialogHeightType": "Pixel",
-        "dialogHeightValue": 240,
-        "useDialogHeight": true,
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "aggregation",
         "defaults": {
             "_nameLevel": "h2"
         },
-        "userCanResizeDialog": "false",
+        "dialogheightvalue": 240,
+        "maincategory": "other",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
         "showcssinputfields": true,
-        "showHeadlineLabel": false,
-        "headlineRequired": false,
-        "showHeadline": true,
-        "removeLineAfter": false,
-        "orderPosition": 1,
-        "requiredFeature": "None"
+        "showheadlinelabel": false,
+        "uiname": "Artikelübersicht",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.0"
     },
     "fields": [
         {
-            "name": "(Trennlinie)",
-            "type": "line",
-            "position": 0,
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": true,
-            "occupyLabelSpace": false,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": true,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": false,
-            "width": 0,
             "height": 5,
-            "showLine": false,
-            "label": "(Trennlinie)"
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
         },
         {
-            "name": "(Anmerkung)",
-            "type": "infotext",
-            "position": 1,
-            "isrequired": false,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": false,
-            "occupyLabelSpace": true,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": true,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 0,
             "height": 30,
+            "ignoreforsimilarcomparison": false,
             "label": "(Anmerkung)",
-            "text": "Die Artikelübersicht zeigt alle Artikel der ausgewählten Seiten an."
+            "name": "(Anmerkung)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "Die Artikelübersicht zeigt alle Artikel der ausgewählten Seiten an.",
+            "treatheightaspixel": true,
+            "type": "infotext"
         },
         {
-            "name": "Auswahl",
-            "type": "article-overview",
-            "subtype": "custom-webarticle-overview",
-            "position": 2,
+            "ignoreforsimilarcomparison": false,
             "isrequired": true,
-            "requiredIfHeadlineEmpty": false,
-            "showLabel": false,
-            "occupyLabelSpace": true,
-            "treatAsSingleLine": false,
-            "treatHeightAsPixel": false,
-            "ignoreForSimilarComparison": false,
-            "includeInSearchIndex": true,
-            "width": 166,
-            "label": "Auswahl"
+            "label": "Auswahl",
+            "name": "Auswahl",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "subtype": "custom-webarticle-overview",
+            "type": "article-overview",
+            "width": 166
         }
     ],
     "itemTemplates": [
         {
-            "fileName": "standard.html",
-            "uiName": "Standard"
+            "fileName": "standard.html"
         },
         {
-            "fileName": "volltext.html",
-            "uiName": "Volltext"
+            "fileName": "volltext.html"
         }
     ]
 }

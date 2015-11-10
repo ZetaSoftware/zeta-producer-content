@@ -1,0 +1,230 @@
+﻿<$
+function RFC822ToLocalTime(sRFC822, sServerOffset) {
+	var d = new Date(sRFC822);
+	return d.getDate() + "." + parseInt(d.getMonth()+1) + "." + d.getYear();
+}
+
+function getBody(item) {
+	var p = item.getElementsByTagName("content:encoded");
+	if ( 0 < p.length ) return p[0].text;
+
+	p = item.getElementsByTagName("description");
+	if( 0 < p.length ) return p[0].text;
+
+	return "";
+}
+
+function atomDateParser(datestr) {
+	var yy   = datestr.substring(0,4);
+	var mo   = datestr.substring(5,7);
+	var dd   = datestr.substring(8,10);
+	var hh   = datestr.substring(11,13);
+	var mi   = datestr.substring(14,16);
+	var ss   = datestr.substring(17,19);
+
+	return dd + "." + mo + "." + yy + " " + hh + ":" + mi;
+}
+$>
+
+<$= system.partial("article-begin.html") $>
+	<$= system.partial("article-headline.html") $>
+
+	<$
+	var feed = article.value("url");
+	var titleSize = article.value("titlesize");
+	var maxArticles = article.value("maxarticles", 0);
+	var showTitle = article.value("showtitle");
+	var linkTitle = article.value("linktitle");
+	var showDate = article.value("showdate", true);
+	var showBody = article.value("showcontent", true);
+	var showBodyFullHtml = article.value("showcontentfullhtml", true);
+	var bodyLength = article.value("contentexcerptlength", 0);
+
+	var errorWasReportedAlready = false;
+
+	var req = new ActiveXObject("MSXML2.XMLHTTP.3.0"); 
+	req.Open("GET", feed, false); 
+	req.setRequestHeader("User-Agent", "Zeta Producer RSS-Widget for " & system.removeInlineEditing(page.absoluteUrl));
+
+	var hasError = false;
+	var theErr;
+	try {
+		req.Send();
+	} catch(err) {
+		hasError = true;
+		theErr = err;
+	}
+
+	if ( hasError && (typeof(req.status) === "unknown" || typeof(req.status) === "undefined") ) {
+		errorWasReportedAlready = true;
+	 $>
+		<h2 style="color: red;">Hoppla, ein Fehler!</h2>
+		<p style="color: red;">Beim Zugriff auf den RSS-Feed '<$= feed $>' trat ein Fehler auf: &quot;<$= theErr.message $>&quot;.</p>
+		<$
+	}
+	else if ( req.status != 200 ) {
+		errorWasReportedAlready = true;
+		 $>
+		<h2 style="color: red;">Hoppla, ein Fehler!</h2>
+		<p style="color: red;">
+			<$ if ( req.status == 404 ) { $>
+				Unter der eingegebenen URL konnte kein RSS-Feed gefunden werden. Die Adresse ist falsch.
+			<$ } else if ( req.status == 12007 ) { $>
+				Unter der eingegebenen Domain ist kein Server erreichbar. Die Domain ist wahrscheinlich falsch.
+			<$ } else { $>
+				Beim Zugriff auf den RSS-Feed '<$= feed $>' trat ein Fehler auf (Status: <$= req.status + " " + req.statusText $>).
+			<$ } $>
+
+		 &quot;<$= theErr.message $>&quot;.
+		</p>
+
+	<$  
+	}
+	else {
+		var xml = new ActiveXObject("Msxml2.DOMDocument");
+		xml.setProperty("SelectionLanguage", "XPath");
+		xml.loadXML(req.responseText);
+	  
+		var isRSS = 0;
+		var isAtom = 0;
+	  
+		var items = xml.getElementsByTagName("channel/item");
+		var itemsLength = items.length;
+		
+		for ( var cnt = 0; cnt < itemsLength; ++cnt ) {
+			var isRSS = 1; // we got an RSS feed
+			var item = items[cnt];
+
+			if ( 0 < maxArticles != 0 && maxArticles <= cnt  ) break;
+	
+			var theLink = item.getElementsByTagName("link")[0].text;
+			var theTitle = "";
+			var theBody = getBody(item);
+			var thePrintBody = "";
+			var theDate = "";
+		
+			if ( item.getElementsByTagName("pubDate")[0] ) {
+				theDate = item.getElementsByTagName("pubDate")[0].text;
+				theDate = RFC822ToLocalTime(theDate, "+0100");
+			}
+			
+			thePrintBody = system.removeHtmlTags(theBody);
+			if ( 0 < bodyLength && bodyLength < thePrintBody.length )
+			{
+				thePrintBody = thePrintBody.substr(0, bodyLength) + "…";
+			}
+
+			if ( item.getElementsByTagName("title")[0] ) {
+				theTitle = item.getElementsByTagName("title")[0].text;
+			}
+			$>
+	
+			<div class="zp-rss-import-article">
+
+				<$ if ( showTitle ) { $>
+					<div class="zp-rss-import-headline">
+						<$ if ( linkTitle ) { $>
+							<<$=titleSize$>><a href='<$=theLink$>'><$= theTitle $></a></<$=titleSize$>>
+						<$ } else { $>
+							<<$=titleSize$>><$= theTitle $></<$=titleSize$>>
+						<$ } $> 
+					</div>
+				<$ } $> 
+
+				<$ if ( showDate ) { $>
+					<div class="zp-rss-import-date">
+						<$= theDate $>
+					</div>
+				<$ } $> 
+
+				<$ if ( showBody ) { $>
+					<div class="zp-rss-import-body">
+						<$ if ( showBodyFullHtml ) { $>
+							<$= theBody $>
+						<$ } else { $>
+							<$= thePrintBody $>
+						<$ } $> 
+					</div>
+				<$ } $> 
+	
+			</div>
+		<$
+		}
+  
+		if ( isRSS == 0 ) { //we got an ATOM feed
+			var items = xml.getElementsByTagName("feed/entry");
+			var itemsLength = items.length;
+
+			for ( var cnt = 0; cnt < itemsLength; ++cnt ) {
+				if ( 0 < maxArticles && maxArticles <= cnt ) break;
+
+				var item = items[cnt];
+			
+				var isAtom = 1; //we got an ATOM feed
+				var theLink = item.getElementsByTagName("link/@href")[0].text;
+				var theTitle = "";
+				var theBody = "";
+				var theDate = "";
+				
+				if ( item.getElementsByTagName("content")[0] ) {
+					theBody = item.getElementsByTagName("content")[0].text;
+				}
+
+				if ( item.getElementsByTagName("published")[0] ) {
+					var h = item.getElementsByTagName("published")[0].text;
+					theDate = atomDateParser(h);
+				}
+				
+				thePrintBody = system.removeHtmlTags(theBody);
+				if ( 0 < bodyLength && bodyLength < thePrintBody.length )
+				{
+					thePrintBody = thePrintBody.substr(0, bodyLength) + "…";
+				}
+
+				if ( item.getElementsByTagName("title")[0] ) {
+					theTitle = item.getElementsByTagName("title")[0].text;
+				}
+				 $>
+		
+					<div class="zp-rss-import-article">
+
+						<$ if ( showTitle ) { $>
+							<div class="zp-rss-import-headline">
+								<$ if ( linkTitle ) { $>
+									<<$=titleSize$>><a href='<$=theLink$>'><$= theTitle $></a></<$=titleSize$>>
+								<$ } else { $>
+									<<$=titleSize$>><$= theTitle $></<$=titleSize$>>
+								<$ } $> 
+							</div>
+						<$ } $> 
+
+						<$ if ( showDate ) { $>
+							<div class="zp-rss-import-date">
+								<$= theDate $>
+							</div>
+						<$ } $> 
+
+						<$ if ( showBody ) { $>
+							<div class="zp-rss-import-body">
+								<$ if ( showBodyFullHtml ) { $>
+									<$= theBody $>
+								<$ } else { $>
+									<$= thePrintBody $>
+								<$ } $> 
+							</div>
+						<$ } $> 
+			
+					</div>
+				<$
+			}
+		}
+	} // end if error
+	
+	if ( isRSS == 0 && isAtom == 0 && !errorWasReportedAlready ) {
+		 $>
+			<h2 style="color: red;">Hoppla, ein Fehler!</h2>
+			<p style="color: red;">Unter der angegebenen Adresse '<$= feed $>' konnte kein RSS-Feed geladen werden!</p>
+		<$  
+	}
+	 $>
+<$= system.partial("article-end.html") $>

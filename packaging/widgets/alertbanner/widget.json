@@ -1,20 +1,25 @@
 ﻿{
     "settings": {
-        "version": "12.5.6.2",
-        "minappversion": "12.5.6.0",
-        "category": "textarticles",
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "category": "effects",
         "dialogheightvalue": 220,
         "dialogwidthvalue": 510,
         "includeinsearchindex": false,
-        "maincategory": "structure",
-        "orderposition": 2,
+        "maincategory": "other",
+        "minappversion": "12.5.6.0",
+        "orderposition": 0,
         "showcssinputfields": true,
         "showheadline": false,
         "showheadlinelabel": false,
         "uiname": "Info-Banner",
-        "allowedAreas": ["Banner", "Standard", "News", "Footer"],
         "usedialogheight": true,
-        "usedialogwidth": true
+        "usedialogwidth": true,
+        "version": "12.5.6.2"
     },
     "fields": [
         {
@@ -51,7 +56,7 @@
                     "defaultValue": "rgba(29, 130, 18, 0.9)"
                 },
                 {
-                    "displayName": "Effekt",
+                    "displayname": "Effekt",
                     "name": "effect",
                     "type": "list",
                     "values": [

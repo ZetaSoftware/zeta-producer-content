@@ -1,0 +1,230 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Standard",
+            "Banner",
+            "Footer"
+        ],
+        "category": "all",
+        "defaults": {
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 350,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showcssinputfields": true,
+        "showheadlinelabel": false,
+        "uiname": "t-Übersicht",
+        "usedialogheight": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.2"
+    },
+    "fields": [
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Veranstaltungen",
+            "ignoreforsimilarcomparison": false,
+            "isrequired": true,
+            "label": "Eventauswahl",
+            "name": "Eventauswahl",
+            "subtype": "custom-webarticle-overview",
+            "type": "article-overview",
+            "validationhelptext": "Klicken Sie auf den Button \"Auswählen\" und wählen Sie dann Seiten aus, die Veranstaltungen enthalten, welche Sie in der Übersicht zeigen wollen."
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Optionen",
+            "name": "Optionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 204,
+            "popupheightinpixel": 120,
+            "popupwidthinpixel": 350,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Vergangene Termine ausblenden",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "hide_passed",
+                    "name": "hide_passed",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "0"
+                },
+                {
+                    "displayname": "Filter / Suche anzeigen",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "show_filter",
+                    "name": "show_filter",
+                    "occupylabelspace": true,
+                    "type": "checkbox",
+                    "defaultValue": "1"
+                },
+                {
+                    "displayname": "Hintergrundfarbe Filter",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "filterbackgroundcolor",
+                    "name": "filterbackgroundcolor",
+                    "type": "color-selection",
+                    "width": 110,
+                    "defaultValue": "#E7E7E7"
+                }
+            ]
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Bezeichnungen",
+            "name": "Bezeichnungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 204,
+            "popupheightinpixel": 120,
+            "popupwidthinpixel": 350,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Bezeichnung für \"Ort\"",
+                    "emptyvaluetext": "Ort",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "venuelabel",
+                    "name": "venuelabel",
+                    "type": "text-singleline",
+                    "validationhelptext": "z.B. \"Ort\" oder \"Veranstaltungsort\"",
+                    "width": 110,
+                    "defaultValue": "Ort"
+                },
+                {
+                    "displayname": "Bezeichnung für \"Art\" / \"Genre\"",
+                    "emptyvaluetext": "Art",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "genrelabel",
+                    "name": "genrelabel",
+                    "type": "text-singleline",
+                    "width": 110,
+                    "defaultValue": "Art"
+                },
+                {
+                    "displayname": "Bezeichnung für \"Alle\" (Filtermenü)",
+                    "emptyvaluetext": "Alle",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "selecttext",
+                    "name": "selecttext",
+                    "type": "text-singleline",
+                    "width": 110,
+                    "defaultValue": "Alle"
+                }
+            ]
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Optionen",
+            "name": "Darstellung",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 204,
+            "popupheightinpixel": 120,
+            "popupwidthinpixel": 350,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Hintergrundfarbe Tabellenreihen",
+                    "emptyvaluetext": "#DBE2E8",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "tablebgcolor",
+                    "name": "tablerowcolor",
+                    "type": "color-selection",
+                    "width": 110,
+                    "defaultValue": "#DBE2E8"
+                },
+                {
+                    "displayname": "Maximale Breite",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "max_width",
+                    "name": "max_width",
+                    "type": "text-singleline",
+                    "validationexpression": "(^\\d+px$|^$)",
+                    "validationhelptext": "Lassen Sie das Feld leer oder geben Sie eine Zahl gefolgt von px ein, z.B.: 400px",
+                    "width": 110
+                },
+                {
+                    "displayname": "Abstand Tabellenreihen",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "tablespacing",
+                    "name": "tablespacing",
+                    "type": "text-singleline",
+                    "validationexpression": "(^\\d+px$|^$)",
+                    "validationhelptext": "Geben Sie eine Zahl gefolgt von px ein, z.B.: 10px",
+                    "width": 110,
+                    "defaultValue": "5px"
+                }
+            ]
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "Text nach Überschrift",
+            "name": "Text nach Überschrift",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 204,
+            "popupheightinpixel": 120,
+            "popupwidthinpixel": 350,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 120,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "Text",
+                    "name": "Text",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "treatassingleline": true,
+                    "treatheightaspixel": true,
+                    "type": "html-wysiwyg-editor"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "eventcalendar.css",
+            "mode": "Bundle",
+            "order": 40
+        },
+        {
+            "fileName": "eventcalendar.js",
+            "mode": "Bundle"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "eventoverview.html"
+        }
+    ]
+}

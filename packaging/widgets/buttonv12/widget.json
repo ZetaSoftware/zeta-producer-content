@@ -1,24 +1,23 @@
 ﻿{
     "settings": {
-        "version": "12.5.0.1",
-        "minappversion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
             "News",
             "Footer"
         ],
-        "category": "more",
+        "category": "text",
         "dialogheightvalue": 220,
-        "maincategory": "text",
-        "orderposition": 3,
+        "maincategory": "text-image",
+        "minappversion": "12.5.0.0",
         "pgeitemmetainfo": "Unknown",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Button",
         "usedialogheight": true,
-        "usercanresizedialog": false
+        "usercanresizedialog": false,
+        "version": "12.5.0.1"
     },
     "fields": [
         {

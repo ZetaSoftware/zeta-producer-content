@@ -1,0 +1,169 @@
+﻿{
+    "settings": {
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ],
+        "canentail": false,
+        "category": "all",
+        "defaults": {
+            "_nameLevel": "h2"
+        },
+        "dialogheightvalue": 350,
+        "dialogwidthvalue": 510,
+        "includeinsearchindex": false,
+        "maincategory": "test",
+        "minappversion": "12.5.0.0",
+        "orderposition": 0,
+        "removelineafter": false,
+        "showCssInputFields": false,
+        "showheadlinelabel": false,
+        "uiname": "t-Gästebuch",
+        "usedialogheight": true,
+        "usedialogwidth": true,
+        "usercanresizedialog": false,
+        "version": "12.5.0.1"
+    },
+    "fields": [
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "displayname": "Kennwort",
+            "ignoreforsimilarcomparison": false,
+            "ispassword": true,
+            "isrequired": true,
+            "label": "Kennwort",
+            "name": "password",
+            "treatassingleline": true,
+            "type": "text-singleline",
+            "validationhelptext": "Bitte vergeben Sie ein Kennwort für den Bearbeitungsmodus.",
+            "width": 180
+        },
+        {
+            "height": 5,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(Trennlinie)",
+            "name": "(Trennlinie)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "showline": false,
+            "treatheightaspixel": true,
+            "type": "line"
+        },
+        {
+            "height": 60,
+            "ignoreforsimilarcomparison": false,
+            "includeinsearchindex": false,
+            "label": "(HTML-Anmerkung)",
+            "name": "(Anmerkung)",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "Einträge können Sie über folgenden Link verwalten:<br /><a href=\"{context-page-url}?administration\">{context-page-url}?administration</a>",
+            "treatheightaspixel": true,
+            "type": "infotext"
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Optionen",
+            "name": "Optionen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 150,
+            "popupheightinpixel": 130,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "displayname": "Einträge pro Seite",
+                    "ignoreforsimilarcomparison": false,
+                    "isrequired": true,
+                    "label": "entriesCountPerPage",
+                    "name": "entriesCountPerPage",
+                    "treatassingleline": true,
+                    "type": "text-singleline",
+                    "validationexpression": "^\\d+$",
+                    "width": 30,
+                    "defaultValue": "20"
+                },
+                {
+                    "height": 10,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Neue Einträge moderieren",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "approveEntries",
+                    "name": "approveEntries",
+                    "type": "checkbox"
+                },
+                {
+                    "displayname": "E-Mail-Adresse",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "email",
+                    "name": "notificationEmail",
+                    "type": "text-singleline",
+                    "width": 250
+                }
+            ]
+        },
+        {
+            "height": 4,
+            "ignoreforsimilarcomparison": false,
+            "label": "Voraussetzungen",
+            "name": "Voraussetzungen",
+            "occupylabelspace": true,
+            "popupbuttonwidthinpixel": 150,
+            "popupheightinpixel": 140,
+            "popupwidthinpixel": 400,
+            "showlabel": false,
+            "type": "group",
+            "fields": [
+                {
+                    "height": 140,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<ul style=\"margin-top:0;margin-left:10px\">\r\n\t<li>Webserver mit PHP 5.3 oder höher</li>\r\n\t<li>Schreibrechte für PHP innerhalb des Webspace</li>\r\n</ul>\r\n<p><i>Normalerweise sind diese Anforderungen erfüllt.</i><br /><i>Nähere Informationen erhalten Sie von Ihrem Internet-Hoster.</i></p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        }
+    ],
+    "assets": [
+        {
+            "fileName": "php/*",
+            "mode": "Copy"
+        }
+    ],
+    "itemTemplates": [
+        {
+            "fileName": "standard.php"
+        }
+    ]
+}
