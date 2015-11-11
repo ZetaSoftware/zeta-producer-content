@@ -142,15 +142,15 @@ $>
 	<script type="text/javascript">
 		$z(document).ready(function() {
 			// init flexslider after 1st image has loaded, so have dimensions as quickly as possible without having to wait too long on window loaded or such and can start right with doc ready
-			$z('#a<$= article.id $> ul.zp13slider li img').first().one("load", function(){
-				$z('#a<$= article.id $> .zp13slider-container').flexslider({
+			$z('[data-articleid="<$= article.id $>"] ul.zp13slider li img').first().one("load", function(){
+				$z('[data-articleid="<$= article.id $>"] .zp13slider-container').flexslider({
 					useCSS: true,
 					touch: true,
 					itemMargin: 20,
 					animation: '<$= effect $>',
 					namespace: 'zp13slider-',
 					selector: '.zp13slider > li',
-					controlsContainer: '#a<$= article.id $>.zp13sliderWidget',
+					controlsContainer: '[data-articleid="<$= article.id $>"].zp13sliderWidget',
 					multipleKeyboard: true,
 					slideshow: <$= article.value("autoplay") $>,
 					slideshowSpeed: <$= slideSpeed $>,

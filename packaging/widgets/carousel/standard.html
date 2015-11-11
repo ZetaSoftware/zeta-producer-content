@@ -116,8 +116,8 @@ $>
 					imageLinkTag = '<a ' + slideUrl + '>';
 				}
 				else{
-					imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '">';
-					//imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '" data-fancybox-group="g' + article.id + '" rel="g' + article.id + '">';
+					//imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '">';
+					imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '" data-fancybox-group="g' + article.id + '" rel="g' + article.id + '">';
 				}
 				
 			}
@@ -169,8 +169,8 @@ $>
 			}
 			console.log(".zp13carousel-container Width: " + $z('#a<$= article.id $> .zp13carousel-container').width() + " - MinWidth: <$= minWidth $>" );
 			// init flexslider after 1st image has loaded, so have dimensions as quickly as possible without having to wait too long on window loaded or such and can start right with doc ready
-			$z('#a<$= article.id $> ul.zp13carousel li img').first().one("load", function(){
-				$z('#a<$= article.id $> .zp13carousel-container').flexslider({
+			$z('[data-articleid="<$= article.id $>"] ul.zp13carousel li img').first().one("load", function(){
+				$z('[data-articleid="<$= article.id $>"] .zp13carousel-container').flexslider({
 					useCSS: true,
 					touch: true,
 					itemWidth: <$= minWidth $>,
@@ -183,7 +183,7 @@ $>
 					animationLoop: true,
 					namespace: 'zp13carousel-',
 					selector: '.zp13carousel > li',
-					controlsContainer: '#a<$= article.id $>.zp13carousel',
+					controlsContainer: '[data-articleid="<$= article.id $>"].zp13carousel',
 					multipleKeyboard: true,
 					slideshow: <$= article.value("autoplay") $>,
 					slideshowSpeed: <$= slideSpeed $>,
@@ -200,7 +200,7 @@ $>
 			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
 		});
 		
-		$z("#a<$= article.id $> .fancybox").fancybox({
+		$z('[data-articleid="<$= article.id $>"] .fancybox').fancybox({
 			'hideOnContentClick': true,
 			'padding': 0,	//Space between FancyBox wrapper and content
 			'margin': 30,	//Space between viewport and FancyBox wrapper
@@ -213,11 +213,12 @@ $>
 			'easingIn'			: 'easeOutCubic', 
 			'easingOut'			: 'easeInCubic', 
 			'titleShow'			: <$= showTitle $>,
+			'showNavArrows'		: false,
 			'overlayColor'	: "black",
 			'overlayOpacity': 0.85,
 			'titlePosition'	: "over",
 			'titleFormat'		: function(title, currentArray, currentIndex) {
-				var title = $z("#a<$= article.id $> .fancybox").eq(currentIndex).data("htmltitle");
+				var title = $z('[data-articleid="<$= article.id $>"] .fancybox').eq(currentIndex).data("htmltitle");
 				return '<span id="fancybox-title-over" class="zp13carousel">' +  title + '</span>';
 			}
 			
