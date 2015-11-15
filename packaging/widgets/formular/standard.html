@@ -4,21 +4,56 @@
 		// action_url does not start with "http" and is thus absolute, so we need the pathToRoot
 		action_url = page.pathToRoot + action_url;
 	}
+	
 	var email_address = system.encrypt(article.value("email_address"));
 	var email_subject = article.value("email_subject");
 	var error_page_url = ( isNull(project.getPage(article.value("error_page_url"))) ) ? page.absoluteUrl : project.getPage(article.value("error_page_url")).absoluteUrl;
 	var error_page_target = article.value("error_page_target");
 	var success_page_url = ( isNull(project.getPage(article.value("success_page_url"))) ) ? page.absoluteUrl : project.getPage(article.value("success_page_url")).absoluteUrl;
 	var success_page_target = article.value("success_page_target");
-
+	
+	// TODO ZP13: replace this with field values once it is implemented!
+	var siteKey = "6LcR_AITAAAAAORZ-S8Pf3TgauWH-fHAv6XUOvOW"
+	var secretKey = "6LcR_AITAAAAAK0XIyQOYZtrE3c0tYLEwTmdcAPt"
+	
 	var defaultFieldWidth = 300;
+	
+	// PHP Config file generation
+	function append( appendTo, appendix ) {
+		return appendTo + appendix + "\r\n";
+	}
+	function createShopConfig() {
+		var configFileName = "config.inc.php";
+		var configFilePath = project.outputFolder + "assets\\php\\formmailer\\" + configFileName;
+		
+		var content = "";
+		content = append( content, "<?php");
+		content = append( content, "class Configuration {");
+		content = append( content, "public static $conf_siteKey = '" + system.encrypt(siteKey) + "';" );
+		content = append( content, "public static $conf_secretKey = '" + system.encrypt(secretKey) + "';" );
+		content = append( content, "}");
+		content = append( content, "?>");
+		
+		// Wegschreiben und intern in Publish-Queue hinzuügen.
+		system.writeFile( configFilePath, content );
+		return;
+	}
  $>
+
+<script src='//www.google.com/recaptcha/api.js' async defer></script>
 
 <$= system.partial("article-begin.html") $>
 	<$= system.partial("article-headline.html") $>
-	
+	<noscript>
+		<div class="formvalidateerror" style="color: #fff; background-color: red; padding: 6px 12px;">
+			<p><strong>Um das Kontaktformular zu nutzen, aktivieren Sie bitte JavaScript!</strong></p>
+			<p><strong>In order to use this form, you need to activate JavaScript!</strong></p>
+		</div>
+	<!--
+	</noscript>
 	<form enctype="multipart/form-data" class="zp-form" id="form<$= article.id $>" name="form<$= article.id $>" action="<$= action_url $>" method="post">
 		<input type="hidden" name="f_receiver" value="<$= email_address $>">
+		
 		<input type="hidden" name="f_title" value="<$= email_subject.toString().replace(/\"/g, "&quot;") $>">
 		<input type="hidden" name="f_success" value="<$= success_page_url $>">
 		<input type="hidden" name="f_error" value="<$= error_page_url $>">
@@ -162,36 +197,15 @@
 					break;
 			}
 		} 
+		$> 
 		
-		// show Captcha because the user selected the corresponding form action ends in "SendEmail.php" and not "?sc"
-		var scriptName = "SendEmail.php";
-		if ( action_url.substring(action_url.length - scriptName.length, action_url.length) == scriptName ) { 
-		 $>
-			<label id="recaptchalabel" class="multiline field"><$= system.htmlEncode(page.attribute("form_spam_protection")) $></label>
-			<script type="text/javascript">
-				var RecaptchaOptions = 
-				{   
-					lang : '#attribute(meta_contentlanguage)',
-					theme : 'clean' 
-				};
-			</script>
-			<script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1"></script>
-			<noscript>
-			 <iframe src="//www.google.com/recaptcha/api/noscript?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1" height="300" width="500" frameborder="0"></iframe><br>
-			 <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-			 <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-			</noscript>
-			<$
-		}
-		else { // show a poor man's anti spam field instead of a captcha. Should this field get a value assigned, we'll discard the mail as spam in the PHP script.
-			 $>
-			<input type="text" name="url" id="url" value="" class="asfield" aria-label="Please ignore this field." style="display: none;">
-			<$
-		}
-		
-		 $>
+		<input type="text" name="url" id="url" value="" class="asfield" aria-label="Please ignore this field." style="display: none;">
+		<label id="recaptchalabel" class="multiline field"><$= system.htmlEncode(page.attribute("form_spam_protection")) $></label>
+		<div class="g-recaptcha" data-sitekey="<$=siteKey $>"></div>
 			
 		<input type="submit" class="button" value="#attribute(form_script_button_send_title)" />
 	</form>
-
+	<noscript>
+	-->
+	</noscript>
 <$= system.partial("article-end.html") $>

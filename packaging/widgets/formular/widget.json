@@ -1,4 +1,4 @@
-﻿{
+{
     "settings": {
         "allowedareas": [
             "Banner",
@@ -16,7 +16,10 @@
                     "Via PHP": "assets/php/formmailer/SendEmail.php?sc"
                 },
                 {
-                    "Via PHP mit Sicherheitsprüfung": "assets/php/formmailer/SendEmail.php"
+                    "Via PHP mit Sicherheitsprüfung (NEU)": "assets/php/formmailer/SendEmailReCaptcha.php"
+                },
+                {
+                    "Via PHP mit Sicherheitsprüfung (alt)": "assets/php/formmailer/SendEmail.php"
                 }
             ],
             "_nameLevel": "h2",
@@ -55,7 +58,6 @@
         "editortype": "htmlForm",
         "maincategory": "applications",
         "minappversion": "12.5.0.0",
-        "orderposition": 0,
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
@@ -64,6 +66,31 @@
         "usercanresizedialog": false,
         "version": "12.5.0.8"
     },
+    "fields": [
+        {
+            "displayname": "reCAPTCHA-Websiteschlüssel",
+            "includeinsearchindex": false,
+            "name": "recaptcha-publickey",
+            "placeholdertext": "Optional.",
+            "type": "text-singleline"
+        },
+        {
+            "displayname": "Geheimer reCAPTCHA-Schlüssel",
+            "includeinsearchindex": false,
+            "name": "recaptcha-secretkey",
+            "placeholdertext": "Optional.",
+            "type": "text-singleline"
+        },
+        {
+            "height": 50,
+            "name": "recaptcha-remarks",
+            "occupylabelspace": true,
+            "showlabel": false,
+            "text": "<small>Optional. Wenn Sie das neue, wesentlich benutzerfreundlichere reCAPTCHA zur Sicherheitsprüfung nutzen wollen, dann <a href=\"{online-command-RecaptchaGenerateKey}\">registrieren Sie hier Ihre Domains</a> und geben Sie die beiden Schlüssel in diese Felder ein.</small>",
+            "treatHeightAsPixel": true,
+            "type": "infotext"
+        }
+    ],
     "assets": [
         {
             "fileName": "form.css",
@@ -84,5 +111,11 @@
         {
             "fileName": "standard.html"
         }
-    ]
+    ],
+    "extended": {
+        "settings": {
+            "globalFieldsAreaHeight": 125,
+            "treatHeightAsPixel": true
+        }
+    }
 }
