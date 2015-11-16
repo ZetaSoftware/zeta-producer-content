@@ -32,10 +32,10 @@ $>
 		<ul class="zp13carousel">
 		<$
 		if ( textPosition == "top" ){
-			textStyles += " bottom: auto; top: #val(article-image-border)px; transform: none; -webkit-transform: none; -ms-transform: none;";
+			textStyles += " bottom: auto; top: 5px; transform: none; -webkit-transform: none; -ms-transform: none;";
 		}
 		else if ( textPosition == "bottom" ){
-			textStyles += " top: auto; bottom: #val(article-image-border)px; transform: none; -webkit-transform: none; -ms-transform: none;";
+			textStyles += " top: auto; bottom: 5px; transform: none; -webkit-transform: none; -ms-transform: none;";
 		}
 		if ( textShadowColor == "transparent" ){
 			textStyles += " text-shadow: none;";
@@ -198,6 +198,18 @@ $>
 			}).each(function() {
 				if(this.complete) $z(this).load();
 			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
+			
+			// make sure the slider is properly resized when the window is resized (400ms after window.resize ended)
+			var sliderTimeout<$= article.id $> = null;
+			$z(window).bind('resize', function() { 
+				if ( sliderTimeout<$= article.id $> ) {
+					clearTimeout(sliderTimeout<$= article.id $>);
+				}
+				sliderTimeout<$= article.id $> = setTimeout(function(){ 
+					var slider = $z('[data-articleid="<$= article.id $>"] .zp13carousel-container').data('flexslider');   
+					slider.resize();
+				}, 400);
+			});
 		});
 		
 		$z('[data-articleid="<$= article.id $>"] .fancybox').fancybox({

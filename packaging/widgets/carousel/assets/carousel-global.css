@@ -28,7 +28,7 @@ ul.zp13carousel,
 .zp13carouselWidget {margin: 0; padding: 0;}
 .zp13carouselWidget ul.zp13carousel > li { display: none; -webkit-backface-visibility: hidden; list-style-type: none !important; margin: 0 !important; padding: 0 !important;} /* Hide the slides before the JS is loaded. Avoids image jumping */
 .no-js ul.zp13carousel > li{ display: block; }
-.zp13carouselWidget ul.zp13carousel img {max-width: 100%; height: auto; display: block;}
+.zp13carouselWidget ul.zp13carousel img {max-width: none; width: 100%; height: auto; display: block;}
 .zp13carousel-pauseplay span {text-transform: capitalize;}
 
 /* Clearfix for the .slides element */
