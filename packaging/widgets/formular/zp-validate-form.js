@@ -194,7 +194,7 @@ function zpValidateForm(formID, e)
 	});
 
 	// do captcha validation if captcha is included in form
-	if ( $z("#recaptcha_challenge_field").length > 0 ){
+	if ( $z("#recaptcha_challenge_field").length > 0 ){			// reCaptcha 1.0
 		$z.ajaxSetup({
 			error: function(jqXHR, exception) {
 				if (jqXHR.status === 0) {
@@ -234,6 +234,22 @@ function zpValidateForm(formID, e)
 				}
 			}
 		);
+	}
+	
+	if ( $z(".g-recaptcha").length > 0 ){ 				// reCaptcha 2.0
+		var cr = grecaptcha.getResponse();
+		if( cr.length === 0 ){
+			// captcha hasn't been filled/verified
+			fieldstofill += $z("form" + formID + " #recaptchalabel").text() + ", ";
+			$z("form" + formID + " #recaptchalabel").css("color", "red");
+			$z("form" + formID + " #recaptchalabel").css("text-shadow", "1px 1px 0 #ffffff");
+			$z("form" + formID + " .g-recaptcha").css("border", "1px solid red").css("width", "304px");
+		}
+		else{
+			$z("form" + formID + " #recaptchalabel").css("color", "");
+			$z("form" + formID + " #recaptchalabel").css("text-shadow", "");
+			$z("form" + formID + " .g-recaptcha").css("border", "").css("width", "");
+		}
 	}
 
 	fieldstofill = fieldstofill.substr(0, fieldstofill.length - 2); //delete last comma and blank
