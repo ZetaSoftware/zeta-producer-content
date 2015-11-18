@@ -72,10 +72,14 @@
 			"expandedheight": 4,
 			"name": "styleGroup1",
 			"popupheightinpixel": 140,
-			"popupWidthInPixel": 500,
+			"popupWidthInPixel": 480,
 			"showlabel": false,
 			"treatexpandedheightaspixel": false,
 			"type": "group",
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": 480,
+			"x": -4,
 			"fields": [
 				{
 					"displayname": "Websiteschlüssel",
@@ -96,7 +100,7 @@
 					"name": "recaptcha-remarks",
 					"occupylabelspace": true,
 					"showlabel": false,
-					"text": "<small>Wenn Sie das neue, wesentlich benutzerfreundlichere reCAPTCHA zur Sicherheitsprüfung nutzen wollen, wählen Sie in den Optionen das Skript \"Via PHP mit Sicherheitsprüfung (NEU)\", dann <a href=\"{online-command-RecaptchaGenerateKey}\">registrieren Sie  Ihre Domains hier</a> und geben Sie anschließend die beiden Schlüssel in die beiden Felder ein.</small>",
+					"text": "<small>Wenn Sie das neue, wesentlich benutzerfreundlichere reCAPTCHA zur Sicherheitsprüfung nutzen wollen, wählen Sie in den Optionen das Skript \"Via PHP mit Sicherheitsprüfung (NEU)\", dann <a href=\"{online-command-RecaptchaGenerateKey}\">registrieren Sie  Ihre Domains beim reCAPTCHA-Dienst</a> und geben anschließend hier die Schlüssel in die beiden Felder ein.</small>",
 					"treatHeightAsPixel": true,
 					"type": "infotext"
 				}

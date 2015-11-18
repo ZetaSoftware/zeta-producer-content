@@ -14,14 +14,34 @@
 	
 	var siteKey = article.value("recaptcha-publickey", "");
 	var secretKey = article.value("recaptcha-secretkey", "");
-	var captchaConfigError = false;
+	var captchaConfigError = "";
 	var defaultFieldWidth = 300;
+	var usesNewCaptcha = false;
 	
 	// display an error if Skript with new Captcha is chosen but no keys have been entered
 	if ( action_url.indexOf("assets/php/formmailer/SendEmailReCaptcha.php") > -1 ){
+		usesNewCaptcha = true;
+		// verify that all keys are provided
 		if ( siteKey == "" || secretKey == "" ){
-			captchaConfigError = true;
+			captchaConfigError = "Unvollständige Formular-Konfiguration: Bitte geben Sie Ihre reCAPTCHA-Schlüssel in den Formulareinstellungen unter &quot;Optionale reCAPTCHA-Sicherheitsprüfung&quot; ein, oder wählen Sie in den Formular-Optionen ein anderes Skript.";
 			system.warn("Bitte geben Sie auf der Seite \"" + article.page.name + "\" Ihre reCAPTCHA-Schlüssel in den Formulareinstellungen unter \"Optionale reCAPTCHA-Sicherheitsprüfung\" ein, oder wählen Sie in den Formular-Optionen ein anderes Skript.");
+		}
+		
+		// allow only one form with new Captcha per Page
+		var pageArticles = page.articles;
+		var thisName = article.widgetName;
+		var formsWithCaptcha = [];
+		for ( var i=0; i < pageArticles.count; ++i ) {
+			var currentArticle = pageArticles.item(i); 
+			if ( currentArticle.widgetName == thisName && currentArticle.value("action_url", "").indexOf("assets/php/formmailer/SendEmailReCaptcha.php") > -1 ){
+				formsWithCaptcha.push(currentArticle.id);
+			}
+		}
+		if ( formsWithCaptcha.length > 1 && formsWithCaptcha[0] !== article.id ){
+			// found multiple forms with new captcha 
+			captchaConfigError = "Pro Seite ist nur ein Formular-Widget mit Skript \"Via PHP mit Sicherheitsprüfung (NEU)\" erlaubt! Löschen Sie überzählige Formulare oder fassen Sie die Formulare in einem zusammen.";
+			// log warning only once, for the first Article found
+			system.warn("Pro Seite ist nur ein Formular-Widget mit Skript \"Via PHP mit Sicherheitsprüfung (NEU)\" erlaubt! Auf der Seite \"" + article.page.name + "\" sind mehrere solche Artikel enthalten. Löschen Sie überzählige Formulare oder fassen Sie die Formulare in einem zusammen.");
 		}
 	}
 	
@@ -45,188 +65,215 @@
 		system.writeFile( configFilePath, content );
 		return;
 	}
+	
+	createShopConfig();	
  $>
 
-<script src='//www.google.com/recaptcha/api.js' async defer></script>
-
 <$= system.partial("article-begin.html") $>
-	<$= system.partial("article-headline.html") $>
-	
 	<$ if ( captchaConfigError ){ 
-			if ( system.preview){
-	$>
+			if ( system.preview){ $>
+				<$= system.partial("article-headline.html") $>
 				<div class="zpieInfobox" style="margin-bottom: 30px; padding: 15px; border: 2px solid red; background-color: rgba(255,0,0,0.1);">
 					<strong>Fehler!</strong> 
 					<p>
-						Unvollständige Formular-Konfiguration: Bitte geben Sie Ihre reCAPTCHA-Schlüssel in den Formulareinstellungen unter &quot;Optionale reCAPTCHA-Sicherheitsprüfung&quot; ein, oder wählen Sie in den Formular-Optionen ein anderes Skript.
+						<$= captchaConfigError $>
 					</p>
 				</div>
 	<$ 		}
 		}
-	else{ $>
-		<noscript>
-			<div class="formvalidateerror" style="color: #fff; background-color: red; padding: 6px 12px;">
-				<p><strong>Um das Kontaktformular zu nutzen, aktivieren Sie bitte JavaScript!</strong></p>
-				<p><strong>In order to use this form, you need to activate JavaScript!</strong></p>
-			</div>
-		<!--
-		</noscript>
-		<form enctype="multipart/form-data" class="zp-form" id="form<$= article.id $>" name="form<$= article.id $>" action="<$= action_url $>" method="post">
-			<input type="hidden" name="f_receiver" value="<$= email_address $>">
+		else{ $>
+			<$= system.partial("article-headline.html") $>
+			
+			<noscript>
+				<div class="formvalidateerror" style="color: #fff; background-color: red; padding: 6px 12px;">
+					<p><strong>Um das Kontaktformular zu nutzen, aktivieren Sie bitte JavaScript!</strong></p>
+					<p><strong>In order to use this form, you need to activate JavaScript!</strong></p>
+				</div>
+			<!--
+			</noscript>
+			<form enctype="multipart/form-data" class="zp-form" id="form<$= article.id $>" name="form<$= article.id $>" action="<$= action_url $>" method="post">
+				<input type="hidden" name="f_receiver" value="<$= email_address $>">
 		
-			<input type="hidden" name="f_title" value="<$= email_subject.toString().replace(/\"/g, "&quot;") $>">
-			<input type="hidden" name="f_success" value="<$= success_page_url $>">
-			<input type="hidden" name="f_error" value="<$= error_page_url $>">
-			<input type="hidden" name="f_alertPrefix" value="<$= system.htmlEncode(page.attribute("form_script_msg_required")) $>">
-			<input type="hidden" name="f_invalidEmailMsg" value="<$= system.htmlEncode(page.attribute("form_script_msg_invalid_email")) $>">
+				<input type="hidden" name="f_title" value="<$= email_subject.toString().replace(/\"/g, "&quot;") $>">
+				<input type="hidden" name="f_success" value="<$= success_page_url $>">
+				<input type="hidden" name="f_error" value="<$= error_page_url $>">
+				<input type="hidden" name="f_alertPrefix" value="<$= system.htmlEncode(page.attribute("form_script_msg_required")) $>">
+				<input type="hidden" name="f_invalidEmailMsg" value="<$= system.htmlEncode(page.attribute("form_script_msg_invalid_email")) $>">
 	
-			<$ 
-			for ( var i = 1; i <= article.value("element-count"); ++i ) { 
-				var cssClass = "";
-				if ( article.value("element-isrequired-" + i) ) {
-					cssClass += "required";
-				}
-				var fieldWidth = article.value("element-width-" + i);
-				if ( fieldWidth == 0 ) {
-					fieldWidth = defaultFieldWidth;
-				}
-				var elementAttributes = String(article.valueRaw("element-attributes-" + i, ""));
-				var cssInAttribute = "";
-				if ( elementAttributes.match(/style=\"([^\"]+)\"/i) ) {
-					cssInAttribute = elementAttributes.match(/style=\"([^\"]+)\"/i)[1] || "";
-				}
-				 $>
+				<$ 
+				for ( var i = 1; i <= article.value("element-count"); ++i ) { 
+					var cssClass = "";
+					if ( article.value("element-isrequired-" + i) ) {
+						cssClass += "required";
+					}
+					var fieldWidth = article.value("element-width-" + i);
+					if ( fieldWidth == 0 ) {
+						fieldWidth = defaultFieldWidth;
+					}
+					var elementAttributes = String(article.valueRaw("element-attributes-" + i, ""));
+					var cssInAttribute = "";
+					if ( elementAttributes.match(/style=\"([^\"]+)\"/i) ) {
+						cssInAttribute = elementAttributes.match(/style=\"([^\"]+)\"/i)[1] || "";
+					}
+					 $>
 			
-				<input type="hidden" name="NAME<$= i $>" id="NAME<$= i $>" value="<$= article.value("element-name-" + i) $>">
+					<input type="hidden" name="NAME<$= i $>" id="NAME<$= i $>" value="<$= article.value("element-name-" + i) $>">
 			
-				<$
-				switch (article.value("element-type-" + i)) {
-					// HTML Radio Buttons
-					case "radio":
-						 $>
-						<label class="field"><$= article.value("element-name-" + i) $></label>
-						<$
-						var checkboxValues = article.value("element-value-" + i).toString().split(";");
-						var fieldDefault = article.value("element-default-" + i);
+					<$
+					switch (article.value("element-type-" + i)) {
+						// HTML Radio Buttons
+						case "radio":
+							 $>
+							<label class="field"><$= article.value("element-name-" + i) $></label>
+							<$
+							var checkboxValues = article.value("element-value-" + i).toString().split(";");
+							var fieldDefault = article.value("element-default-" + i);
 		
-						for ( var ii = 0; ii < checkboxValues.length; ++ii ) {
-							if ( ii > 0 ) {
-								cssClass = ""; //only print required class for first iteration of field 
+							for ( var ii = 0; ii < checkboxValues.length; ++ii ) {
+								if ( ii > 0 ) {
+									cssClass = ""; //only print required class for first iteration of field 
+								}
+							 $>
+								<input class="<$= cssClass $>" type="radio" name="F<$= i $>" id="F<$= i $>_<$= ii $>" value="<$= checkboxValues[ii] $>" <$= article.value("element-attributes-" + i) $><$ if ( checkboxValues[ii] == fieldDefault ) {$> checked<$ } $>>
+								<label for="F<$= i $>_<$= ii $>"><$= checkboxValues[ii] $></label>
+								<$ if ( page.attribute("form_item_break") == "1" ) { $><br /><$ } $>
+							<$
 							}
-						 $>
-							<input class="<$= cssClass $>" type="radio" name="F<$= i $>" id="F<$= i $>_<$= ii $>" value="<$= checkboxValues[ii] $>" <$= article.value("element-attributes-" + i) $><$ if ( checkboxValues[ii] == fieldDefault ) {$> checked<$ } $>>
-							<label for="F<$= i $>_<$= ii $>"><$= checkboxValues[ii] $></label>
-							<$ if ( page.attribute("form_item_break") == "1" ) { $><br /><$ } $>
-						<$
-						}
-						break;
-					// HTML Checkboxes 
-					case "checkbox":
-						 $>
-						<label class="field"><$= article.value("element-name-" + i) $></label>
-						<$
-						var checkboxValues = article.value("element-value-" + i).toString().split(";");
-						var fieldDefault = article.value("element-default-" + i);
+							break;
+						// HTML Checkboxes 
+						case "checkbox":
+							 $>
+							<label class="field"><$= article.value("element-name-" + i) $></label>
+							<$
+							var checkboxValues = article.value("element-value-" + i).toString().split(";");
+							var fieldDefault = article.value("element-default-" + i);
 					
-						for ( var ii = 0; ii < checkboxValues.length; ++ii ) {
-							if ( ii > 0 ) {
-								cssClass = ""; //only print required class for first iteration of field 
+							for ( var ii = 0; ii < checkboxValues.length; ++ii ) {
+								if ( ii > 0 ) {
+									cssClass = ""; //only print required class for first iteration of field 
+								}
+							 $>
+								<input class="<$= cssClass $>" type="checkbox" name="F<$= i $>[]" id="F<$= i $>_<$= ii $>" value="<$= checkboxValues[ii] $>" <$= article.value("element-attributes-" + i) $><$ if ( checkboxValues[ii] == fieldDefault ) {$> checked<$ } $>>
+								<label for="F<$= i $>_<$= ii $>"><$= checkboxValues[ii] $></label>
+								<$ if ( page.attribute("form_item_break") == "1" ) { $><br /><$ } $>
+							<$
 							}
-						 $>
-							<input class="<$= cssClass $>" type="checkbox" name="F<$= i $>[]" id="F<$= i $>_<$= ii $>" value="<$= checkboxValues[ii] $>" <$= article.value("element-attributes-" + i) $><$ if ( checkboxValues[ii] == fieldDefault ) {$> checked<$ } $>>
-							<label for="F<$= i $>_<$= ii $>"><$= checkboxValues[ii] $></label>
-							<$ if ( page.attribute("form_item_break") == "1" ) { $><br /><$ } $>
-						<$
-						}
-						break;
-					// HTML Select List
-					case "select":
-						var selectValues = article.value("element-value-" + i).toString().split(";");
-						var fieldDefault = article.value("element-default-" + i);
-						var selectSize = "1";
-						if ( article.value("element-height-" + i) > 1 ) {
-							selectSize = article.value("element-height-" + i);
-						}
-						var selectMultiple = "";
-						if ( article.value("element-ismultiline-" + i) ) {
-							selectMultiple = "multiple";
-						}
-						 $>
-						<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
-						<select class="<$= cssClass $>" id="F<$= i $>" name="F<$= i $>[]" size="<$= selectSize $>" <$= selectMultiple $> <$= article.value("element-attributes-" + i) $>>
-							<option value="" >#attribute(form_empty_option)</option>
-						<$ for ( var ii = 0; ii < selectValues.length; ++ii ) { $>
-							<option<$ if ( selectValues[ii] == fieldDefault ) {$> selected<$ } $>><$= selectValues[ii] $></option>
-						<$ } $>
-						</select>
-						<$
-						break;
-					// HTML input Text Field which could be of a new HTML5 type (email|number|color|search etc. --> see defaults in ./widget.json)
-					case "text":
-						var maxLength = "";
-						var elementType = "text";
-						if ( article.value("element-height-" + i) > 0 ) {
-							maxLength = ' maxlength="' + article.value("element-height-" + i) + '"';
-						}
-						if ( article.value("element-inputtype-" + i) ){
-							elementType = article.value("element-inputtype-" + i);
-						}
-						 $>
-						<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
-						<input class="typetext <$= cssClass $>" type="<$= elementType $>" name="F<$= i $>" id="F<$= i $>" placeholder="<$= article.value("element-name-" + i) $>" value="<$= article.value("element-default-" + i) $>" style="width: <$= fieldWidth $>px; <$= cssInAttribute $>"<$= maxLength $> <$= article.value("element-attributes-" + i) $>>
-						<$ 
-						break;
-					// HTML Text-Area
-					case "textarea":
-						 $>
-						<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
-						<textarea class="<$= cssClass $>" id="F<$= i $>" name="F<$= i $>" placeholder="<$= article.value("element-name-" + i) $>" rows="<$= parseInt(article.value("element-height-" + i, "10")) !== 0 ? article.value("element-height-" + i, "10") : "4" $>" style="width:<$= fieldWidth $>px; <$= cssInAttribute $>" <$= article.value("element-attributes-" + i) $>><$= article.value("element-default-" + i) $></textarea>
-						<$
-						break;
-					// Hidden Text Field - ZP-Type "Zusatztext"
-					case "hidden":
-						 $>
-						<input class="hidden <$= cssClass $>" type="hidden" name="F<$= i $>" id="F<$= i $>" value="<$= article.value("element-value-" + i) $>" <$= article.value("element-attributes-" + i) $>>
-						<$
-						break;
-					// ZP-Type "Beschreibungstext"
-					case "info":
-						 $>
-						<$= article.value("element-value-" + i) $>
-						<$
-						break;
-					// ZP-Type Separator Line
-					case "separator":
-						 $>
-						<div class="separator">&nbsp;</div>					
-						<$
-						break;
-					// ZP File Upload
-					case "file":
-						 $>
-						<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
-						<input class="<$= cssClass $>" type="file" name="F<$= i $>" id="F<$= i $>" <$= article.value("element-attributes-" + i) $>>
-						<$	
-						break;
-					// Default fallback HTML input with whatever element-type is passed
-					default:
-						 $>
-						<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
-						<input class="<$= cssClass $>" type="<$= article.value("element-type-" + i, "text") $>" name="F<$= i $>" id="F<$= i $>" placeholder="<$= article.value("element-name-" + i) $>" value="<$= article.value("element-default-" + i) $>" <$= article.value("element-attributes-" + i) $>>
-						<$	
-						break;
-				}
-			} 
-			$> 
-		
-			<input type="text" name="url" id="url" value="" class="asfield" aria-label="Please ignore this field." style="display: none;">
-			<label id="recaptchalabel" class="multiline field"><$= system.htmlEncode(page.attribute("form_spam_protection")) $></label>
-			<div class="g-recaptcha" data-sitekey="<$=siteKey $>"></div>
+							break;
+						// HTML Select List
+						case "select":
+							var selectValues = article.value("element-value-" + i).toString().split(";");
+							var fieldDefault = article.value("element-default-" + i);
+							var selectSize = "1";
+							if ( article.value("element-height-" + i) > 1 ) {
+								selectSize = article.value("element-height-" + i);
+							}
+							var selectMultiple = "";
+							if ( article.value("element-ismultiline-" + i) ) {
+								selectMultiple = "multiple";
+							}
+							 $>
+							<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+							<select class="<$= cssClass $>" id="F<$= i $>" name="F<$= i $>[]" size="<$= selectSize $>" <$= selectMultiple $> <$= article.value("element-attributes-" + i) $>>
+								<option value="" >#attribute(form_empty_option)</option>
+							<$ for ( var ii = 0; ii < selectValues.length; ++ii ) { $>
+								<option<$ if ( selectValues[ii] == fieldDefault ) {$> selected<$ } $>><$= selectValues[ii] $></option>
+							<$ } $>
+							</select>
+							<$
+							break;
+						// HTML input Text Field which could be of a new HTML5 type (email|number|color|search etc. --> see defaults in ./widget.json)
+						case "text":
+							var maxLength = "";
+							var elementType = "text";
+							if ( article.value("element-height-" + i) > 0 ) {
+								maxLength = ' maxlength="' + article.value("element-height-" + i) + '"';
+							}
+							if ( article.value("element-inputtype-" + i) ){
+								elementType = article.value("element-inputtype-" + i);
+							}
+							 $>
+							<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+							<input class="typetext <$= cssClass $>" type="<$= elementType $>" name="F<$= i $>" id="F<$= i $>" placeholder="<$= article.value("element-name-" + i) $>" value="<$= article.value("element-default-" + i) $>" style="width: <$= fieldWidth $>px; <$= cssInAttribute $>"<$= maxLength $> <$= article.value("element-attributes-" + i) $>>
+							<$ 
+							break;
+						// HTML Text-Area
+						case "textarea":
+							 $>
+							<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+							<textarea class="<$= cssClass $>" id="F<$= i $>" name="F<$= i $>" placeholder="<$= article.value("element-name-" + i) $>" rows="<$= parseInt(article.value("element-height-" + i, "10")) !== 0 ? article.value("element-height-" + i, "10") : "4" $>" style="width:<$= fieldWidth $>px; <$= cssInAttribute $>" <$= article.value("element-attributes-" + i) $>><$= article.value("element-default-" + i) $></textarea>
+							<$
+							break;
+						// Hidden Text Field - ZP-Type "Zusatztext"
+						case "hidden":
+							 $>
+							<input class="hidden <$= cssClass $>" type="hidden" name="F<$= i $>" id="F<$= i $>" value="<$= article.value("element-value-" + i) $>" <$= article.value("element-attributes-" + i) $>>
+							<$
+							break;
+						// ZP-Type "Beschreibungstext"
+						case "info":
+							 $>
+							<$= article.value("element-value-" + i) $>
+							<$
+							break;
+						// ZP-Type Separator Line
+						case "separator":
+							 $>
+							<div class="separator">&nbsp;</div>					
+							<$
+							break;
+						// ZP File Upload
+						case "file":
+							 $>
+							<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+							<input class="<$= cssClass $>" type="file" name="F<$= i $>" id="F<$= i $>" <$= article.value("element-attributes-" + i) $>>
+							<$	
+							break;
+						// Default fallback HTML input with whatever element-type is passed
+						default:
+							 $>
+							<label for="F<$= i $>" class="field"><$= article.value("element-name-" + i) $></label>
+							<input class="<$= cssClass $>" type="<$= article.value("element-type-" + i, "text") $>" name="F<$= i $>" id="F<$= i $>" placeholder="<$= article.value("element-name-" + i) $>" value="<$= article.value("element-default-" + i) $>" <$= article.value("element-attributes-" + i) $>>
+							<$	
+							break;
+					} // switch
+				} // for
+				$> 
 			
-			<input type="submit" class="button" value="#attribute(form_script_button_send_title)" />
-		</form>
-		<noscript>
-		-->
-		</noscript>
+				<input type="text" name="url" id="url" value="" class="asfield" aria-label="Please ignore this field." style="display: none;">
+			
+			
+				<$ if ( usesNewCaptcha ){ 	
+					// show new Captcha  $>
+					<script src='//www.google.com/recaptcha/api.js' async defer></script>
+					<label id="recaptchalabel" class="multiline field"><$= system.htmlEncode(page.attribute("form_spam_protection")) $></label>
+					<div class="g-recaptcha" data-sitekey="<$=siteKey $>"></div>
+				<$ } else {	
+					// show old Captcha because the user selected the corresponding form action ends in "SendEmail.php" and not "?sc"
+					var scriptName = "SendEmail.php";
+					if ( action_url.substring(action_url.length - scriptName.length, action_url.length) == scriptName ) { 
+						$>
+						<label id="recaptchalabel" class="multiline field"><$= system.htmlEncode(page.attribute("form_spam_protection")) $></label>
+						<script type="text/javascript">
+							var RecaptchaOptions = 
+							{   
+								lang : '#attribute(meta_contentlanguage)',
+								theme : 'clean' 
+							};
+						</script>
+						<script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1"></script>
+						<noscript>
+						 <iframe src="//www.google.com/recaptcha/api/noscript?lang=de&amp;theme=clean&amp;k=6LdqbskSAAAAABotr2Ji4pC9xFS16Mv4zlDbOLV1" height="300" width="500" frameborder="0"></iframe><br>
+						 <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+						 <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+						</noscript>
+						<$
+					}
+				} $>
+			
+				<input type="submit" class="button" value="#attribute(form_script_button_send_title)" />
+			</form>
+			<noscript>
+			-->
+			</noscript>		
 	<$ } $>
 <$= system.partial("article-end.html") $>

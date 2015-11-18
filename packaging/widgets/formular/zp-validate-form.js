@@ -238,7 +238,7 @@ function zpValidateForm(formID, e)
 	
 	if ( $z(".g-recaptcha").length > 0 ){ 				// reCaptcha 2.0
 		var cr = grecaptcha.getResponse();
-		if( cr.length === 0 ){
+		if ( cr.length === 0 ){
 			// captcha hasn't been filled/verified
 			fieldstofill += $z("form" + formID + " #recaptchalabel").text() + ", ";
 			$z("form" + formID + " #recaptchalabel").css("color", "red");

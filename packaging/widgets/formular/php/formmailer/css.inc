@@ -47,4 +47,6 @@ text-align:left;
 font-size: 10px;
 font-style: italic;
 color: gray;
-}			
+}	
+
+#recaptcha_table td{padding: 0 !important;}
