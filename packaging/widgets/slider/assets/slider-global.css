@@ -27,8 +27,9 @@ ul.zp13slider,
 /* FlexSlider Necessary Styles
 *********************************/ 
 .zp13sliderWidget {margin: 0; padding: 0;}
-.zp13sliderWidget ul.zp13slider > li {display: none; -webkit-backface-visibility: hidden; list-style-type: none !important; padding: 0 !important;} /* Hide the slides before the JS is loaded. Avoids image jumping */
-.zp13sliderWidget ul.zp13slider img {width: 100%; max-width: none; height: auto; display: block;}
+.zp13sliderWidget ul.zp13slider > li {display: none; -webkit-backface-visibility: hidden; list-style-type: none !important; margin: 0 !important; padding: 0 !important;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.zp13sliderWidget li:before, .zp13sliderWidget li:after{content: none !important;}
+.zp13sliderWidget ul.zp13slider img {width: 100%; max-width: none; height: auto; display: block; padding: 0; margin: 0;}
 .zp13slider-pauseplay span {text-transform: capitalize;}
 
 /* Clearfix for the .slides element */
@@ -231,6 +232,7 @@ html[xmlns] ul.zp13slider {display: block;}
 	text-align: inherit;
 	color: inherit;
 	text-shadow: inherit;
+	border: 0;
 }
 .zp13sliderWidget .zp13slider-caption h1:first-child, 
 .zp13sliderWidget .zp13slider-caption h2:first-child, 

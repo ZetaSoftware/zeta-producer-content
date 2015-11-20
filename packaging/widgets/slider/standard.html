@@ -166,6 +166,18 @@ $>
 			}).each(function() {
 				if(this.complete) $z(this).load();
 			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
+		
+			// make sure the slider is properly resized when the window is resized (400ms after window.resize ended)
+			var sliderTimeout<$= article.id $> = null;
+			$z(window).resize(function(event) {
+				clearTimeout(sliderTimeout<$= article.id $>);
+				sliderTimeout<$= article.id $> = setTimeout(function() {
+					var slider = $z('[data-articleid="<$= article.id $>"] .zp13slider-container').data('flexslider');   
+					slider.resize();
+					clearTimeout(sliderTimeout<$= article.id $>); // prevents slider.resize() from causing a windows.resize event again which looped
+				}, 400);
+				
+			});
 		});
   	</script>
 <$ } $>
