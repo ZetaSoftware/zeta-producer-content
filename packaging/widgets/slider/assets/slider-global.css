@@ -82,11 +82,11 @@ html[xmlns] ul.zp13slider {display: block;}
 	width: 100vw;  /* Do not compensate on transparent Scrollbars on touch devices like e.g. the ipad. */
 }
 
-.supportsbreakout div.zp13sliderWidget.zpBreakout li img,
-.supportsbreakout #content div.zp13sliderWidget.zpBreakout li img, 
-.supportsbreakout .content div.zp13sliderWidget.zpBreakout li img{
-	border: 0;
-	box-shadow: none;
+div.zp13sliderWidget.zpBreakout li img{
+	border: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .zp13sliderWidget ul.zp13slider{

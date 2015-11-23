@@ -75,8 +75,10 @@ html[xmlns] ul.zp13carousel {display: block;}
 div.zp13carouselWidget li img,
 #content div.zp13carouselWidget li img,
 .content div.zp13carouselWidget li img{
-	border: 0;
-	box-shadow: none;
+	border: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .zp13carouselWidget ul.zp13carousel{

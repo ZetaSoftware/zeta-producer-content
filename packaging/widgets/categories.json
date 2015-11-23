@@ -153,21 +153,6 @@
                     "isDefaultChildCategory": false
                 }
             ]
-        },
-        {
-            "settings": {
-                "uiName": "Test",
-                "internalName": "test",
-                "isSelectable": true,
-                "isDefaultCategory": false
-            },
-            "categories": [
-                {
-                    "uiName": "Alle",
-                    "internalName": "all",
-                    "isDefaultChildCategory": false
-                }
-            ]
         }
     ]
 }
