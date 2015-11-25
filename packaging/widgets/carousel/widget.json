@@ -47,7 +47,7 @@
             "defaultValue": "0"
         },
         {
-            "displayname": "Text Optionen",
+            "displayname": "Text-Optionen",
             "expandedheight": 4,
             "name": "styleGroup1",
             "popupheightinpixel": 110,
@@ -89,7 +89,7 @@
             ]
         },
         {
-            "displayname": "Bild Optionen",
+            "displayname": "Bild-Optionen",
             "name": "imageOptions",
             "popupheightinpixel": 170,
             "popupwidthinpixel": 230,

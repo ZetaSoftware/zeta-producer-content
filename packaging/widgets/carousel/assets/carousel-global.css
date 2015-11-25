@@ -121,6 +121,7 @@ div.zp13carouselWidget li img,
 	padding: 0;
 	box-sizing: border-box;
 	overflow:auto;
+	font-weight: normal;
 }
 .zp13carouselWidget .zp13carousel-caption:hover{
 	-webkit-transition: opacity 500ms ease-out; 
