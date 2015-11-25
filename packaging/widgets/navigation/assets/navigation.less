@@ -1,6 +1,6 @@
 /*!
  * ZP Navigation Menu Widget CSS
- * $Id: navigation.less 32547 2015-10-06 10:09:51Z sseiz $
+ * $Id: navigation.less 33472 2015-11-25 11:02:42Z sseiz $
  * Copyright Zeta Software GmbH 2015
  */
  
@@ -10,6 +10,9 @@
 
 .zpnavcontainer{
 	overflow: visible !important;
+	-ms-transform:		translatey(6px);
+	-webkit-transform:	translatey(6px);
+	transform:			translatey(6px);
 }
 
 .zpnavmenu{
@@ -56,6 +59,7 @@
 	// first level dropdown arrow indicator
 	ul.zpnavmainmenu > li{
 		padding-bottom: 7px;
+		margin-bottom: 0;
 	}
 	ul.zpnavmainmenu > li > ul {
 		top: 100%;

@@ -9,6 +9,10 @@ div.alertbanner.content{
 	z-index:9999;
 	box-shadow: 0 1px 5px rgba(0,0,0,0.5);
 }
+div.alertbanner.content.bottom{
+	top: auto;
+	bottom: 0;
+}
 
 .zpRow.alertbanner{
 	margin: 0;
@@ -76,6 +80,8 @@ div.alertbanner.content{
 			visibility: visible;
 			-webkit-transform: translateY(-105%);
 			transform: translateY(-105%);
+			top: 0;
+			bottom: auto;
 		}
 		100% {
 			visibility: visible;
@@ -148,10 +154,14 @@ div.alertbanner.content{
 	from {
 			-webkit-transform: translateY(-105%);
 			transform: translateY(-105%);
+			top: 0;
+			bottom: auto;
 		}
 	to {
 			-webkit-transform: translateY(-105%);
 			transform: translateY(-105%);
+			top: 0;
+			bottom: auto;
 		}
 }
 @keyframes slidedown {

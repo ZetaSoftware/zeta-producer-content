@@ -19,7 +19,7 @@
         "uiname": "Info-Banner",
         "usedialogheight": true,
         "usedialogwidth": true,
-        "version": "12.5.6.2"
+        "version": "12.5.6.3"
     },
     "fields": [
         {
@@ -36,7 +36,7 @@
             "displayname": "Optionen",
             "name": "options",
             "occupylabelspace": true,
-            "popupheightinpixel": 180,
+            "popupheightinpixel": 215,
             "popupwidthinpixel": 320,
             "showlabel": false,
             "type": "group",
@@ -56,6 +56,20 @@
                     "defaultValue": "rgba(29, 130, 18, 0.9)"
                 },
                 {
+                    "displayName": "Position",
+                    "name": "position",
+                    "type": "list",
+                    "values": [
+                        {
+                            "Oben": "top"
+                        },
+                        {
+                            "Unten": "bottom"
+                        }
+                    ],
+                    "defaultValue": "top"
+                },
+                {
                     "displayname": "Effekt",
                     "name": "effect",
                     "type": "list",
@@ -65,6 +79,9 @@
                         },
                         {
                             "Hineinbewegen": "slide"
+                        },
+                        {
+                            "Kein Effekt": ""
                         }
                     ],
                     "defaultValue": "fall"

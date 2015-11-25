@@ -23,6 +23,7 @@
 	var hideAfterClose = article.value("hideAfterClose") == "1" ? true : false;
 	var cookieId = article.value("cookieid", "1").toString();
 	cookieId = cookieId.replace(/\n|\r|\'|\"/g, "");
+	var position = article.value("position", "top");
 $>
 
 <$ if ( system.preview ) { $>
@@ -35,7 +36,7 @@ $>
 	<$= system.partial("article-end.html") $>
 <$ } else { $>
 	<script>
-		var theBanner = '<div class="alertbanner <$= effect $> content" id="alertbanner<$= article.id $>" style="background-color: <$= backgroundColor $>; color: <$= textColor $>;">'
+		var theBanner = '<div class="alertbanner <$= effect $> content <$= position $>" id="alertbanner<$= article.id $>" style="background-color: <$= backgroundColor $>; color: <$= textColor $>;">'
 					  + '<a id="close" title="Schließen / Close" href="#off" style="border: 1px solid <$= textColor $>;">✕</a>';
 		theBanner += '<$= alertText $>';
 		theBanner += '</div>';
