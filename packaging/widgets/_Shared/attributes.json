@@ -1,6 +1,30 @@
 {
     "attributes": [
         {
+            "name": "webfont-variants",
+            "category": "Webfonts",
+            "value": "400,700",
+            "entail": true
+        },
+        {
+            "name": "webfont-fallback-serif",
+            "category": "Webfonts",
+            "value": "Georgia, \"Times New Roman\", Times, serif",
+            "entail": true
+        },
+        {
+            "name": "webfont-fallback-sans-serif",
+            "category": "Webfonts",
+            "value": "\"Neue Helvetica\", Helvetica, Arial, sans-serif",
+            "entail": true
+        },
+        {
+            "name": "webfont-fallback-monospace",
+            "category": "Webfonts",
+            "value": "\"Lucida Console\", Monaco, \"Courier New\", Courier, monospace",
+            "entail": true
+        },
+        {
             "name": "so_login_alert",
             "category": "Widgets",
             "value": "Bitte geben Sie das korrekte Kennwort ein!",
@@ -523,7 +547,7 @@
         },
         {
             "name": "suppress_phpversioncheck",
-            "category": "Standard",
+            "category": "Widgets",
             "value": null,
             "entail": true
         },

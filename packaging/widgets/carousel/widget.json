@@ -12,7 +12,7 @@
         "editortype": "genericListArticleEditor",
         "maincategory": "text-image",
         "minappversion": "13.0.0.0",
-        "orderposition": 0,
+        "orderposition": 3,
         "removelineafter": false,
         "showcssinputfields": true,
         "uiname": "Carousel",

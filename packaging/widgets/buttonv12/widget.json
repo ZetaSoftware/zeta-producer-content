@@ -10,7 +10,7 @@
         "dialogheightvalue": 220,
         "maincategory": "text-image",
         "minappversion": "12.5.0.0",
-        "pgeitemmetainfo": "Unknown",
+        "orderposition": 3,
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadline": false,

@@ -12,6 +12,7 @@
         },
         "dialogwidthvalue": 510,
         "maincategory": "text-image",
+        "orderposition": 3,
         "minappversion": "12.5.0.0",
         "removelineafter": false,
         "showcssinputfields": true,

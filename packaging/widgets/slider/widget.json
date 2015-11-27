@@ -11,6 +11,7 @@
         "dialogwidthvalue": 525,
         "editortype": "genericListArticleEditor",
         "maincategory": "text-image",
+        "orderposition": 3,
         "minappversion": "13.0.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
