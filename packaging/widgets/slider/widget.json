@@ -84,7 +84,6 @@
 			"x": 0,
 			"y": "=z.bottom('autoplay') + z.oneLineDistance + z.oneLineDistance"
         },
-        ,
         {
             "displayname": "Text-Optionen",
             "expandedheight": 4,

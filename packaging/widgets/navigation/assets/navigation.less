@@ -1,6 +1,6 @@
 /*!
  * ZP Navigation Menu Widget CSS
- * $Id: navigation.less 33472 2015-11-25 11:02:42Z sseiz $
+ * $Id: navigation.less 33598 2015-11-27 13:49:53Z sseiz $
  * Copyright Zeta Software GmbH 2015
  */
  
@@ -38,6 +38,12 @@
 	ul.zpnavmainmenu > li:last-child {
 		margin-right: 0;
 	}
+	ul.zpnavmainmenu li:before,
+	ul.zpnavmainmenu li:after,
+	ul.zpnavmainmenu li a:before ,
+	ul.zpnavmainmenu li a:after {
+		content: none !important;
+	}
 
 	ul.zpnavmainmenu li a {
 		display: block;
@@ -45,6 +51,7 @@
 		padding: 8px 15px;
 		white-space: nowrap;
 	}
+	
 
 	/* Dropdown */
 	ul.zpnavmainmenu ul {
