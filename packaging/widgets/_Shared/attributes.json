@@ -9,19 +9,19 @@
         {
             "name": "webfont-fallback-serif",
             "category": "Webfonts",
-            "value": "Georgia, \"Times New Roman\", Times, serif",
+            "value": "Georgia, 'Times New Roman', Times, serif",
             "entail": true
         },
         {
             "name": "webfont-fallback-sans-serif",
             "category": "Webfonts",
-            "value": "\"Neue Helvetica\", Helvetica, Arial, sans-serif",
+            "value": "'Neue Helvetica', Helvetica, Arial, sans-serif",
             "entail": true
         },
         {
             "name": "webfont-fallback-monospace",
             "category": "Webfonts",
-            "value": "\"Lucida Console\", Monaco, \"Courier New\", Courier, monospace",
+            "value": "'Lucida Console', Monaco, 'Courier New', Courier, monospace",
             "entail": true
         },
         {

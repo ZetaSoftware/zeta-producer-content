@@ -6,6 +6,11 @@
 	var thumbnailHeight = parseInt( article.value("height", 150) );
 	var borderWidth = 	  parseInt( article.value("borderwidth", 0) );
 	var totalWidth = thumbnailWidth + borderWidth + borderWidth;
+	var showtitle = article.value("showtitle", 0);
+	var fontsize = article.value('fontsize', "13");
+	var margin = article.value('margin', "10");
+	var borderWidth = article.value('borderWidth', "0");
+	var bordercolor = article.value('bordercolor', "transparent");
 	 $>
 
 	<$= system.partial("article-headline.html") $>
@@ -29,16 +34,16 @@
 			var aStyle = 
 				"display: inline; zoom: 1; vertical-align: top; display: inline-block; font-size: {0}px; width: {1}px; height: auto; margin: 0 {2}px {3}px 0;"
 				.format(
-					a.value('fontsize'),
+					fontsize,
 					totalWidth,
-					a.value('margin'),
-					a.value('margin') );
+					margin,
+					margin );
 
 			var imgStyle =
 				"box-shadow: none; border: {0}px solid {1}"
 				.format(
-					a.value('borderWidth'),
-					a.value('bordercolor') );
+					borderWidth,
+					bordercolor );
 		 $>
 		
 			<a 
@@ -49,7 +54,7 @@
 					src="<$= image.thumbPath(thumbnailWidth) $>" 
 					width="<$= thumbnailWidth $>" />
 
-				<$= a.value("showtitle") == 1 ? system.htmlEncode(a.headline) : '' $>
+				<$= showtitle == 1 ? system.htmlEncode(a.headline) : '' $>
 			</a>
 			
 		<$		

@@ -23,7 +23,6 @@ function is_touch_device() {
 // Helper for Nav-Menues with hover effects to make them work via alternating clicks
 // 1st Click will open the Submenues, 2nd Click will load the link associated with the clicked element
 function hoverToClickMenu(element, breakpointMobileMenu) { 
-	console.log("hoverToClickMenu()");
 	var listenEvent = 'ontouchend' in document.documentElement ? "touchend" : "click";
 	
 	// The stock browser on Android 4.X can't cancel touchend events and will thus always fire an additional click event, so we need to revert to click events StS 2015-02-24
@@ -41,8 +40,10 @@ function hoverToClickMenu(element, breakpointMobileMenu) {
 		otherMenus.find("ul").css({'display' : '', 'visibility' : ''});
 		otherMenus.find(".clicked").removeClass("clicked");
 		otherMenus.find(".open").removeClass("open");
+		var hasVisibleChilds = $z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible";
 		
-		if ( $z(e).parent().hasClass("clicked") ){ // TODO ZP13 check layouts for incompatibilities due to commenting out this: || ($z(e).parent().children("xul").css("display") == "block" && $z(e).parent().children("xul").css("visibility") == "visible") ) {
+		console.log("Element child visible?: " + hasVisibleChilds);
+		if ( $z(e).parent().hasClass("clicked") || hasVisibleChilds ){ // TODO ZP13 check layouts for incompatibilities due to commenting out this: || ($z(e).parent().children("xul").css("display") == "block" && $z(e).parent().children("xul").css("visibility") == "visible") ) {
 			// element has been clicked before, so now we fire a click
 			return true;
 		}
