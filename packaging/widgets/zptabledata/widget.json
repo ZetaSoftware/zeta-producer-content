@@ -1,5 +1,7 @@
 ﻿{
     "settings": {
+        "version": "12.5.0.1",
+        "minappversion": "12.5.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -13,13 +15,11 @@
         "dialogwidthvalue": 510,
         "maincategory": "text-image",
         "orderposition": 3,
-        "minappversion": "12.5.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Tabellarische Daten",
-        "usedialogwidth": true,
-        "version": "12.5.0.0"
+        "usedialogwidth": true
     },
     "fields": [
         {

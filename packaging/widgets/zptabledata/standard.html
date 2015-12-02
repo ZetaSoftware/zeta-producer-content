@@ -39,7 +39,7 @@ $>
                         var col = cols.item(ce);
                   $>
 
-                        <td <$=col.htmlAttributes?col.htmlAttributes:tab.htmlAttributesCells$>><$=cell.value()$></td>
+                        <td <$=col.htmlAttributes?col.htmlAttributes:tab.htmlAttributesCells$>><$=cell.valueRaw()$></td>
 
                   <$ } $>
 

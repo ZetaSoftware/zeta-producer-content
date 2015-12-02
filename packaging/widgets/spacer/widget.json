@@ -1,5 +1,7 @@
 ﻿{
     "settings": {
+        "version": "13.0.0.0",
+        "minappversion": "13.0.0.0",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -10,20 +12,18 @@
         "dialogheightvalue": 40,
         "dialogwidthvalue": 510,
         "maincategory": "other",
-        "minappversion": "13.0.0.0",
         "removelineafter": false,
         "showcssinputfields": false,
         "showheadline": false,
         "showheadlinelabel": false,
         "uiname": "Spacer",
         "usedialogheight": true,
-        "usedialogwidth": true,
-        "version": "13.0.0.0"
+        "usedialogwidth": true
     },
     "fields": [
         {
             "name": "htmlAnnotation1",
-            "text": "Dieses Widget hat keine konfigurierbaren Optionen",
+            "text": "Ein Spacer dient dazu, vor oder zwischen Artikeln einen Abstand einzufügen.",
             "type": "infotext"
         }
     ],
