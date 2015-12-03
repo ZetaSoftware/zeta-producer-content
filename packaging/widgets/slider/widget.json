@@ -87,7 +87,7 @@
         {
             "displayname": "Text-Optionen",
             "expandedheight": 4,
-            "name": "styleGroup1",
+            "name": "textoptions",
             "popupheightinpixel": 110,
             "popupwidthinpixel": 290,
             "showlabel": false,
@@ -130,7 +130,7 @@
 			"anchor": "left,top",
 			"width": "auto",
 			"height": "=z.oneLineHeight",
-			"x": "=z.right('effect') + z.oneColumnDistance+ z.oneColumnDistance",
+			"x": "=z.right('effect') + z.oneColumnDistance + z.oneColumnDistance",
 			"y": "=z.y('effect')"
         },
         {
@@ -143,8 +143,8 @@
 			"anchor": "left,top",
 			"width": "auto",
 			"height": "=z.oneLineHeight",
-			"x": 0,
-			"y": "=z.bottom('effect') + z.oneLineDistance + z.oneLineDistance"
+			"x": "=z.right('effect') + z.width('textoptions') + z.oneColumnDistance + z.oneColumnDistance + z.oneColumnDistance + z.oneColumnDistance",
+			"y": "=z.y('effect') + z.labelYOffsetForOneRow"
         }
     ],
     "assets": [
@@ -169,8 +169,8 @@
     ],
     "extended": {
         "settings": {
-            "globalFieldsAreaHeight": 104,
-            "localFieldsAreaHeight": 420,
+            "globalFieldsAreaHeight": 70,
+            "localFieldsAreaHeight": 440,
             "treatHeightAsPixel": true,
             "headerElementContentFieldName": "image"
         },

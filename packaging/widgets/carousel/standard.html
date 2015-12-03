@@ -8,6 +8,7 @@
 	var textPosition = article.value("textPosition", "middle");
 	var textBgColor = article.value("textBgColor", "");
 	var textShadowColor = article.value("textShadowColor", "");
+	var showonhover = article.value("showonhover", 0);
 	var thumbnailWidth = article.value("thumbnailWidth", "350");
 	var thumbnailHeight = article.value("thumbnailHeight", "750");
 	// carousel images variables
@@ -21,6 +22,9 @@
 	}
 	if ( textPosition == "bottom" ){
 		cssClass += " captionbottom";
+	}
+	if ( showonhover ){
+		cssClass += " captiononhover";
 	}
 	
 	var contentImageWidth = "#val(contentcopy-max-image-width)";

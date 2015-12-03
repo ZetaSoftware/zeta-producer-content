@@ -28,33 +28,56 @@
             "name": "autoplay",
             "treatheightaspixel": true,
             "type": "checkbox",
-            "defaultValue": "1"
+            "defaultValue": "1",
+            
+            "layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": 0,
+			"y": "=z.labelYOffsetForOneRow"
         },
         {
             "displayname": "Sekunden pro Bild",
             "name": "secondsperimage",
             "type": "text-singleline-updown",
-            "userinfotext": "Wartezeit bis zu nächsten Animation. Hat keine Auswirkung, wenn \"Automatisch abspielen\" deaktiviert ist.",
             "width": 80,
-            "defaultValue": "8"
+            "defaultValue": "8",
+            
+            "layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": 70,
+			"height": "auto",
+			"x": "=z.right('autoplay') + z.oneColumnDistance",
+			"y": 0
         },
         {
-            "displayname": "Randlos",
-            "height": 20,
-            "name": "breakout",
-            "treatheightaspixel": true,
-            "type": "checkbox",
-            "defaultValue": "0"
+            "displayname": "Sekunden pro Bild",
+            "name": "secondslabel",
+            "type": "label",
+
+			"layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": "=z.right('secondsperimage') + z.oneColumnDistance",
+			"y": "=z.labelYOffsetForOneRow"
         },
         {
             "displayname": "Text-Optionen",
             "expandedheight": 4,
-            "name": "styleGroup1",
-            "popupheightinpixel": 110,
+            "name": "textoptions",
+            "popupheightinpixel": 130,
             "popupwidthinpixel": 290,
             "showlabel": false,
             "treatexpandedheightaspixel": false,
             "type": "group",
+            "layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": 0,
+			"y": "=z.bottom('autoplay') + z.oneLineDistance + z.oneLineDistance",
             "fields": [
                 {
                     "displayname": "Position",
@@ -85,7 +108,17 @@
                     "name": "textShadowColor",
                     "type": "color-selection",
                     "width": 160
-                }
+                },
+                {
+					"displayname": "Nur bei Mouseover anzeigen",
+					"height": 20,
+					"name": "showonhover",
+					"occupylabelspace": true,
+                    "treatheightaspixel": true,
+					"type": "checkbox",
+					"userinfotext": "Text immer anzeigen, oder nur wenn man mit der Maus über ein Bild fährt.",
+					"defaultValue": "0"
+				}
             ]
         },
         {
@@ -95,6 +128,12 @@
             "popupwidthinpixel": 230,
             "showlabel": false,
             "type": "group",
+            "layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": "=z.right('textoptions') + z.oneColumnDistance + z.oneColumnDistance",
+			"y": "=z.bottom('autoplay') + z.oneLineDistance + z.oneLineDistance",
             "fields": [
                 {
                     "displayname": "Breite",
@@ -143,6 +182,21 @@
                     "defaultValue": "0"
                 }
             ]
+        },
+        {
+            "displayname": "Randlos",
+            "height": 20,
+            "name": "breakout",
+            "treatheightaspixel": true,
+            "type": "checkbox",
+            "defaultValue": "0",
+            
+            "layoutMode": "pixel",
+			"anchor": "left,top",
+			"width": "auto",
+			"height": "=z.oneLineHeight",
+			"x": "=z.right('textoptions') + z.width('imageOptions') + z.oneColumnDistance + z.oneColumnDistance + z.oneColumnDistance + z.oneColumnDistance",
+			"y": "=z.bottom('autoplay') + z.oneLineDistance + z.oneLineDistance + z.labelYOffsetForOneRow"
         }
     ],
     "assets": [
@@ -167,7 +221,7 @@
     ],
     "extended": {
         "settings": {
-            "globalFieldsAreaHeight": 160,
+            "globalFieldsAreaHeight": 70,
             "localFieldsAreaHeight": 420,
             "treatHeightAsPixel": true,
             "headerElementContentFieldName": "image"
