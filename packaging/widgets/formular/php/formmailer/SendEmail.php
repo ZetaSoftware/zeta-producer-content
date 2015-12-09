@@ -4,7 +4,7 @@
  *
  * Zeta Producer Form-Mailer
  * 
- * $Id: SendEmail.php 31609 2015-07-25 11:48:51Z ukeim $
+ * $Id: SendEmail.php 33910 2015-12-07 08:23:31Z sseiz $
  */
 
 require_once('debug.inc.php');
@@ -513,7 +513,7 @@ function DoSendEmail(
 	$mail->CharSet = 'utf-8';
 
 	$mail->isHTML(true); 
-	$mail->From      = $senderEmail;
+	$mail->From      = $arrReceiverEmail[0];
 	$mail->FromName  = $senderName;
 	$mail->Subject   = $subject;
 	$mail->Body      = implode("\r\n",$body);

@@ -24,34 +24,34 @@ zp.EventCalendar = function (){
 	this.init = function (elemid){
 		// load jqueryui css and js if not already loaded
 		var mySrc = $z('script[src*="eventcalendar.js"], script[src*="bundle.js"]').first().attr("src");
-		var jsReltivePath = mySrc.substr(0, mySrc.lastIndexOf("/")+1);
+		var jsRelativePath = mySrc.substr(0, mySrc.lastIndexOf("/")+1);
 		
 		if (!$z("link[href*='/js/jqueryui/jquery-ui-1.8.19.custom.css']").length){
 				// append after existing, known style if possible to keep loading order of CSS JS in correct order for improved loading speed
 				if (!$z('link[href*="/bundle.css"], link[href*="/styles.css"]').first().length){
-					$z('<link rel="stylesheet" type="text/css" href="' + jsReltivePath +'js/jqueryui/jquery-ui-1.8.19.custom.css" media="screen" />').appendTo("head");
+					$z('<link rel="stylesheet" type="text/css" href="' + jsRelativePath +'js/jqueryui/jquery-ui-1.8.19.custom.css" media="screen" />').appendTo("head");
 				}
 				else{
-					$z('link[href*="/bundle.css"], link[href*="/styles.css"]').first().after('<link rel="stylesheet" type="text/css" href="' + jsReltivePath +'js/jqueryui/jquery-ui-1.8.19.custom.css" media="screen" />');
+					$z('link[href*="/bundle.css"], link[href*="/styles.css"]').first().after('<link rel="stylesheet" type="text/css" href="' + jsRelativePath +'js/jqueryui/jquery-ui-1.8.19.custom.css" media="screen" />');
 				}
 			}
 			
 			if (!($z.ui)) {
 				// append after existing, known js if possible to keep loading order of CSS JS in correct order for improved loading speed
 				if (!$z('script[src*="app.js"], script[src*="bundle.js"]').first().length){
-					$z('<script type="text/javascript" src="' + jsReltivePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></script>').appendTo("head");
+					$z('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></script>').appendTo("head");
 				}
 				else{
-					$z('script[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsReltivePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></script>');
+					$z('script[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></script>');
 				}
 			}
 			
 			if (!($z.datepicker.regional['de'])) {
 				if (!$z('script[src*="app.js"], script[src*="bundle.js"]').first().length){
-					$z('<script type="text/javascript" src="' + jsReltivePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></script>').appendTo("head");
+					$z('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></script>').appendTo("head");
 				}
 				else{
-					$z('script[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsReltivePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></script>');
+					$z('script[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></script>');
 				}
 			}
 			

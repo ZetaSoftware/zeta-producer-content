@@ -3,28 +3,16 @@ var contentImageWidth = "#val(contentcopy-max-image-width)";
 // Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
 contentImageWidth = parseInt(contentImageWidth) || 960;
 
-// TODO for V13 read column class and figure out width from there. Until then, use 100% image
-// next line is temporary value to set 100% image width
-var paragraphColumnCount = 1;	
-//var paragraphColumnCount = article.paragraph.columns.count;
-var columnWidth = contentImageWidth/paragraphColumnCount;
-
-var columnMargin;
-
-if ( paragraphColumnCount == 1 ) {
-	columnMargin = 0;
+// TODO for V13 read column class and figure out width from there. Until then, use 100% image	
+var gridCols = article.column.cssClass;
+if ( gridCols ){
+	gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
 }
-else if ( paragraphColumnCount == 2 ) {
-	columnMargin = columnWidth * 0.032;
+else{
+	gridCols = 12;
 }
-else if ( paragraphColumnCount == 3 ) {
-	var columnMargin = 2 * (columnWidth * 0.032);
-}
-else if ( paragraphColumnCount == 4 ) {
-	columnMargin = 3 * (columnWidth * 0.032);
-}
-
-columnWidth = columnWidth - columnMargin;
+var columnMargin = 30;
+var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
 
 var showSlideshow = article.value("slideshow");
 var albumId = article.value("album");

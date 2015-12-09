@@ -1,36 +1,10 @@
 <$
-	var inlineCss = article.inlineCss;
-	var cssClass = article.cssClass;
 	var image = project.getImage(article.value("image"));
 	var contentImageWidth = "#val(contentcopy-max-image-width)";
 	// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
 	contentImageWidth = parseInt(contentImageWidth) || 960;
 
 	// TODO for V13 read column class and figure out width from there. Until then, use 100% image	
-	// next line is temporary value to set 100% image width
-	var paragraphColumnCount = 1;	
-	// var paragraphColumnCount = parseInt(article.paragraph.columns.count);
-	var columnWidth = (contentImageWidth / paragraphColumnCount);
-	
-	switch ( paragraphColumnCount ) {
-		case 1:
-			var columnMargin = 0;
-			break;
-		case 2:
-			var columnMargin = columnWidth * 0.032;
-			break;
-		case 3:
-			var columnMargin = 2 * (columnWidth * 0.032);
-			break;
-		case 4:
-			var columnMargin = 3 * (columnWidth * 0.032);
-			break;
-		default:
-			var columnMargin = 0;
-	}
-	
-	// TODO for V13 read column class and figure out width from there.
-	/*
 	var gridCols = article.column.cssClass;
 	if ( gridCols ){
 		gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
@@ -40,11 +14,11 @@
 	}
 	var columnMargin = 30;
 	var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
-	*/
 
 	if ( !isNull(image) ) {
 		image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
-
+		system.log("  Ensuring contentCopy width " + columnWidth + " for image " + image.contentCopyPath); //TODO remove before beta
+		system.log("    Result: " + result); //TODO remove before beta
         var thumbImageWidth = image.contentCopyWidth;
 		var thumbImageHeight = image.contentCopyHeight;
 		var description = image.description;

@@ -186,13 +186,22 @@ function zpValidateForm(formID, e)
 		}
 	}
 
-	// call ValidateField(339,1); -> "ValidateField(FormID,FieldINDEX);" for every required field AND for fields with input type="email" (regardless if required or not)
-	$z("form" + formID + " .required, " + "form" + formID + " input[type=email]").each(function (){
+	// call ValidateField(339,1); -> "ValidateField(FormID,FieldINDEX);" for every required field 
+	$z("form" + formID + " .required").each(function (){
 		var fieldName = $z(this).attr("name");
 		fieldName = fieldName.replace("F", "").replace("[]", "");
 		ValidateField(formID, fieldName);
 	});
-
+	// validate not required E-Mail fields which are not empty
+	// $z("form#form1630 input[type=email]:not(.required)")
+	$z("form" + formID + " input[type=email]:not(.required)").each(function (){
+		if ( $z(this).val() !== "" ){
+			var fieldName = $z(this).attr("name");
+			fieldName = fieldName.replace("F", "").replace("[]", "");
+			ValidateField(formID, fieldName);
+		}
+	});
+	
 	// do captcha validation if captcha is included in form
 	if ( $z("#recaptcha_challenge_field").length > 0 ){			// reCaptcha 1.0
 		$z.ajaxSetup({

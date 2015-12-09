@@ -155,6 +155,19 @@ $z(document).ready(function () {
 var zp = {  
 }; // end zp
 
+// test HTML5 field-type support and store it in zp.html5support
+zp.html5support = {number: false, email: false, tel: false, url: false, date: false, time: false, color: false, search: false};
+var tester = document.createElement('input');
+for(var i in zp.html5support){
+	// Use try/catch because IE9 throws "Invalid Argument" when trying to use unsupported input types
+	try {
+		tester.type = i;
+		if(tester.type === i){
+			zp.html5support[i] = true;
+		}
+	} catch (e){}
+}
+
 // make $z.unique also work on arrays and not only DOM-Elements (without this, we have a problem with the EventCalendars in Chrome)
 // http://stackoverflow.com/a/7366133
 (function($){
