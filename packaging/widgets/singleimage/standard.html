@@ -16,9 +16,8 @@
 	var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
 
 	if ( !isNull(image) ) {
-		image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
-		system.log("  Ensuring contentCopy width " + columnWidth + " for image " + image.contentCopyPath); //TODO remove before beta
-		system.log("    Result: " + result); //TODO remove before beta
+		var result = image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
+		system.log("  Ensuring contentCopy width " + parseInt(columnWidth - columnMargin) + " for image " + image.contentCopyPath + "\n    Result: " + result); //TODO remove before beta
         var thumbImageWidth = image.contentCopyWidth;
 		var thumbImageHeight = image.contentCopyHeight;
 		var description = image.description;
