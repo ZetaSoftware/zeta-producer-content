@@ -36,7 +36,7 @@
         },
         {
             "emptyvaluetext": "Fügen Sie hier den erweiterten Text ein.",
-            "height": 4,
+            "height": 3,
             "ignoreforsimilarcomparison": false,
             "isrequired": true,
             "label": "Text",

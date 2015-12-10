@@ -94,11 +94,18 @@ $>
 				background-color: <$= article.value('bgcolor2Inactive') $>;
 				text-align: left;
 			}
-			#zpnavmenu<$= article.id $> ul > li > a{
-				color: <$= article.value('textcolor2Inactive') $>;
-				background-color: <$= article.value('bgcolor2Inactive') $>;
+			#zpnavmenu<$= article.id $> ul > li > ul{
+				background-color: transparent;
 			}
-			#zpnavmenu<$= article.id $> ul > li > a.active{
+			#zpnavmenu<$= article.id $> ul > li > ul:before{
+				content: none;
+			}
+			#zpnavmenu<$= article.id $> li a{
+				color: <$= article.value('textcolor2Inactive') $>;
+				background-color: transparent;
+			}
+			#zpnavmenu<$= article.id $> ul li a.active,
+			#zpnavmenu<$= article.id $> ul li a:hover{
 				color: <$= article.value('textcolor2Active') $>;
 				background-color: <$= article.value('bgcolor2Active') $>;
 			}
