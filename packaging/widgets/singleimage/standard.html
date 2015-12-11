@@ -4,7 +4,6 @@
 	// Kann auch "700px" sein, deshalb mit parseInt nur die Zahl hohlen und trimmen - falls leer, auf default 960 setzen.
 	contentImageWidth = parseInt(contentImageWidth) || 960;
 
-	// TODO for V13 read column class and figure out width from there. Until then, use 100% image	
 	var gridCols = article.column.cssClass;
 	if ( gridCols ){
 		gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
@@ -14,11 +13,10 @@
 	}
 	var columnMargin = 30;
 	var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
-
+	
 	if ( !isNull(image) ) {
-		var result = image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
-		system.log("  Ensuring contentCopy width " + parseInt(columnWidth - columnMargin) + " for image " + image.contentCopyPath + "\n    Result: " + result); //TODO remove before beta
-        var thumbImageWidth = image.contentCopyWidth;
+		image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
+       	var thumbImageWidth = image.contentCopyWidth;
 		var thumbImageHeight = image.contentCopyHeight;
 		var description = image.description;
 		var encodedDescription = system.htmlEncode(image.description);

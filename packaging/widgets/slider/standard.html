@@ -49,10 +49,22 @@ $>
 		}
 		
 		var controlNav = "true";
+		var gridCols = article.column.cssClass;
+		if ( gridCols ){
+			gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
+		}
+		else{
+			gridCols = 12;
+		}
+		var columnMargin = 30;
+		var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
 		
 		for ( var i = 1; i <= numSlides; ++i ) {
 			var inlineStyle = "";
-			var slideUrl = article.value("slideUrl-" + i);
+			var slideUrl = "";
+			if ( article.value("slideUrl-" + i, "") ) {
+				slideUrl = system.partial("zplink-expanded.html", "slideUrl-" + i);
+			}
 			var headerTitle = article.value("header-title-" + i, "");
 			var headerLevel = article.value("header-title-" + i + "_level", defaultLevel) !== "" ? article.value("header-title-level-" + i, defaultLevel) : defaultLevel;
 			var headerAlign = article.value("header-title-" + i + "_align", "");
@@ -68,18 +80,7 @@ $>
 			var image = project.getImage(headerImage);
 			var dataThumb = "";
 			
-			if ( image ){
-				// TODO for V13 read column class and figure out width from there.
-				var gridCols = article.column.cssClass;
-				if ( gridCols ){
-					gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
-				}
-				else{
-					gridCols = 12;
-				}
-				var columnMargin = 30;
-				var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
-
+			if ( !isNull(image) ){
 				image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
 
 				var thumbImageWidth = image.contentCopyWidth;
@@ -108,9 +109,10 @@ $>
 		
 			<li<$= dataThumb $>>
 				<$ if ( slideUrl ){ $>
+					<a <$= slideUrl $>>
 				<$ } $>
-				<$ if ( image ) { $>
-					<img src="<$= image.contentCopyPath $>" width="<$= thumbImageWidth $>" height="<$= thumbImageHeight $>" alt="<$= system.removeHtmlTags(image.description) $>"<$= imageInlineStyles $> />
+				<$ if ( !isNull(image) ) { $>
+					<img src="<$= image.contentCopyPath $>" alt="<$= system.removeHtmlTags(image.description) $>"<$= imageInlineStyles $> />
 				<$ } $>
 				<$ if ( headerTitle || headerDescription ) { $>
 					<div class="zp13slider-caption<$ if ( !image){ $> relative<$}$>" style="<$=textStyles$>">
@@ -119,6 +121,9 @@ $>
 						<$ } $>
 						<$= headerDescription $>
 					</div>
+				<$ } $>
+				<$ if ( slideUrl ){ $>
+					</a>
 				<$ } $>
 			</li>
 
