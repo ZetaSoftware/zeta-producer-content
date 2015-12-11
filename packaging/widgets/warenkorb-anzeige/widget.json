@@ -15,7 +15,7 @@
         "requiredfeature": "HasOnlineshop",
         "showcssinputfields": true,
         "showheadline": false,
-        "uiname": "Warenkorb-Anzeige",
+        "uiname": "Shop: Warenkorb-Anzeige",
         "usedialogheight": true,
         "usercanresizedialog": false,
         "version": "13.0.0.0"

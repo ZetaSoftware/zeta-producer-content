@@ -20,7 +20,7 @@
         "requiredfeature": "HasOnlineshop",
         "showcssinputfields": true,
         "showheadlinelabel": false,
-        "uiname": "Bestellartikel",
+        "uiname": "Shop: Bestellartikel",
         "usedialogheight": true,
         "usedialogwidth": true,
         "version": "13.0.0.0"
