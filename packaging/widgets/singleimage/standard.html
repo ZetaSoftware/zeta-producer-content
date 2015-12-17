@@ -15,8 +15,8 @@
 	var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
 	
 	if ( !isNull(image) ) {
-		image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
-       	var thumbImageWidth = image.contentCopyWidth;
+		var iresult = image.ensureContentCopy(article, parseInt(columnWidth - columnMargin));
+		var thumbImageWidth = image.contentCopyWidth;
 		var thumbImageHeight = image.contentCopyHeight;
 		var description = image.description;
 		var encodedDescription = system.htmlEncode(image.description);
@@ -24,6 +24,7 @@
 		// strip <p>-Tags from description as <p> is not valid inside SPAN
 		description = description.toString().replace(/<p>/g,"");
 		description = description.toString().replace(/<\/p>/g,"<br />");
+		//system.log("Image Width: " + parseInt(columnWidth - columnMargin) +" / Returned contentCopyWidth:" + thumbImageWidth +  " / Image Result: " + iresult);
 	}
 	
 	if ( stripDescription !== "" ) {

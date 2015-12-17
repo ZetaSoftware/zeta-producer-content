@@ -49,6 +49,14 @@ html[xmlns] ul.zp13carousel {display: block;}
 .zp13carouselWidget {position: relative; zoom: 1;}
 
 .zp13carousel-viewport {max-height: 2000px; -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; transition: all 500ms ease;}
+/* if the layout has a border-radius for images set, add this to the viewport, not the individual carousel-iimages */
+<$ if ("#val(article-image-border-radius)" !== "" && "#val(article-image-border-radius)" !== "0" ) { $>
+.zp13carousel-viewport{
+	border-radius: #val(article-image-border-radius)px;
+	z-index: 1; /* needed in chrome and safari to hide image corners overflowing the radius */
+}
+<$ } $>
+
 .loading .zp13carousel-viewport {max-height: 300px;}
 .zp13carouselWidget ul.zp13carousel {zoom: 1;}
 
@@ -79,6 +87,7 @@ div.zp13carouselWidget li img,
 	box-shadow: none !important;
 	padding: 0 !important;
 	margin: 0 !important;
+	border-radius: 0 !important;
 }
 
 .zp13carouselWidget ul.zp13carousel{
@@ -247,4 +256,9 @@ div.zp13carouselWidget li img,
 	height: 20px;
 	border: 2px solid #ffffff;
 	background-color: transparent;
+}
+
+/* IE Bugfix because with elements which have translateY applied, IE doesn't get the overflow right and shows a scrollbar when it wouldn't be necessary. TODO: review occasionally */
+.ie .zp13carouselWidget .zp13carousel-caption{
+	overflow: hidden; 
 }

@@ -8,7 +8,8 @@
                 "uiName": "Text & Bild",
                 "internalName": "text-image",
                 "isSelectable": true,
-                "isDefaultCategory": true
+                "isDefaultCategory": true,
+				"isFallbackForWidgetsWithNonExistingCategory": true
             },
             "categories": [
                 {

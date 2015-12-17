@@ -103,6 +103,7 @@ $>
 					var stripDescription = system.htmlEncode(system.removeHtmlTags(description));
 				}
 				
+				var htmltitle = "";
 				if ( headerTitle ){
 					var titleString = headerTitle;
 					// strip <p>-Tags from description as <p> is not valid inside SPAN (in fancybox title)
@@ -113,14 +114,18 @@ $>
 						headerTitle += ' style="' + inlineStyle + '"'
 					}
 					headerTitle += ">" + titleString + '</' + headerLevel + '>';
+					
+					htmltitle += system.htmlEncode(headerTitle);
 				}
-				var htmltitle = system.htmlEncode(headerTitle + headerDescription);
+				if ( headerDescription ){
+					htmltitle += system.htmlEncode(headerDescription);
+				}
+				//var htmltitle = system.htmlEncode(headerTitle + headerDescription);
 				var imageLinkTag = "";
 				if ( slideUrl){
 					imageLinkTag = '<a ' + slideUrl + '>';
 				}
 				else{
-					//imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '">';
 					imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '" data-fancybox-group="g' + article.id + '" rel="g' + article.id + '">';
 				}
 				
