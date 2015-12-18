@@ -108,6 +108,9 @@ class ShopManager
 		$mail->FromName  = html_entity_decode($shopname, ENT_COMPAT, "UTF-8");  // shopname is HTML encoded, so we need to convert to URF-8
 		$mail->Subject   = $subject_customer;
 		$mail->Body      = $text_customer;
+		// generate TEXT-Part of the mail to lower spam scores
+		$mail->AltBody   = "Alle Informationen dieser E-Mail finden Sie im HTML-Teil dieser E-Mail. \n\nAll content is contained in the HTML-part of this email.";
+
 		$mail->addAddress( $email );
 
 		if ( isset(Configuration::$conf_mail_attachment1) && Configuration::$conf_mail_attachment1!="" ) 
@@ -135,6 +138,8 @@ class ShopManager
 		$mail->FromName  = html_entity_decode($shopname, ENT_COMPAT, "UTF-8");
 		$mail->Subject   = $subject;
 		$mail->Body      = $text;
+		// generate TEXT-Part of the mail to lower spam scores
+		$mail->AltBody   = "Alle Informationen dieser E-Mail finden Sie im HTML-Teil dieser E-Mail. \n\nAll content is contained in the HTML-part of this email.";
 		$mail->addAddress( Configuration::$conf_shopemail );
 
 		if ( isset(Configuration::$conf_mail_attachment) ) 

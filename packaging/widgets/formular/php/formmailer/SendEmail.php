@@ -4,7 +4,7 @@
  *
  * Zeta Producer Form-Mailer
  * 
- * $Id: SendEmail.php 33910 2015-12-07 08:23:31Z sseiz $
+ * $Id: SendEmail.php 34595 2015-12-18 09:57:01Z sseiz $
  */
 
 require_once('debug.inc.php');
@@ -517,6 +517,8 @@ function DoSendEmail(
 	$mail->FromName  = $senderName;
 	$mail->Subject   = $subject;
 	$mail->Body      = implode("\r\n",$body);
+	// generate TEXT-Part of the mail to lower spam scores
+	$mail->AltBody   = "Alle Informationen dieser E-Mail finden Sie im HTML-Teil dieser E-Mail. \n\nAll content is contained in the HTML-part of this email.";
 	$mail->addAddress( $receiverEmail );
 	$mail->addReplyTo( $senderEmail, $senderName );
 
