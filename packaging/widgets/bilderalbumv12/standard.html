@@ -167,7 +167,7 @@ $>
 							<a class="fancybox" href="<$= imageSlide1.workingCopyPath $>" title="<$= encodedDescription1 $>" data-fancybox-group="<$= article.id $>" rel="<$= article.id $>">
 								<img style="max-width:100%; height:auto; box-shadow:none; border:none;" src="<$= imageSlide1.thumbPath(thumbnailWidth, thumbnailHeight) $>" title="<$= descriptionSlide1 $>" alt="<$= descriptionSlide1 $>" />
 							</a>
-							<$ if ( titleShow == "1" && descriptionSlide1 !== "" ) { $>
+							<$ if ( titleShow == "1" && imageSlide1.description !== "" ) { $>
 								<div class="caption" style="background:url(<$= page.PathToRoot $>assets/js/img/caption.png); position:absolute; bottom:0; left:0; padding: 6px 15px; color:#ffffff; width:<$= thumbnailWidth $>px;">
 									<$= imageSlide1.description $>
 								</div>
@@ -233,7 +233,7 @@ $>
 						<a class="fancybox" href="<$= imageSlide2.workingCopyPath $>" title="<$= encodedDescription2 $>" data-fancybox-group="<$= article.id $>" rel="<$= article.id $>">
 							<img style="max-width:100%; height:auto" src="<$= imageSlide2.thumbPath(columnWidth) $>" title="<$= descriptionSlide2 $>" alt="<$= descriptionSlide2 $>" />
 						</a>
-						<$ if ( titleShow == "1" && descriptionSlide2 !== "" ) { $>
+						<$ if ( titleShow == "1" && imageSlide2.description !== "" ) { $>
 							<div class="caption" style="background:url(<$= page.PathToRoot $>assets/js/img/caption.png); position:absolute; bottom:6px; left:0; padding: 6px 15px; color:#ffffff; width:100%;">
 								<$= imageSlide2.description $>
 							</div>

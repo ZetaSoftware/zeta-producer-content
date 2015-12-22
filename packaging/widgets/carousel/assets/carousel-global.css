@@ -142,6 +142,8 @@ div.zp13carouselWidget li img,
 }
 
 .zp13carouselWidget.captiononhover .zp13carousel-caption{
+	-webkit-transition: opacity 250ms ease-out; 
+	transition: opacity 250ms ease-out;
 	opacity: 0;
 }
 .zp13carouselWidget.captiononhover .zp13carousel-caption:hover{
