@@ -71,6 +71,13 @@
             "defaultValue": "left"
         }
     ],
+    "assets": [
+        {
+            "fileName": "assets/button.css",
+            "mode": "Bundle",
+            "order": 10
+        }
+    ],
     "itemTemplates": [
         {
             "fileName": "standard.html"

@@ -1,0 +1,10 @@
+a.button, input.button {
+	display: inline-block;
+	padding: 0;
+	line-height: normal;
+	border: 1px solid;
+}
+a.button span, input.button {
+	display: block;
+	padding: 8px 15px;
+}

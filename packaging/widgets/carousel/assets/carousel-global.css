@@ -56,7 +56,7 @@ html[xmlns] ul.zp13carousel {display: block;}
 		border-radius: #val(article-image-border-radius)px;
 		z-index: 1; /* needed in chrome and safari to hide image corners overflowing the radius */
 	<$ } $>
-	<$ if ( "#val(article-image-border)" !== "0" ) { $>
+	<$ if ( "#val(article-image-border)" !== "0" && "#val(article-image-border)" !== "" ) { $>
 		border: #val(article-image-border)px solid #val(article-image-bordercolor);
 	<$ } $>
 	<$ if ( "#val(article-image-shadowcolor)".toLowerCase() !== "transparent" ) { $>
@@ -210,7 +210,7 @@ div.zp13carouselWidget li img,
 .zp13carousel-direction-nav .zp13carousel-prev, .zp13carousel-direction-nav .prev {left: -36px;}
 .zp13carouselWidget:hover .zp13carousel-next, .zp13carouselWidget:hover .next {
 	opacity: 0.75; 
-	<$ if ( "#val(article-image-border)" !== "0" ) { $>
+	<$ if ( "#val(article-image-border)" !== "0" && "#val(article-image-border)" !== "" ) { $>
 		right: #val(article-image-border)px;
 	<$ } else { $>
 		right: 0;
@@ -218,7 +218,7 @@ div.zp13carouselWidget li img,
 }
 .zp13carouselWidget:hover .zp13carousel-prev, .zp13carouselWidget:hover .prev {
 	opacity: 0.75; 
-	<$ if ( "#val(article-image-border)" !== "0" ) { $>
+	<$ if ( "#val(article-image-border)" !== "0" && "#val(article-image-border)" !== "" ) { $>
 		left: #val(article-image-border)px;
 	<$ } else { $>
 		left: 0;
