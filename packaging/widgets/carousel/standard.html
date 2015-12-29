@@ -82,20 +82,6 @@ $>
 				if ( image.createThumb(thumbnailWidth, thumbnailHeight) ) {
 			    	system.log("Erstelle Vorschaubild " + image.Name);
 			    }
-			    
-			    
-				// TODO for V13 read column class and figure out width from there.
-				/*
-				var gridCols = article.column.cssClass;
-				if ( gridCols ){
-					gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
-				}
-				else{
-					gridCols = 12;
-				}
-				var columnMargin = 30;
-				var columnWidth = ((contentImageWidth + columnMargin) / 12) * gridCols;
-				*/
 				
 				var description = image.description || "";
 				var stripDescription = "";

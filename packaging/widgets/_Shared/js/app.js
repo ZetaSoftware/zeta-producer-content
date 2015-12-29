@@ -93,6 +93,12 @@ $z(window).load(function(){
 });
 				
 $z(document).ready(function () {
+	if ( $z(".zpgrid").length === 0 ){
+		// we have a layout that was not modified for ZP13 i.e. a copied Layout from Version 12.5 or earlier
+		// layouts not modified have no div with class .zpgrid, so we append the class to the document body
+		$z('.zparea[data-areaname="Standard"], .zparea[data-areaname="Banner"], .zparea[data-areaname="Footer"]').addClass("zpgrid copiedlayout");
+	}
+
 	//define some helper css classes
 		$z("html").removeClass("no-js");
 		$z("body").addClass("js");

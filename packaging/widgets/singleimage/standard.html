@@ -6,7 +6,7 @@
 
 	var gridCols = article.column.cssClass;
 	if ( gridCols ){
-		gridCols = parseInt(gridCols.match(/\bc[1-9][0-2]?\b\s?/).toString().replace("c", ""));
+		gridCols = parseInt((gridCols.match(/\bc[1-9][0-2]?\b\s?/) || 12).toString().replace("c", ""));
 	}
 	else{
 		gridCols = 12;

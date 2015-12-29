@@ -241,7 +241,7 @@ $>
 
 	<$ 
 	} else {
-		system.error("Falschen Dateityp vergeben. Bitte vergeben Sie in den Seiteneigenschaften dieser Seite den Dateityp \".php\".");
+		system.error("Falscher Dateityp vergeben. Bitte vergeben Sie in den Seiteneigenschaften dieser Seite den Dateityp \".php\".");
 	}
 	$>
 	
