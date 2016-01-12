@@ -59,7 +59,7 @@ html[xmlns] ul.zp13carousel {display: block;}
 	<$ if ( "#val(article-image-border)" !== "0" && "#val(article-image-border)" !== "" ) { $>
 		border: #val(article-image-border)px solid #val(article-image-bordercolor);
 	<$ } $>
-	<$ if ( "#val(article-image-shadowcolor)".toLowerCase() !== "transparent" ) { $>
+	<$ if ( "#val(article-image-shadowcolor)".toLowerCase() !== "transparent" && "#val(article-image-shadowcolor)" !== "" ) { $>
 		box-shadow(1px 1px 1px #val(article-image-shadowcolor));
 	<$ } $>
 }
