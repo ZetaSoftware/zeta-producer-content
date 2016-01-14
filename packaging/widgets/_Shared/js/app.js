@@ -141,7 +141,8 @@ $z(document).ready(function () {
 		// set correct dimensions for breakout elements which in CSS are only approximated due to problems with browsers handling scrollbars differently
 		function setBreakout(){
 			var bodyWidth = $z("body").outerWidth();
-			$z(".supportsbreakout body:not(.withnews) .zpBreakout:not(.hasNews)").css("width",bodyWidth+"px").css("margin-left","calc(-" + bodyWidth/2 + "px + 50% )")
+			$z(".supportsbreakout body:not(.withnews) .zpBreakout:not(.hasNews)").css("width",bodyWidth+"px").css("margin-left","calc(-" + bodyWidth/2 + "px + 50% )");
+			$z("body.supportsbreakout:not(.withnews) .zpBreakout:not(.hasNews)").css("width",bodyWidth+"px").css("margin-left","calc(-" + bodyWidth/2 + "px + 50% )");
 		}
 		setBreakout();
 		var resizeTimeout = null;
