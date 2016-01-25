@@ -163,7 +163,7 @@
                 },
                 {
                     "displayname": "Bilder max.",
-                    "maximumvalue": 6,
+                    "maximumvalue": 12,
                     "minimumvalue": 1,
                     "name": "maxItems",
                     "type": "text-singleline-updown",

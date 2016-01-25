@@ -22,6 +22,17 @@ if ( isNull(basketArticle) ) {
 	system.error("Fehler bei der Onlineshop-Erstellung. Um einen Onlineshop-Artikel einzubinden, müssen Sie zuerst das Widget \"Konfiguration / Warenkorb\" auf einer  Seite einfügen.");
 }
 else {
+	// helper function to format prices
+	function formatMoney(n, c, d, t){
+		var c = isNaN(c = Math.abs(c)) ? 2 : c, 
+			d = d == undefined ? basketArticle.value("currency_comma", ",") : d, 
+			t = t == undefined ? basketArticle.value("currency_thousands", ".") : t, 
+			s = n < 0 ? "-" : "", 
+			i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+			j = (j = i.length) > 3 ? j % 3 : 0;
+		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	};
+
 	var shopCurrency = basketArticle.value("Currency", "");
 	var shopPostage =  basketArticle.value("shippingCosts", "");
 	var pricename = system.htmlEncode(basketArticle.value("price_name", "Preise"));
@@ -30,9 +41,7 @@ else {
 	var buttontext = system.htmlEncode(basketArticle.value("article_button_text", "Zum Warenkorb hinzufügen"));
 	var price = article.valueRaw("unitPrice").replace(/,/g,".");
 	var currentArticlePrice = price;
-	var currentArticlePriceFormatted = price.replace(/,/g, "@");
-	currentArticlePriceFormatted = currentArticlePriceFormatted.replace(/\./g, basketArticle.value("currency_comma"));
-	currentArticlePriceFormatted = currentArticlePriceFormatted.replace(/@/g, basketArticle.value("currency_thousands"));
+	var currentArticlePriceFormatted = formatMoney(price);
 }
 var shopIncPath = page.pathToRoot + "assets/php/shop/shop.inc.php";
  $>
