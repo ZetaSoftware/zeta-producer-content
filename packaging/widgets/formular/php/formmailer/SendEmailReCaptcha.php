@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <?php
 /**
  * SendEmail.php
  *
  * Zeta Producer Form-Mailer
  * 
- * $Id: SendEmailReCaptcha.php 34595 2015-12-18 09:57:01Z sseiz $
+ * $Id: SendEmailReCaptcha.php 36204 2016-02-01 12:17:09Z sseiz $
  */
 
 require_once('debug.inc.php');
