@@ -42,7 +42,6 @@ function hoverToClickMenu(element, breakpointMobileMenu) {
 		otherMenus.find(".open").removeClass("open");
 		var hasVisibleChilds = $z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible";
 		
-		console.log("Element child visible?: " + hasVisibleChilds);
 		if ( $z(e).parent().hasClass("clicked") || hasVisibleChilds ){ // TODO ZP13 check layouts for incompatibilities due to commenting out this: || ($z(e).parent().children("xul").css("display") == "block" && $z(e).parent().children("xul").css("visibility") == "visible") ) {
 			// element has been clicked before, so now we fire a click
 			return true;
