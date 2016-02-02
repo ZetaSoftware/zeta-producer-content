@@ -1,10 +1,10 @@
 <?php
 /**
- * SendEmail.php
+ * SendEmailReCaptcha.php
  *
  * Zeta Producer Form-Mailer
  * 
- * $Id: SendEmailReCaptcha.php 36204 2016-02-01 12:17:09Z sseiz $
+ * $Id: SendEmailReCaptcha.php 36275 2016-02-02 09:31:06Z sseiz $
  */
 
 require_once('debug.inc.php');
@@ -92,7 +92,15 @@ if ( isset($request["f_receiver"]) )
 
 // Stage 2
 if ( isset( $request["g-recaptcha-response"] ) || isset( $request["pending"] )) {
-	$recaptcha = new \ReCaptcha\ReCaptcha($privatekey);
+	if ( ini_get('allow_url_fopen') ){
+		$recaptcha = new \ReCaptcha\ReCaptcha($privatekey);
+	}
+	else{
+		// If file_get_contents() or allow_url_fopen is locked down on your PHP installation to disallow
+		// its use with URLs, then you can use the alternative request method instead.
+		// This makes use of fsockopen() instead.
+		$recaptcha = new \ReCaptcha\ReCaptcha($privatekey, new \ReCaptcha\RequestMethod\SocketPost());
+	}
 	$resp = $recaptcha->verify($request["g-recaptcha-response"], $_SERVER['REMOTE_ADDR']);
 
 	if ( $enteredWithCaptcha == null ) {
@@ -123,7 +131,7 @@ if ( isset( $request["g-recaptcha-response"] ) || isset( $request["pending"] )) 
                 switch ($code){
                 	case "missing-input-secret":
                 		echo "Der geheime Schlüssel fehlt. / The secret parameter is missing.<br />";
-                		break;
+             			break;
                 	case "invalid-input-secret":
                 		echo "Der geheime Schlüssel ist falsch. / The secret parameter is invalid or malformed.<br />";
                 		break;
@@ -132,6 +140,9 @@ if ( isset( $request["g-recaptcha-response"] ) || isset( $request["pending"] )) 
                 		break;
                 	case "invalid-input-response":
                 		echo "reCAPTCHA Antwort is falsch oder ungültig. / The response parameter is invalid or malformed.<br />";
+                		break;
+                	case "invalid-json":
+                		echo "Der reCAPTCHA-Server konnte nicht kontaktiert werden. Ist <tt>allow_url_fopen</tt> in Ihrer php.ini aktiviert? /<br /> Couldn't contact the reCAPTCHA-Server. Is <tt>allow_url_fopen</tt> enabled in your php.ini?<br />";
                 		break;
                 	default:
                 		 echo '<tt>' , $code , '</tt> ';

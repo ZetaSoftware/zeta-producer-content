@@ -24,7 +24,7 @@
         "usedialogheight": true,
         "usedialogwidth": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.0.0.1"
     },
     "fields": [
         {
@@ -155,7 +155,12 @@
             ]
         }
     ],
-    "assets": [
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "mcrypt" ],
+		"writePermissions": ["assets/php/GUESTBOOK_DATA"]
+	},
+	"assets": [
         {
             "fileName": "php/*",
             "mode": "Copy"

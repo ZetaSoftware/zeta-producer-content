@@ -10,7 +10,7 @@
         "uiname": "Formular",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.1",
+        "version": "13.0.0.2",
         "allowedareas": [
             "Banner",
             "Standard",
@@ -107,7 +107,12 @@
 			]
 		}
     ],
-    "assets": [
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "mcrypt", "mbstring" ],
+		"writePermissions": []
+	},
+	"assets": [
         {
             "fileName": "form.css",
             "mode": "Bundle",

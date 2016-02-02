@@ -175,6 +175,11 @@
             ]
         }
     ],
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [],
+		"writePermissions": []
+	},
     "assets": [
         {
             "fileName": "rssimport.css",

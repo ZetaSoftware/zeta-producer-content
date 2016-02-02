@@ -18,7 +18,7 @@
         "uiname": "Geschützter Bereich",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.0.0.1"
     },
     "fields": [
         {
@@ -80,6 +80,11 @@
             ]
         }
     ],
+    "php": {
+		"minimumVersion": "5.3",
+		"extensions": [ "mcrypt" ],
+		"writePermissions": []
+	},
     "assets": [
         {
             "fileName": "php/*",
