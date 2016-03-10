@@ -60,7 +60,7 @@ html[xmlns] ul.zp13carousel {display: block;}
 		border: #val(article-image-border)px solid #val(article-image-bordercolor);
 	<$ } $>
 	<$ if ( "#val(article-image-shadowcolor)".toLowerCase() !== "transparent" && "#val(article-image-shadowcolor)" !== "" ) { $>
-		box-shadow(1px 1px 1px #val(article-image-shadowcolor));
+		box-shadow: 1px 1px 1px #val(article-image-shadowcolor);
 	<$ } $>
 }
 <$ } $>
