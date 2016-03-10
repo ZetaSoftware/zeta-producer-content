@@ -12,14 +12,14 @@
         "editortype": "genericListArticleEditor",
         "maincategory": "text-image",
         "orderposition": 3,
-        "minappversion": "13.0.0.0",
+        "minAppVersion": "13.1.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "uiname": "Slider",
         "usedialogheight": true,
         "usedialogwidth": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {
@@ -134,17 +134,76 @@
 			"y": "=z.y('effect')"
         },
         {
-            "displayname": "Randlos",
-            "name": "breakout",
-            "type": "checkbox",
-            "defaultValue": "0",
+            "displayname": "Darstellung",
+            "expandedheight": 4,
+            "name": "displayoptions",
+            "popupheightinpixel": 110,
+            "popupwidthinpixel": 140,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "fields": [
+                {
+					"displayname": "Randlos",
+					"name": "breakout",
+					"type": "checkbox",
+					"defaultValue": "0",
+
+					"layoutMode": "pixel",
+					"anchor": "left,top",
+					"width": "auto",
+					"height": "=z.oneLineHeight",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"displayname": "Richtungs-Buttons",
+					"name": "directionNav",
+					"type": "checkbox",
+					"defaultValue": "1",
+
+					"layoutMode": "pixel",
+					"anchor": "left,top",
+					"width": "auto",
+					"height": "=z.oneLineHeight",
+					"x": 0,
+					"y": "=z.y('breakout') + z.oneLineHeight"
+				},
+				{
+					"displayname": "Visualisierung",
+					"name": "controlNav",
+					"type": "checkbox",
+					"defaultValue": "1",
+
+					"layoutMode": "pixel",
+					"anchor": "left,top",
+					"width": "auto",
+					"height": "=z.oneLineHeight",
+					"x": 0,
+					"y": "=z.y('directionNav') + z.oneLineHeight"
+				},
+				{
+					"displayname": "Zufallsbild",
+					"name": "randomize",
+					"type": "checkbox",
+					"defaultValue": "0",
+
+					"layoutMode": "pixel",
+					"anchor": "left,top",
+					"width": "auto",
+					"height": "=z.oneLineHeight",
+					"x": 0,
+					"y": "=z.y('controlNav') + z.oneLineHeight"
+				}
+				
+            ],
 
 			"layoutMode": "pixel",
 			"anchor": "left,top",
 			"width": "auto",
 			"height": "=z.oneLineHeight",
-			"x": "=z.right('effect') + z.width('textoptions') + z.oneColumnDistance + z.oneColumnDistance + z.oneColumnDistance + z.oneColumnDistance",
-			"y": "=z.y('effect') + z.labelYOffsetForOneRow"
+			"x": "=z.right('effect') + z.oneColumnDistance + z.oneColumnDistance + z.width('textoptions') + z.oneColumnDistance + z.oneColumnDistance",
+			"y": "=z.y('effect')"
         }
     ],
     "assets": [

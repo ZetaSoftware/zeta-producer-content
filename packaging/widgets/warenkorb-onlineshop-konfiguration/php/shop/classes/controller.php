@@ -167,13 +167,17 @@ class Controller
 				switch($this->action)
 				{
 					case 'add':
+						// Encryption
+						$bit_check=8;
+						$cryptKey = array( 0x0E, 0x41, 0x6A, 0x29, 0x94, 0x12, 0xEB, 0x63 );
+						
 						Model::AddArticle(
 							$this->request['aid'],
 							$this->request['ano'],
 							$this->request['aqty'],
 							$this->request['aqtyunit'],
 							$this->request['atext'],
-							$this->request['aprice'],
+							decrypt( $this->request['aprice'] , $cryptKey, $cryptKey, $bit_check),
 							$this->request['field1name'],
 							$this->request['field2name'],
 							$this->request['afield1'],
@@ -475,12 +479,14 @@ class Controller
 		$form_input['name'] = '';
 		$form_input['email'] = '';
 		$form_input['address'] = '';
+		$form_input['comment'] = '';
 		$form_input['acceptagb'] = false;
 		$form_input['payment_method'] = '';
 
 		if ( isset($request['name']) ) $form_input['name'] = $request['name'];
 		if ( isset($request['email']) )$form_input['email'] = $request['email'];
 		if ( isset($request['address']) ) $form_input['address'] = $request['address'];
+		if ( isset($request['address']) ) $form_input['comment'] = $request['comment'];
 		if ( isset($request['acceptagb']) ) $form_input['acceptagb'] = $request['acceptagb'];
 		if ( isset($request['payment_method']) ) $form_input['payment_method'] = $request['payment_method'];
 		

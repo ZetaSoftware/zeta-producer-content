@@ -9,14 +9,14 @@
         "category": "image",
         "editortype": "singleImage",
         "maincategory": "text-image",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 2,
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Bild",
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "assets": [
         {

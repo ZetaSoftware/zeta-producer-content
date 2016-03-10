@@ -18,15 +18,34 @@ $>
 		for ( var i = 1; i <= numHeaders; ++i ) {
 			var headerTitle = article.value("header-title-" + i, "");
 			var headerDescription = article.value("header-description-" + i, "");
-
 			var headerImage = article.value("header-image-" + i);
 			var image = project.getImage(headerImage);
+			var clickHref = "";
+			if ( article.value("header-image-clickurl-" + i, "") ) {
+				clickHref = system.partial("zplink-expanded.html", "header-image-clickurl-" + i);
+			}
+			var linkDataAttributes = "";
+			var clickUrl = article.value("header-image-clickurl-" + i, "");
+			var clickTarget = article.value("header-image-clickurl-" + i + "_target", "");
+			if ( clickUrl !== "" ){
+				linkDataAttributes += ' data-clickurl="' + clickUrl + '"';
+			}
+			if ( clickTarget !== "" ){
+				linkDataAttributes += ' data-clicktarget="' + clickTarget + '"';
+			}
 		 	$>
 			
-			<li>
+			<li<$= linkDataAttributes $>>
 				<$ if ( image ) { $>
-					<img src="<$= image.workingCopyPath $>" alt="<$= system.removeHtmlTags(image.description) $>" />
+					<$ if ( clickHref ){ $>
+						<a <$= clickHref $>>
+					<$ } $>
+					<img src="<$= image.workingCopyPath $>" alt="<$= system.htmlEncode(system.removeHtmlTags(image.altText)) $>" />
+					<$ if ( clickHref ){ $>
+						</a>
+					<$ } $>
 				<$ } $>
+				
 				<$ if ( headerTitle || headerDescription ) { $>
 					<div class="flex-caption">
 						<$ if ( headerTitle ) { $>
@@ -80,6 +99,34 @@ $>
 			}).each(function() {
 				if(this.complete) $z(this).load();
 			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
+			
+			// activate links for individual slideshow
+			$z('#headerslider .flex-container ul.slides li[data-clickurl]').css("cursor","pointer");
+			$z('#headerslider .flex-container ul.slides li[data-clickurl]').click(function (){
+				// Because this script captures clicks for a container, it will also fire when a regular link inside the container 
+				// is clicked. Therefore, we check below, if a regular link i.e. <a href="#"> was the target of the click.
+				// Depending on the browser used, event.target might not be available, but event.srcElement would…
+				var targ;
+				if (event.target){
+					targ = event.target;
+				}
+				else if (event.srcElement) {
+					targ = event.srcElement;
+				}
+				if (targ.nodeName == "A") {
+					// a regular link i.e. in a Caption was clicked. Return early, so the link's href doesn't get overridden
+					return;
+				}
+				
+				if ( $(this).data("clicktarget") ){
+					window.open($(this).data("clickurl"), $(this).data("clicktarget"));
+				}
+				else{
+					window.location = $(this).data("clickurl");
+				}
+				event.preventDefault;
+				return false;
+			});
 		});
   	</script>
 <$ } $>

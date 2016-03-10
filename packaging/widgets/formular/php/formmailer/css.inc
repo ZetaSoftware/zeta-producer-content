@@ -36,7 +36,7 @@ table th
 {
 padding-top: 3px;
 padding-bottom: 3px;
-padding-left: 10px;
+margin-right: 10px;
 font-size: 12px;
 color: #000000;
 vertical-align:top;

@@ -24,6 +24,7 @@ class ShopManager
 		$name = trim( $request['name'] );
 		$email = trim( $request['email'] );
 		$address = trim( $request['address'] );
+		$comment = trim( $request['comment'] );
 		
 		// handle some values here in case default isn't set yet	
 		$shopname = isset(Configuration::$conf_shopname) ? Configuration::$conf_shopname : "Online Shop";
@@ -59,6 +60,11 @@ class ShopManager
 		$tmp = str_replace("[REFERENZNUMMER]", $orderNumber, $tmp);
 		$tmp = str_replace("[NAME]", $name, $tmp);
 		$tmp = str_replace("[ADRESSE]", nl2br($address), $tmp);
+		if ( Configuration::$conf_showCommentField && strpos($tmp, "[NACHRICHT]") === false ){
+			// handles a case which might happen if a user hasn't updated the mail templates but set the comment field to display
+			$tmp .= "\n<p>Nachricht: <br />" . nl2br($comment) . "</p>";
+		}
+		$tmp = str_replace("[NACHRICHT]", nl2br($comment), $tmp);
 		$tmp = str_replace("[EMAIL]", $email, $tmp);
 		$tmp = str_replace("[ZAHLUNGSWEISE]", ShopManager::GetPaymentMethodText($request['payment_method']), $tmp);
 		$tmp = str_replace("[BESTELLUNG]", $viewArticleTable->LoadTemplate(), $tmp);
@@ -74,6 +80,11 @@ class ShopManager
 		$tmp = str_replace("[REFERENZNUMMER]", $orderNumber, $tmp);
 		$tmp = str_replace("[NAME]", $name, $tmp);
 		$tmp = str_replace("[ADRESSE]", nl2br($address), $tmp);
+		if ( Configuration::$conf_showCommentField && strpos($tmp, "[NACHRICHT]") === false ){
+			// handles a case which might happen if a user hasn't updated the mail templates but set the comment field to display
+			$tmp .= "\n<p>Nachricht: <br />" . nl2br($comment) . "</p>";
+		}
+		$tmp = str_replace("[NACHRICHT]", nl2br($comment), $tmp);
 		$tmp = str_replace("[EMAIL]", $email, $tmp);
 		$tmp = str_replace("[ZAHLUNGSWEISE]", ShopManager::GetPaymentMethodText($request['payment_method']), $tmp);
 		$tmp = str_replace("[BESTELLUNG]", $viewArticleTable->LoadTemplate(), $tmp);
@@ -140,12 +151,8 @@ class ShopManager
 		$mail->Body      = $text;
 		// generate TEXT-Part of the mail to lower spam scores
 		$mail->AltBody   = "Alle Informationen dieser E-Mail finden Sie im HTML-Teil dieser E-Mail. \n\nAll content is contained in the HTML-part of this email.";
+		
 		$mail->addAddress( Configuration::$conf_shopemail );
-
-		if ( isset(Configuration::$conf_mail_attachment) ) 
-		{
-			$mail->addAttachment( Configuration::$conf_mail_attachment );
-		}
 
 		$mail->Send();
 
@@ -296,6 +303,7 @@ class ShopManager
 		$view->Assign('conf_payment_bill', Configuration::$conf_payment_bill);
 		$view->Assign('conf_payment_delivery', Configuration::$conf_payment_delivery);
 		$view->Assign('conf_payment_paypal', Configuration::$conf_payment_paypal);
+		$view->Assign('conf_showCommentField', Configuration::$conf_showCommentField);
 		$view->Assign('conf_page_agb', Configuration::$conf_page_agb);
 		$view->Assign('conf_page_widerruf', Configuration::$conf_page_widerruf);
 		$view->Assign('conf_basketUrl', Configuration::$conf_basketurl);
@@ -313,6 +321,7 @@ class ShopManager
 		$view->Assign( 'conf_label_name', !empty(Configuration::$conf_label_name) ? Configuration::$conf_label_name : 'Name' );
 		$view->Assign( 'conf_label_email', !empty(Configuration::$conf_label_email) ? Configuration::$conf_label_email : 'E-Mail-Adresse' );
 		$view->Assign( 'conf_label_address', !empty(Configuration::$conf_label_address) ? Configuration::$conf_label_address : 'Anschrift' );
+		$view->Assign( 'conf_label_comment', !empty(Configuration::$conf_label_comment) ? Configuration::$conf_label_comment : 'Ihre Nachricht an uns' );
 		$view->Assign( 'conf_label_payment', !empty(Configuration::$conf_label_payment) ? Configuration::$conf_label_payment : 'Gewünschte Zahlungsweise' );
 		$view->Assign( 'conf_label_agb', !empty(Configuration::$conf_label_agb) ? Configuration::$conf_label_agb : 'Ich habe die allgemeinen Geschäftsbedingungen ([LINK]AGB[/LINK]) gelesen und akzeptiere diese ausdrücklich.' );
 		$view->Assign( 'conf_label_position', !empty(Configuration::$conf_label_position) ? Configuration::$conf_label_position : 'Position' );

@@ -19,6 +19,11 @@
 		var thumbImageWidth = image.contentCopyWidth;
 		var thumbImageHeight = image.contentCopyHeight;
 		var description = image.description;
+		var altText = system.htmlEncode(system.removeHtmlTags(image.altText));
+		var oldAltText = system.htmlEncode(system.removeHtmlTags(article.valueExpanded("alt", "")));
+		if ( altText == "" && oldAltText !== "" ){
+			altText = oldAltText;
+		}
 		var encodedDescription = system.htmlEncode(image.description);
 		var stripDescription = system.htmlEncode(system.removeHtmlTags(image.description));
 		// strip <p>-Tags from description as <p> is not valid inside SPAN
@@ -36,7 +41,6 @@
 
 	var lightBox = article.value("lightbox");
 	var clickURL = article.value("clickurl");
-	var altText = system.htmlEncode(system.removeHtmlTags(article.valueExpanded("alt")));
  $>
 
 <$ if ( isNull(image) ) { $>

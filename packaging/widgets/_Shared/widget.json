@@ -1,7 +1,7 @@
 ﻿{
     "settings": {
-        "version": "13.0.0.1",
-        "minAppVersion": "12.5.0.0",
+        "version": "13.1.0.0",
+        "minAppVersion": "13.1.0.0",
         "onlyForInlineEditing": true
     }
 }

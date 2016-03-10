@@ -25,6 +25,13 @@ $agblabel = str_replace("[/WLINK]", '</a>', $agblabel);
 		<td class="zpSO-OnlineShop-addresslabel"><label for="address"><?php echo $this->_['conf_label_address'] ?>:</label></td>
 		<td class="zpSO-OnlineShop-addressvalue"><textarea name="address" id="address" rows="5" cols="40"><?php echo $this->_['form_input']['address'] ?></textarea></td>
 	</tr>
+	<?php 
+	if ($this->_['conf_showCommentField']) {
+		echo '<tr>';
+			echo '<td class="zpSO-OnlineShop-addresslabel"><label for="comment">' . $this->_['conf_label_comment'] . ':</label></td>';
+			echo '<td class="zpSO-OnlineShop-addressvalue"><textarea name="comment" id="comment" rows="5" cols="40">' . $this->_['form_input']['comment'] . '</textarea></td>';
+		echo '</tr>';
+	} ?>
 	<tr>
 		<td class="zpSO-OnlineShop-addresslabel"><?php echo $this->_['conf_label_payment'] ?>:</td>
 		<td class="zpSO-OnlineShop-addressvalue">

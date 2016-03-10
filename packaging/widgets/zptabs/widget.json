@@ -8,21 +8,21 @@
         ],
         "category": "text",
         "defaults": {
-            "color_back_active": "ffffff",
-            "color_back_inactive": "f7f7f7",
-            "color_text_active": "5e5e5e",
-            "color_text_inactive": "777777",
-            "color_border": "e7e7e7"
+            "color_back_active": "#ffffff",
+            "color_back_inactive": "#f7f7f7",
+            "color_text_active": "#5e5e5e",
+            "color_text_inactive": "#777777",
+            "color_border": "#e7e7e7"
         },
         "editortype": "tabs",
         "maincategory": "text-image",
         "orderposition": 3,
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "uiname": "Tabs",
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "assets": [
         {

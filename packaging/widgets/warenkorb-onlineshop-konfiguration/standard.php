@@ -91,7 +91,13 @@ $>
 		
 			tmp_val = article.value("label_address","");
 			content = append( content, "public static $conf_label_address = '" + system.htmlEncode(tmp_val) + "';" );
-		
+			
+			tmp_val = article.value("label_comment","Ihre Nachricht an uns");
+			if ( tmp_val && tmp_val.length == 0 ){
+				tmp_val = "Ihre Nachricht an uns";
+			}
+			content = append( content, "public static $conf_label_comment = '" + system.htmlEncode(tmp_val) + "';" );
+			
 			tmp_val = article.value("label_payment","");
 			content = append( content, "public static $conf_label_payment = '" + system.htmlEncode(tmp_val) + "';" );
 		
@@ -202,6 +208,8 @@ $>
 			content = append( content, "public static $conf_payment_bill = '" + article.value("allowPaymentPerBill","") + "';" );
 			content = append( content, "public static $conf_payment_delivery = '" + article.value("allowPaymentOnDelivery","") + "';" );
 			content = append( content, "public static $conf_payment_paypal = '" + article.value("allowPaymentPerPayPal","") + "';" );
+			
+			content = append( content, "public static $conf_showCommentField = '" + article.value("showCommentField","") + "';" );
 		
 			content = append( content, "public static $conf_paypal_userid = '" + article.value("paypal_userid","") + "';" );
 			content = append( content, "public static $conf_paypal_password = '" + article.value("paypal_password","") + "';" );
@@ -220,8 +228,18 @@ $>
 			content = append( content, "public static $conf_page_widerruf = '" + system.removeInlineEditing(article.valueExpanded("WiderrufPage","")) + "';" );
 			content = append( content, "public static $conf_text_ordermailfooter = '" + article.value("OrderMailFooterText","") + "';" );
 			content = append( content, "public static $conf_basketurl = '" + system.removeInlineEditing(page.absoluteUrl) + "';" );
-			content = append( content, "public static $conf_mail_attachment1 = '" + system.removeInlineEditing(article.valueExpanded('attachment1', '')) + "';" );
-			content = append( content, "public static $conf_mail_attachment2 = '" + system.removeInlineEditing(article.valueExpanded('attachment2', '')) + "';" );
+			if ( article.valueExpanded('attachment1', '') !== "" ){
+				content = append( content, "public static $conf_mail_attachment1 = '" + system.removeInlineEditing(project.relativePathFromTo(page.pathToRoot, article.valueExpanded('attachment1', ''))) + "';" );
+			}
+			else{
+				content = append( content, "public static $conf_mail_attachment1 = '';" );
+			}
+			if ( article.valueExpanded('attachment2', '') !== "" ){
+				content = append( content, "public static $conf_mail_attachment2 = '" + system.removeInlineEditing(project.relativePathFromTo(page.pathToRoot, article.valueExpanded('attachment2', ''))) + "';" );
+			}
+			else{
+				content = append( content, "public static $conf_mail_attachment2 = '';" );
+			}
 			content = append( content, "public static $conf_basket_anchor = '#a" + article.id + "';");
 			content = append( content, "}");
 			content = append( content, "?>");

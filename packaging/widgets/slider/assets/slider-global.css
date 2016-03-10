@@ -341,3 +341,31 @@ div.zp13sliderWidget.zpBreakout li img{
 	border: 2px solid #ffffff;
 	background-color: transparent;
 }
+
+/* *** Responsive Breakpoints *** */
+@media (max-width: 640px) {
+	.zp13sliderWidget .zp13slider-caption{
+		position: static;
+		top: auto;
+		bottom: auto;
+		-webkit-transform: none;
+		    -ms-transform: none;
+		        transform: none;
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+		max-height: none;
+	}
+	.zp13sliderWidget.defaultbg .zp13slider-caption{
+		color: inherit;
+		text-shadow: none;
+	}
+	.zp13sliderWidget .zp13slider-direction-nav a{
+		top: 39px;
+		bottom: auto;
+	}
+	.zp13sliderWidget .zp13slider-control-nav{
+		top: 21px;
+		bottom: auto;
+	}
+}

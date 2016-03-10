@@ -11,7 +11,7 @@
         "dialogwidthvalue": 510,
         "includeinsearchindex": false,
         "maincategory": "other",
-        "minappversion": "12.5.6.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "showcssinputfields": true,
         "showheadline": false,
@@ -19,7 +19,7 @@
         "uiname": "Info-Banner",
         "usedialogheight": true,
         "usedialogwidth": true,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {

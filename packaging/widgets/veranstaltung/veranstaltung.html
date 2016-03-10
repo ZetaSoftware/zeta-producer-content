@@ -19,15 +19,15 @@ var image = project.getImage(imageId);
 		
 		<p class="ecinfo">
 			<$ if ( date_end == "" || date_end == "01.01.0001" ) { $>
-				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $><$ if ( !isNull(endt) ) { $> bis <$= endt $> Uhr<$ } else { $> Uhr<$ } $><$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
+				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $><$ if ( !isNull(endt) ) { $> <$= page.attribute("eventCalendar_to_text", "bis") $> <$= endt $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } else { $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $><$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
 			<$ }
 			   else { $>
-				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $> Uhr<$ } $> bis <$= date_end $><$ if ( !isNull(endt) ) { $>, <$= endt $> Uhr<$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
+				<$= date_start $><$ if ( !isNull(start) ) { $>, <$= start $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $> <$= page.attribute("eventCalendar_to_text", "bis") $> <$= date_end $><$ if ( !isNull(endt) ) { $>, <$= endt $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $><$ if ( !isNull(venue) ) { $>, <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( article.value("venuelink_target") !== "" ) { $> target="<$= article.value("venuelink_target") $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $><$ } $><$ if ( !isNull(genre) ) { $> – (<$= genre $>)<$ } $>
 			<$ } $>
 		</p>
 	
 		<$ if ( !isNull(image) ) { $>
-			<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= image.Description $>" />
+			<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= system.htmlEncode(system.removeHtmlTags(image.altText)) $>" />
 				<$ if ( !isNull(caption) ) { $>
 					<p class="eccaption"><$= caption $></p>
 				<$ } $>

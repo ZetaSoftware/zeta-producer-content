@@ -1,23 +1,17 @@
 {
     "settings": {
-    	"dialogheightvalue": 190,
+        "category": "misc",
+        "dialogheightvalue": 190,
         "editortype": "htmlForm",
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "version": "13.1.0.0",
+        "minAppVersion": "13.1.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Formular",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.2",
-        "allowedareas": [
-            "Banner",
-            "Standard",
-            "News",
-            "Footer"
-        ],
-        "category": "misc",
         "defaults": {
             "success_page_url": "oid://page/de$nachricht-erfolgreich-gesendet",
             "error_page_url": "oid://page/de$nachricht-konnte-nicht-versendet-werden",
@@ -64,48 +58,78 @@
                     "Suche": "search"
                 }
             ]
-        }
+        },
+        "allowedareas": [
+            "Banner",
+            "Standard",
+            "News",
+            "Footer"
+        ]
     },
     "fields": [
-    	{
-			"displayname": "Optionale reCAPTCHA-Sicherheitsprüfung",
-			"expandedheight": 4,
-			"name": "styleGroup1",
-			"popupheightinpixel": 140,
-			"popupWidthInPixel": 480,
-			"showlabel": false,
-			"treatexpandedheightaspixel": false,
-			"type": "group",
-			"layoutMode": "pixel",
-			"anchor": "left,top",
-			"width": 480,
-			"x": -4,
-			"fields": [
-				{
-					"displayname": "Websiteschlüssel",
-					"includeinsearchindex": false,
-					"name": "recaptcha-publickey",
-					"placeholdertext": "Optional",
-					"type": "text-singleline"
-				},
-				{
-					"displayname": "Geheimer Schlüssel",
-					"includeinsearchindex": false,
-					"name": "recaptcha-secretkey",
-					"placeholdertext": "Optional",
-					"type": "text-singleline"
-				},
-				{
-					"height": 70,
-					"name": "recaptcha-remarks",
-					"occupylabelspace": true,
-					"showlabel": false,
-					"text": "<small>Wenn Sie das neue, wesentlich benutzerfreundlichere reCAPTCHA zur Sicherheitsprüfung nutzen wollen, wählen Sie in den Optionen das Skript \"Via PHP mit Sicherheitsprüfung (NEU)\", dann <a href=\"{online-command-RecaptchaGenerateKey}\">registrieren Sie  Ihre Domains beim reCAPTCHA-Dienst</a> und geben anschließend hier die Schlüssel in die beiden Felder ein.</small>",
-					"treatHeightAsPixel": true,
-					"type": "infotext"
-				}
-			]
-		}
+        {
+            "anchor": "left,top",
+            "displayname": "Optionale reCAPTCHA-Sicherheitsprüfung",
+            "expandedheight": 4,
+            "layoutmode": "pixel",
+            "name": "styleGroup1",
+            "popupheightinpixel": 140,
+            "popupwidthinpixel": 480,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "width": 320,
+            "x": -4,
+            "fields": [
+                {
+                    "displayname": "Websiteschlüssel",
+                    "includeinsearchindex": false,
+                    "name": "recaptcha-publickey",
+                    "placeholdertext": "Optional",
+                    "type": "text-singleline"
+                },
+                {
+                    "displayname": "Geheimer Schlüssel",
+                    "includeinsearchindex": false,
+                    "name": "recaptcha-secretkey",
+                    "placeholdertext": "Optional",
+                    "type": "text-singleline"
+                },
+                {
+                    "height": 70,
+                    "name": "recaptcha-remarks",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<small>Wenn Sie das neue, wesentlich benutzerfreundlichere reCAPTCHA zur Sicherheitsprüfung nutzen wollen, wählen Sie in den Optionen das Skript \"Via PHP mit Sicherheitsprüfung (NEU)\", dann <a href=\"{online-command-RecaptchaGenerateKey}\">registrieren Sie  Ihre Domains beim reCAPTCHA-Dienst</a> und geben anschließend hier die Schlüssel in die beiden Felder ein.</small>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
+                }
+            ]
+        },
+        {
+            "anchor": "right,top",
+            "displayname": "Vorlagen",
+            "expandedheight": 4,
+            "layoutmode": "pixel",
+            "name": "styleGroup2",
+            "popupheightinpixel": 340,
+            "popupwidthinpixel": 560,
+            "showlabel": false,
+            "treatexpandedheightaspixel": false,
+            "type": "group",
+            "x": "=z.right('styleGroup1') + z.oneColumnDistance",
+            "fields": [
+                {
+                    "layoutMode": "pixel",
+                    "height": 340,
+                    "width": 560,
+                    "name": "email_template",
+                    "showlabel": false,
+                    "type": "html-wysiwyg-editor",
+                    "defaultValue": "<h1>Ein Formular wurde Ihnen von Ihrer Website gesendet</h1>\n<p>Jemand hat Ihnen ein Formular mit den folgenden Werten gesendet.</p>\n[FORM_TABLE]"
+                }
+            ]
+        }
     ],
     "php": {
 		"minimumVersion": "5.3",

@@ -17,14 +17,17 @@ zp.EventCalendar = function (){
 	this.venuelabel = "Ort";
 	this.genrelabel = "Art";
 	this.selalloption = "Alle";
+	this.datePickerTodayLabel = "Heute";
+	this.datePickerCloseLabel = "Schließen";
 	this.rowcolor = "silver";
 	this.rowspacing = "20px";
+	this.sortorder = "asc";
 	var ecal = this;
 
 	this.init = function (elemid){
 		// load jqueryui css and js if not already loaded
 		var mySrc = $z('script[src*="eventcalendar.js"], script[src*="bundle.js"]').first().attr("src");
-		var jsRelativePath = mySrc.substr(0, mySrc.lastIndexOf("/")+1);
+		var jsRelativePath = mySrc.substr(0, mySrc.lastIndexOf("assets/")) + "assets/";
 		
 		if (!$z("link[href*='/js/jqueryui/jquery-ui-1.8.19.custom.css']").length){
 				// append after existing, known style if possible to keep loading order of CSS JS in correct order for improved loading speed
@@ -45,8 +48,8 @@ zp.EventCalendar = function (){
 					$z('script[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></script>');
 				}
 			}
-			
-			if (!($z.datepicker.regional['de'])) {
+			//if ($z("html").attr("lang") && $z("html").attr("lang")=="de" )
+			if ( $z("html").attr("lang") && $z("html").attr("lang")=="de" && !($z.datepicker.regional['de']) ) {
 				if (!$z('script[src*="app.js"], script[src*="bundle.js"]').first().length){
 					$z('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></script>').appendTo("head");
 				}
@@ -65,8 +68,11 @@ zp.EventCalendar = function (){
 			ecal.venuelabel = $z(ecal.root).data("venuelabel");
 			ecal.genrelabel = $z(ecal.root).data("genrelabel");
 			ecal.selalloption = $z(ecal.root).data("selall");
+			ecal.datepickertodaylabel = $z(ecal.root).data("datepickertodaylabel");
+			ecal.datepickercloselabel = $z(ecal.root).data("datepickercloselabel");
 			ecal.rowcolor = $z(ecal.root).data("rowcolor");
 			ecal.rowspacing = $z(ecal.root).data("rowspace");
+			ecal.sortorder = $z(ecal.root).data("sortorder");
 			
 			// remove passed events if user set pref to hide these
 			if (ecal.hide_passed){
@@ -92,8 +98,8 @@ zp.EventCalendar = function (){
 				showButtonPanel: true,
 				changeMonth: true,
 				changeYear: true,
-				currentText: "Heute",
-				closeText: "Schließen"
+				currentText: ecal.datepickertodaylabel,
+				closeText: ecal.datepickercloselabel
 			});
 			
 			// filter if date inputs or venue/genre pulldowns change
@@ -136,7 +142,12 @@ zp.EventCalendar = function (){
 				var aDateB = $z(b).attr("data-evdate").split(".");
 				var x = new Date(aDateA[2], aDateA[1], aDateA[0]),
 				y = new Date(aDateB[2], aDateB[1], aDateB[0]);
-				return ((x < y) ? 1 : ((x > y) ?  -1 : 0));
+				if ( ecal.sortorder == "desc" ){
+					return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+				}
+				else{
+					return ((x < y) ? 1 : ((x > y) ?  -1 : 0));
+				}
 			}).each(function(){
 				$z(ecal.root + " .eventOverview").prepend(this);
 			});

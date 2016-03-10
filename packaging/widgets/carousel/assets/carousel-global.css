@@ -25,7 +25,7 @@ ul.zp13carousel,
 
 /* FlexSlider Necessary Styles
 *********************************/ 
-.zp13carouselWidget {margin: 0; padding: 0;}
+.zp13carouselWidget {margin: 0; padding: 0; overflow: hidden;}
 .zp13carouselWidget ul.zp13carousel > li { display: none; -webkit-backface-visibility: hidden; list-style-type: none !important; margin: 0 !important; padding: 0 !important;} /* Hide the slides before the JS is loaded. Avoids image jumping */
 .zp13carouselWidget li:before, .zp13carouselWidget li:after{content: none !important;}
 .no-js ul.zp13carousel > li{ display: block; }
@@ -50,7 +50,7 @@ html[xmlns] ul.zp13carousel {display: block;}
 
 .zp13carousel-viewport {max-height: 2000px; -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; transition: all 500ms ease;}
 /* if the layout has a border-radius for images set, add this to the viewport, not the individual carousel-iimages */
-<$ if ( "#val(article-image-shadowcolor)".toLowerCase() !== "transparent" || "#val(article-image-border)" !== "0" || "#val(article-image-border-radius)" !== "" ) { $>
+<$ if ( "#val(article-image-shadowcolor)".toLowerCase() !== "transparent" || ("#val(article-image-border)" !== "0" && "#val(article-image-border)" !== "") || "#val(article-image-border-radius)" !== "" ) { $>
 .zp13carousel-viewport{
 	<$ if ("#val(article-image-border-radius)" !== "" ) { $>
 		border-radius: #val(article-image-border-radius)px;

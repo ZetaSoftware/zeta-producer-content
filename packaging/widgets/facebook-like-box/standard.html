@@ -1,18 +1,16 @@
 <$
 	var url = article.value("useUrl");
 	var borderColor = article.value("borderColor");
-	var width = 300;
-	var height = 556;
 	var showHeader = 0;
 	var showStream = 0;
 	var showFaces = 0 ;
 	 
 	if ( isNumeric(article.value("width")) ) {
-	 	width = article.value("width");
+	 	var width = article.value("width", 300);
 	}
 	 
 	if ( isNumeric(article.value("height")) ) {
-	 	height = article.value("height");
+	 	var height = article.value("height", 556);
 	}
 	 
 	if ( article.value("showHeader") == "1" ) {
@@ -43,5 +41,5 @@
 <$= system.partial("article-begin.html") $>
 	<$= system.partial("article-headline.html") $>
 	
-	<iframe src="//www.facebook.com/plugins/likebox.php?href=<$= encodeURIComponent(url) $>&amp;width=<$= width $>&amp;height=<$= height $>&amp;header=<$= showHeader $>&amp;colorscheme=<$= colorScheme $>&amp;show_faces=<$= showFaces $>&amp;stream=<$= showStream $>&amp;linktarget=_top&amp;border_color=<$= borderColor $>&amp;font&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<$= width $>px; height:<$= height $>px;" allowTransparency="true"></iframe>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=<$= encodeURIComponent(url) $>&amp;width=<$= width $>&amp;height=<$= height $>&amp;header=<$= showHeader $>&amp;colorscheme=<$= colorScheme $>&amp;show_faces=<$= showFaces $>&amp;stream=<$= showStream $>&amp;linktarget=_top&amp;border_color=<$= borderColor $>&amp;font&amp;" scrolling="auto" frameborder="0" style="border:none; overflow:auto; width:<$= width $>px; height:<$= height $>px; max-width: 100%; " allowTransparency="true"></iframe>
 <$= system.partial("article-end.html") $>

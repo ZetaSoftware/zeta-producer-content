@@ -1,6 +1,6 @@
 /*!
  * ZP Navigation Menu Widget CSS
- * $Id: navigation.less 34120 2015-12-10 13:50:59Z sseiz $
+ * $Id: navigation.less 36703 2016-02-10 10:08:46Z sseiz $
  * Copyright Zeta Software GmbH 2015
  */
  
@@ -127,13 +127,15 @@
 /* *** ZP-Grid 1-Column Breakpoint (iphone 6 landscape) *** */
 @media (max-width: 667px) {
 	div.zpColumn.zpnavmenu {
-		// top align it with previous column so the mobile nav button is e.g. vertically ligned up with a logo
-		position: absolute;
 		max-width: ~"calc(100% - 30px)"; // 100% minus grid column padding
 		
 		div.zpnavmenu{
 			float: none !important; // keeps the mobile menu button always on the right
 		}
+	}
+	div.zpColumn:not(:first-child).zpnavmenu {
+		// top align it with previous column (if one exists), so the mobile nav button is e.g. vertically ligned up with a logo
+		position: absolute;
 	}
 }
 

@@ -1,5 +1,6 @@
 <?php
 define('MAGPIE_OUTPUT_ENCODING', 'UTF-8');
+define('MAGPIE_CACHE_DIR', './assets/php/RSS_CACHE');
 function getBody($item)
 {
 	$key = 'content';

@@ -121,7 +121,7 @@ var shopIncPath = page.pathToRoot + "assets/php/shop/shop.inc.php";
 		
 		if ( !isNull(image) ) { $>
 			<div class="articleimage" style="<$= imagefloatstyle $>">
-				<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= image.description $>" title="<$= image.description $>" />
+				<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= system.htmlEncode(system.removeHtmlTags(image.altText)) $>" title="<$= system.htmlEncode(system.removeHtmlTags(image.description)) $>" />
 			</div>
 			<$
 		}

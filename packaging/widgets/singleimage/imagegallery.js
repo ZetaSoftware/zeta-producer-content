@@ -1,6 +1,67 @@
+/**
+* jQuery Plugin to add basic "swipe" support on touch-enabled devices
+*
+* @author Yair Even Or
+* @version 1.0.0 (March 20, 2013)
+*/
+(function($){
+	"use strict";
+
+    $.event.special.swipe = {
+        setup: function(){
+            $(this).bind('touchstart', $.event.special.swipe.handler);
+        },
+
+        teardown: function(){
+            $(this).unbind('touchstart', $.event.special.swipe.handler);
+        },
+
+        handler: function(event){
+            var args = [].slice.call( arguments, 1 ), // clone arguments array, remove original event from cloned array
+                touches = event.originalEvent.touches,
+                startX, startY,
+                deltaX = 0, deltaY = 0,
+                that = this;
+
+            event = $.event.fix(event);
+
+            if( touches.length == 1 ){
+                startX = touches[0].pageX;
+                startY = touches[0].pageY;
+                this.addEventListener('touchmove', onTouchMove, false);
+            }
+
+            function cancelTouch(){
+                that.removeEventListener('touchmove', onTouchMove);
+                startX = startY = null;
+            }
+
+            function onTouchMove(e){
+                //e.preventDefault();
+
+                var Dx = startX - e.touches[0].pageX,
+                    Dy = startY - e.touches[0].pageY;
+
+                if( Math.abs(Dx) >= 50 ){
+                    cancelTouch();
+                    deltaX = (Dx > 0) ? -1 : 1;
+                }
+                else if( Math.abs(Dy) >= 20 ){
+                    cancelTouch();
+                    deltaY = (Dy > 0) ? 1 : -1;
+                }
+
+                event.type = 'swipe';
+                args.unshift(event, deltaX, deltaY); // add back the new event to the front of the arguments with the delatas
+                return ($.event.dispatch || $.event.handle).apply(that, args);
+            }
+        }
+    };
+})($z);
+
 /*! 
  * ZP Image-Gallery Widget
- * Copyright $Date:: 2015#$ Zeta Software GmbH
+ * Copyright $Date:: 2016#$ Zeta Software GmbH
  */
  
  // This code depends on jquery.fancybox css and js being loded via the global "_Shared"-Widget.
@@ -207,6 +268,20 @@ zp.Slideshow = function (){
 		$z(elemid + ' div.slide:not(:first)').css("opacity", "0");
 		// start the slideshow
 		sshow.slideshow = setInterval( function() { sshow.slideSwitch(elemid); }, sshow.slideshowinterval );
+		// handle swipes
+		$z(sshow.root).on("swipe", function onSwipe(e, Dx, Dy){
+			if ( Dx !== 0 ){  //horizontalSwipe
+				// reset the slider auto play timer
+				clearInterval(sshow.slideshow);
+				sshow.slideshow = setInterval( function() { sshow.slideSwitch(elemid); }, sshow.slideshowinterval );
+			}
+			if ( Dx < 0 ){ // swipeLeft
+				sshow.slideSwitch(elemid, "prev");
+			}
+			else if ( Dx > 0 ){ // swipeRight
+				sshow.slideSwitch(elemid, "next");
+			}
+		});
 		// handle arrow keys
 		$z(sshow.root).hover(function() {
 			if (sshow.pauseonhover){

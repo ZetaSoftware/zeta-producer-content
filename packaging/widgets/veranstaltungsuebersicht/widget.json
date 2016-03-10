@@ -11,7 +11,7 @@
         },
         "dialogheightvalue": 350,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "showcssinputfields": true,
@@ -19,7 +19,7 @@
         "uiname": "Veranstaltungsübersicht",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {
@@ -136,6 +136,17 @@
                     "type": "text-singleline",
                     "width": 110,
                     "defaultValue": "Alle"
+                },
+                {
+                    "height": 80,
+                    "ignoreforsimilarcomparison": false,
+                    "label": "(HTML-Anmerkung)",
+                    "name": "(Anmerkung)",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "text": "<p>Weitere, feststehende Bezeichnungen können Sie z.B. zur Übersetzung über Attribute, die mit dem Namen \"eventCalendar\" beginnen, bearbeiten.</p>",
+                    "treatheightaspixel": true,
+                    "type": "infotext"
                 }
             ]
         },
@@ -146,7 +157,7 @@
             "name": "Darstellung",
             "occupylabelspace": true,
             "popupbuttonwidthinpixel": 204,
-            "popupheightinpixel": 120,
+            "popupheightinpixel": 150,
             "popupwidthinpixel": 350,
             "showlabel": false,
             "type": "group",
@@ -181,7 +192,28 @@
                     "validationhelptext": "Geben Sie eine Zahl gefolgt von px ein, z.B.: 10px",
                     "width": 110,
                     "defaultValue": "5px"
-                }
+                },
+                {
+					"canedit": false,
+					"displayname": "Sortierung",
+					"height": 10,
+					"ignoreforsimilarcomparison": false,
+					"includeinsearchindex": false,
+					"label": "sortorder",
+					"name": "sortorder",
+					"userinfotext": "Veranstaltungen werden nach Datum sortiert. Bei \"Aufsteigend\", steht ein früheres Datum oben, bei \"Absteigend\" ist es umgekehrt.",
+					"type": "list",
+					"width": 110,
+					"values": [
+						{
+							"Aufsteigend": "asc"
+						},
+						{
+							"Absteigend": "desc"
+						}
+					],
+					"defaultValue": "asc"
+				}
             ]
         },
         {

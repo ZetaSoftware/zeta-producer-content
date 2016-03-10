@@ -12,6 +12,7 @@
 	}
 $>
 <$= system.partial("article-begin.html", "zpnavcontainer") $>
+<$ if ( projectFolder.pagesForLevel(1).count > 0 ){ $>
 	<style scoped>
 		#zpnavmenu<$= article.id $>{
 			text-align: <$= articleAlign $>;
@@ -112,8 +113,7 @@ $>
 		}
 	</style>
 	<div id="zpnavmenu<$= article.id $>" class="zpnavmenu<$=cssClass$>" style="<$=inlineCss$>">
-		
-		<a style="text-align: <$= articleAlign $>;" href="#" id="mobilenavtoggle<$= article.id $>" class="mobilenavtoggle tabletonly" aria-label="#attribute(mobile_menu_button_aria)">#attribute(mobile_menu_title)</a>
+		<a style="text-align: <$= articleAlign $>;" href="#" id="mobilenavtoggle<$= article.id $>" class="mobilenavtoggle tabletonly" aria-label="#attribute(mobile_menu_button_aria)"><$= page.attribute("mobile_menu_title", "Menü") $></a>
 		<$ if ( showDropdown ){ $>
 			<$= system.partial("mainmenu.html", { "ulClass":"zpnavmainmenu touchhovermenu", "activeClass":"active", "openClass":"open","submeuUlClass":"zpnavdropdown-menu", "submenuLiClass":"zpnavdropdown" }) $>
 		<$ } else { $>
@@ -128,4 +128,5 @@ $>
 			});
 		});
 	</script>
+<$ } $>
 <$= system.partial("article-end.html") $>

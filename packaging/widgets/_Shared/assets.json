@@ -4,7 +4,7 @@
 		{ "fileName": "jquery/jquery-1.7.1.js",									"mode": "bundle", 	"order": 1},
 		{ "fileName": "jquery/zp-noconflict.js",								"mode": "bundle", 	"order": 2},
 		{ "fileName": "js/app.js",												"mode": "bundle", 	"order": 100},
-		{ "fileName": "js/fancybox/jquery.fancybox-1.3.4_easing-1.3.pack.js",	"mode": "bundle", 	"order": 600},
+		{ "fileName": "js/fancybox/jquery.fancybox-1.3.4z_easing-1.3.pack.js",	"mode": "bundle", 	"order": 600},
 		{ "fileName": "js/*",													"mode": "copy", 	"order": 10, "ignore": [ "app.js", "jquery.fancybox-1.3.4z_easing-1.3.pack.js", "jquery.easing-1.3.pack.js", "jquery.fancybox-1.3.4.js", "jquery.fancybox-1.3.4.pack.js", "jquery.fancybox-1.3.4_easing-1.3.pack.js", "jquery.fancybox-1.3.4.css", "jquery.mousewheel-3.0.4.pack.js" ] },
 		{ "fileName": "jquery/*",												"mode": "copy", 	"order": 10 }
 	]

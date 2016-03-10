@@ -15,7 +15,7 @@
         "dialogheightvalue": 210,
         "dontcachepageitem": false,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "showcssinputfields": true,
@@ -23,7 +23,7 @@
         "uiname": "Suche",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {

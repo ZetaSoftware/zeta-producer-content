@@ -117,7 +117,7 @@ var shopIncPath = page.pathToRoot + "assets/php/shop/shop.inc.php";
 		
 		if ( !isNull(image) ) { $>
 			<div class="articleimage" style="<$= imagefloatstyle $>">
-				<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= image.Description $>" title="<$= image.Description $>" />
+				<img src="<$= image.contentCopyPath $>" width="<$= image.contentCopyWidth $>" height="<$= image.contentCopyHeight $>" alt="<$= system.htmlEncode(system.removeHtmlTags(image.altText)) $>" title="<$= system.htmlEncode(system.removeHtmlTags(image.Description)) $>" />
 			</div>
 			<$
 		}
@@ -142,7 +142,7 @@ var shopIncPath = page.pathToRoot + "assets/php/shop/shop.inc.php";
 			<$= field1html $>
 			<input id="field2name" name="field2name" type="hidden" value="<$= article.value("field2name") $>" />
 			<$= field2html $>
-			<input id="aprice" name="aprice" type="hidden" value="<$= currentArticlePrice $>" />
+			<input id="aprice" name="aprice" type="hidden" value="<$= system.encrypt(currentArticlePrice) $>" />
 			<input id="aqty" name="aqty" type="text" value="1" size="1" maxlength="3" style="width:25px; text-align:right;"  />&nbsp;<$= article.value("quantityUnit") $><br /><a style="margin-top: 10px;" href="#" class="button" onclick="javascript:document.forms['Form<$= article.id $>'].submit(); return false"><span><$= buttontext $></span></a>
 			</form>
 		</div>

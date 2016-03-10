@@ -22,40 +22,85 @@ function is_touch_device() {
 
 // Helper for Nav-Menues with hover effects to make them work via alternating clicks
 // 1st Click will open the Submenues, 2nd Click will load the link associated with the clicked element
-function hoverToClickMenu(element, breakpointMobileMenu) { 
+function hoverToClickMenu(element, breakpointMobileMenu, instancenumber) { 
 	var listenEvent = 'ontouchend' in document.documentElement ? "touchend" : "click";
+	var triangleMode = true;
 	
 	// The stock browser on Android 4.X can't cancel touchend events and will thus always fire an additional click event, so we need to revert to click events StS 2015-02-24
 	if ( nualc.indexOf("android 4") > -1 && nualc.indexOf("chrome") === -1 ) {
 		listenEvent = "click";
 	}
+	
+	/* clean up added styles after the user resizes the browser window and might reach desktop resolution */
+	if ( instancenumber == 1 && triangleMode && breakpointMobileMenu !== undefined  ) {
+			var menuResizeTimer;
+			
+			var clearAddedStyles = function(){
+				if (  $z(window).width() > parseInt(breakpointMobileMenu) ){					
+					$z(".hoverToClickMenuAdded").children("ul").css({'display' : '', 'visibility' : ''});
+					$z(".hoverToClickMenuAdded").removeClass("clicked").removeClass("open").removeClass("hoverToClickMenuAdded");
+				}
+			};
+			
+			$z(window).resize(function(e) {
+				clearTimeout(menuResizeTimer);
+				menuResizeTimer = setTimeout(clearAddedStyles, 250);
+			});
+	}
+
 	var firstClick = function(e) {
-		if ( breakpointMobileMenu !== undefined && listenEvent == "click" && $(window).width() > parseInt(breakpointMobileMenu) ) {
+		if ( breakpointMobileMenu !== undefined && listenEvent == "click" && $z(window).width() > parseInt(breakpointMobileMenu) ) {
 			// we're NOT displaying a mobile menu, so return and don't modify the click behavior
 			return true;
 		}
-		
-		var otherMenus = $z(e).parent().prevAll(".clicked").add($z(e).parent().nextAll(".clicked"));
-		otherMenus.removeClass("clicked").removeClass("open");
-		otherMenus.find("ul").css({'display' : '', 'visibility' : ''});
-		otherMenus.find(".clicked").removeClass("clicked");
-		otherMenus.find(".open").removeClass("open");
-		var hasVisibleChilds = $z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible";
-		
-		if ( $z(e).parent().hasClass("clicked") || hasVisibleChilds ){ // TODO ZP13 check layouts for incompatibilities due to commenting out this: || ($z(e).parent().children("xul").css("display") == "block" && $z(e).parent().children("xul").css("visibility") == "visible") ) {
-			// element has been clicked before, so now we fire a click
-			return true;
+				
+		if ( triangleMode ){
+			if ( (event.pageX - $z(element).offset().left) <= parseInt($z(element).css("padding-left")) || (event.pageX - $z(element).offset().left) > (parseInt($z(element).css("padding-left")) + $z(element).width() -10) ){
+				// user clicked on triangle to the left or right of a link
+				var hasVisibleChilds = $z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible";
+				if ( $z(e).parent().hasClass("open") ||  ($z(e).parent().hasClass("active") && hasVisibleChilds) ){
+					$z(e).parent().removeClass("clicked").removeClass("open");
+					$z(e).parent().children("ul").css({'display' : 'none', 'visibility' : ''});
+				}
+				else{
+					$z(e).parent().addClass("hoverToClickMenuAdded").addClass("clicked").addClass("open");
+					$z(e).parent().children("ul").css({'display' : 'block', 'visibility' : 'visible'});
+				}
+				event.preventDefault();
+				return false;
+			}	
+			else{
+				// user clicked directly on link, so we load the url immediately
+				return true;
+			}
 		}
-		// element has been clicked for the first time, so we do not fire a click and only show submenues
+		else{
+			var otherMenus = $z(e).parent().prevAll(".clicked").add($z(e).parent().nextAll(".clicked"));
+			otherMenus.removeClass("clicked").removeClass("open");
+			otherMenus.find("ul").css({'display' : '', 'visibility' : ''});
+			otherMenus.find(".clicked").removeClass("clicked");
+			otherMenus.find(".open").removeClass("open");
+			var hasVisibleChilds = $z(e).parent().children("ul").css("display") == "block" && $z(e).parent().children("ul").css("visibility") == "visible";
 		
-		// add ".open" classname to parent li element so we can style it if we want
-		$z(e).parent().addClass("clicked").addClass("open");
-		// in case suckerfish is used
-		$z(e).parent().children("ul").css({'display' : 'block', 'visibility' : 'visible'});
-		return false;
+			if ( $z(e).parent().hasClass("clicked") || hasVisibleChilds ){ // TODO ZP13 check layouts for incompatibilities due to commenting out this: || ($z(e).parent().children("xul").css("display") == "block" && $z(e).parent().children("xul").css("visibility") == "visible") ) {
+				// element has been clicked before, so now we fire a click
+				return true;
+			}
+			// element has been clicked for the first time, so we do not fire a click and only show submenues
+		
+			// add ".open" classname to parent li element so we can style it if we want
+			$z(e).parent().addClass("clicked").addClass("open");
+			// in case suckerfish is used
+			$z(e).parent().children("ul").css({'display' : 'block', 'visibility' : 'visible'});
+			return false;
+		}
 	};
 	$z(element).on( listenEvent , function(e) {
-		return firstClick($z(this));
+		var firstClickResult = firstClick($z(this));
+		if ( !firstClickResult ){
+			event.preventDefault();
+		}
+		return firstClickResult;
 	});
 }
 
@@ -123,17 +168,17 @@ $z(document).ready(function () {
 			$z("body").addClass("touch");
 			
 			// fix for hover menues (which contain submenues) to make them work on touch devices
-			$z(".touchhovermenu li:has(li) > a").each(function(){
-				hoverToClickMenu(this);
+			$z(".touchhovermenu li:has(li) > a").each(function(i){
+				hoverToClickMenu(this, undefined, i);
 			});
 		}
 		else{
 			// In case we want to substitute hover with click menues on non touch devices too
 			$z("body").removeClass("touch");
 			$z("body").addClass("notouch");
-			var breakpointmobilemenu = $z(".clickhovermenu").data("breakpointmobilemenu")
-			$z(".clickhovermenu li:has(li) > a").each(function(){
-				hoverToClickMenu(this, breakpointmobilemenu);
+			var breakpointmobilemenu = $z(".clickhovermenu").data("breakpointmobilemenu");
+			$z(".clickhovermenu li:has(li) > a").each(function(i){
+				hoverToClickMenu(this, breakpointmobilemenu, i);
 			});
 		}
 		
@@ -146,7 +191,6 @@ $z(document).ready(function () {
 		setBreakout();
 		var resizeTimeout = null;
 		$z(window).resize(function() {
-			//console.log(Date.now() + " Resize");
 			if (resizeTimeout) {
 				clearTimeout(resizeTimeout);
 			}

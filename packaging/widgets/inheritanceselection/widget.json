@@ -11,12 +11,12 @@
         "dontcachepageitem": false,
         "editortype": "inherited",
         "maincategory": "other",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "showCssInputFields": false,
         "uiname": "Vererbt",
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     }
 }

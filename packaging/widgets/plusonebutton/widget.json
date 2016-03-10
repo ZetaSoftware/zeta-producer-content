@@ -9,14 +9,14 @@
         "category": "google",
         "dialogheightvalue": 200,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadline": false,
         "uiname": "Google +1 Button",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {

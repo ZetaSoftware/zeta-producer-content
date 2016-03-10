@@ -9,7 +9,7 @@
         "category": "shop",
         "dialogheightvalue": 170,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "requiredfeature": "HasOnlineshop",
@@ -18,7 +18,7 @@
         "uiname": "Shop: Warenkorb-Anzeige",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {

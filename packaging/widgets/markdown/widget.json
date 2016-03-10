@@ -14,14 +14,14 @@
         "dialogwidthvalue": 510,
         "maincategory": "text-image",
         "orderposition": 3,
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Markdown",
         "usedialogheight": true,
         "usedialogwidth": true,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {

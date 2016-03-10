@@ -646,6 +646,60 @@
             "category": "Widgets",
             "value": "weiter",
             "entail": true
+        },
+        {
+            "name": "eventCalendar_show_all_text",
+            "category": "Widgets",
+            "value": "Alles zeigen",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_from_date_text",
+            "category": "Widgets",
+            "value": "Von Datum",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_to_date_text",
+            "category": "Widgets",
+            "value": "Bis Datum",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_time_text",
+            "category": "Widgets",
+            "value": "Uhr",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_from_text",
+            "category": "Widgets",
+            "value": "von",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_to_text",
+            "category": "Widgets",
+            "value": "bis",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_datepicker_today_text",
+            "category": "Widgets",
+            "value": "Heute",
+            "entail": true
+        },
+        {
+            "name": "eventCalendar_datepicker_close_text",
+            "category": "Widgets",
+            "value": "Schließen",
+            "entail": true
+        },
+        {
+            "name": "body_start",
+            "category": "Standard",
+            "value": null,
+            "entail": true
         }
     ]
 }

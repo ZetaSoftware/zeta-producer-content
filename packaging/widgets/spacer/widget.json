@@ -1,7 +1,7 @@
 ﻿{
     "settings": {
-        "version": "13.0.0.0",
-        "minappversion": "13.0.0.0",
+        "version": "13.1.0.0",
+        "minAppVersion": "13.1.0.0",
         "allowedareas": [
             "Banner",
             "Standard",

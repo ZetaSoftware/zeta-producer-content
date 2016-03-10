@@ -15,7 +15,7 @@
         "dontcachepageitem": false,
         "includeinsearchindex": false,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "requiredfeature": "HasOnlineshop",
@@ -25,7 +25,7 @@
         "usedialogheight": true,
         "usedialogwidth": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.1"
+        "version": "13.1.0.0"
     },
     "fields": [
         {
@@ -184,6 +184,28 @@
                     "name": "allowPaymentPerPayPal",
                     "occupylabelspace": true,
                     "showlabel": false,
+                    "type": "checkbox",
+                    "defaultValue": "False"
+                },
+                {
+                    "height": 5,
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "(Trennlinie)",
+                    "name": "(Trennlinie)",
+                    "showline": false,
+                    "treatheightaspixel": true,
+                    "type": "line"
+                },
+                {
+                    "displayname": "Feld \"Nachricht\" anzeigen",
+                    "ignoreforsimilarcomparison": false,
+                    "includeinsearchindex": false,
+                    "label": "showCommentField",
+                    "name": "showCommentField",
+                    "occupylabelspace": true,
+                    "showlabel": false,
+                    "userinfotext": "Wenn Sie dieses Feld anzeigen lassen, dann stellen Sie sicher, dass Ihre Textvorlagen das Makro [NACHRICHT] enthalten, damit die Feldinhalte auch in den E-Mails übermittelt werden.",
                     "type": "checkbox",
                     "defaultValue": "False"
                 },
@@ -381,7 +403,7 @@
                     "label": "email_subject_shop",
                     "name": "email_subject_shop",
                     "type": "text-singleline",
-                    "userinfotext": "Der Betreff der E-Mail an den Shop-Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Der Betreff der E-Mail an den Shop-Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[NACHRICHT] zeigt die Nachricht des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "validationexpression": "^((?!\"|').)*$",
                     "validationhelptext": "Das Feld \"Shop E-Mail Betreff\" darf nicht leer sein und weder \" noch ' enthalten.",
                     "width": 400,
@@ -396,9 +418,9 @@
                     "treatassingleline": true,
                     "treatheightaspixel": true,
                     "type": "html-wysiwyg-editor",
-                    "userinfotext": "Die E-Mail an den Shop Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Die E-Mail an den Shop Betreiber.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[NACHRICHT] zeigt die Nachricht des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "width": 400,
-                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nNeue Bestellung [REFERENZNUMMER] vom [DATUM]\r\n</p>\r\n<p>\r\nKunde: [NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
+                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nNeue Bestellung [REFERENZNUMMER] vom [DATUM]\r\n</p>\r\n<p>\r\nKunde: [NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>Nachricht: <br />[NACHRICHT]</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n"
                 },
                 {
                     "height": 5,
@@ -416,7 +438,7 @@
                     "label": "email_subject_customer",
                     "name": "email_subject_customer",
                     "type": "text-singleline",
-                    "userinfotext": "Der Betreff der E-Mail an Kunden.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Der Betreff der E-Mail an Kunden.\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[NACHRICHT] zeigt die Nachricht des Kunden an[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "validationexpression": "^((?!\"|').)*$",
                     "validationhelptext": "Das Feld \"Kunden E-Mail Betreff\" darf nicht leer sein und weder \" noch ' enthalten.",
                     "width": 400,
@@ -431,9 +453,9 @@
                     "treatassingleline": true,
                     "treatheightaspixel": true,
                     "type": "html-wysiwyg-editor",
-                    "userinfotext": "Die E-Mail an den Kunden (Bestellbestätigung).\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
+                    "userinfotext": "Die E-Mail an den Kunden (Bestellbestätigung).\r\nFolgende Makros können Sie in diesen Texten verwenden:\r\n[SHOPNAME] zeigt den Namen Ihres Shops an\r\n[DATUM] zeigt das Bestelldatum an\r\n[REFERENZNUMMER] zeigt die generierte Bestell-/Referenznummer an\r\n[NAME] zeigt den Namen des Kunden an\r\n[ADRESSE] zeigt die Adresse des Kunden an\r\n[NACHRICHT] zeigt die Nachricht des Kunden an\r\n[EMAIL] zeigt die E-Mail-Adresse des Kunden an\r\n[ZAHLUNGSWEISE] zeigt die gewünschte Zahlungsweise an\r\n[BESTELLUNG] zeigt die Bestelltabelle an (Warenkorb + Kosten)",
                     "width": 400,
-                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nGuten Tag [NAME],\r\n</p>\r\n<p>\r\nIhre Bestellung [REFERENZNUMMER] vom [DATUM] ist bei uns eingegangen und wird umgehend bearbeitet.\r\n</p>\r\n<p>\r\n[NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
+                    "defaultValue": "<p>\r\n<b>[SHOPNAME]</b>\r\n</p>\r\n<p>\r\nGuten Tag [NAME],\r\n</p>\r\n<p>\r\nIhre Bestellung [REFERENZNUMMER] vom [DATUM] ist bei uns eingegangen und wird umgehend bearbeitet.\r\n</p>\r\n<p>\r\n[NAME]<br />\r\n[ADRESSE]\r\n</p>\r\n<p>Nachricht: <br />[NACHRICHT]</p>\r\n<p>\r\nE-Mail: [EMAIL]\r\n</p>\r\n<p>\r\nGewünschte Zahlungsweise: <br />\r\n[ZAHLUNGSWEISE]\r\n</p>\r\n<p>\r\nBestellte Artikel: <br />\r\n[BESTELLUNG]\r\n</p>\r\n<p>\r\nVielen Dank für Ihre Bestellung bei [SHOPNAME]!\r\n</p>"
                 },
                 {
                     "height": 5,
@@ -531,7 +553,7 @@
                     "name": "label_bezeichnung",
                     "type": "text-singleline",
                     "validationexpression": "^((?!\"|').)*$",
-                    "validationhelptext": "Das Feld 'Bezeichnun \"Bezeichnung\"' darf nicht leer sein und weder \" noch ' enthalten.",
+                    "validationhelptext": "Das Feld 'Bezeichnung \"Bezeichnung\"' darf nicht leer sein und weder \" noch ' enthalten.",
                     "defaultValue": "Bezeichnung"
                 },
                 {
@@ -681,6 +703,16 @@
                     "validationexpression": "^((?!\"|').)*$",
                     "validationhelptext": "Das Feld \"Bezeichnung Anschrift\" darf nicht leer sein und weder \" noch ' enthalten.",
                     "defaultValue": "Anschrift"
+                },
+                {
+                    "displayname": "Bezeichnung Nachricht",
+                    "ignoreforsimilarcomparison": false,
+                    "label": "label_comment",
+                    "name": "label_comment",
+                    "type": "text-singleline",
+                    "validationexpression": "^((?!\"|').)*$",
+                    "validationhelptext": "Das Feld \"Bezeichnung Nachricht\" darf nicht leer sein und weder \" noch ' enthalten.",
+                    "defaultValue": "Ihre Nachricht an uns"
                 },
                 {
                     "displayname": "Text Zahlungsweise",

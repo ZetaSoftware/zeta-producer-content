@@ -5,7 +5,9 @@
 		action_url = page.pathToRoot + action_url;
 	}
 	
-	var email_address = system.encrypt(article.value("email_address"));
+	var email_address = article.value("email_address", "");
+	email_address = email_address.replace(/ /g,""); 	// remove blanks in email-address
+	email_address = system.encrypt(email_address);		// encrypt email-address for anti spam measures
 	var email_subject = article.value("email_subject");
 	var error_page_url = ( isNull(project.getPage(article.value("error_page_url"))) ) ? page.absoluteUrl : project.getPage(article.value("error_page_url")).absoluteUrl;
 	var error_page_target = article.value("error_page_target");
@@ -17,6 +19,7 @@
 	var captchaConfigError = "";
 	var defaultFieldWidth = 300;
 	var usesNewCaptcha = false;
+	var email_template;
 	
 	// display an error if Skript with new Captcha is chosen but no keys have been entered
 	if ( action_url.indexOf("assets/php/formmailer/SendEmailReCaptcha.php") > -1 ){
@@ -50,14 +53,22 @@
 		return appendTo + appendix + "\r\n";
 	}
 	function createFormConfig() {
-		var configFileName = "config.inc.php";
+		var configFileName = article.id + "_config.inc.php";
 		var configFilePath = project.outputFolder + "assets\\php\\formmailer\\" + configFileName;
+		email_template = article.value("email_template","");
+		if ( email_template == "" ){
+			// sane default for when project was converted and template field doesn't exist yet, or user has accidentally emptied the field
+			email_template = '<h1>Ein Formular wurde Ihnen von Ihrer Website gesendet</h1><p>Jemand hat Ihnen ein Formular mit den folgenden Werten gesendet.</p>[FORM_TABLE]';
+		}
+		email_template = email_template.toString().replace(/"/g, "&quot;"); 
+		email_template = email_template.toString().replace(/'/g, "\\'"); 
 		
 		var content = "";
 		content = append( content, "<?php");
 		content = append( content, "class Configuration {");
 		content = append( content, "public static $conf_siteKey = '" + system.encrypt(siteKey) + "';" );
 		content = append( content, "public static $conf_secretKey = '" + system.encrypt(secretKey) + "';" );
+		content = append( content, "public static $conf_email_template = '" + email_template + "';" );
 		content = append( content, "}");
 		content = append( content, "?>");
 		
@@ -90,12 +101,14 @@
 					<p><strong>In order to use this form, you need to activate JavaScript!</strong></p>
 				</div>
 			</noscript>
+			
 			<form enctype="multipart/form-data" class="zp-form" id="form<$= article.id $>" name="form<$= article.id $>" action="<$= action_url $>" method="post">
 				<input type="hidden" name="f_receiver" value="<$= email_address $>">
 		
 				<input type="hidden" name="f_title" value="<$= email_subject.toString().replace(/\"/g, "&quot;") $>">
 				<input type="hidden" name="f_success" value="<$= success_page_url $>">
 				<input type="hidden" name="f_error" value="<$= error_page_url $>">
+				<input type="hidden" name="f_id" value="<$= article.id $>"> 
 				<input type="hidden" name="f_alertPrefix" value="<$= system.htmlEncode(page.attribute("form_script_msg_required")) $>">
 				<input type="hidden" name="f_invalidEmailMsg" value="<$= system.htmlEncode(page.attribute("form_script_msg_invalid_email")) $>">
 	
@@ -274,11 +287,10 @@
 			
 			<script>
 				// if the browser doesn't support input type="date", use jQueryUI datepicker
-				if ( !zp.html5support["date"] ){
+				if ( zp.html5support && !zp.html5support["date"] ){
 					// test if jqueryUI is loaded, and if not, load it
 					var mySrc = $z('script[src*="app.js"], script[src*="bundle.js"]').first().attr("src");
-					var jsRelativePath = mySrc.substr(0, mySrc.lastIndexOf("/")+1);
-					
+					var jsRelativePath = mySrc.substr(0, mySrc.lastIndexOf("assets/")) + "assets/";
 					
 					if (!$z("link[href*='/js/jqueryui/jquery-ui-1.8.19.custom.css']").length){
 						// load jqueryUI if it is not already loaded
@@ -296,7 +308,7 @@
 							$z('<scr' + 'ipt type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></scr' + 'ipt>').appendTo("head");
 						}
 						else{
-							$z('scr' + 'ipt[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></scr' + 'ipt>');
+							$z('scr' + 'ipt[src*="app.js"], script[src*="bundle.js"]').first().after('<scr' + 'ipt type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/jquery-ui-1.8.19.custom.min.js"></scr' + 'ipt>');
 						}
 					}
 					// localize the datepicker to DE
@@ -306,7 +318,7 @@
 							$z('<scr' + 'ipt type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></scr' + 'ipt>').appendTo("head");
 						}
 						else{
-							$z('scr' + 'ipt[src*="app.js"], script[src*="bundle.js"]').first().after('<script type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></scr' + 'ipt>');
+							$z('scr' + 'ipt[src*="app.js"], script[src*="bundle.js"]').first().after('<scr' + 'ipt type="text/javascript" src="' + jsRelativePath + 'js/jqueryui/i18n/jquery.ui.datepicker-de.js"></scr' + 'ipt>');
 						}
 					}
 					// initialize date fields with datepicker

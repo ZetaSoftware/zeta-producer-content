@@ -26,7 +26,7 @@
 		<$ if ( !isNull(bild) ) { $>
 			<div class="articleimage" style="float:left;padding-right:15px">
 				<$ if ( bildurl !== "" ) { $><a href="<$= bildurl $>"><$ } $>
-					<img src="<$= bild.contentCopyPath $>" width="<$= bild.contentCopyWidth $>" height="<$= bild.contentCopyHeight $>" alt="<$= bild.description $>"<$ if ( inlinestyle !== "" ) { $> style="<$= inlinestyle $>"<$ } $> />
+					<img src="<$= bild.contentCopyPath $>" width="<$= bild.contentCopyWidth $>" height="<$= bild.contentCopyHeight $>" alt="<$= system.htmlEncode(system.removeHtmlTags(bild.altText)) $>"<$ if ( inlinestyle !== "" ) { $> style="<$= inlinestyle $>"<$ } $> />
 				<$ if ( bildurl !== "" ) { $></a><$ } $>
 				<$ if ( bu !== "" ) { $><span class="bildunterschrift"><$= bu $></span><$ } $>
 			</div>

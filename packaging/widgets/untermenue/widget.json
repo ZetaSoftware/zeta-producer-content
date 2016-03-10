@@ -9,7 +9,7 @@
         "category": "nav",
         "dialogheightvalue": 260,
         "maincategory": "other",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "pgeitemmetainfo": "Unknown",
         "removelineafter": false,
@@ -18,7 +18,7 @@
         "uiname": "Untermenü",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0",
+        "version": "13.1.0.0",
         "defaults": {
             "_nameLevel": "h2"
         }

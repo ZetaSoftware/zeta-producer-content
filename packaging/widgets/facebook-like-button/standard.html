@@ -2,19 +2,17 @@
 	var url = project.url;
 	var showFaces = "false";
 	var showSendButton = "false";
-	var width = 450;
-	var height = 80;
 	 
 	if ( article.value("useUrl") == "Aktuelle Seite" ) {
 		url = page.absoluteUrl;
 	}   
 	 
 	if ( isNumeric(article.value("width")) ) {
-	 	width = article.value("width");
+	 	var width = article.value("width", "450");
 	}
 	
 	if ( isNumeric(article.value("height")) ) {
-	 	height = article.value("height");
+	 	var height = article.value("height", "80");
 	}
 	 
 	if ( article.value("faces") == "1" ) {
@@ -69,7 +67,7 @@
 	<$= system.partial("article-headline.html") $>
 	
 	<$ 
-	if ( showSendButton = "true" ) { $>
+	if ( showSendButton == "true" ) { $>
 		<div id="fb-root"></div>
 		<script>(function(d, s, id) {
 		  var js, fjs = d.getElementsByTagName(s)[0];
@@ -78,12 +76,12 @@
 		  js.src = (("https:" == document.location.protocol) ? "https://connect.facebook.net/de_DE/all.js#xfbml=1" : "http://connect.facebook.net/de_DE/all.js#xfbml=1");
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-		<div class="fb-like" data-href="<$= url $>" data-layout="<$= layout $>" data-send="<$= showSendButton $>" data-action="<$= displayVerb $>" data-width="<$= width $>" data-show-faces="<$= showFaces $>" data-colorscheme="<$= colorScheme $>"></div>
+		<div class="fb-like" data-href="<$= url $>" data-layout="<$= layout $>" data-send="<$= showSendButton $>" data-action="<$= displayVerb $>" data-width="<$= width $>" data-show-faces="<$= showFaces $>" data-colorscheme="<$= colorScheme $>" style="max-width: 100%;"></div>
 
 	<$ 
 	}
 	else { $>
-		<iframe name="likebutton" src="//www.facebook.com/plugins/like.php?href=<$= encodeURIComponent(url) $>&amp;send=false&amp;layout=<$= layout $>&amp;width=<$= width $>&amp;show_faces=<$= showFaces $>&amp;action=<$= displayVerb $>&amp;colorscheme=<$= colorScheme $>&amp;font&amp;height=<$= height $>" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:<$= width $>px; height:<$= height $>px;" allowTransparency="true"></iframe>
+		<iframe class="fb-like" name="likebutton" src="//www.facebook.com/plugins/like.php?href=<$= encodeURIComponent(url) $>&amp;send=false&amp;layout=<$= layout $>&amp;width=<$= width $>&amp;show_faces=<$= showFaces $>&amp;action=<$= displayVerb $>&amp;colorscheme=<$= colorScheme $>&amp;font&amp;height=<$= height $>" scrolling="auto" frameborder="0" style="border:none; overflow:auto; width:<$= width $>px; height:<$= height $>px; max-width: 100%;" allowTransparency="true"></iframe>
 		
 	<$ } $>
 <$= system.partial("article-end.html") $>

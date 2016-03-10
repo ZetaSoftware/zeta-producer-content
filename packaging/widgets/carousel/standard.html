@@ -112,7 +112,7 @@ $>
 					imageLinkTag = '<a ' + slideUrl + '>';
 				}
 				else{
-					imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '" data-fancybox-group="g' + article.id + '" rel="g' + article.id + '">';
+					imageLinkTag = '<a class="fancybox" href="' + image.workingCopyPath + '" data-htmltitle="' + htmltitle + '" data-fancybox-group="g' + article.id + '">';
 				}
 				
 			}
@@ -121,7 +121,7 @@ $>
 			<li>
 				<$= imageLinkTag $>
 				<$ if ( image ) { $>
-						<img src="<$= image.thumbPath(thumbnailWidth, thumbnailHeight) $>" width="<$= thumbnailWidth $>" height="<$= thumbnailHeight $>" title="<$= stripDescription $>" alt="<$= stripDescription $>" />
+						<img src="<$= image.thumbPath(thumbnailWidth, thumbnailHeight) $>" width="<$= thumbnailWidth $>" height="<$= thumbnailHeight $>" title="<$= stripDescription $>" alt="<$= system.htmlEncode(system.removeHtmlTags(image.altText)) $>" />
 				<$ } $>
 				
 				<$ if ( headerTitle || headerDescription ) { $>
@@ -194,13 +194,17 @@ $>
 			}); // .each() is to work around a browser bugs which don't fire load() for cached images http://stackoverflow.com/a/3877079
 			
 			// make sure the slider is properly resized when the window is resized (400ms after window.resize ended)
+			$z('[data-articleid="<$= article.id $>"] .zp13carousel-container').on('resize',function(event){
+				// prevents slider.resize() from causing a windows.resize event again which looped
+				event.stopPropagation();
+			});
 			var sliderTimeout<$= article.id $> = null;
 			$z(window).resize(function(event) {
 				clearTimeout(sliderTimeout<$= article.id $>);
 				sliderTimeout<$= article.id $> = setTimeout(function() {
 					var slider = $z('[data-articleid="<$= article.id $>"] .zp13carousel-container').data('flexslider');   
 					slider.resize();
-					clearTimeout(sliderTimeout<$= article.id $>); // prevents slider.resize() from causing a windows.resize event again which looped
+					clearTimeout(sliderTimeout<$= article.id $>);
 				}, 400);
 				
 			});

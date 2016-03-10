@@ -11,7 +11,7 @@
         "dialogheightvalue": 310,
         "includeinsearchindex": false,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "requiredfeature": "HasOnlineCms",
@@ -20,7 +20,7 @@
         "uiname": "Online-CMS",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.1"
+        "version": "13.1.0.0"
     },
     "fields": [
         {

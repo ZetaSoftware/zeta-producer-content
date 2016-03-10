@@ -2,7 +2,7 @@
 var selectext = system.htmlEncode(article.value("selecttext"));
 var venuelabel = system.htmlEncode(article.value("venuelabel"));
 var genrelabel = system.htmlEncode(article.value("genrelabel"));
-
+var sortorder = article.value("sortorder", "asc");
 var articleText = article.value("Text");
 if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
 	articleText = "<p>" + articleText + "</p>";
@@ -10,7 +10,7 @@ if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
  $>
 
 <$= system.partial("article-begin.html") $>
-	<div id="ec<$= article.id $>" class="eventCalendar" <$ if ( article.value("max_width") !== "" ) { $>style="max-width: <$= article.value("max_width") $>;" <$ } $>data-hide_passed="<$= article.value("hide_passed") $>" data-showfilter="<$= article.value("show_filter") $>" data-rowcolor="<$= article.value("tablerowcolor") $>" data-rowspace="<$= article.value("tablespacing") $>" data-selall="<$= selectext $>" data-venuelabel="<$= venuelabel $>" data-genrelabel="<$= genrelabel $>" data-filterbackgroundcolor="<$= article.value("filterbackgroundcolor") $>">
+	<div id="ec<$= article.id $>" class="eventCalendar" <$ if ( article.value("max_width") !== "" ) { $>style="max-width: <$= article.value("max_width") $>;" <$ } $>data-hide_passed="<$= article.value("hide_passed") $>" data-showfilter="<$= article.value("show_filter") $>" data-rowcolor="<$= article.value("tablerowcolor") $>" data-rowspace="<$= article.value("tablespacing") $>" data-selall="<$= selectext $>" data-venuelabel="<$= venuelabel $>" data-genrelabel="<$= genrelabel $>" data-datepickertodaylabel=<$= page.attribute("eventCalendar_datepicker_today_text", "Heute") $> data-datepickercloselabel=<$= page.attribute("eventCalendar_datepicker_close_text", "Schließen") $>  data-filterbackgroundcolor="<$= article.value("filterbackgroundcolor") $>" data-sortorder="<$= sortorder $>">
 
 		<$= system.partial("article-headline.html") $>
 		<$= articleText $>
@@ -23,24 +23,24 @@ if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
 			<div class="filteritem">
 				<label for="evvenue-filter"><$= venuelabel $></label><br />
 				<select id="evvenue-filter" name="evvenuefilter">
-					<option>Alle</option>
+					<option><$= selectext $></option>
 				</select>
 			</div>
 			<div class="filteritem">
 				<label for="evgenre-filter"><$= genrelabel $></label><br />
 				<select id="evgenre-filter" name="evgenrefilter">
-					<option>Alle</option>
+					<option><$= selectext $></option>
 				</select>
 			</div>
 			<div class="filteritem">
-				<label for="datefrom-filter">Von Datum</label><br />
+				<label for="datefrom-filter"><$= page.attribute("eventCalendar_from_date_text", "Von Datum") $></label><br />
 				<input id="datefrom-filter" name="datefrom" type="text" class="datepicker" placeholder="TT.MM.YYYY" />
 			</div>
 			<div class="filteritem">
-				<label for="dateto-filter">Bis Datum </label><br />
+				<label for="dateto-filter"><$= page.attribute("eventCalendar_to_date_text", "Bis Datum") $> </label><br />
 				<input id="dateto-filter" name="dateto" type="text" class="datepicker" placeholder="TT.MM.YYYY" />
 			</div>
-			<button class="resetfilters button" type="submit">Alles zeigen</button>
+			<button class="resetfilters button" type="submit"><$= page.attribute("eventCalendar_show_all_text", "Alles zeigen") $></button>
 		</div>
 
 		<div class="eventOverview" id="eo<$= article.id $>">
@@ -85,8 +85,8 @@ if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
 			<div class="event" data-evdate="<$= sd $>" data-evenddate="<$= ed $>" data-evname="<$= name $>" data-evvenue="<$= venue $>" data-evgenre="<$= genre $>">
 			
 				<div class="eventdate">
-					<$ if ( ed == "" ) { $><$= sd $><$ if ( !isNull(start) ) { $><br /><$= start $> Uhr<$ } $><$ if ( !isNull(endt) ) { $> – <$= endt $> Uhr<$ } $>
-					<$ } else { $><$= sd $><$ if ( !isNull(start) ) { $>, <$= start $> Uhr<$ } $> bis <br /><$= ed $><$ if ( !isNull(endt) ) { $>, <$= endt $> Uhr<$ } $><$ } $>
+					<$ if ( ed == "" ) { $><$= sd $><$ if ( !isNull(start) ) { $><br /><$= start $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $><$ if ( !isNull(endt) ) { $> – <$= endt $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $>
+					<$ } else { $><$= sd $><$ if ( !isNull(start) ) { $>, <$= start $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $> <$= page.attribute("eventCalendar_to_text", "bis") $> <br /><$= ed $><$ if ( !isNull(endt) ) { $>, <$= endt $> <$= page.attribute("eventCalendar_time_text", "Uhr") $><$ } $><$ } $>
 				</div>
 				<div class="eventinfo">
 					<p>
@@ -94,7 +94,7 @@ if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
 					</p>
 					
 					<$ if ( !isNull(image) ) { $>
-						<a class="title" href="<$= a.Url $>"><img src="<$= image.contentCopyPath $>" width="140" alt="<$= image.Description $>" /></a>
+						<a class="title" href="<$= a.Url $>"><img src="<$= image.contentCopyPath $>" width="140" alt="<$= system.htmlEncode(system.removeHtmlTags(image.altText)) $>" /></a>
 					<$ } $>
 
 					<$ if ( !isNull(shortdescription) ) { $>
@@ -107,12 +107,12 @@ if ( articleText !== "" && articleText.indexOf("<p>") == -1 ){
 
 					<$ if ( !isNull(venue) ) { $>
 					<p>
-						<span class="venuelabel">Ort:</span> <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( !isNull(venuetarget) ) { $> target="<$= venuetarget $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $>
+						<span class="venuelabel"><$= page.attribute("eventCalendar_location_text", "Ort:") $></span> <$ if ( !isNull(venuelink) ) { $><a href="<$= venuelink $>"<$ if ( !isNull(venuetarget) ) { $> target="<$= venuetarget $>"<$ } $>><$= venue $></a><$ } else { $><$= venue $><$ } $>
 					</p>
 					<$ } $>
 
 					<$ if ( !isNull(genre) ) { $>
-						<p><span class="genrelabel">Art:</span> <$= genre $></p>
+						<p><span class="genrelabel"><$= page.attribute("eventCalendar_genre_text", "Art:") $></span> <$= genre $></p>
 					<$ } $>
 				</div>
 			</div>

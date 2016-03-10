@@ -12,7 +12,7 @@
         },
         "dialogheightvalue": 500,
         "maincategory": "applications",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 0,
         "removelineafter": false,
         "showcssinputfields": true,
@@ -20,7 +20,7 @@
         "uiname": "Wetter",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "fields": [
         {
@@ -83,7 +83,7 @@
             "name": "Optionen",
             "occupylabelspace": true,
             "popupbuttonwidthinpixel": 0,
-            "popupheightinpixel": 110,
+            "popupheightinpixel": 148,
             "popupwidthinpixel": 230,
             "showlabel": false,
             "type": "group",
@@ -123,7 +123,30 @@
                         }
                     ],
                     "defaultValue": "c"
-                }
+                },
+                {
+					"canedit": false,
+					"displayname": "Ausrichtung",
+					"height": 10,
+					"ignoreforsimilarcomparison": false,
+					"includeinsearchindex": false,
+					"label": "align",
+					"name": "align",
+					"type": "list",
+					"width": 100,
+					"values": [
+						{
+							"Links": "left"
+						},
+						{
+							"Zentriert": "center"
+						},
+						{
+							"Rechts": "right"
+						}
+					],
+					"defaultValue": "left"
+				}
             ]
         }
     ],

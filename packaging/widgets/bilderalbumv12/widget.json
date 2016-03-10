@@ -70,13 +70,13 @@
         "editortype": "imageAlbum",
         "maincategory": "text-image",
         "orderposition": 3,
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "removelineafter": false,
         "showcssinputfields": true,
         "showheadlinelabel": false,
         "uiname": "Bilderalbum",
         "usercanresizedialog": false,
-        "version": "13.0.0.0"
+        "version": "13.1.0.0"
     },
     "assets": [
         {

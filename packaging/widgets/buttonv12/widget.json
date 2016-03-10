@@ -9,7 +9,7 @@
         "category": "text",
         "dialogheightvalue": 220,
         "maincategory": "text-image",
-        "minappversion": "12.5.0.0",
+        "minAppVersion": "13.1.0.0",
         "orderposition": 3,
         "removelineafter": false,
         "showcssinputfields": true,
@@ -17,7 +17,7 @@
         "uiname": "Button",
         "usedialogheight": true,
         "usercanresizedialog": false,
-        "version": "13.0.0.1"
+        "version": "13.1.0.0"
     },
     "fields": [
         {
